@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CategoryController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
@@ -28,7 +29,7 @@ Route::middleware(['auth'])->group(function () {
         return view('admin.dashboard');
     });
     Route::resource('/admin/post', PostController::class);
-    Route::resource('/admin/category', PostController::class);
+    Route::resource('/admin/category', CategoryController::class);
     Route::resource('/admin/user', PostController::class);
 });
 

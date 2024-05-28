@@ -13,7 +13,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        $kategori = Category::latest()->paginate(10);
+        return view("admin.category.index",['kategoris'=>$kategori]);
     }
 
     /**
@@ -21,7 +22,7 @@ class CategoryController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.category.create',['categories'=>Category::all()]);
     }
 
     /**
@@ -29,7 +30,11 @@ class CategoryController extends Controller
      */
     public function store(StoreCategoryRequest $request)
     {
-        //
+        $validated = $request->validate([
+            'name'=>'required',
+        ]);
+        Category::create($validated);
+        return redirect('admin/category')->with('success','Kategori Berhasil Ditambah');
     }
 
     /**
@@ -43,24 +48,29 @@ class CategoryController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Category $category)
+    public function edit(string $id)
     {
-        //
+        return view('admin.category.edit',['category'=>Category::find($id)]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateCategoryRequest $request, Category $category)
+    public function update(UpdateCategoryRequest $request, string $id)
     {
-        //
+        $validated = $request->validate([
+            'name'=>'required',
+        ]);
+        Category::where('id',$id)->update($validated);
+        return redirect('admin/category')->with('warning','Kategori Berhasil Diubah');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Category $category)
+    public function destroy(string $id)
     {
-        //
+        Category::destroy($id);
+        return redirect('admin/category')->with('danger','Kategori Berhasil Dihapus');
     }
 }
