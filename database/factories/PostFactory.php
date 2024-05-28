@@ -17,12 +17,11 @@ class PostFactory extends Factory
      */
     public function definition(): array
     {
-        $categ = ['B','I','U'];
         return [
             'judul' => fake()->sentence(),
             'gambar' => fake()->imageUrl(),
             'user_id' => User::all()->random()->id,
-            'category_id' => $categ[array_rand($categ)],
+            'category_id' => rand(1,3),
             'content' => fake()->paragraphs(3, true),
             'tanggal_post' => now(),
         ];

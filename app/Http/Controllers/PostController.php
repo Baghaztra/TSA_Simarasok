@@ -40,23 +40,30 @@ class PostController extends Controller
             'isi_berita' => 'required',
             'category_id' => 'required|exists:categories,id',
             'user_id' => 'required|exists:users,id',
-            'gambar' => 'required',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif',
         ]);
+
         
+        if ($request->hasFile('gambar')) {
+            $images = $request->file('gambar');
+            $imageName = time().'.'.$images->getClientOriginalExtension();
+            $images->move(public_path('images'), $imageName);
+        } else {
+            return redirect()->back()->withErrors(['gambar' => 'Gambar tidak valid atau tidak ada.'])->withInput();
+        }
+
         $berita = [
             'judul' => $request->judul,
-            'isi_berita' => $request->isi_berita,
-            'category_id' => $request->kategori_id,
+            'content' => $request->isi_berita,
+            'category_id' => $request->category_id,
             'user_id' => $request->user_id,
-            'gambar' => $request->gambar,    
+            'gambar' => $imageName,  
+            'tanggal_post'=>now()  
         ];
 
-        $images = $request->file('gambar');
-        $imageName = time().'.'.$images->extension();
-        $images->move(public_path('images'), $imageName);
-
+        
         Post::create($berita);
-        return redirect('dashboard-berita')->with('success', 'Berhasil menambahkan berita baru.');
+        return redirect('admin/post')->with('success', 'Berhasil menambahkan berita baru.');
     }
 
     /**
@@ -70,9 +77,9 @@ class PostController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Post $berita)
+    public function edit(string $id)
     {
-        // $berita = Post::findOrFail($id);
+        $berita = Post::findOrFail($id);
         $kategori = Category::all();
         $author = User::all();
         return view('admin.post.edit')->with(['beritas' => $berita, 'kategoris' => $kategori, 'authors'=> $author]);
@@ -81,9 +88,9 @@ class PostController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdatePostRequest $request, Post $berita)
+    public function update(UpdatePostRequest $request, string $id)
     {
-        // $berita = Berita::findOrFail($id);
+        $berita = Post::findOrFail($id);
         $validated = $request->validate([
             'judul' => 'required',
             'isi_berita' => 'required',
@@ -93,15 +100,15 @@ class PostController extends Controller
         ]);
 
         $berita->update($validated);
-        return redirect('dashboard-berita')->with('success', 'Berhasil menghapus data berita.');
+        return redirect('admin/post')->with('success', 'Berhasil menghapus data berita.');
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Post $post)
+    public function destroy(string $id)
     {
-        Post::destroy($post->id);
+        Post::destroy($id);
         return redirect('dashboard-berita')->with('success', 'Berhasil menghapus data berita.');
     }
 }

@@ -15,9 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('judul');
             $table->string('gambar');
-            $table->string('category_id',5);
             $table->foreignId('user_id')->constrained('users');
-            $table->foreign('category_id')->references('id')->on('categories');
+            $table->foreignId('category_id')->constrained('categories');
             $table->text('content');
             $table->date('tanggal_post');
             $table->timestamps();

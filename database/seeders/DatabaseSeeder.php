@@ -18,22 +18,19 @@ class DatabaseSeeder extends Seeder
         User::factory(5)->create();
 
         Category::factory()->create([
-            'id' => 'B',
             'name' => 'Bencana',
         ]);
         Category::factory()->create([
-            'id' => 'I',
             'name' => 'Info',
         ]);
         Category::factory()->create([
-            'id' => 'U',
             'name' => 'Update',
         ]);
         Post::factory(10)->create();
         User::factory()->create([
             'name' => 'admin',
             'email' => 'admin@example.com',
-            'password' => bcrypt('12345678'),
+            'password' => bcrypt('123123123'),
         ]);
     }
 }

@@ -69,13 +69,13 @@
 
             <div class="mb-3">
                 <label class="form-label">Kategori</label>
-                <select name="kategori_id" class="form-control @error('kategori_id') is-invalid @enderror" id="">
+                <select name="category_id" class="form-control @error('category_id') is-invalid @enderror" id="">
                     @foreach ($kategoris as $item)
-                        <option value="{{ $item->id }}" @if (old('kategori_id') == $item->id) selected @endif>
+                        <option value="{{ $item->id }}" @if (old('category_id') == $item->id) selected @endif>
                             {{ $item->name }}</option>
                     @endforeach
                 </select>
-                @error('kategori_id')
+                @error('category_id')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>

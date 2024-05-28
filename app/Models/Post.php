@@ -9,6 +9,14 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 class Post extends Model
 {
     use HasFactory;
+    protected $fillable = [
+        'judul',
+        'gambar',
+        'user_id',
+        'category_id',
+        'content',
+        'tanggal_post',
+    ];
     function category(){
         return $this->belongsTo(Category::class, 'category_id');
     }
