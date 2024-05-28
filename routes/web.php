@@ -1,8 +1,9 @@
 <?php
 
-use App\Http\Controllers\PostController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\SigninController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,7 +19,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
-Route::resource('/posts', PostController::class);
-Route::get('/admin', function () {
-    return view('admin.dashboard');
+Route::get('/post', function () {
+    return view('posts');
+});
+
+Route::middleware(['auth'])->group(function () {
+    Route::get('/admin', function () {
+        return view('admin.dashboard');
+    });
+    Route::resource('/admin/post', PostController::class);
+});
+Route::middleware(['guest'])->group(function () {
+    Route::get('sign-in', [SigninController::class, 'index'])->name('login');
+    Route::post('proses', [SigninController::class, 'authentication'])->name('proses-signin');
 });

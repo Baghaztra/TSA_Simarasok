@@ -30,5 +30,10 @@ class DatabaseSeeder extends Seeder
             'name' => 'Update',
         ]);
         Post::factory(10)->create();
+        User::factory()->create([
+            'name' => 'admin',
+            'email' => 'admin@example.com',
+            'password' => bcrypt('12345678'),
+        ]);
     }
 }
