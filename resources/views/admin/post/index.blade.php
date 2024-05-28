@@ -51,8 +51,8 @@
                 <td>{{ $item->author->name }}</td>
                 <td>{{ $item->gambar }}</td>
                 <td>
-                    <form class="d-inline" onsubmit="return confirm('yakin inging mengapus data ini')"
-                        action="/admin/berita/{{ $item->id }}" method="POST">
+                    <form class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')"
+                        action="{{ route('post.destroy', $item->id) }}" method="POST">
                         @csrf @method('DELETE')
                         <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                     </form>

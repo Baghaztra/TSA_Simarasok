@@ -40,7 +40,7 @@ class PostController extends Controller
             'isi_berita' => 'required',
             'category_id' => 'required|exists:categories,id',
             'user_id' => 'required|exists:users,id',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg,gif',
+            'gambar' => 'required|image|mimes:jpeg,png,jpg',
         ]);
 
         
@@ -79,10 +79,10 @@ class PostController extends Controller
      */
     public function edit(string $id)
     {
-        $berita = Post::findOrFail($id);
+        $post = Post::findOrFail($id);
         $kategori = Category::all();
         $author = User::all();
-        return view('admin.post.edit')->with(['beritas' => $berita, 'kategoris' => $kategori, 'authors'=> $author]);
+        return view('admin.post.edit')->with(['post' => $post, 'kategoris' => $kategori, 'authors'=> $author]);
     }
 
     /**
@@ -91,24 +91,47 @@ class PostController extends Controller
     public function update(UpdatePostRequest $request, string $id)
     {
         $berita = Post::findOrFail($id);
+    
+        // Validasi request
         $validated = $request->validate([
             'judul' => 'required',
             'isi_berita' => 'required',
-            'category_id' => 'required|exists:kategoris,id',
+            'category_id' => 'required|exists:categories,id',
             'user_id' => 'required|exists:users,id',
-            'gambar' => 'required',
+            'gambar' => 'nullable|image|mimes:jpeg,png,jpg',
         ]);
-
+    
+        if ($request->hasFile('gambar')) {
+            if ($berita->gambar && file_exists(public_path('images/' . $berita->gambar))) {
+                unlink(public_path('images/' . $berita->gambar));
+            }
+    
+            $images = $request->file('gambar');
+            $imageName = time().'.'.$images->getClientOriginalExtension();
+            $images->move(public_path('images'), $imageName);
+    
+            $validated['gambar'] = $imageName;
+        }
+    
         $berita->update($validated);
-        return redirect('admin/post')->with('success', 'Berhasil menghapus data berita.');
+    
+        return redirect('admin/post')->with('success', 'Berhasil mengubah data berita.');
     }
+    
 
     /**
      * Remove the specified resource from storage.
      */
     public function destroy(string $id)
     {
-        Post::destroy($id);
-        return redirect('dashboard-berita')->with('success', 'Berhasil menghapus data berita.');
+        $berita = Post::findOrFail($id);
+
+        if ($berita->gambar && file_exists(public_path('images/' . $berita->gambar))) {
+            unlink(public_path('images/' . $berita->gambar));
+        }
+
+        $berita->delete();
+
+        return redirect('admin/post')->with('success', 'Berhasil menghapus data berita.');
     }
 }

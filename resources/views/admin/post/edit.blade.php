@@ -6,12 +6,12 @@
     </div>
     <div class="col-6">
         <a href="/admin/post" class="btn btn-sm btn-warning mb-3">Kembali</a>
-        <form action="/admin/post" method="post" enctype="multipart/form-data">
-            @csrf
+        <form action="/admin/post/{{ $post->id }}" method="post" enctype="multipart/form-data">
+            @csrf @method('put')
             <div class="mb-3">
                 <label class="form-label">Judul</label>
                 <input type="text" class="form-control @error('judul') is-invalid @enderror" name="judul"
-                    value="{{ old('judul') }}">
+                    value="{{ old('judul', $post->judul) }}">
                 @error('judul')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -45,7 +45,7 @@
             <div class="mb-3">
                 <label class="form-label">Isi</label>
                 <div id="editor">
-                    {!! old('isi_berita') !!}
+                    {!! old('isi_berita', $post->content) !!}
                 </div>
                 <textarea id="isi_berita" name="isi_berita" style="display:none;"></textarea>
                 <script>
@@ -71,7 +71,7 @@
                 <label class="form-label">Kategori</label>
                 <select name="category_id" class="form-control @error('category_id') is-invalid @enderror" id="">
                     @foreach ($kategoris as $item)
-                        <option value="{{ $item->id }}" @if (old('category_id') == $item->id) selected @endif>
+                        <option value="{{ $item->id }}" @if (old('category_id',$post->category_id) == $item->id) selected @endif>
                             {{ $item->name }}</option>
                     @endforeach
                 </select>

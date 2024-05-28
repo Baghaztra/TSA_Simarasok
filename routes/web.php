@@ -28,7 +28,10 @@ Route::middleware(['auth'])->group(function () {
         return view('admin.dashboard');
     });
     Route::resource('/admin/post', PostController::class);
+    Route::resource('/admin/category', PostController::class);
+    Route::resource('/admin/user', PostController::class);
 });
+
 Route::middleware(['guest'])->group(function () {
     Route::get('sign-in', [SigninController::class, 'index'])->name('login');
     Route::post('proses', [SigninController::class, 'authentication'])->name('proses-signin');
