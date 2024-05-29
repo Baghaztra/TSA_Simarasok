@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use App\Models\UMKM;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\UMKM>
@@ -17,7 +18,8 @@ class UMKMFactory extends Factory
     public function definition(): array
     {
         return [
-            //
+            'name' => 'Lorem Ipsum',
+            'category_id' => rand(1,3),
         ];
     }
 }

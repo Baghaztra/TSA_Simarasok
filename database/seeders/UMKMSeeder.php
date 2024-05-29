@@ -12,6 +12,6 @@ class UMKMSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        \App\Models\UMKM::factory(15)->create();
     }
 }
