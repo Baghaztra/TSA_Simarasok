@@ -5,6 +5,7 @@ use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SigninController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -33,7 +34,9 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::resource('/admin/post', PostController::class);
     Route::resource('/admin/category', CategoryController::class);
-    Route::resource('/admin/user', PostController::class);
+    Route::resource('/admin/user', UserController::class);
+    Route::put('/admin/users/{id}', [UserController::class, 'update']);
+
 });
 
 Route::middleware(['guest'])->group(function () {

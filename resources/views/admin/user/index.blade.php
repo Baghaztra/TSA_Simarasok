@@ -17,7 +17,6 @@
         </div>
     </div>
 
-
     @if (session('success'))
         <div class="alert alert-success">
             {{ session('success') }}
@@ -30,6 +29,7 @@
             <th>Nama</th>
             <th>Email</th>
             <th>Password</th>
+            <th>Action</th>
         </tr>
         @if ($users->isEmpty())
             <tr>
@@ -47,11 +47,11 @@
                 <td>{{ $item->password }}</td>
                 <td>
                     <form class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')"
-                        action="{{ route('post.destroy', $item->id) }}" method="POST">
+                        action="{{ route('user.destroy', $item->id) }}" method="POST">
                         @csrf @method('DELETE')
                         <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                     </form>
-                    <a href="/admin/post/{{ $item->id }}/edit" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="/admin/user/{{ $item->id }}/edit" class="btn btn-sm btn-warning">Edit</a>
                 </td>
             </tr>
         @endforeach
