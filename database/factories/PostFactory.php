@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Post;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
@@ -19,10 +20,12 @@ class PostFactory extends Factory
     {
         return [
             'judul' => fake()->sentence(),
-            'gambar' => fake()->imageUrl(),
+            'slug' => Post::make_slug(fake()->sentence()),
+            // 'gambar' => fake()->imageUrl(),
+            'content' => fake()->paragraphs(5, true),
             'user_id' => User::all()->random()->id,
             'category_id' => rand(1,3),
-            'content' => fake()->paragraphs(3, true),
+            'status' => ['publish', 'draft'][rand(0, 1)],
         ];
     }
 }

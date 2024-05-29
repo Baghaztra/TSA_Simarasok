@@ -23,10 +23,10 @@ class UpdatePostRequest extends FormRequest
     {
         return [
             'judul' => 'required|string|max:255',
-            'isi_berita' => 'required',
+            'content' => 'required',
             'category_id' => 'required|exists:categories,id',
             'user_id' => 'required|exists:users,id',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg', // Gambar tidak wajib
+            // 'gambar' => 'nullable|image|mimes:jpeg,png,jpg',
         ];
     }
 }
