@@ -37,28 +37,28 @@ class PostController extends Controller
     {
         $request->validate([
             'judul' => 'required',
-            'isi_berita' => 'required',
+            'content' => 'required',
             'category_id' => 'required|exists:categories,id',
             'user_id' => 'required|exists:users,id',
-            'gambar' => 'required|image|mimes:jpeg,png,jpg',
         ]);
 
         
-        if ($request->hasFile('gambar')) {
-            $images = $request->file('gambar');
-            $imageName = time().'.'.$images->getClientOriginalExtension();
-            $images->move(public_path('images'), $imageName);
-        } else {
-            return redirect()->back()->withErrors(['gambar' => 'Gambar tidak valid atau tidak ada.'])->withInput();
-        }
+        // if ($request->hasFile('gambar')) {
+        //     $images = $request->file('gambar');
+        //     $imageName = time().'.'.$images->getClientOriginalExtension();
+        //     $images->move(public_path('images'), $imageName);
+        // } else {
+        //     return redirect()->back()->withErrors(['gambar' => 'Gambar tidak valid atau tidak ada.'])->withInput();
+        // }
 
         $berita = [
             'judul' => $request->judul,
-            // 'slug' => Post::make_slug($request->judul),
-            'content' => $request->isi_berita,
+            'slug' => Post::make_slug($request->judul),
+            'content' => $request->content,
             'category_id' => $request->category_id,
             'user_id' => $request->user_id,
-            'gambar' => $imageName,  
+            'status' => $request->has('publish') ? 'publish' : 'draft',
+            // 'gambar' => $imageName,  
         ];
 
         Post::create($berita);
@@ -92,35 +92,36 @@ class PostController extends Controller
         $berita = Post::findOrFail($id);
     
         // Validasi request
-        $validated = $request->validate([
-            'judul' => 'required',
-            'isi_berita' => 'required',
-            'category_id' => 'required|exists:categories,id',
-            'user_id' => 'required|exists:users,id',
-            'gambar' => 'nullable|image|mimes:jpeg,png,jpg',
-        ]);
+        // $validated = $request->validate([
+        //     'judul' => 'required',
+        //     'content' => 'required',
+        //     'user_id' => 'required|exists:users,id',
+        //     'category_id' => 'required|exists:categories,id',
+            // 'gambar' => 'nullable|image|mimes:jpeg,png,jpg',
+        // ]);
     
-        if ($request->hasFile('gambar')) {
-            if ($berita->gambar && file_exists(public_path('images/' . $berita->gambar))) {
-                unlink(public_path('images/' . $berita->gambar));
-            }
+        // if ($request->hasFile('gambar')) {
+        //     if ($berita->gambar && file_exists(public_path('images/' . $berita->gambar))) {
+        //         unlink(public_path('images/' . $berita->gambar));
+        //     }
     
-            $images = $request->file('gambar');
-            $imageName = time().'.'.$images->getClientOriginalExtension();
-            $images->move(public_path('images'), $imageName);
+        //     $images = $request->file('gambar');
+        //     $imageName = time().'.'.$images->getClientOriginalExtension();
+        //     $images->move(public_path('images'), $imageName);
     
-            $validated['gambar'] = $imageName;
-        }else{
-            $imageName=$berita->gambar;
-        }
+        //     $validated['gambar'] = $imageName;
+        // }else{
+        //     $imageName=$berita->gambar;
+        // }
         
         $data = [
             'judul' => $request->judul,
-            // 'slug' => Post::make_slug($request->judul),
-            'content' => $request->isi_berita,
-            'category_id' => $request->category_id,
+            'slug' => Post::make_slug($request->judul),
+            'content' => $request->content,
             'user_id' => $request->user_id,
-            'gambar' => $imageName,  
+            'category_id' => $request->category_id,
+            'status' => $request->has('publish') ? 'publish' : 'draft',
+            // 'gambar' => $imageName,  
         ];
         $berita->update($data);
     
