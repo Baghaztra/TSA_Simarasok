@@ -8,10 +8,7 @@
         aria-label="Search">
     <div class="navbar-nav">
         <div class="nav-item  px-3">
-            <form action="/logout" method="post">
-                @csrf
-                <button class="nav-link" type="submit">Logout</button>
-            </form>
+            <a href="/sign-out" class="nav-link" type="submit">Logout</a>
         </div>
     </div>
 </header>

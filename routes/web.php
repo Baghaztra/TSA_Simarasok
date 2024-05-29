@@ -34,6 +34,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/admin/post', PostController::class);
     Route::resource('/admin/category', CategoryController::class);
     Route::resource('/admin/user', PostController::class);
+    Route::get('sign-out', [SigninController::class, 'logout'])->name('logout');
 });
 
 Route::middleware(['guest'])->group(function () {
