@@ -18,10 +18,20 @@
     </div>
 
 
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
+    @if (session('success') || session('warning') || session('danger'))
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @elseif (session('warning'))
+            <div class="alert alert-warning">
+                {{ session('warning') }}
+            </div>
+        @else
+            <div class="alert alert-danger">
+                {{ session('danger') }}
+            </div>
+        @endif
     @endif
 
     <table class="table table-bordered table-striped">

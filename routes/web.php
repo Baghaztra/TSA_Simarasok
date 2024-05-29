@@ -21,11 +21,14 @@ Route::get('/', function () {
     return view('welcome');
 });
 Route::get('/post', function () {
-    return view('posts');
+    return view('posts',['posts'=>Post::all()]);
 });
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin', function () {
+        return view('admin.dashboard');
+    });
+    Route::get('/home', function () {
         return view('admin.dashboard');
     });
     Route::resource('/admin/post', PostController::class);

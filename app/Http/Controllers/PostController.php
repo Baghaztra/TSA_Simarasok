@@ -115,7 +115,7 @@ class PostController extends Controller
     
         $berita->update($validated);
     
-        return redirect('admin/post')->with('success', 'Berhasil mengubah data berita.');
+        return redirect('admin/post')->with('warning', 'Berhasil mengubah data berita.');
     }
     
 
@@ -132,6 +132,6 @@ class PostController extends Controller
 
         $berita->delete();
 
-        return redirect('admin/post')->with('success', 'Berhasil menghapus data berita.');
+        return redirect('admin/post')->with('danger', 'Berhasil menghapus data berita.');
     }
 }

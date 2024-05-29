@@ -14,14 +14,14 @@
             <div class="card mb-3 shadow">
                 <img
                     class="card-img-top"
-                    src="{{ $post['gambar'] }}"
+                    src="{{ Str::startsWith($post['gambar'], 'http') ? $post['gambar'] : asset('images/' . $post['gambar']) }}"
                     alt="{{ $post['judul'] }}"
                 />
                 <div class="card-body">
                     <h4 class="card-title">{{ $post['judul'] }}</h4>
                     <p class="card-text text-secondary">{{ $post->category->name }}</p>
                     <p class="card-text text-secondary">{{ $post->author->name }}</p>
-                    <p class="card-text">{{ $post['content'] }}</p>
+                    <div class="card-text">{!! $post['content'] !!}</div>
                     <a href="#" class="card-link">Card link</a>
                     <a href="#" class="card-link">Another link</a>
                 </div>
