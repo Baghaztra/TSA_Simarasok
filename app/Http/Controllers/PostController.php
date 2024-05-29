@@ -54,14 +54,13 @@ class PostController extends Controller
 
         $berita = [
             'judul' => $request->judul,
+            // 'slug' => Post::make_slug($request->judul),
             'content' => $request->isi_berita,
             'category_id' => $request->category_id,
             'user_id' => $request->user_id,
             'gambar' => $imageName,  
-            'tanggal_post'=>now()  
         ];
 
-        
         Post::create($berita);
         return redirect('admin/post')->with('success', 'Berhasil menambahkan berita baru.');
     }
@@ -111,9 +110,19 @@ class PostController extends Controller
             $images->move(public_path('images'), $imageName);
     
             $validated['gambar'] = $imageName;
+        }else{
+            $imageName=$berita->gambar;
         }
-    
-        $berita->update($validated);
+        
+        $data = [
+            'judul' => $request->judul,
+            // 'slug' => Post::make_slug($request->judul),
+            'content' => $request->isi_berita,
+            'category_id' => $request->category_id,
+            'user_id' => $request->user_id,
+            'gambar' => $imageName,  
+        ];
+        $berita->update($data);
     
         return redirect('admin/post')->with('warning', 'Berhasil mengubah data berita.');
     }

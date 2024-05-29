@@ -23,7 +23,6 @@ class PostFactory extends Factory
             'user_id' => User::all()->random()->id,
             'category_id' => rand(1,3),
             'content' => fake()->paragraphs(3, true),
-            'tanggal_post' => now(),
         ];
     }
 }

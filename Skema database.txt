@@ -1,0 +1,40 @@
+User (Firman)
+> id
+> name
+> email
+> pw
+> alias
+> role (admin/moderator/publisher)
+> status (active/banned)
+
+Berita (Bagas)
+> id
+> judul
+> slug
+> content
+> user_id
+> category_id
+> status (pending/publish)
+
+UMKM (Risyad)
+> id
+> name
+> category_id
+
+Destinasi_Pariwisata (Risyad)
+> id
+> name
+> desc
+> harga_tiket
+
+Category (Sakinah)
+> id
+> name
+> jenis (berita/umkm)
+
+Asset (Sakinah)
+> id
+> nama
+> tipe (video/gambar)
+> jenis (UMKM/berita/pariwisata)
+> jenis_id (id umkm/id berita/ id pariwisata)
