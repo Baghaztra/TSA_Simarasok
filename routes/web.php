@@ -37,6 +37,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/admin/user', UserController::class);
     Route::put('/admin/users/{id}', [UserController::class, 'update']);
 
+    // Route::resource('/admin/user', PostController::class);
+    Route::get('sign-out', [SigninController::class, 'logout'])->name('logout');
 });
 
 Route::middleware(['guest'])->group(function () {

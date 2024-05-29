@@ -11,16 +11,23 @@ class Post extends Model
     use HasFactory;
     protected $fillable = [
         'judul',
-        'gambar',
+        'slug',
+        'content',
         'user_id',
         'category_id',
-        'content',
-        'tanggal_post',
+        'status',
     ];
     function category(){
         return $this->belongsTo(Category::class, 'category_id');
     }
     function author(){
         return $this->belongsTo(User::class, 'user_id');
+    }
+    // function gambar(){
+    //     return $this->hasMany(Asset::class);
+    // }
+    
+    public static function make_slug($judul) {
+        return str_replace(' ', '-', strtolower($judul));
     }
 }
