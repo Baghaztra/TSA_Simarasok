@@ -14,7 +14,7 @@ class UserController extends Controller
     public function index()
     {
         $pengguna = User::latest()->paginate(10);
-        return view("admin.user.index")->with("users", $pengguna);
+        return view("admin.user.index")->with(['users'=>$pengguna]);
     }
 
     /**
@@ -74,7 +74,7 @@ class UserController extends Controller
         $user->email = $validated['email'];
         if ($request->has('new_password')) {
             $request->validate([
-                'new_password' => 'required',
+                'new_password',
             ]);
             $user->password = Hash::make($request->new_password);
         }

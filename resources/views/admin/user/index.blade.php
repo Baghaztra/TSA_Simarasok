@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Daftar Berita</h1>
+        <h1 class="h2">Daftar User</h1>
     </div>
     <div class="row">
         <div class="col-md-6">
@@ -17,10 +17,20 @@
         </div>
     </div>
 
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
+    @if (session('success') || session('warning') || session('danger'))
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @elseif (session('warning'))
+            <div class="alert alert-warning">
+                {{ session('warning') }}
+            </div>
+        @else
+            <div class="alert alert-danger">
+                {{ session('danger') }}
+            </div>
+        @endif
     @endif
 
     <table class="table table-bordered table-striped">
