@@ -22,25 +22,118 @@
             <div class="mb-3">
                 <label class="form-label" for="gambar">
                     Media
-                    <img src="/images/upload.jpg" class="img-thumbbnail" id="img-preview"
-                        style="width: 300px; display: block;">
+                    <img src="/images/upload.jpg" class="img-thumbnail" id="img-preview" style="width: 300px; display: block;">
                 </label>
-                <input type="file" name="gambar[]" id="gambar" hidden class="form-control @error('gambar') is-invalid @enderror" onchange="priviewImage(event)" accept="image/*, video/*" multiple>
+                <input type="file" name="gambar[]" id="gambar" class="form-control @error('gambar') is-invalid @enderror" onchange="previewFiles(event)" accept="image/*, video/*" multiple>
+                <div id="preview-container">
+                    @foreach($post->media as $media)
+                    <div class="preview-wrapper" style="position: relative; display: inline-block;">
+                        @if($media->tipe = 'gambar')
+                            {{-- @dd($media->nama) --}}
+                            <img src="{{ asset('images/' . $media->nama) }}" class="img-thumbnail" style="width: 300px; display: block;">
+                        @elseif($media->tipe = 'video')
+                            {{-- @dd($media->nama) --}}
+                            <video src="{{ asset('images/' . $media->nama) }}" class="img-thumbnail" style="width: 300px; display: block;" controls></video>
+                        @endif
+                        <button type="button" class="remove-existing" data-media-id="{{ $media->id }}" style="position: absolute; top: 5px; right: 5px; background-color: rgba(255, 255, 255, 0.8); border: none; border-radius: 50%; cursor: pointer;">&#x2715;</button>
+                    </div>
+                    @endforeach
+                </div>
                 @error('gambar')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                 @enderror
-                <script>
-                    const priviewImage = (event)=>{
-                        const reader = new FileReader();
-                        reader.onload = ()=>{
-                            document.getElementById('img-preview').src = reader.result;
-                        }
-                        reader.readAsDataURL(event.target.files[0]);
-                    };
-                </script>
             </div>
+            
+            <script>
+                const previewFiles = (event) => {
+                    const files = Array.from(event.target.files);
+                    const previewContainer = document.getElementById('preview-container');
+                    const imgPreview = document.getElementById('img-preview');
+                    
+                    // Hide the initial image preview
+                    if (files.length > 0) {
+                        imgPreview.style.display = 'none';
+                    }
+            
+                    files.forEach((file, index) => {
+                        const reader = new FileReader();
+                        reader.onload = () => {
+                            let mediaElement;
+                            const previewWrapper = document.createElement('div');
+                            previewWrapper.style.position = 'relative';
+                            previewWrapper.style.display = 'inline-block';
+            
+                            if (file.type.startsWith('image/')) {
+                                mediaElement = document.createElement('img');
+                                mediaElement.src = reader.result;
+                            } else if (file.type.startsWith('video/')) {
+                                mediaElement = document.createElement('video');
+                                mediaElement.src = reader.result;
+                                mediaElement.controls = true;
+                            }
+            
+                            if (mediaElement) {
+                                mediaElement.classList.add('img-thumbnail');
+                                mediaElement.style.width = '300px';
+                                mediaElement.style.display = 'block';
+            
+                                // Create remove button
+                                const removeButton = document.createElement('button');
+                                removeButton.innerHTML = '&#x2715;';
+                                removeButton.style.position = 'absolute';
+                                removeButton.style.top = '5px';
+                                removeButton.style.right = '5px';
+                                removeButton.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+                                removeButton.style.border = 'none';
+                                removeButton.style.borderRadius = '50%';
+                                removeButton.style.cursor = 'pointer';
+                                removeButton.addEventListener('click', () => {
+                                    previewWrapper.remove();
+                                    files.splice(index, 1);
+                                    updateFileInput(files);
+                                });
+            
+                                previewWrapper.appendChild(mediaElement);
+                                previewWrapper.appendChild(removeButton);
+                                previewContainer.appendChild(previewWrapper);
+                            }
+                        }
+                        reader.readAsDataURL(file);
+                    });
+            
+                    const updateFileInput = (updatedFiles) => {
+                        const dataTransfer = new DataTransfer();
+                        updatedFiles.forEach(file => dataTransfer.items.add(file));
+                        document.getElementById('gambar').files = dataTransfer.files;
+                        if (dataTransfer.files.length === 0) {
+                            imgPreview.style.display = 'block';
+                        }
+                    }
+                };
+            
+                document.querySelectorAll('.remove-existing').forEach(button => {
+                    button.addEventListener('click', () => {
+                        const mediaId = button.getAttribute('data-media-id');
+                        const wrapper = button.closest('.preview-wrapper');
+            
+                        fetch(`/media/${mediaId}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                            },
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                wrapper.remove();
+                            }
+                        });
+                    });
+                });
+            </script>
+            
 
             <div class="mb-3">
                 <label class="form-label">Isi</label>
