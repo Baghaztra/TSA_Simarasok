@@ -7,6 +7,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\SigninController;
 use App\Http\Controllers\UMKMController;
 use App\Http\Controllers\DestinasiPariwisataController;
+use App\Http\Controllers\UserController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,9 +36,11 @@ Route::middleware(['auth'])->group(function () {
     });
     Route::resource('/admin/post', PostController::class);
     Route::resource('/admin/category', CategoryController::class);
-    Route::resource('/admin/user', PostController::class);
     Route::resource('/admin/umkm', UMKMController::class);
+    Route::resource('/admin/user', UserController::class);
     Route::resource('/admin/destinasipariwisata', DestinasiPariwisataController::class);
+    Route::put('/admin/users/{id}', [UserController::class, 'update']);
+    
     Route::get('sign-out', [SigninController::class, 'logout'])->name('logout');
 });
 
