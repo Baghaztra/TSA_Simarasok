@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Models\Asset;
 use App\Models\Category;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
@@ -43,14 +44,6 @@ class PostController extends Controller
         ]);
 
         
-        // if ($request->hasFile('gambar')) {
-        //     $images = $request->file('gambar');
-        //     $imageName = time().'.'.$images->getClientOriginalExtension();
-        //     $images->move(public_path('images'), $imageName);
-        // } else {
-        //     return redirect()->back()->withErrors(['gambar' => 'Gambar tidak valid atau tidak ada.'])->withInput();
-        // }
-
         $berita = [
             'judul' => $request->judul,
             'slug' => Post::make_slug($request->judul),
@@ -60,8 +53,28 @@ class PostController extends Controller
             'status' => $request->has('publish') ? 'publish' : 'draft',
             // 'gambar' => $imageName,  
         ];
-
+        
         Post::create($berita);
+        
+        if ($request->hasFile('gambar')) {
+            $i = 0;
+            foreach($request->file('gambar') as $file) {
+                $fileName = time().$i++.'.'.$file->getClientOriginalExtension();
+                $file->move(public_path('images'), $fileName);
+                $asset = new Asset();
+                $asset->nama = $fileName;
+                if ($file->getClientOriginalExtension()=='jpg') {
+                    $asset->tipe = 'gambar';
+                }else{
+                    $asset->tipe = 'video';
+                }
+                $asset->jenis = 'berita';
+                $asset->jenis_id = Post::latest()->first()->id;
+                $asset->save();
+            }
+        } else {
+            return redirect()->back()->withErrors(['gambar' => 'Gambar tidak valid atau tidak ada.'])->withInput();
+        }
         return redirect('admin/post')->with('success', 'Berhasil menambahkan berita baru.');
     }
 
@@ -91,29 +104,6 @@ class PostController extends Controller
     {
         $berita = Post::findOrFail($id);
     
-        // Validasi request
-        // $validated = $request->validate([
-        //     'judul' => 'required',
-        //     'content' => 'required',
-        //     'user_id' => 'required|exists:users,id',
-        //     'category_id' => 'required|exists:categories,id',
-            // 'gambar' => 'nullable|image|mimes:jpeg,png,jpg',
-        // ]);
-    
-        // if ($request->hasFile('gambar')) {
-        //     if ($berita->gambar && file_exists(public_path('images/' . $berita->gambar))) {
-        //         unlink(public_path('images/' . $berita->gambar));
-        //     }
-    
-        //     $images = $request->file('gambar');
-        //     $imageName = time().'.'.$images->getClientOriginalExtension();
-        //     $images->move(public_path('images'), $imageName);
-    
-        //     $validated['gambar'] = $imageName;
-        // }else{
-        //     $imageName=$berita->gambar;
-        // }
-        
         $data = [
             'judul' => $request->judul,
             'slug' => Post::make_slug($request->judul),
@@ -124,7 +114,25 @@ class PostController extends Controller
             // 'gambar' => $imageName,  
         ];
         $berita->update($data);
-    
+        
+        if ($request->hasFile('gambar')) {
+            $i=0;
+            foreach($request->file('gambar') as $file) {
+                $fileName = time().$i++.'.'.$file->getClientOriginalExtension();
+                $file->move(public_path('images'), $fileName);
+                $asset = new Asset();
+                $asset->nama = $fileName;
+                if ($file->getClientOriginalExtension()=='jpg') {
+                    $asset->tipe = 'gambar';
+                }else{
+                    $asset->tipe = 'video';
+                }
+                $asset->jenis = 'berita';
+                $asset->jenis_id = $id;
+                $asset->save();
+            }
+        }
+        
         return redirect('admin/post')->with('warning', 'Berhasil mengubah data berita.');
     }
     
