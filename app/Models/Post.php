@@ -23,9 +23,9 @@ class Post extends Model
     function author(){
         return $this->belongsTo(User::class, 'user_id');
     }
-    // function gambar(){
-    //     return $this->hasMany(Asset::class);
-    // }
+    function media(){
+        return $this->hasMany(Asset::class, 'jenis_id');
+    }
     
     public static function make_slug($judul) {
         return str_replace(' ', '-', strtolower($judul));

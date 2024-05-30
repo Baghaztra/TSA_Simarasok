@@ -42,8 +42,8 @@
             <th>isi</th>
             <th>kategori</th>
             <th>author</th>
+            <th>media</th>
             <th>status</th>
-            {{-- <th>gambar</th> --}}
             <th>action</th>
         </tr>
         @if ($beritas->isEmpty())
@@ -62,8 +62,16 @@
                 <td>{!! $item->content !!}</td>
                 <td>{{ $item->category->name }}</td>
                 <td>{{ $item->author->name }}</td>
+                <td>
+                    @foreach ($item->media as $i)
+                        @if ($i->tipe=='gambar')
+                            <img src="/images/{{ $i->nama }}" alt="{{ $i->nama }}" style="max-width: 100px">
+                        @else
+                            <video controls src="/images/{{ $i->nama }}" style="max-width: 100px"></video>
+                        @endif
+                    @endforeach
+                </td>
                 <td>{{ $item->status }}</td>
-                {{-- <td>{{ $item->gambar }}</td> --}}
                 <td>
                     <form class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')"
                         action="{{ route('post.destroy', $item->id) }}" method="POST">

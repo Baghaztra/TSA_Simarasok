@@ -19,13 +19,13 @@
                 @enderror
             </div>
 
-            {{-- <div class="mb-3">
+            <div class="mb-3">
                 <label class="form-label" for="gambar">
-                    Gambar
+                    Media
                     <img src="/images/upload.jpg" class="img-thumbbnail" id="img-preview"
                         style="width: 300px; display: block;">
                 </label>
-                <input type="file" name="gambar" id="gambar" hidden class="form-control @error('gambar') is-invalid @enderror" onchange="priviewImage(event)" accept="image/*">
+                <input type="file" name="gambar[]" id="gambar" hidden class="form-control @error('gambar') is-invalid @enderror" onchange="priviewImage(event)" accept="image/*, video/*" multiple>
                 @error('gambar')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -40,7 +40,7 @@
                         reader.readAsDataURL(event.target.files[0]);
                     };
                 </script>
-            </div> --}}
+            </div>
 
             <div class="mb-3">
                 <label class="form-label">Isi</label>
