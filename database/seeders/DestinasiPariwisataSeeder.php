@@ -12,6 +12,6 @@ class DestinasiPariwisataSeeder extends Seeder
      */
     public function run(): void
     {
-        //
+        \App\Models\DestinasiPariwisata::factory(15)->create();
     }
 }
