@@ -93,7 +93,7 @@ class UserController extends Controller
 
     public function updateStatus($id)
     {
-        $user = User::findOrFail($id)->first();
+        $user = User::where('id', $id)->first();
         if ($user->status == 'active') {
             User::where('id', $id)->update([
                 'status' => 'disable',
