@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use \App\Models\User;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\User>
@@ -17,14 +18,22 @@ class UserFactory extends Factory
      */
     public function definition(): array
     {
+        $user = new User();
+        $name = $this->faker->name();
+        $alias = $user->getAlias($name);
+
         return [
-            'name' => fake()->name(),
-            'email' => fake()->unique()->safeEmail(),
+            'name' => $name,
+            'email' => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
+            'alias' => $alias,
+            'roles' => $this->faker->randomElement(['admin', 'moderator', 'publisher']),
+            'status' => $this->faker->randomElement(['active', 'disable']),
             'remember_token' => Str::random(10),
         ];
     }
+
 
     /**
      * Indicate that the model's email address should be unverified.

@@ -22,6 +22,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'alias',
+        'roles',
+        'status',
     ];
 
     /**
@@ -42,4 +45,18 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+    public function getAlias($nama)
+    {
+        $words = explode(' ', $nama);
+        $alias = '';
+
+        foreach ($words as $word) {
+            if (strlen($word) >= 2) {
+                $alias .= substr($word, 0, 1);
+            } else {
+                $alias .= substr($word, 0);
+            }
+        }
+        return $alias;
+    }
 }
