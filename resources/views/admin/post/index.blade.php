@@ -38,10 +38,12 @@
         <tr>
             <th>No</th>
             <th>judul</th>
+            <th>slug</th>
             <th>isi</th>
             <th>kategori</th>
             <th>author</th>
-            <th>gambar</th>
+            <th>media</th>
+            <th>status</th>
             <th>action</th>
         </tr>
         @if ($beritas->isEmpty())
@@ -56,10 +58,20 @@
             <tr>
                 <td>{{ $beritas->firstItem() + $loop->index }}</td>
                 <td>{{ $item->judul }}</td>
-                <td>{{ $item->isi_berita }}</td>
+                <td>{{ $item->slug }}</td>
+                <td>{!! $item->content !!}</td>
                 <td>{{ $item->category->name }}</td>
                 <td>{{ $item->author->name }}</td>
-                <td>{{ $item->gambar }}</td>
+                <td>
+                    @foreach ($item->media as $i)
+                        @if ($i->tipe=='gambar')
+                            <img src="/images/{{ $i->nama }}" alt="{{ $i->nama }}" style="max-width: 100px">
+                        @else
+                            <video controls src="/images/{{ $i->nama }}" style="max-width: 100px"></video>
+                        @endif
+                    @endforeach
+                </td>
+                <td>{{ $item->status }}</td>
                 <td>
                     <form class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')"
                         action="{{ route('post.destroy', $item->id) }}" method="POST">

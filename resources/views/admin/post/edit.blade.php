@@ -21,11 +21,11 @@
 
             <div class="mb-3">
                 <label class="form-label" for="gambar">
-                    Gambar
+                    Media
                     <img src="/images/upload.jpg" class="img-thumbbnail" id="img-preview"
                         style="width: 300px; display: block;">
                 </label>
-                <input type="file" name="gambar" id="gambar" hidden class="form-control @error('gambar') is-invalid @enderror" onchange="priviewImage(event)" accept="image/*">
+                <input type="file" name="gambar[]" id="gambar" hidden class="form-control @error('gambar') is-invalid @enderror" onchange="priviewImage(event)" accept="image/*, video/*" multiple>
                 @error('gambar')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -41,18 +41,18 @@
                     };
                 </script>
             </div>
-            
+
             <div class="mb-3">
                 <label class="form-label">Isi</label>
                 <div id="editor">
-                    {!! old('isi_berita', $post->content) !!}
+                    {!! old('content', $post->content) !!}
                 </div>
-                <textarea id="isi_berita" name="isi_berita" style="display:none;"></textarea>
+                <textarea id="content" name="content" style="display:none;"></textarea>
                 <script>
                     ClassicEditor
                         .create(document.querySelector('#editor'))
                         .then(editor => {
-                            const isiBeritaTextarea = document.querySelector('#isi_berita');
+                            const isiBeritaTextarea = document.querySelector('#content');
                             editor.model.document.on('change:data', () => {
                                 isiBeritaTextarea.value = editor.getData();
                             });
@@ -76,6 +76,18 @@
                     @endforeach
                 </select>
                 @error('category_id')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+           
+            <div class="mb-3">
+                <div class="form-check form-switch @error('publish') is-invalid @enderror">
+                    <input class="form-check-input" type="checkbox" role="switch" id="publish" name="publish" {{ $post->status == 'publish' ? 'checked' : '' }}>
+                    <label class="form-check-label" for="publish">Lansung Publish</label>
+                </div>
+                @error('publish')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
