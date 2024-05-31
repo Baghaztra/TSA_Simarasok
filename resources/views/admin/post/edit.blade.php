@@ -22,17 +22,17 @@
             <div class="mb-3">
                 <label class="form-label" for="gambar">
                     Media
-                    <img src="/images/upload.jpg" class="img-thumbnail" id="img-preview" style="width: 300px; display: block;">
+                    @if($post->media->isEmpty())
+                        <img src="/images/upload.jpg" class="img-thumbnail" id="img-preview" style="width: 300px; display: block;">
+                    @endif
                 </label>
-                <input type="file" name="gambar[]" id="gambar" class="form-control @error('gambar') is-invalid @enderror" onchange="previewFiles(event)" accept="image/*, video/*" multiple>
+                <input type="file" name="gambar[]" id="gambar" class="form-control @error('gambar') is-invalid @enderror" onchange="previewFiles(event)" accept=".jpg, .jpeg, .png, .mp4, .mkv" hidden multiple>
                 <div id="preview-container">
                     @foreach($post->media as $media)
                     <div class="preview-wrapper" style="position: relative; display: inline-block;">
                         @if($media->tipe = 'gambar')
-                            {{-- @dd($media->nama) --}}
                             <img src="{{ asset('images/' . $media->nama) }}" class="img-thumbnail" style="width: 300px; display: block;">
                         @elseif($media->tipe = 'video')
-                            {{-- @dd($media->nama) --}}
                             <video src="{{ asset('images/' . $media->nama) }}" class="img-thumbnail" style="width: 300px; display: block;" controls></video>
                         @endif
                         <button type="button" class="remove-existing" data-media-id="{{ $media->id }}" style="position: absolute; top: 5px; right: 5px; background-color: rgba(255, 255, 255, 0.8); border: none; border-radius: 50%; cursor: pointer;">&#x2715;</button>
@@ -52,9 +52,14 @@
                     const previewContainer = document.getElementById('preview-container');
                     const imgPreview = document.getElementById('img-preview');
                     
-                    // Hide the initial image preview
+                    // Kosongkan kontainer pratinjau
+                    previewContainer.innerHTML = '';
+            
+                    // Sembunyikan gambar pratinjau awal jika ada file yang dipilih
                     if (files.length > 0) {
-                        imgPreview.style.display = 'none';
+                        if (imgPreview) {
+                            imgPreview.style.display = 'none';
+                        }
                     }
             
                     files.forEach((file, index) => {
@@ -64,6 +69,7 @@
                             const previewWrapper = document.createElement('div');
                             previewWrapper.style.position = 'relative';
                             previewWrapper.style.display = 'inline-block';
+                            previewWrapper.classList.add('preview-wrapper');
             
                             if (file.type.startsWith('image/')) {
                                 mediaElement = document.createElement('img');
@@ -79,7 +85,7 @@
                                 mediaElement.style.width = '300px';
                                 mediaElement.style.display = 'block';
             
-                                // Create remove button
+                                // Buat tombol hapus
                                 const removeButton = document.createElement('button');
                                 removeButton.innerHTML = '&#x2715;';
                                 removeButton.style.position = 'absolute';
@@ -108,7 +114,9 @@
                         updatedFiles.forEach(file => dataTransfer.items.add(file));
                         document.getElementById('gambar').files = dataTransfer.files;
                         if (dataTransfer.files.length === 0) {
-                            imgPreview.style.display = 'block';
+                            if (imgPreview) {
+                                imgPreview.style.display = 'block';
+                            }
                         }
                     }
                 };

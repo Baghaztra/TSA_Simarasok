@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
 use App\Models\Post;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
-use App\Http\Controllers\SigninController;
 use App\Http\Controllers\UMKMController;
-use App\Http\Controllers\DestinasiPariwisataController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AssetController;
+use App\Http\Controllers\SigninController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DestinasiPariwisataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +41,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/admin/user', UserController::class);
     Route::resource('/admin/destinasipariwisata', DestinasiPariwisataController::class);
     Route::put('/admin/users/{id}', [UserController::class, 'update']);
+    Route::delete('/media/{id}', [AssetController::class, 'destroy']);
     
     Route::get('sign-out', [SigninController::class, 'logout'])->name('logout');
 });

@@ -24,7 +24,7 @@
                     Media
                     <img src="/images/upload.jpg" class="img-thumbnail" id="img-preview" style="width: 300px; display: block;">
                 </label>
-                <input type="file" name="gambar[]" id="gambar"  class="form-control @error('gambar') is-invalid @enderror" onchange="previewFiles(event)" accept="image/*, video/*" multiple>
+                <input type="file" name="gambar[]" id="gambar"  class="form-control @error('gambar') is-invalid @enderror" onchange="previewFiles(event)" accept=".jpg, .jpeg, .png, .mp4, .mkv" hidden multiple>
                 <div id="preview-container"></div>
                 @error('gambar')
                     <div class="invalid-feedback">
