@@ -38,6 +38,35 @@
                     </div>
                 @enderror
             </div>
+            <div class="mb-3">
+                <label for="roles" class="form-label">Role</label>
+                <select name="roles" class="form-control  @error('roles') is-invalid @enderror"
+                        value="{{ old('roles') }}">
+                    <option>Pilih Role User</option>
+                    <option value="admin" name="admin">Admin</option>
+                    <option value="moderator" name="moderator">Moderator</option>
+                    <option value="publisher" name="publisher">Publisher</option>
+                </select>
+                @error('roles')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+            <div class="mb-3">
+                <label for="status" class="form-label">Status</label>
+                <select name="status" class="form-control  @error('status') is-invalid @enderror"
+                        value="{{ old('status') }}">
+                    <option>Pilih Status</option>
+                    <option value="active" name="active">Active</option>
+                    <option value="disable" name="disable">Disable</option>
+                </select>
+                @error('status')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
             {{-- <input type="hidden" name="user_id" value="{{ auth()->user()->id }}"> --}}
 
             <button class="btn btn-sm btn-primary" type="submit">Submit</button>

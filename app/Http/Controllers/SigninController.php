@@ -20,10 +20,15 @@ class SigninController extends Controller
         ]);
 
         if (Auth::attempt($credentials)) {
-            if (Auth::viaRemember()) {
-                return redirect('admin')->with('success-login', 'Wellcome Back!');
-            } else {
-                return redirect('admin')->with('success-login', 'Wellcome Back!');
+            if(Auth::user()->status == 'active'){
+                if (Auth::viaRemember()) {
+                    return redirect('admin')->with('success-login', 'Wellcome Back!');
+                } else {
+                    return redirect('admin')->with('success-login', 'Wellcome Back!');
+                }
+            }else{
+                Auth::logout();
+                echo "Akun anda disable silahkan hubungi Admin";
             }
         } else {
             return redirect('sign-in')->with('error', 'Email atau password salah.')->onlyInput('email');

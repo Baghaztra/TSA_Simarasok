@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Daftar Berita</h1>
+        <h1 class="h2">Daftar User</h1>
     </div>
     <div class="row">
         <div class="col-md-6">
@@ -17,10 +17,20 @@
         </div>
     </div>
 
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
+    @if (session('success') || session('warning') || session('danger'))
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @elseif (session('warning'))
+            <div class="alert alert-warning">
+                {{ session('warning') }}
+            </div>
+        @else
+            <div class="alert alert-danger">
+                {{ session('danger') }}
+            </div>
+        @endif
     @endif
 
     <table class="table table-bordered table-striped">
@@ -28,7 +38,9 @@
             <th>No</th>
             <th>Nama</th>
             <th>Email</th>
-            <th>Password</th>
+            <th>Alias</th>
+            <th>Roles</th>
+            <th>Status</th>
             <th>Action</th>
         </tr>
         @if ($users->isEmpty())
@@ -44,7 +56,15 @@
                 <td>{{ $users->firstItem() + $loop->index }}</td>
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->email }}</td>
-                <td>{{ $item->password }}</td>
+                <td>{{ $item->alias }}</td>
+                <td>{{ $item->roles }}</td>
+                <td>
+                    <a href="/updateStatus/{{$item->id}}" onclick="return confirm('Apakah anda ingin ganti status user?')">
+                        <span class="badge {{ $item->status == 'active' ? 'text-bg-success' : 'text-bg-secondary' }}" id="status">
+                            {{ $item->status  == 'active' ? 'Aktif' : 'Disable' }}
+                        </span>
+                    </a>
+                </td>
                 <td>
                     <form class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')"
                         action="{{ route('user.destroy', $item->id) }}" method="POST">

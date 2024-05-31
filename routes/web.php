@@ -40,9 +40,12 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/admin/umkm', UMKMController::class);
     Route::resource('/admin/user', UserController::class);
     Route::resource('/admin/destinasipariwisata', DestinasiPariwisataController::class);
+
     Route::put('/admin/users/{id}', [UserController::class, 'update']);
-    Route::delete('/media/{id}', [AssetController::class, 'destroy']);
     
+    Route::delete('/media/{id}', [AssetController::class, 'destroy']);
+
+    Route::get('updateStatus/{id}', [UserController::class, 'updateStatus']);
     Route::get('sign-out', [SigninController::class, 'logout'])->name('logout');
 });
 

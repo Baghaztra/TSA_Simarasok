@@ -28,42 +28,31 @@
                     </div>
                 @enderror
             </div>
-
-            
             <div class="mb-3">
-                <label class="form-label">Reset Password?</label>
-                <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" id="resetPasswordToggle" data-bs-toggle="collapse" data-bs-target="#newPasswordContainer">
-                    <label class="form-check-label" for="resetPasswordToggle">
-                        Yes, reset password
-                    </label>
-                </div>
-            </div>
-            
-            <div class="mb-3 collapse" id="newPasswordContainer">
-                <label class="form-label">New Password</label>
-                <input type="password" class="form-control @error('new_password') is-invalid @enderror" name="new_password">
-                @error('new_password')
+                <label class="form-label">New Password (Optional)</label>
+                <input type="text" class="form-control @error('password') is-invalid @enderror" name="password"
+                    value="{{ old('password') }}">
+                @error('password')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                 @enderror
             </div>
-            
-            <script>
-                var resetPasswordToggle = document.getElementById('resetPasswordToggle');
-                var newPasswordContainer = document.getElementById('newPasswordContainer');
-            
-                resetPasswordToggle.addEventListener('change', function() {
-                    if (resetPasswordToggle.checked) {
-                        newPasswordContainer.classList.remove('collapse');
-                    } else {
-                        newPasswordContainer.classList.add('collapse');
-                    }
-                });
-            </script>
-            
-
+            <div class="mb-3">
+                <label for="roles" class="form-label">Role</label>
+                <select name="roles" class="form-control  @error('roles') is-invalid @enderror"
+                        value="{{ old('roles',$users->roles) }}">
+                    <option>Pilih Role User</option>
+                    <option value="admin" name="admin">Admin</option>
+                    <option value="moderator" name="moderator">Moderator</option>
+                    <option value="publisher" name="publisher">Publisher</option>
+                </select>
+                @error('roles')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
             <button class="btn btn-sm btn-primary" type="submit">Submit</button>
             <div style="height: 25vh"></div>
         </form>

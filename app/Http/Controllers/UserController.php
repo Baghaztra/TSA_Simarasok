@@ -14,7 +14,7 @@ class UserController extends Controller
     public function index()
     {
         $pengguna = User::latest()->paginate(10);
-        return view("admin.user.index")->with("users", $pengguna);
+        return view("admin.user.index")->with(['users' => $pengguna]);
     }
 
     /**
@@ -30,16 +30,20 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-
         $validated = $request->validate([
             'name' => 'required',
             'email' => 'required',
-            'password' => 'required',
+            'password' => 'required|min:8',
+            'roles' => 'required|in:admin,moderator,publisher',
+            'status' => 'required|in:active,disable',
         ]);
 
         $validated['password'] = Hash::make($validated['password']);
-
+        $user = new User();
+        $alias = $user->getAlias($validated['name']);
+        $validated['alias'] = $alias;
         User::create($validated);
+
         return redirect('admin/user')->with('success', 'User Berhasil Ditambah');
     }
 
@@ -68,18 +72,38 @@ class UserController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'email' => 'required|email',
+            'roles' => 'required|in:admin,moderator,publisher',
         ]);
         $user = User::findOrFail($id);
         $user->name = $validated['name'];
         $user->email = $validated['email'];
-        if ($request->has('new_password')) {
+        if (!empty($request->password)) {
             $request->validate([
-                'new_password' => 'required',
+                'password' => 'min:8',
             ]);
-            $user->password = Hash::make($request->new_password);
+            $user->password = Hash::make($request->password);
         }
+        if ($user->name != $validated['name']) {
+            $user->alias = $this->getAlias($validated['name']);
+        }
+        $user->roles = $validated['roles'];
         $user->save();
         return redirect('admin/user')->with('success', 'User berhasil diperbarui');
+    }
+
+    public function updateStatus($id)
+    {
+        $user = User::where('id', $id)->first();
+        if ($user->status == 'active') {
+            User::where('id', $id)->update([
+                'status' => 'disable',
+            ]);
+        } else {
+            User::where('id', $id)->update([
+                'status' => 'active',
+            ]);
+        }
+        return redirect('admin/user')->with('warning', 'Status user berhasil di Update');
     }
 
 
