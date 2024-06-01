@@ -26,7 +26,7 @@ class PostController extends Controller
     public function create()
     {
         $berita = Post::all();
-        $kategori = Category::all();
+        $kategori = Category::categoryBerita();
         $author = User::all();
         return view('admin.post.create')->with(["beritas", $berita, 'kategoris' => $kategori, 'authors'=> $author]);
     }
@@ -84,7 +84,7 @@ class PostController extends Controller
     public function edit(string $id)
     {
         $post = Post::findOrFail($id);
-        $kategori = Category::all();
+        $kategori = Category::categoryBerita();
         $author = User::all();
         return view('admin.post.edit')->with(['post' => $post, 'kategoris' => $kategori, 'authors'=> $author]);
     }
