@@ -59,8 +59,14 @@ class AssetController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Asset $asset)
+    public function destroy($id)
     {
-        //
+        $asset = Asset::findOrFail($id);
+        if (file_exists(public_path('images/' . $asset->nama))) {
+            unlink(public_path('images/' . $asset->nama));
+        }
+        $asset->delete();
+
+        return response()->json(['success' => true]);
     }
 }

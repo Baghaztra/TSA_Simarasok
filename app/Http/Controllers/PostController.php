@@ -35,48 +35,40 @@ class PostController extends Controller
      * Store a newly created resource in storage.
      */
     public function store(StorePostRequest $request)
-    {
-        $request->validate([
-            'judul' => 'required',
-            'content' => 'required',
-            'category_id' => 'required|exists:categories,id',
-            'user_id' => 'required|exists:users,id',
-        ]);
+{
+    $request->validate([
+        'judul' => 'required',
+        'content' => 'required',
+        'category_id' => 'required|exists:categories,id',
+        'user_id' => 'required|exists:users,id',
+    ]);
 
-        
-        $berita = [
-            'judul' => $request->judul,
-            'slug' => Post::make_slug($request->judul),
-            'content' => $request->content,
-            'category_id' => $request->category_id,
-            'user_id' => $request->user_id,
-            'status' => $request->has('publish') ? 'publish' : 'draft',
-            // 'gambar' => $imageName,  
-        ];
-        
-        Post::create($berita);
-        
-        if ($request->hasFile('gambar')) {
-            $i = 0;
-            foreach($request->file('gambar') as $file) {
-                $fileName = time().$i++.'.'.$file->getClientOriginalExtension();
-                $file->move(public_path('images'), $fileName);
-                $asset = new Asset();
-                $asset->nama = $fileName;
-                if ($file->getClientOriginalExtension()=='jpg') {
-                    $asset->tipe = 'gambar';
-                }else{
-                    $asset->tipe = 'video';
-                }
-                $asset->jenis = 'berita';
-                $asset->jenis_id = Post::latest()->first()->id;
-                $asset->save();
-            }
-        } else {
-            return redirect()->back()->withErrors(['gambar' => 'Gambar tidak valid atau tidak ada.'])->withInput();
+    $berita = Post::create([
+        'judul' => $request->judul,
+        'slug' => Post::make_slug($request->judul),
+        'content' => $request->content,
+        'category_id' => $request->category_id,
+        'user_id' => $request->user_id,
+        'status' => $request->has('publish') ? 'publish' : 'draft',
+    ]);
+    
+    if ($request->hasFile('gambar')) {
+        $i = 0;
+        foreach($request->file('gambar') as $file) {
+            $fileName = time() . $i++ . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('images'), $fileName);
+            $asset = new Asset();
+            $asset->nama = $fileName;
+            $asset->tipe = in_array($file->getClientOriginalExtension(), ['jpg', 'jpeg', 'png']) ? 'gambar' : 'video';
+            $asset->jenis = 'berita';
+            $asset->jenis_id = $berita->id;
+            $asset->save();
         }
-        return redirect('admin/post')->with('success', 'Berhasil menambahkan berita baru.');
+    } else {
+        return redirect()->back()->withErrors(['gambar' => 'Gambar tidak valid atau tidak ada.'])->withInput();
     }
+    return redirect('admin/post')->with('success', 'Berhasil menambahkan berita baru.');
+}
 
     /**
      * Display the specified resource.
@@ -103,7 +95,7 @@ class PostController extends Controller
     public function update(UpdatePostRequest $request, string $id)
     {
         $berita = Post::findOrFail($id);
-    
+
         $data = [
             'judul' => $request->judul,
             'slug' => Post::make_slug($request->judul),
@@ -111,28 +103,23 @@ class PostController extends Controller
             'user_id' => $request->user_id,
             'category_id' => $request->category_id,
             'status' => $request->has('publish') ? 'publish' : 'draft',
-            // 'gambar' => $imageName,  
         ];
         $berita->update($data);
-        
+
         if ($request->hasFile('gambar')) {
-            $i=0;
+            $i = 0;
             foreach($request->file('gambar') as $file) {
-                $fileName = time().$i++.'.'.$file->getClientOriginalExtension();
+                $fileName = time() . $i++ . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path('images'), $fileName);
                 $asset = new Asset();
                 $asset->nama = $fileName;
-                if ($file->getClientOriginalExtension()=='jpg') {
-                    $asset->tipe = 'gambar';
-                }else{
-                    $asset->tipe = 'video';
-                }
+                $asset->tipe = $file->getClientOriginalExtension() == 'jpg' ? 'gambar' : 'video';
                 $asset->jenis = 'berita';
-                $asset->jenis_id = $id;
+                $asset->jenis_id = $berita->id;
                 $asset->save();
             }
         }
-        
+
         return redirect('admin/post')->with('warning', 'Berhasil mengubah data berita.');
     }
     
@@ -144,8 +131,11 @@ class PostController extends Controller
     {
         $berita = Post::findOrFail($id);
 
-        if ($berita->gambar && file_exists(public_path('images/' . $berita->gambar))) {
-            unlink(public_path('images/' . $berita->gambar));
+        foreach ($berita->media as $media) {
+            if (file_exists(public_path('images/' . $media->nama))) {
+                unlink(public_path('images/' . $media->nama));
+            }
+            $media->delete();
         }
 
         $berita->delete();

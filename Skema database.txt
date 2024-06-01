@@ -21,10 +21,16 @@ UMKM (Risyad)
 > name
 > category_id
 
+Jualan (Risyad)
+> id
+> name
+> description
+> category_id
+
 Destinasi_Pariwisata (Risyad)
 > id
 > name
-> desc
+> description
 > harga_tiket
 
 Category (Sakinah)
@@ -32,7 +38,7 @@ Category (Sakinah)
 > name
 > jenis (berita/umkm)
 
-Asset (Sakinah)
+Asset (Bagas)
 > id
 > nama
 > tipe (video/gambar)
