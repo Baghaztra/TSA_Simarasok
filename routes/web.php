@@ -40,6 +40,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/admin/umkm', UMKMController::class);
     Route::resource('/admin/user', UserController::class);
     Route::resource('/admin/destinasipariwisata', DestinasiPariwisataController::class);
+
     Route::put('/admin/users/{id}', [UserController::class, 'update']);
     Route::get('updateStatus/{id}', [UserController::class, 'updateStatus']);
     Route::delete('/media/{id}', [AssetController::class, 'destroy']);

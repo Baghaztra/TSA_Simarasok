@@ -15,6 +15,11 @@ class Category extends Model
         return $this->belongsTo(Category::class, 'category_id');
     }
 
+    public static function categoryBerita() {
+        return Category::where('jenis','Berita')->get();
+    }
 
-    
+    public static function categoryUMKM() {
+        return Category::where('jenis','UMKM')->get();
+    }
 }

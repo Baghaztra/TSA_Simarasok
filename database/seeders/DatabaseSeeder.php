@@ -19,14 +19,27 @@ class DatabaseSeeder extends Seeder
 
         Category::factory()->create([
             'name' => 'Bencana',
+            'jenis' => 'Berita',
         ]);
         Category::factory()->create([
             'name' => 'Info',
+            'jenis' => 'Berita',
         ]);
         Category::factory()->create([
             'name' => 'Update',
+            'jenis' => 'Berita',
         ]);
+        Category::factory()->create([
+            'name' => 'Makanan',
+            'jenis' => 'UMKM',
+        ]);
+        Category::factory()->create([
+            'name' => 'Cinderamata',
+            'jenis' => 'UMKM',
+        ]);
+
         Post::factory(10)->create();
+        
         User::factory()->create([
             'name' => 'admin',
             'email' => 'admin@example.com',

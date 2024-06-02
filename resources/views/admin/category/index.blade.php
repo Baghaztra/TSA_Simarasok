@@ -37,6 +37,7 @@
         <tr>
             <th>No</th>
             <th>Nama Kategori</th>
+            <th>Jenis</th>
             <th>Action</th>
         </tr>
         @if ($kategoris->isEmpty())
@@ -51,6 +52,7 @@
             <tr>
                 <td>{{ $kategoris->firstItem() + $loop->index }}</td>
                 <td>{{ $item->name }}</td>
+                <td>{{ $item->jenis }}</td>
                 <td>
                     <form class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')"
                         action="{{ route('category.destroy', $item->id) }}" method="POST">
