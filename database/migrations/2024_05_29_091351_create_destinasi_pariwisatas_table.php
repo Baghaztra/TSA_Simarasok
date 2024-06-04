@@ -16,6 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->text('desc');
             $table->integer('harga');
+            $table->string('notelp');
             $table->timestamps();
         });
     }

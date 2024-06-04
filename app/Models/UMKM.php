@@ -12,10 +12,7 @@ class UMKM extends Model
     protected $table = 'umkms';
     protected $fillable = [
         'name',
-        'category_id',
+        'owner',
+        'notelp',
     ];
-
-    function category(){
-        return $this->belongsTo(Category::class, 'category_id');
-    }
 }

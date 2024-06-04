@@ -18,8 +18,10 @@ class UMKMFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => 'Lorem Ipsum',
-            'category_id' => rand(1,3),
+            'name' => fake()->sentence(),
+            'owner' => fake()->name(),
+            'notelp' => fake()->phoneNumber(),
+            // 'category_id' => rand(1,3),
         ];
     }
 }

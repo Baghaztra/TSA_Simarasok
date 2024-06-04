@@ -12,5 +12,6 @@ class DestinasiPariwisata extends Model
         'name',
         'desc',
         'harga',
+        // 'notelp',
     ];
 }
