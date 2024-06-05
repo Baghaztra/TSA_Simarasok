@@ -44,6 +44,7 @@ Route::middleware(['auth'])->group(function () {
     Route::put('/admin/users/{id}', [UserController::class, 'update']);
     Route::get('updateStatus/{id}', [UserController::class, 'updateStatus']);
     Route::delete('/media/{id}', [AssetController::class, 'destroy']);
+    Route::delete('/assets/{id}', [AssetController::class, 'destroy'])->name('assets.destroy');
 
     Route::get('sign-out', [SigninController::class, 'logout'])->name('logout');
 });
