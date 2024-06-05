@@ -17,7 +17,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        User::factory(5)->create();
+        User::factory(50)->create();
 
         // Category::factory()->create([
         //     'name' => 'Bencana',
@@ -40,7 +40,7 @@ class DatabaseSeeder extends Seeder
         //     'jenis' => 'UMKM',
         // ]);
 
-        Post::factory(10)->create();
+        // Post::factory(10)->create();
 
         User::factory()->create([
             'name' => 'admin',
@@ -50,7 +50,5 @@ class DatabaseSeeder extends Seeder
             'roles' => 'admin',
             'status' => 'active',
         ]);
-        DestinasiPariwisata::factory(15)->create();
-        UMKM::factory(15)->create();
     }
 }
