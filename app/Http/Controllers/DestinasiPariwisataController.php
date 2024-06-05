@@ -72,7 +72,7 @@ class DestinasiPariwisataController extends Controller
             'name' => $request->name,
             'desc' => $request->desc,
             'harga' => $request->harga,
-            'notelp' => $request->harga,
+            'notelp' => $request->notelp,
         ];
         $destinasi->update($data);
 
@@ -83,7 +83,7 @@ class DestinasiPariwisataController extends Controller
                 $file->move(public_path('assets'), $fileName);
                 $asset = new Asset();
                 $asset->nama = $fileName;
-                $asset->tipe = $file->getClientOriginalExtension() == ['jpg', 'jpeg', 'png'] ? 'gambar' : 'video';
+                $asset->tipe = in_array($file->getClientOriginalExtension(), ['jpg', 'jpeg', 'png']) ? 'gambar' : 'video';
                 $asset->jenis = 'destinasi';
                 $asset->jenis_id = $destinasi->id;
                 $asset->save();
