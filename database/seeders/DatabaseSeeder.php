@@ -6,6 +6,7 @@ namespace Database\Seeders;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\Produk;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -39,7 +40,7 @@ class DatabaseSeeder extends Seeder
         // ]);
 
         // Post::factory(10)->create();
-        
+
         User::factory()->create([
             'name' => 'admin',
             'email' => 'admin@example.com',
@@ -48,5 +49,7 @@ class DatabaseSeeder extends Seeder
             'roles' => 'admin',
             'status' => 'active',
         ]);
+
+        Produk::factory()->create;
     }
 }

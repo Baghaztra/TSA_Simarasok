@@ -23,7 +23,7 @@ UMKM (Risyad)
 > notelp
 > category_id
 
-Jualan (Risyad)
+Produk (Risyad)
 > id
 > name
 > description
