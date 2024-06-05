@@ -34,7 +34,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required',
             'password' => 'required|min:8',
-            'roles' => 'required|in:admin,moderator,publisher',
+            'roles' => 'required|in:admin,owner_umkm',
             'status' => 'required|in:active,disable',
         ]);
 
@@ -72,7 +72,7 @@ class UserController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'roles' => 'required|in:admin,moderator,publisher',
+            'roles' => 'required|in:admin,owner_umkm',
         ]);
         $user = User::findOrFail($id);
         $user->name = $validated['name'];

@@ -32,7 +32,6 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'name'=>'required',
-            'jenis'=>'required',
         ]);
         Category::create($validated);
         return redirect('admin/category')->with('success','Kategori Berhasil Ditambah');
@@ -61,7 +60,6 @@ class CategoryController extends Controller
     {
         $validated = $request->validate([
             'name'=>'required',
-            'jenis'=>'required',
         ]);
         Category::where('id',$id)->update($validated);
         return redirect('admin/category')->with('warning','Kategori Berhasil Diubah');

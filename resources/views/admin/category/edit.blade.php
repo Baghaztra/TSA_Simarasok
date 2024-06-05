@@ -19,21 +19,6 @@
                 @enderror
             </div>
 
-            <div class="mb-3">
-                <label class="form-label">Jennis Kategori</label>
-                <select class="form-control @error('jenis') is-invalid @enderror" name="jenis"
-                    value="{{ old('jenis') }}">
-                    <option value="">--- Pilih Jenis Kategori ---</option>
-                    <option value="Berita" {{ $category->jenis=="Berita"?'selected':'' }}>Berita</option>
-                    <option value="UMKM" {{ $category->jenis=="UMKM"?'selected':'' }}>UMKM</option>
-                    @error('jenis')
-                        <div class="invalid-feedback">
-                            {{ $message }}
-                        </div>
-                    @enderror
-                </select>
-            </div>
-
             <button class="btn btn-sm btn-primary" type="submit">Submit</button>
             <div style="height: 25vh"></div>
         </form>

@@ -20,6 +20,7 @@ class DestinasiPariwisataFactory extends Factory
             'name' => fake()->sentence(),
             'desc' => fake()->paragraphs(3, true),
             'harga' => rand(10000, 500000),
+            'notelp' => fake()->phoneNumber(),
         ];
     }
 }
