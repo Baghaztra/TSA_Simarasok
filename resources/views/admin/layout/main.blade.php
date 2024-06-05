@@ -59,14 +59,13 @@
     </style>
     <link href="/bootstrap/css/dashboard.css" rel="stylesheet">
     <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="/css/adminSidebar.css">
+
     {{-- input berita --}}
     <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
 </head>
 
 <body>
-
-    @include('admin.layout.header')
-
     <div class="container-fluid">
         <div class="row">
             @include('admin.layout.sidebar')

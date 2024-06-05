@@ -28,8 +28,7 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => bcrypt('password'),
             'alias' => $alias,
-            // 'roles' => $this->faker->randomElement(['admin', 'owner_umkm']),
-            'roles' => 'owner_umkm',
+            'roles' => $this->faker->randomElement(['admin', 'moderator', 'publisher','owner umkm']),
             'status' => $this->faker->randomElement(['active', 'disable']),
             'remember_token' => Str::random(10),
         ];

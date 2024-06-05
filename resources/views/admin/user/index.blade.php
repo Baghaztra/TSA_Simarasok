@@ -12,7 +12,7 @@
             <form action="/admin/user" method="GET" class="input-group mb-3">
                 <input type="text" class="form-control" name="query" value=""
                     placeholder="cari sesuatu" aria-label="cari sesuatu">
-                <button class="btn btn-outline-success" type="submit">Button</button>
+                <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
     </div>

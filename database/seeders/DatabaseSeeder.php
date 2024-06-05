@@ -10,6 +10,8 @@ use App\Models\Category;
 use App\Models\DestinasiPariwisata;
 use App\Models\Post;
 use App\Models\Produk;
+use App\Models\UMKM;
+
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
