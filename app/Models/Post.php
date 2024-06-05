@@ -24,9 +24,9 @@ class Post extends Model
         return $this->belongsTo(User::class, 'user_id');
     }
     function media(){
-        return $this->hasMany(Asset::class, 'jenis_id')->where('jenis', 'berita');;
+        return $this->hasMany(Asset::class, 'jenis_id')->where('jenis', 'berita');
     }
-    
+
     public static function make_slug($judul) {
         return str_replace(' ', '-', strtolower($judul));
     }

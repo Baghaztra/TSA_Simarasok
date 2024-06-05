@@ -5,7 +5,9 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\User;
 use App\Models\Category;
+use App\Models\DestinasiPariwisata;
 use App\Models\Post;
+use App\Models\UMKM;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -39,7 +41,7 @@ class DatabaseSeeder extends Seeder
         ]);
 
         Post::factory(10)->create();
-        
+
         User::factory()->create([
             'name' => 'admin',
             'email' => 'admin@example.com',
@@ -48,5 +50,7 @@ class DatabaseSeeder extends Seeder
             'roles' => 'admin',
             'status' => 'active',
         ]);
+        DestinasiPariwisata::factory(15)->create();
+        UMKM::factory(15)->create();
     }
 }
