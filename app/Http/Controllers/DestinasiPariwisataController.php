@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Asset;
 use App\Models\DestinasiPariwisata;
 use App\Http\Requests\StoreDestinasiPariwisataRequest;
 use App\Http\Requests\UpdateDestinasiPariwisataRequest;
@@ -31,13 +32,29 @@ class DestinasiPariwisataController extends Controller
             'harga' => 'required',
         ]);
 
-        $destinasi  = [
+        $destinasi = DestinasiPariwisata::create([
             'name' => $request->name,
             'desc' => $request->desc,
             'harga' => $request->harga,
-        ];
+            'notelp' => $request->harga,
+        ]);
 
-        DestinasiPariwisata::create($destinasi);
+        if ($request->hasFile('gambar')) {
+            $i = 0;
+            foreach($request->file('gambar') as $file) {
+                $fileName = time() . $i . '.' . $file->getClientOriginalExtension();
+                $i++;
+                $file->move(public_path('assets'), $fileName);
+                $asset = new Asset();
+                $asset->nama = $fileName;
+                $asset->tipe = in_array($file->getClientOriginalExtension(), ['jpg', 'jpeg', 'png']) ? 'gambar' : 'video';
+                $asset->jenis = 'destinasi';
+                $asset->jenis_id = $destinasi->id;
+                $asset->save();
+            }
+        } 
+
+        // DestinasiPariwisata::create($destinasi);
         return redirect('admin/destinasipariwisata')->with('success', 'Berhasil menambahkan Destinasi Pariwisata baru.');
     }
 
@@ -55,8 +72,23 @@ class DestinasiPariwisataController extends Controller
             'name' => $request->name,
             'desc' => $request->desc,
             'harga' => $request->harga,
+            'notelp' => $request->harga,
         ];
         $destinasi->update($data);
+
+        if ($request->hasFile('gambar')) {
+            $i = 0;
+            foreach($request->file('gambar') as $file) {
+                $fileName = time() . $i++ . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('assets'), $fileName);
+                $asset = new Asset();
+                $asset->nama = $fileName;
+                $asset->tipe = $file->getClientOriginalExtension() == ['jpg', 'jpeg', 'png'] ? 'gambar' : 'video';
+                $asset->jenis = 'destinasi';
+                $asset->jenis_id = $destinasi->id;
+                $asset->save();
+            }
+        }
 
         return redirect('admin/destinasipariwisata')->with('warning', 'Berhasil mengubah data Destinasi Pariwisata.');
     }
@@ -64,6 +96,13 @@ class DestinasiPariwisataController extends Controller
     public function destroy(string $id)
     {
         $destinasi = DestinasiPariwisata::findOrFail($id);
+
+        foreach ($destinasi->media as $media) {
+            if (file_exists(public_path('assets/' . $media->nama))) {
+                unlink(public_path('assets/' . $media->nama));
+            }
+            $media->delete();
+        }
 
         $destinasi->delete();
 

@@ -1,4 +1,4 @@
-User (Firman)
+User (Firman) -> biarkan apa adanya
 > id
 > name
 > email
@@ -7,7 +7,7 @@ User (Firman)
 > role (admin/moderator/publisher)
 > status (active/banned)
 
-Berita (Bagas)
+Berita (Bagas) -> dikhususkan untuk informasi penting (tidak udah terlalu kompleks)
 > id
 > judul
 > slug
@@ -19,13 +19,15 @@ Berita (Bagas)
 UMKM (Risyad)
 > id
 > name
+> owner
+> notelp
 > category_id
 
 Jualan (Risyad)
 > id
 > name
 > description
-> category_id
+> harga
 
 Destinasi_Pariwisata (Risyad)
 > id
@@ -44,3 +46,9 @@ Asset (Bagas)
 > tipe (video/gambar)
 > jenis (UMKM/berita/pariwisata)
 > jenis_id (id umkm/id berita/ id pariwisata)
+
+Booking
+> id
+> destinasi_id
+> atas_nama
+> notelp

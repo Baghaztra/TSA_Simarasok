@@ -7,13 +7,13 @@
                     Dashboard
                 </a>
             </li>
-            <li class="nav-item ">
+            {{-- <li class="nav-item ">
                 <a class="nav-link {{ request()->is('admin/post*') ? 'active' : '' }}"
                     href="{{ route('post.index') }}">
                     <span data-feather="align-left" class="align-text-bottom"></span>
                     Berita
                 </a>
-            </li>
+            </li> --}}
             <li class="nav-item ">
                 <a class="nav-link {{ request()->is('admin/category*') ? 'active' : '' }}"
                     href="{{ route('category.index') }}">

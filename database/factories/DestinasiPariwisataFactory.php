@@ -17,8 +17,8 @@ class DestinasiPariwisataFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => 'Lorem Ipsum',
-            'desc' => fake()->paragraphs(1, true),
+            'name' => fake()->sentence(),
+            'desc' => fake()->paragraphs(3, true),
             'harga' => rand(10000, 500000),
         ];
     }

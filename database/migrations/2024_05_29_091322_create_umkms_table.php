@@ -14,7 +14,9 @@ return new class extends Migration
         Schema::create('umkms', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->foreignId('category_id')->constrained('categories');
+            $table->string('owner');
+            $table->string('notelp');
+            // $table->foreignId('category_id')->constrained('categories');
             $table->timestamps();
         });
     }
