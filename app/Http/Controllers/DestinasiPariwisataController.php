@@ -36,7 +36,7 @@ class DestinasiPariwisataController extends Controller
             'name' => $request->name,
             'desc' => $request->desc,
             'harga' => $request->harga,
-            'notelp' => $request->harga,
+            'notelp' => $request->notelp,
         ]);
 
         if ($request->hasFile('gambar')) {
@@ -58,14 +58,12 @@ class DestinasiPariwisataController extends Controller
         return redirect('admin/destinasipariwisata')->with('success', 'Berhasil menambahkan Destinasi Pariwisata baru.');
     }
 
-    public function edit(string $id)
-    {
+    public function edit(string $id){
         $destinasi = DestinasiPariwisata::findOrFail($id);
         return view('admin.destinasipariwisata.edit')->with('destinasis', $destinasi);
     }
 
-    public function update(UpdateDestinasiPariwisataRequest $request, string $id)
-    {
+    public function update(UpdateDestinasiPariwisataRequest $request, string $id){
         $destinasi = DestinasiPariwisata::findOrFail($id);
 
         $data = [
@@ -93,8 +91,7 @@ class DestinasiPariwisataController extends Controller
         return redirect('admin/destinasipariwisata')->with('warning', 'Berhasil mengubah data Destinasi Pariwisata.');
     }
 
-    public function destroy(string $id)
-    {
+    public function destroy(string $id){
         $destinasi = DestinasiPariwisata::findOrFail($id);
 
         foreach ($destinasi->media as $media) {

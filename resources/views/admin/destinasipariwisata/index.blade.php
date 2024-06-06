@@ -46,7 +46,8 @@
                     </form>
                     <a href="/admin/destinasipariwisata/{{ $item->id }}/edit" class="btn btn-sm btn-warning">Edit</a>
                     <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#details-modal" 
-                    data-id="{{ $item->id }}" data-name="{{ $item->name }}" data-item="{{ htmlspecialchars(json_encode($item), ENT_QUOTES, 'UTF-8') }}">Detail</button>
+                        data-nama="{{ $item->name }}" data-desc="{{ $item->desc }}" data-harga="{{ $item->harga }}"
+                        data-gambar="{{ $item->media }}" data-notelp="{{ $item->notelp }}">Detail</button>
                 </td>
             </tr>
         @endforeach
@@ -63,12 +64,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    
-                    <p><strong>Deskripsi:</strong> <span id="desc"></span></p>
+                    <div id="media" class="mb-3"></div>
+                    <div id="desc" class="mb-3"></div>
                     <p><strong>Harga Tiket:</strong> <span id="harga"></span></p>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <p><strong>Contack person:</strong> <span id="notelp"></span></p>
                 </div>
             </div>
         </div>
@@ -76,19 +75,38 @@
 
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
-            const exampleModal = document.getElementById('exampleModal');
-            exampleModal.addEventListener('show.bs.modal', (event) => {
+            const detailModal = document.getElementById('details-modal');
+            detailModal.addEventListener('show.bs.modal', (event) => {
                 const button = event.relatedTarget;
-                const itemData = button.getAttribute('data-item');
-                const item = JSON.parse(itemData);
     
-                const namaDestinasi = exampleModal.querySelector('#nama-destinasi');
-                const deskripsi = exampleModal.querySelector('#desc');
-                const modalHarga = exampleModal.querySelector('#harga');
-    
-                namaDestinasi.textContent = item.name;
-                deskripsi.textContent = item.desc;
-                modalHarga.textContent = item.harga;
+                const namaDestinasi = detailModal.querySelector('#nama-destinasi');
+                const deskripsi = detailModal.querySelector('#desc');
+                const harga = detailModal.querySelector('#harga');
+                const notelp = detailModal.querySelector('#notelp');
+                const mediaContainer = detailModal.querySelector('#media');
+                
+                namaDestinasi.innerHTML = button.getAttribute('data-nama');
+                deskripsi.innerHTML = button.getAttribute('data-desc');
+                harga.innerHTML = "Rp"+button.getAttribute('data-harga');
+                notelp.innerHTML = button.getAttribute('data-notelp');
+                
+                const objectMedia = JSON.parse(button.getAttribute('data-gambar'));
+                // console.log(objectMedia);
+                mediaContainer.innerHTML = '';
+                objectMedia.forEach(item => {
+                    // console.log(media);
+                    var media;
+                    if (item.tipe == 'gambar') {
+                        media = document.createElement('img');
+                    }else{
+                        media = document.createElement('video');
+                        media.setAttribute('controls', true);
+                    }
+                    media.classList.add('m-1');
+                    media.style.height = '200px';
+                    media.setAttribute('src', "/assets/" + item.nama);
+                    mediaContainer.appendChild(media);
+                });
             });
         });
     </script>
