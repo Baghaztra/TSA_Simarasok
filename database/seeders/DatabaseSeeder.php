@@ -35,7 +35,8 @@ class DatabaseSeeder extends Seeder
         Category::factory(5)->create();
         DestinasiPariwisata::factory(10)->create();
         Homestay::factory(20)->create();
-        Asset::factory(40)->create();
+        UMKM::factory(20)->create();
         Produk::factory(15)->create();
+        Asset::factory(40)->create();
     }
 }
