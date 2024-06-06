@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\UMKM;
-use App\Models\Category;
+use App\Models\Produk;
 use App\Http\Requests\StoreUMKMRequest;
 use App\Http\Requests\UpdateUMKMRequest;
 use Illuminate\Http\Request;
@@ -27,8 +27,8 @@ class UMKMController extends Controller
 
     public function create() {
         $umkm = UMKM::all();
-        $kategori = Category::all();
-        return view('admin.umkm.create')->with(['umkms' => $umkm, 'kategoris' => $kategori]);
+        // $owner = User::all();
+        return view('admin.umkm.create')->with(['umkms' => $umkm, /* 'owners' => $owner */]);
     }
 
     // Store a newly created resource in storage.
@@ -36,23 +36,35 @@ class UMKMController extends Controller
     public function store(StoreUMKMRequest $request) {
         $request->validate([
             'name' => 'required',
-            'category_id' => 'required|exists:categories,id',
+            'owner' => 'required',
+            'notelp' => 'required',
+            // 'user_id' => 'required|exists:users,id',
         ]);
 
         $umkm  = [
-            'name' => $request->name,
-            'category_id' => $request->category_id,
+            'name' => $request -> name,
+            'owner' => $request -> owner,
+            'notelp' => $request -> notelp,
+            // 'user_id' => $request -> user_id,
         ];
 
         UMKM::create($umkm);
         return redirect('admin/umkm')->with('success', 'Berhasil menambahkan UMKM baru.');
     }
 
+    /**
+     * Display the specified resource.
+     */
+    public function show(string $id)
+    {
+        $produk = Produk::findOrFail($id);
+        return view('admin.produk.index', ['produks'=>$produk]);
+    }
+
     public function edit(string $id)
     {
         $umkm = UMKM::findOrFail($id);
-        $kategori = Category::all();
-        return view('admin.umkm.edit')->with(['umkms' => $umkm, 'kategoris' => $kategori]);
+        return view('admin.umkm.edit')->with(['umkms' => $umkm]);
     }
 
     public function update(UpdateUMKMRequest $request, string $id)
@@ -61,7 +73,9 @@ class UMKMController extends Controller
 
         $data = [
             'name' => $request->name,
-            'category_id' => $request->category_id,
+            'owner' => $request -> owner,
+            'notelp' => $request -> notelp,
+            // 'user_id' => $request -> user_id,
         ];
         $umkm->update($data);
 

@@ -42,7 +42,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/admin/umkm', UMKMController::class);
     Route::resource('/admin/user', UserController::class);
     Route::resource('/admin/destinasipariwisata', DestinasiPariwisataController::class);
-    Route::resource('/admin/produk', ProdukController::class);
+    Route::resource('/admin/produk/{id}', ProdukController::class);
     Route::resource('/admin/homestay', HomestayController::class);
 
     Route::put('/admin/users/{id}', [UserController::class, 'update']);

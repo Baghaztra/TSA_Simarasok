@@ -14,5 +14,14 @@ class UMKM extends Model
         'name',
         'owner',
         'notelp',
+        // 'user_id',
     ];
+
+    /* function owner(){
+        return $this->belongsTo(User::class, 'user_id');
+    } */
+
+    function produk(){
+        return $this->hasMany(Produk::class, 'umkm_id');
+    }
 }
