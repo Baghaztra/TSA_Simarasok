@@ -40,12 +40,10 @@
             </div>
             <div class="mb-3">
                 <label for="roles" class="form-label">Role</label>
-                <select name="roles" class="form-control  @error('roles') is-invalid @enderror"
-                        value="{{ old('roles',$users->roles) }}">
+                <select name="roles" class="form-control  @error('roles') is-invalid @enderror"">
                     <option>Pilih Role User</option>
-                    <option value="admin" name="admin">Admin</option>
-                    <option value="moderator" name="moderator">Moderator</option>
-                    <option value="publisher" name="publisher">Publisher</option>
+                    <option value="admin" {{ old('roles',$users->roles)=='admin'? 'selected':'' }}>Admin</option>
+                    <option value="owner_umkm" {{ old('roles',$users->roles)=='owner_umkm'? 'selected':'' }}>Owner UMKM</option>
                 </select>
                 @error('roles')
                     <div class="invalid-feedback">

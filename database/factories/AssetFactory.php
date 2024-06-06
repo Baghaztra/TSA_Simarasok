@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\DestinasiPariwisata;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,7 +18,11 @@ class AssetFactory extends Factory
     public function definition(): array
     {
         return [
-            
+            'nama' => 'dummy.jpg',
+            'tipe' => 'gambar',
+            // 'jenis' => ['destinasi', 'produk'][rand(0, 1)],
+            'jenis' => 'destinasi',
+            'jenis_id' => DestinasiPariwisata::all()->random()->id,
         ];
     }
 }

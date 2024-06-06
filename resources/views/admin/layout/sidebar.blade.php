@@ -20,6 +20,19 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link {{request()->is('admin/destinasipariwisata*')}}" href="{{ route('destinasipariwisata.index') }}" aria-expanded="false">
+                        <span data-feather="map" class="align-text-bottom"></span>
+                        <span class="hide-menu">Destinasi Wisata</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
+                    <a class="nav-link {{ request()->is('admin/homestay*') ? 'active' : '' }}"
+                        href="{{ route('homestay.index') }}">
+                        <span data-feather="users" class="align-text-bottom"></span>
+                        Homestay
+                      </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('admin/category*') ? 'active' : '' }}" href="{{ route('category.index') }}" aria-expanded="false">
                         <span data-feather="list" class="align-text-bottom"></span>
                         <span class="hide-menu">Kategori</span>
@@ -35,12 +48,6 @@
                     <a class="sidebar-link {{ request()->is('admin/umkm*') ? 'active' : '' }}" href="{{route('umkm.index')}}" aria-expanded="false">
                     <span data-feather="info" class="align-text-bottom"></span>
                         <span class="hide-menu">UMKM</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link {{request()->is('admin/destinasipariwisata*')}}" href="{{ route('destinasipariwisata.index') }}" aria-expanded="false">
-                        <span data-feather="map" class="align-text-bottom"></span>
-                        <span class="hide-menu">Destinasi Wisata</span>
                     </a>
                 </li>
                 <li class="nav-small-cap">

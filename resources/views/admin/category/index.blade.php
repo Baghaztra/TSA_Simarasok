@@ -10,7 +10,7 @@
         </div>
         <div class="col-md-6">
             <form action="/admin/category" method="GET" class="input-group mb-3">
-                <input type="text" class="form-control" name="query" value="" placeholder="cari sesuatu"
+                <input type="text" class="form-control" name="query" value="{{ $q }}" placeholder="cari sesuatu"
                     aria-label="cari sesuatu">
                 <button class="btn btn-outline-success" type="submit">Button</button>
             </form>
@@ -37,7 +37,6 @@
         <tr>
             <th>No</th>
             <th>Nama Kategori</th>
-            <th>Jenis</th>
             <th>Action</th>
         </tr>
         @if ($kategoris->isEmpty())
@@ -52,7 +51,6 @@
             <tr>
                 <td>{{ $kategoris->firstItem() + $loop->index }}</td>
                 <td>{{ $item->name }}</td>
-                <td>{{ $item->jenis }}</td>
                 <td>
                     <form class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')"
                         action="{{ route('category.destroy', $item->id) }}" method="POST">

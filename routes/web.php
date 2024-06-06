@@ -9,6 +9,8 @@ use App\Http\Controllers\AssetController;
 use App\Http\Controllers\SigninController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DestinasiPariwisataController;
+use App\Http\Controllers\HomestayController;
+use App\Http\Controllers\ProdukController;
 
 /*
 |--------------------------------------------------------------------------
@@ -40,6 +42,8 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/admin/umkm', UMKMController::class);
     Route::resource('/admin/user', UserController::class);
     Route::resource('/admin/destinasipariwisata', DestinasiPariwisataController::class);
+    Route::resource('/admin/produk', ProdukController::class);
+    Route::resource('/admin/homestay', HomestayController::class);
 
     Route::put('/admin/users/{id}', [UserController::class, 'update']);
     Route::get('updateStatus/{id}', [UserController::class, 'updateStatus']);

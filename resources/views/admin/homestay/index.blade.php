@@ -2,14 +2,14 @@
 
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Daftar Destinasi Pariwisata</h1>
+        <h1 class="h2">Daftar Homestay</h1>
     </div>
     <div class="row">
         <div class="col-md-6">
-            <a href="/admin/destinasipariwisata/create" class="btn btn-primary mb-3">Entri Data Destinasi Pariwisata</a>
+            <a href="/admin/homestay/create" class="btn btn-primary mb-3">Entri Data Homestay</a>
         </div>
         <div class="col-md-6">
-            <form action="/admin/destinasipariwisata" method="GET" class="input-group mb-3">
+            <form action="/admin/homestay" method="GET" class="input-group mb-3">
                 <input type="text" class="form-control" name="query" value="{{ $q }}" placeholder="cari berdasarkan nama" aria-label="cari sesuatu">
                 <button class="btn btn-outline-success" type="submit">Button</button>
             </form>
@@ -22,29 +22,29 @@
         </div>
     @endif
 
-    <table class="table table-bordered table-striped table-responsive">
+    <table class="table table-bordered table-striped">
         <tr>
             <th>No</th>
             <th>Nama</th>
-            <th>Harga Tiket</th>
+            <th>Harga per malam</th>
             <th>Aksi</th>
         </tr>
-        @if ($destinasis->isEmpty())
+        @if ($homestay->isEmpty())
             <tr>
                 <td style="text-align: center; background: rgb(187, 187, 187); color: rgb(41, 41, 41); font-weight: 600" colspan="7">Data not found.</td>
             </tr>
         @endif
-        @foreach ($destinasis as $item)
+        @foreach ($homestay as $item)
             <tr>
-                <td>{{ $destinasis->firstItem() + $loop->index }}</td>
+                <td>{{ $homestay->firstItem() + $loop->index }}</td>
                 <td>{{ $item->name }}</td>
                 <td>{{ 'Rp'.number_format($item->harga, 2, ',', '.') }}</td>
                 <td>
-                    <form class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')" action="{{ route('destinasipariwisata.destroy', $item->id) }}" method="POST">
+                    <form class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')" action="{{ route('homestay.destroy', $item->id) }}" method="POST">
                         @csrf @method('DELETE')
                         <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                     </form>
-                    <a href="/admin/destinasipariwisata/{{ $item->id }}/edit" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="/admin/homestay/{{ $item->id }}/edit" class="btn btn-sm btn-warning">Edit</a>
                     <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#details-modal" 
                         data-nama="{{ $item->name }}" data-desc="{{ $item->desc }}" data-harga="{{ $item->harga }}"
                         data-gambar="{{ $item->media }}" data-notelp="{{ $item->notelp }}">Detail</button>
@@ -53,7 +53,7 @@
         @endforeach
 
     </table>
-    {{ $destinasis->links() }}
+    {{ $homestay->links() }}
 
     <!-- Modal -->
     <div class="modal fade" id="details-modal" tabindex="-1" aria-hidden="true">
@@ -66,7 +66,7 @@
                 <div class="modal-body">
                     <div id="media" class="mb-3"></div>
                     <div id="desc" class="mb-3"></div>
-                    <p><strong>Harga Tiket:</strong> <span id="harga"></span></p>
+                    <p><strong>Harga per malam:</strong> <span id="harga"></span></p>
                     <p><strong>Contack person:</strong> <span id="notelp"></span></p>
                 </div>
             </div>

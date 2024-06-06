@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Asset;
-use App\Http\Requests\StoreAssetRequest;
-use App\Http\Requests\UpdateAssetRequest;
+use App\Models\Produk;
+use Illuminate\Http\Request;
 
-class AssetController extends Controller
+class ProdukController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -27,7 +26,7 @@ class AssetController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreAssetRequest $request)
+    public function store(Request $request)
     {
         //
     }
@@ -35,7 +34,7 @@ class AssetController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Asset $asset)
+    public function show(Produk $produk)
     {
         //
     }
@@ -43,7 +42,7 @@ class AssetController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Asset $asset)
+    public function edit(Produk $produk)
     {
         //
     }
@@ -51,7 +50,7 @@ class AssetController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateAssetRequest $request, Asset $asset)
+    public function update(Request $request, Produk $produk)
     {
         //
     }
@@ -59,14 +58,8 @@ class AssetController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy($id)
+    public function destroy(Produk $produk)
     {
-        $asset = Asset::findOrFail($id);
-        if (file_exists(public_path('media/' . $asset->nama))) {
-            unlink(public_path('media/' . $asset->nama));
-        }
-        $asset->delete();
-
-        return response()->json(['success' => true]);
+        //
     }
 }

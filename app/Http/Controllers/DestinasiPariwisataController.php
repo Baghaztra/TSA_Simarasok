@@ -6,14 +6,21 @@ use App\Models\Asset;
 use App\Models\DestinasiPariwisata;
 use App\Http\Requests\StoreDestinasiPariwisataRequest;
 use App\Http\Requests\UpdateDestinasiPariwisataRequest;
+use Illuminate\Http\Request;
 
 class DestinasiPariwisataController extends Controller
 {
     // Display a listing of the resource.
 
-    public function index() {
-        $destinasi = DestinasiPariwisata::latest()->paginate(10);
-        return view("admin.destinasipariwisata.index", ['destinasis' => $destinasi]);
+    public function index(Request $request) {
+        $query = $request->input('query');
+
+        if (!empty($query)) {
+            $destinasi = DestinasiPariwisata::where("name", "like", "%" . $query . '%')->latest()->paginate(10);;
+        } else {
+            $destinasi = DestinasiPariwisata::latest()->paginate(10);
+        }
+        return view("admin.destinasipariwisata.index", ['destinasis' => $destinasi, 'q' => $query]);
     }
 
     // Show the form for creating a new resources.
@@ -36,7 +43,7 @@ class DestinasiPariwisataController extends Controller
             'name' => $request->name,
             'desc' => $request->desc,
             'harga' => $request->harga,
-            'notelp' => $request->harga,
+            'notelp' => $request->notelp,
         ]);
 
         if ($request->hasFile('gambar')) {
@@ -58,14 +65,12 @@ class DestinasiPariwisataController extends Controller
         return redirect('admin/destinasipariwisata')->with('success', 'Berhasil menambahkan Destinasi Pariwisata baru.');
     }
 
-    public function edit(string $id)
-    {
+    public function edit(string $id){
         $destinasi = DestinasiPariwisata::findOrFail($id);
         return view('admin.destinasipariwisata.edit')->with('destinasis', $destinasi);
     }
 
-    public function update(UpdateDestinasiPariwisataRequest $request, string $id)
-    {
+    public function update(UpdateDestinasiPariwisataRequest $request, string $id){
         $destinasi = DestinasiPariwisata::findOrFail($id);
 
         $data = [
@@ -93,13 +98,12 @@ class DestinasiPariwisataController extends Controller
         return redirect('admin/destinasipariwisata')->with('warning', 'Berhasil mengubah data Destinasi Pariwisata.');
     }
 
-    public function destroy(string $id)
-    {
+    public function destroy(string $id){
         $destinasi = DestinasiPariwisata::findOrFail($id);
 
         foreach ($destinasi->media as $media) {
-            if (file_exists(public_path('assets/' . $media->nama))) {
-                unlink(public_path('assets/' . $media->nama));
+            if (file_exists(public_path('media/' . $media->nama))) {
+                unlink(public_path('media/' . $media->nama));
             }
             $media->delete();
         }

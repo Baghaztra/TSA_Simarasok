@@ -43,9 +43,8 @@
                 <select name="roles" class="form-control  @error('roles') is-invalid @enderror"
                         value="{{ old('roles') }}">
                     <option>Pilih Role User</option>
-                    <option value="admin" name="admin">Admin</option>
-                    <option value="moderator" name="moderator">Moderator</option>
-                    <option value="publisher" name="publisher">Publisher</option>
+                    <option value="admin">Admin</option>
+                    <option value="owner_umkm">Owner UMKM</option>
                 </select>
                 @error('roles')
                     <div class="invalid-feedback">

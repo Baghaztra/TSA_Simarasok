@@ -11,10 +11,15 @@ class UserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $pengguna = User::latest()->paginate(10);
-        return view("admin.user.index")->with(['users' => $pengguna]);
+        $query = $request->input('query');
+        if (!empty($query)) {
+            $pengguna = User::where("name", "like", "%" . $query . '%')->latest()->paginate(10);;
+        } else {
+            $pengguna = User::latest()->paginate(10);
+        }
+        return view("admin.user.index")->with(['users' => $pengguna,'q'=>$query]);
     }
 
     /**
@@ -34,7 +39,7 @@ class UserController extends Controller
             'name' => 'required',
             'email' => 'required',
             'password' => 'required|min:8',
-            'roles' => 'required|in:admin,moderator,publisher',
+            'roles' => 'required|in:admin,owner_umkm',
             'status' => 'required|in:active,disable',
         ]);
 
@@ -72,7 +77,7 @@ class UserController extends Controller
         $validated = $request->validate([
             'name' => 'required',
             'email' => 'required|email',
-            'roles' => 'required|in:admin,moderator,publisher',
+            'roles' => 'required|in:admin,owner_umkm',
         ]);
         $user = User::findOrFail($id);
         $user->name = $validated['name'];
