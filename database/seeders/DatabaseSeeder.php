@@ -8,6 +8,7 @@ use App\Models\Asset;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\DestinasiPariwisata;
+use App\Models\Homestay;
 use App\Models\Post;
 use App\Models\Produk;
 use App\Models\UMKM;
@@ -34,5 +35,6 @@ class DatabaseSeeder extends Seeder
         Category::factory(5)->create();
         DestinasiPariwisata::factory(10)->create();
         Asset::factory(20)->create();
+        Homestay::factory(20)->create();
     }
 }

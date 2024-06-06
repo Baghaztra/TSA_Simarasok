@@ -6,8 +6,22 @@
     <ul class="nav nav-pills flex-column mb-auto">
       <li class="nav-item">
         <a class="nav-link {{ request()->is('admin') ? 'active' : '' }}" aria-current="page" href="/admin">
-            <span data-feather="home" class="align-text-bottom"></span>
-            Dashboard
+          <span data-feather="home" class="align-text-bottom"></span>
+          Dashboard
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{ request()->is('admin/destinasipariwisata*') ? 'active' : '' }}"
+          href="{{ route('destinasipariwisata.index') }}">
+          <span data-feather="users" class="align-text-bottom"></span>
+          Destinasi pariwisata
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link {{ request()->is('admin/homestay*') ? 'active' : '' }}"
+          href="{{ route('homestay.index') }}">
+          <span data-feather="users" class="align-text-bottom"></span>
+          Homestay
         </a>
       </li>
       <li class="nav-item">
@@ -29,13 +43,6 @@
             href="{{ route('umkm.index') }}">
             <span data-feather="users" class="align-text-bottom"></span>
             UMKM
-        </a>
-      </li>
-      <li class="nav-item">
-        <a class="nav-link {{ request()->is('admin/destinasipariwisata*') ? 'active' : '' }}"
-            href="{{ route('destinasipariwisata.index') }}">
-            <span data-feather="users" class="align-text-bottom"></span>
-            Destinasi pariwisata
         </a>
       </li>
     </ul>
