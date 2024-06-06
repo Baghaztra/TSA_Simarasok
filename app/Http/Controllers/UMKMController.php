@@ -6,14 +6,21 @@ use App\Models\UMKM;
 use App\Models\Category;
 use App\Http\Requests\StoreUMKMRequest;
 use App\Http\Requests\UpdateUMKMRequest;
+use Illuminate\Http\Request;
 
 class UMKMController extends Controller
 {
     // Display a listing of the resource.
 
-    public function index() {
-        $umkm = UMKM::latest()->paginate(10);
-        return view("admin.umkm.index", ['umkms' => $umkm]);
+    public function index(Request $request) {
+        $query = $request->input('query');
+
+        if (!empty($query)) {
+            $umkm = UMKM::where('name', 'like', '%'.$query.'$')->latest()->paginate(10);
+        }else{
+            $umkm = UMKM::latest()->paginate(10);
+        }
+        return view("admin.umkm.index", ['umkms' => $umkm, 'q'=>$query]);
     }
 
     // Show the form for creating a new resources.

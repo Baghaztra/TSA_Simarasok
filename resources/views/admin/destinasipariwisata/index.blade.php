@@ -10,7 +10,7 @@
         </div>
         <div class="col-md-6">
             <form action="/admin/destinasipariwisata" method="GET" class="input-group mb-3">
-                <input type="text" class="form-control" name="query" value="" placeholder="cari sesuatu" aria-label="cari sesuatu">
+                <input type="text" class="form-control" name="query" value="{{ $q }}" placeholder="cari berdasarkan nama" aria-label="cari sesuatu">
                 <button class="btn btn-outline-success" type="submit">Button</button>
             </form>
         </div>
@@ -38,7 +38,7 @@
             <tr>
                 <td>{{ $destinasis->firstItem() + $loop->index }}</td>
                 <td>{{ $item->name }}</td>
-                <td>{{ $item->harga }}</td>
+                <td>{{ 'Rp'.number_format($item->harga, 2, ',', '.') }}</td>
                 <td>
                     <form class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')" action="{{ route('destinasipariwisata.destroy', $item->id) }}" method="POST">
                         @csrf @method('DELETE')
@@ -87,7 +87,12 @@
                 
                 namaDestinasi.innerHTML = button.getAttribute('data-nama');
                 deskripsi.innerHTML = button.getAttribute('data-desc');
-                harga.innerHTML = "Rp"+button.getAttribute('data-harga');
+                harga.innerHTML= parseFloat(button.getAttribute('data-harga')).toLocaleString('id-ID', {
+                    style: 'currency',
+                    currency: 'IDR',
+                    minimumFractionDigits: 2
+                });
+                // console.log(fharga);
                 notelp.innerHTML = button.getAttribute('data-notelp');
                 
                 const objectMedia = JSON.parse(button.getAttribute('data-gambar'));

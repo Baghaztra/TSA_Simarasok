@@ -5,16 +5,23 @@ namespace App\Http\Controllers;
 use App\Models\Category;
 use App\Http\Requests\StoreCategoryRequest;
 use App\Http\Requests\UpdateCategoryRequest;
+use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $kategori = Category::latest()->paginate(10);
-        return view("admin.category.index",['kategoris'=>$kategori]);
+        $query = $request->input('query');
+
+        if (!empty($query)) {
+            $kategori = Category::where("name", "like", "%" . $query . '%')->latest()->paginate(10);;
+        } else {
+            $kategori = Category::latest()->paginate(10);
+        }
+        return view("admin.category.index",['kategoris'=>$kategori, 'q'=>$query]);
     }
 
     /**

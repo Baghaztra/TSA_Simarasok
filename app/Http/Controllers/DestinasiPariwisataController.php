@@ -6,14 +6,21 @@ use App\Models\Asset;
 use App\Models\DestinasiPariwisata;
 use App\Http\Requests\StoreDestinasiPariwisataRequest;
 use App\Http\Requests\UpdateDestinasiPariwisataRequest;
+use Illuminate\Http\Request;
 
 class DestinasiPariwisataController extends Controller
 {
     // Display a listing of the resource.
 
-    public function index() {
-        $destinasi = DestinasiPariwisata::latest()->paginate(10);
-        return view("admin.destinasipariwisata.index", ['destinasis' => $destinasi]);
+    public function index(Request $request) {
+        $query = $request->input('query');
+
+        if (!empty($query)) {
+            $destinasi = DestinasiPariwisata::where("name", "like", "%" . $query . '%')->latest()->paginate(10);;
+        } else {
+            $destinasi = DestinasiPariwisata::latest()->paginate(10);
+        }
+        return view("admin.destinasipariwisata.index", ['destinasis' => $destinasi, 'q' => $query]);
     }
 
     // Show the form for creating a new resources.
