@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Dashboard Template · Bootstrap v5.2</title>
 
+    <link rel="shortcut icon" type="image/png" href="/assets/images/logos/favicon.png" />
+    <link rel="stylesheet" href="/assets/css/styles.min.css" />
+
     <style>
+        /* Pindahkan aturan CSS yang telah ada ke sini */
         .bd-placeholder-img {
             font-size: 1.125rem;
             text-anchor: middle;
@@ -56,26 +61,53 @@
             white-space: nowrap;
             -webkit-overflow-scrolling: touch;
         }
-    </style>
-    <link href="/bootstrap/css/dashboard.css" rel="stylesheet">
-    <link href="/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="/css/adminSidebar.css">
 
-    {{-- input berita --}}
-    <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
+        /* Tambahkan aturan CSS untuk layout */
+        .body-wrapper {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+
+        .container-fluid {
+            display: flex;
+            flex: 1;
+        }
+
+        .row {
+            flex: 1;
+        }
+
+        .sidebar {
+            width: 200px;
+            /* Atur lebar sidebar */
+            background-color: #f8f9fa;
+            /* Sesuaikan sesuai kebutuhan */
+        }
+
+        main {
+            flex: 1;
+            padding: 20px;
+            /* Sesuaikan sesuai kebutuhan */
+        }
+    </style>
 </head>
 
 <body>
-    <div class="container-fluid">
-        <div class="row">
-            @include('admin.layout.sidebar')
-
-            <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4">
-                @yield('content')
-            </main>
+    <div class="page-wrapper" id="main-wrapper" data-layout="vertical" data-navbarbg="skin6" data-sidebartype="full"
+        data-sidebar-position="fixed" data-header-position="fixed">
+        @include('admin.layout.sidebar')
+        <div class="body-wrapper">
+            @include('admin.layout.header')
+            <div class="container-fluid">
+                <div class="row">
+                    <main>
+                        @yield('content')
+                    </main>
+                </div>
+            </div>
         </div>
     </div>
-
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
         integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous">
@@ -85,5 +117,13 @@
             'aria-hidden': 'true'
         })
     </script>
+
+    <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
+    <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/assets/js/sidebarmenu.js"></script>
+    <script src="/assets/js/app.min.js"></script>
+    <script src="/assets/libs/apexcharts/dist/apexcharts.min.js"></script>
+    <script src="/assets/libs/simplebar/dist/simplebar.js"></script>
+    <script src="/assets/js/dashboard.js"></script>
 </body>
 </html>

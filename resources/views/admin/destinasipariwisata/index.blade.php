@@ -24,7 +24,7 @@
         </div>
     @endif
 
-    <table class="table table-bordered table-striped">
+    <table class="table table-bordered table-striped table-responsive">
         <tr>
             <th>No</th>
             <th>Nama</th>
