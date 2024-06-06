@@ -6,12 +6,12 @@
     </div>
     <div class="col-6">
         <a href="/admin/homestay" class="btn btn-sm btn-warning mb-3">Kembali</a>
-        <form action="/admin/homestay/{{ $destinasis->id }}" method="post" enctype="multipart/form-data">
+        <form action="/admin/homestay/{{ $homestay->id }}" method="post" enctype="multipart/form-data">
             @csrf @method('put')
             <div class="mb-3">
                 <label class="form-label">Nama Penginapan</label>
                 <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                    value="{{ old('name', $destinasis->name) }}">
+                    value="{{ old('name', $homestay->name) }}">
                 @error('name')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -24,12 +24,12 @@
                 <input type="file" name="gambar[]" id="gambar" class="form-control @error('gambar') is-invalid @enderror" onchange="previewFiles(event)" accept=".jpg, .jpeg, .png, .mp4, .mkv" hidden multiple>
                 <div id="preview-container">
                     <!-- Pratinjau media yang ada -->
-                    @foreach($destinasis->media as $media)
+                    @foreach($homestay->media as $media)
                     <div style="position: relative; display: inline-block;" data-media-id="{{ $media->id }}">
                         @if($media->tipe === 'gambar')
-                        <img src="/assets/{{ $media->nama }}" class="img-thumbnail" style="width: 300px; display: block;">
+                        <img src="/media/{{ $media->nama }}" class="img-thumbnail" style="width: 300px; display: block;">
                         @elseif($media->tipe === 'video')
-                        <video src="/assets/{{ $media->nama }}" class="img-thumbnail" style="width: 300px; display: block;" controls></video>
+                        <video src="/media/{{ $media->nama }}" class="img-thumbnail" style="width: 300px; display: block;" controls></video>
                         @endif
                         <button onclick="removeExistingMedia({{ $media->id }})" style="position: absolute; top: 5px; right: 5px; background-color: rgba(255, 255, 255, 0.8); border: none; border-radius: 50%; cursor: pointer;">&#x2715;</button>
                     </div>
@@ -120,7 +120,7 @@
                     const mediaElement = document.querySelector(`[data-media-id='${id}']`);
                     if (mediaElement) {
                         mediaElement.remove();
-                        fetch(`/assets/${id}`, {
+                        fetch(`/media/${id}`, {
                             method: 'DELETE',
                             headers: {
                                 'X-CSRF-TOKEN': '{{ csrf_token() }}',
@@ -142,7 +142,7 @@
             <div class="mb-3">
                 <label class="form-label">Deskripsi penginapan</label>
                 <div id="editor">
-                    {!! old('desc', $destinasis->desc) !!}
+                    {!! old('desc', $homestay->desc) !!}
                 </div>
                 <textarea id="desc" name="desc" style="display:none;"></textarea>
                 <script>
@@ -167,7 +167,7 @@
             <div class="mb-3">
                 <label class="form-label">Harga per malam</label>
                 <input type="number" class="form-control @error('harga') is-invalid @enderror" name="harga"
-                    value="{{ old('harga', $destinasis->harga) }}">
+                    value="{{ old('harga', $homestay->harga) }}">
                 @error('harga')
                     <div class="invalid-feedback">
                         {{ $message }}
@@ -178,7 +178,7 @@
             <div class="mb-3">
                 <label class="form-label">Contack person</label>
                 <input type="text" class="form-control @error('notelp') is-invalid @enderror" name="notelp"
-                    value="{{ old('notelp', $destinasis->notelp) }}" placeholder="ex: +628XXXXXXXXXX">
+                    value="{{ old('notelp', $homestay->notelp) }}" placeholder="ex: +628XXXXXXXXXX">
                 @error('notelp')
                     <div class="invalid-feedback">
                         {{ $message }}

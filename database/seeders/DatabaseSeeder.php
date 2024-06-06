@@ -23,7 +23,7 @@ class DatabaseSeeder extends Seeder
     public function run(): void
     {        
         User::factory()->create([
-            'name' => 'admin',
+            'name' => 'Admin',
             'email' => 'admin@example.com',
             'password' => bcrypt('123123123'),
             'alias' => 'A',
@@ -34,7 +34,7 @@ class DatabaseSeeder extends Seeder
 
         Category::factory(5)->create();
         DestinasiPariwisata::factory(10)->create();
-        Asset::factory(20)->create();
         Homestay::factory(20)->create();
+        Asset::factory(40)->create();
     }
 }

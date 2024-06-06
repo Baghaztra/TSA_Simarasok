@@ -20,17 +20,23 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{request()->is('admin/destinasipariwisata*')}}" href="{{ route('destinasipariwisata.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ request()->is('admin/destinasipariwisata*') ? 'active' : '' }}" href="{{ route('destinasipariwisata.index') }}" aria-expanded="false">
                         <span data-feather="map" class="align-text-bottom"></span>
                         <span class="hide-menu">Destinasi Wisata</span>
                     </a>
+                </li>                
+                <li class="sidebar-item">
+                  <a class="sidebar-link {{ request()->is('admin/homestay*') ? 'active' : '' }}"
+                    href="{{ route('homestay.index') }}" aria-expanded="false">
+                    <span data-feather="moon" class="align-text-bottom"></span>
+                    <span class="hide-menu">Homestay</span>
+                  </a>
                 </li>
                 <li class="sidebar-item">
-                  <a class="nav-link {{ request()->is('admin/homestay*') ? 'active' : '' }}"
-                    href="{{ route('homestay.index') }}">
-                    <span data-feather="users" class="align-text-bottom"></span>
-                    Homestay
-                  </a>
+                    <a class="sidebar-link {{ request()->is('admin/umkm*') ? 'active' : '' }}" href="{{route('umkm.index')}}" aria-expanded="false">
+                    <span data-feather="shopping-cart" class="align-text-bottom"></span>
+                        <span class="hide-menu">UMKM</span>
+                    </a>
                 </li>
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('admin/category*') ? 'active' : '' }}" href="{{ route('category.index') }}" aria-expanded="false">
@@ -42,12 +48,6 @@
                     <a class="sidebar-link {{ request()->is('admin/user*') ? 'active' : '' }}" href="{{ route('user.index') }}" aria-expanded="false">
                         <span data-feather="users" class="align-text-bottom"></span>
                         <span class="hide-menu">User</span>
-                    </a>
-                </li>
-                <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('admin/umkm*') ? 'active' : '' }}" href="{{route('umkm.index')}}" aria-expanded="false">
-                    <span data-feather="info" class="align-text-bottom"></span>
-                        <span class="hide-menu">UMKM</span>
                     </a>
                 </li>
                 <li class="nav-small-cap">

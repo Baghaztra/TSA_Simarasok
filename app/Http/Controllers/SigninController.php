@@ -38,6 +38,6 @@ class SigninController extends Controller
     public function logout()
     {
         Auth::logout();
-        return redirect('/post');
+        return redirect('/');
     }
 }

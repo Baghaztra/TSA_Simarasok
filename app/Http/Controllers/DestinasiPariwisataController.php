@@ -51,7 +51,7 @@ class DestinasiPariwisataController extends Controller
             foreach($request->file('gambar') as $file) {
                 $fileName = time() . $i . '.' . $file->getClientOriginalExtension();
                 $i++;
-                $file->move(public_path('assets'), $fileName);
+                $file->move(public_path('media'), $fileName);
                 $asset = new Asset();
                 $asset->nama = $fileName;
                 $asset->tipe = in_array($file->getClientOriginalExtension(), ['jpg', 'jpeg', 'png']) ? 'gambar' : 'video';
@@ -85,7 +85,7 @@ class DestinasiPariwisataController extends Controller
             $i = 0;
             foreach($request->file('gambar') as $file) {
                 $fileName = time() . $i++ . '.' . $file->getClientOriginalExtension();
-                $file->move(public_path('assets'), $fileName);
+                $file->move(public_path('media'), $fileName);
                 $asset = new Asset();
                 $asset->nama = $fileName;
                 $asset->tipe = in_array($file->getClientOriginalExtension(), ['jpg', 'jpeg', 'png']) ? 'gambar' : 'video';
