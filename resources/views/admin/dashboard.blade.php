@@ -74,7 +74,5 @@
                 });
             });
         </script>
-        
-        <!-- Tambahkan elemen lainnya sesuai kebutuhan -->
     </div>
 @endsection

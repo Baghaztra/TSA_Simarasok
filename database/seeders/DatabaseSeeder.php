@@ -21,7 +21,7 @@ class DatabaseSeeder extends Seeder
      * Seed the application's database.
      */
     public function run(): void
-    {        
+    {
         User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@example.com',
@@ -36,5 +36,6 @@ class DatabaseSeeder extends Seeder
         DestinasiPariwisata::factory(10)->create();
         Homestay::factory(20)->create();
         Asset::factory(40)->create();
+        Produk::factory(15)->create();
     }
 }
