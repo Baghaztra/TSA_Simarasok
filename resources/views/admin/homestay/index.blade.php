@@ -109,7 +109,7 @@
                     }
                     media.classList.add('m-1');
                     media.style.height = '200px';
-                    media.setAttribute('src', "/assets/" + item.nama);
+                    media.setAttribute('src', "/media/" + item.nama);
                     mediaContainer.appendChild(media);
                 });
             });

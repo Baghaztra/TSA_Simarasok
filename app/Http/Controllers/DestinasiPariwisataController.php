@@ -102,8 +102,8 @@ class DestinasiPariwisataController extends Controller
         $destinasi = DestinasiPariwisata::findOrFail($id);
 
         foreach ($destinasi->media as $media) {
-            if (file_exists(public_path('assets/' . $media->nama))) {
-                unlink(public_path('assets/' . $media->nama));
+            if (file_exists(public_path('media/' . $media->nama))) {
+                unlink(public_path('media/' . $media->nama));
             }
             $media->delete();
         }

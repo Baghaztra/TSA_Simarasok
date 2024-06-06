@@ -62,8 +62,8 @@ class AssetController extends Controller
     public function destroy($id)
     {
         $asset = Asset::findOrFail($id);
-        if (file_exists(public_path('images/' . $asset->nama))) {
-            unlink(public_path('images/' . $asset->nama));
+        if (file_exists(public_path('media/' . $asset->nama))) {
+            unlink(public_path('media/' . $asset->nama));
         }
         $asset->delete();
 

@@ -125,8 +125,8 @@ class HomestayController extends Controller
         $homestay = Homestay::findOrFail($id);
 
         foreach ($homestay->media as $media) {
-            if (file_exists(public_path('assets/' . $media->nama))) {
-                unlink(public_path('assets/' . $media->nama));
+            if (file_exists(public_path('media/' . $media->nama))) {
+                unlink(public_path('media/' . $media->nama));
             }
             $media->delete();
         }
