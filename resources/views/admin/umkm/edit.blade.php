@@ -20,14 +20,21 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Kategori</label>
-                <select name="category_id" class="form-control @error('category_id') is-invalid @enderror" id="">
-                    @foreach ($kategoris as $item)
-                        <option value="{{ $item->id }}" @if (old('category_id',$umkms->category_id) == $item->id) selected @endif>
-                            {{ $item->name }}</option>
-                    @endforeach
-                </select>
-                @error('category_id')
+                <label class="form-label">Owner</label>
+                <input type="text" class="form-control @error('owner') is-invalid @enderror" name="owner"
+                    value="{{ old('owner', $umkms->owner) }}">
+                @error('owner')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">No. Telp</label>
+                <input type="number" class="form-control @error('notelp') is-invalid @enderror" name="notelp"
+                    value="{{ old('notelp', $umkms->notelp) }}">
+                @error('notelp')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>

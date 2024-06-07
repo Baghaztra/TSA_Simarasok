@@ -3,6 +3,7 @@
 namespace Database\Factories;
 
 use App\Models\DestinasiPariwisata;
+use App\Models\Homestay;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -17,12 +18,13 @@ class AssetFactory extends Factory
      */
     public function definition(): array
     {
+        $jenis = ['destinasi', 'homestay'][rand(0, 1)];
+        $jenis_id = $jenis=='destinasi'?DestinasiPariwisata::all()->random()->id:Homestay::all()->random()->id;
         return [
             'nama' => 'dummy.jpg',
             'tipe' => 'gambar',
-            // 'jenis' => ['destinasi', 'produk'][rand(0, 1)],
-            'jenis' => 'destinasi',
-            'jenis_id' => DestinasiPariwisata::all()->random()->id,
+            'jenis' => $jenis,
+            'jenis_id' => $jenis_id,
         ];
     }
 }

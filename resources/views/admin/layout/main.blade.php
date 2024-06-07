@@ -91,6 +91,12 @@
             /* Sesuaikan sesuai kebutuhan */
         }
     </style>
+    {{-- Bootstrap CSS --}}
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    {{-- Chart.js --}}
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    {{-- Text editor --}}
+    <script src="https://cdn.ckeditor.com/ckeditor5/41.4.2/classic/ckeditor.js"></script>
 </head>
 
 <body>

@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\UMKM;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -19,7 +20,8 @@ class ProdukFactory extends Factory
         return [
             'name' => fake()->sentence(),
             'desc' => fake()->paragraphs(3, true),
-            'harga' => rand(10000, 50000, 20000, 25000, 5000),
+            'harga' => rand(5, 50)*1000,
+            'umkm_id' => UMKM::all()->random()->id,
         ];
     }
 }
