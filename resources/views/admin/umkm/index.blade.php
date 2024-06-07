@@ -47,9 +47,8 @@
                 <td>{{ $item->owner }}</td>
                 <td>{{ $item->notelp }}</td>
                 <td>
-                    <form action="/admin/produk/" method="get">
+                    <form action="/admin/produk" method="get">
                         <input type="hidden" name="umkm_id" value="{{ $item->id }}">
-                        <input type="hidden" name="owner" value="{{ $item->owner }}">
                         <button type="submit" class="btn btn-sm btn-success">Produk</button>
                     </form>
                     <form class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')"

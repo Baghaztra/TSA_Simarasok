@@ -2,14 +2,14 @@
 
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Daftar Produk {{ $owner }}</h1>
+        <h1 class="h2">Daftar Produk</h1>
     </div>
     <a href="/admin/umkm/" class="btn btn-sm btn-warning mb-3">Kembali</a>
     <div class="row" style="width: 100%">
         <div class="col-md-6">
             <form action="/admin/produk/create" method="get">
                 <input type="hidden" name="umkm_id" value="{{ $umkm_id }}">
-                <button type="submit" class="btn btn-primary mb-3">Entri Data Produk</button>
+                <button class="btn btn-primary mb-3" type="submit">Entri Data Produk</button>
             </form>
         </div>
         <div class="col-md-6">
@@ -39,7 +39,7 @@
         @if ($produks->isEmpty())
             <tr>
                 <td style="text-align: center; background: rgb(187, 187, 187); color: rgb(41, 41, 41); font-weight: 600"
-                    colspan="7">Data
+                    colspan="5">Data
                     not found.
                 </td>
             </tr>
@@ -49,7 +49,7 @@
                 <td>{{ $produks->firstItem() + $loop->index }}</td>
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->desc }}</td>
-                <td>{{ $item->harga }}</td>
+                <td>{{ 'Rp'.number_format($item->harga, 2, ',', '.') }}</td>
                 <td>
                     <form class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')"
                         action="{{ route('produk.destroy', $item->id) }}" method="POST">
