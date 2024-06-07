@@ -21,6 +21,7 @@ class DestinasiPariwisataFactory extends Factory
             'desc' => fake()->paragraphs(3, true),
             'harga' => rand(10, 500)*1000,
             'notelp' => fake()->phoneNumber(),
+            'lokasi' => 'https://maps.google.com/?q=' . fake()->latitude . ',' . fake()->longitude,
         ];
     }
 }
