@@ -37,6 +37,6 @@ class DatabaseSeeder extends Seeder
         Homestay::factory(20)->create();
         UMKM::factory(20)->create();
         Produk::factory(15)->create();
-        Asset::factory(40)->create();
+        Asset::factory(50)->create();
     }
 }
