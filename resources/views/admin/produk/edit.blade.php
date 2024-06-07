@@ -5,8 +5,8 @@
         <h1 class="h2">Form Edit Produk</h1>
     </div>
     <div class="col-6">
-        <a href="/admin/produk/{{ $produks->umkm_id }}" class="btn btn-sm btn-warning mb-3">Kembali</a>
-        <form action="/admin/produk/{{ $produks->umkm_id }}/{{ $produks->id }}" method="post" enctype="multipart/form-data">
+        <a href="/admin/produk/" class="btn btn-sm btn-warning mb-3">Kembali</a>
+        <form action="/admin/produk/{{ $produks->id }}" method="post" enctype="multipart/form-data">
             @csrf @method('put')
             <div class="mb-3">
                 <label class="form-label">Nama</label>
@@ -167,13 +167,14 @@
             <div class="mb-3">
                 <label class="form-label">Harga</label>
                 <input type="number" class="form-control @error('harga') is-invalid @enderror" name="harga"
-                    value="{{ old('harga', $destinasis->harga) }}">
+                    value="{{ old('harga', $produks->harga) }}">
                 @error('harga')
                     <div class="invalid-feedback">
                         {{ $message }}
                     </div>
                 @enderror
             </div>
+            <input type="hidden" name="umkm_id" value="{{ $produks->umkm_id }}">
 
             <button class="btn btn-sm btn-primary" type="submit">Submit</button>
             <div style="height: 25vh"></div>

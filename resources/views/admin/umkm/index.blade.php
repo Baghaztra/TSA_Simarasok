@@ -47,7 +47,10 @@
                 <td>{{ $item->owner }}</td>
                 <td>{{ $item->notelp }}</td>
                 <td>
-                    <a href="/admin/produk/{{ $item->id }}" class="btn btn-sm btn-success">Produk</a>
+                    <form action="/admin/produk/" method="get">
+                        <input type="hidden" name="umkm_id" value="{{ $item->id }}">
+                        <button type="submit" class="btn btn-sm btn-success">Produk</button>
+                    </form>
                     <form class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')"
                         action="{{ route('umkm.destroy', $item->id) }}" method="POST">
                         @csrf @method('DELETE')

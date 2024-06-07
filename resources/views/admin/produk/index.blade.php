@@ -6,10 +6,10 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <a href="/admin/produk/{{ $produks->umkm_id }}/create" class="btn btn-primary mb-3">Entri Data Produk</a>
+            <a href="/admin/produk/{{ $umkm_id }}/create" class="btn btn-primary mb-3">Entri Data Produk</a>
         </div>
         <div class="col-md-6">
-            <form action="/admin/produk/{{ $produks->umkm_id }}" method="GET" class="input-group mb-3">
+            <form action="/admin/produk/{{ $umkm_id }}" method="GET" class="input-group mb-3">
                 <input type="text" class="form-control" name="query" value="{{ $q }}"
                     placeholder="cari sesuatu" aria-label="cari sesuatu">
                 <button class="btn btn-outline-success" type="submit">Button</button>
@@ -42,7 +42,7 @@
         @endif
         @foreach ($produks as $item)
             <tr>
-                <td>{{ $umkms->firstItem() + $loop->index }}</td>
+                <td>{{ $produks->firstItem() + $loop->index }}</td>
                 <td>{{ $item->name }}</td>
                 <td>{{ $item->desc }}</td>
                 <td>{{ $item->harga }}</td>
@@ -52,7 +52,7 @@
                         @csrf @method('DELETE')
                         <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                     </form>
-                    <a href="/admin/produk/{{ $item->umkm_id }}/{{ $item->id }}/edit" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="/admin/produk/{{ $item->id }}/edit" class="btn btn-sm btn-warning">Edit</a>
                 </td>
             </tr>
         @endforeach

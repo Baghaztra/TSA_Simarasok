@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Asset;
 use App\Models\Produk;
 use Illuminate\Http\Request;
 
@@ -19,7 +20,7 @@ class ProdukController extends Controller
         }else{
             $produk = Produk::latest()->paginate(10);
         }
-        return view("admin.produk.index", ['produks' => $produk, 'q'=>$query]);
+        return view("admin.produk.index", ['produks' => $produk, 'q'=>$query, 'umkm_id'=>$request->umkm_id]);
     }
 
     /**
@@ -34,14 +35,15 @@ class ProdukController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreProdukRequest $request)
+    public function store(Request $request)
     {
-       $request->validate([
+       $validate = $request->validate([
             'name' => 'required',
             'desc' => 'required',
             'harga' => 'required',
             'umkm_id' => 'required|exists:umkms,id'
        ]);
+       $produk = Produk::create($validate);
 
        if ($request->hasFile('gambar')) {
         $i = 0;
@@ -57,8 +59,7 @@ class ProdukController extends Controller
             $asset->save();
         }
     }
-    Produk::create($produk);
-    return redirect('admin/produk/'.$umkm_id)->with('success', 'Berhasil menambahkan Produk baru.');
+    return redirect('admin/produk')->with('success', 'Berhasil menambahkan Produk baru.');
 }
 
     /**
@@ -81,7 +82,7 @@ class ProdukController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateProdukRequest $request, string $id)
+    public function update(Request $request, string $id)
     {
         $produk = Produk::findOrFail($id);
 
@@ -107,7 +108,7 @@ class ProdukController extends Controller
             }
         }
 
-        return redirect('admin/produk/'.$umkm_id)->with('warning', 'Berhasil mengubah data Produk.');
+        return redirect('admin/produk')->with('warning', 'Berhasil mengubah data Produk.');
     }
 
     /**
@@ -116,16 +117,16 @@ class ProdukController extends Controller
     public function destroy(string $id)
     {
         $produk = Produk::findOrfail($id);
-
+        $umkm_id= $produk->umkm_id;
         foreach ($produk->media as $media) {
-            if (file_exists(public_path('images/' . $media->nama))) {
-                unlink(public_path('images/' . $media->nama));
+            if (file_exists(public_path('media/' . $media->nama))) {
+                unlink(public_path('media/' . $media->nama));
             }
             $media->delete();
         }
 
         $produk->delete();
 
-        return redirect('admin/produk/'.$umkm_id)->with('danger', 'Berhasil menghapus data Produk.');
+        return redirect('admin/produk/')->with('danger', 'Berhasil menghapus data Produk.');
     }
 }
