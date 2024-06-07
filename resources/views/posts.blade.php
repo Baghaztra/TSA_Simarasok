@@ -26,7 +26,7 @@
                     <a href="#" class="card-link">Another link</a>
                 </div>
             </div>
-                 
+
         @endforeach
     </div>
     <script src="/bootstrap/js/bootstrap.min.js"></script>

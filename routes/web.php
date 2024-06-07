@@ -23,11 +23,12 @@ use App\Http\Controllers\ProdukController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 Route::get('/post', function () {
     return view('posts',['posts'=>Post::all()]);
+});
+
+Route::get('/',function(){
+    return view('frontend.layouts.main');
 });
 
 Route::middleware(['auth'])->group(function () {
