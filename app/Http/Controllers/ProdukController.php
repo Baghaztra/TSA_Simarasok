@@ -18,18 +18,18 @@ class ProdukController extends Controller
         if (!empty($query)) {
             $produk = Produk::where('name', 'like', '%'.$query.'$')->latest()->paginate(10);
         }else{
-            $produk = Produk::latest()->paginate(10);
+            $produk = Produk::where('umkm_id', $request->umkm_id )->latest()->paginate(10);
         }
-        return view("admin.produk.index", ['produks' => $produk, 'q'=>$query, 'umkm_id'=>$request->umkm_id]);
+        return view("admin.produk.index", ['produks' => $produk, 'q'=>$query, 'umkm_id'=>$request->umkm_id, 'owner'=>$request->owner]);
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         $produk = Produk::all();
-        return view('admin.produk.create')->with(['produk' => $produk]);
+        return view('admin.produk.create')->with(['produks' => $produk, 'umkm_id' => $request->umkm_id]);
     }
 
     /**
@@ -59,7 +59,7 @@ class ProdukController extends Controller
             $asset->save();
         }
     }
-    return redirect('admin/produk')->with('success', 'Berhasil menambahkan Produk baru.');
+    return redirect('admin/produk'.$umkm_id)->with('success', 'Berhasil menambahkan Produk baru.');
 }
 
     /**

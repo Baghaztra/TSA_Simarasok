@@ -5,11 +5,11 @@
         <h1 class="h2">Form Create Produk</h1>
     </div>
     <div class="col-6">
-        <a href="/admin/produk/{{ $produks->umkm_id }}" class="btn btn-sm btn-warning mb-3">Kembali</a>
-        <form action="/admin/produk/{{ $produks->umkm_id }}" method="post" enctype="multipart/form-data">
+        <a href="/admin/produk/{{ $umkm_id }}" class="btn btn-sm btn-warning mb-3">Kembali</a>
+        <form action="/admin/produk/{{ $umkm_id }}" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-                <label class="form-label">Nama Lokasi</label>
+                <label class="form-label">Nama Produk</label>
                 <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
                     value="{{ old('name') }}" placeholder="ex. Keripik XXXX">
                 @error('name')

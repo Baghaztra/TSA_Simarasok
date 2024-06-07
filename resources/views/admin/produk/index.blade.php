@@ -2,11 +2,15 @@
 
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Daftar Produk</h1>
+        <h1 class="h2">Daftar Produk {{ $owner }}</h1>
     </div>
-    <div class="row">
+    <a href="/admin/umkm/" class="btn btn-sm btn-warning mb-3">Kembali</a>
+    <div class="row" style="width: 100%">
         <div class="col-md-6">
-            <a href="/admin/produk/{{ $umkm_id }}/create" class="btn btn-primary mb-3">Entri Data Produk</a>
+            <form action="/admin/produk/create" method="get">
+                <input type="hidden" name="umkm_id" value="{{ $umkm_id }}">
+                <button type="submit" class="btn btn-primary mb-3">Entri Data Produk</button>
+            </form>
         </div>
         <div class="col-md-6">
             <form action="/admin/produk/{{ $umkm_id }}" method="GET" class="input-group mb-3">
@@ -24,7 +28,7 @@
         </div>
     @endif
 
-    <table class="table table-bordered table-striped table-responsive" style="max-width: 100%">
+    <table class="table table-bordered table-striped table-responsive" style="width: 100%">
         <tr>
             <th>No</th>
             <th>Nama</th>
