@@ -22,45 +22,59 @@
     </div>
 
 
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
+    @if (session('success') || session('warning') || session('danger'))
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @elseif (session('warning'))
+            <div class="alert alert-warning">
+                {{ session('warning') }}
+            </div>
+        @else
+            <div class="alert alert-danger">
+                {{ session('danger') }}
+            </div>
+        @endif
     @endif
 
-    <table class="table table-bordered table-striped table-responsive" style="width: 100%">
-        <tr>
-            <th>No</th>
-            <th>Nama</th>
-            <th>Deskripsi</th>
-            <th>Harga</th>
-            <th>Aksi</th>
-        </tr>
-        @if ($produks->isEmpty())
-            <tr>
-                <td style="text-align: center; background: rgb(187, 187, 187); color: rgb(41, 41, 41); font-weight: 600"
-                    colspan="5">Data
-                    not found.
-                </td>
-            </tr>
-        @endif
-        @foreach ($produks as $item)
-            <tr>
-                <td>{{ $produks->firstItem() + $loop->index }}</td>
-                <td>{{ $item->name }}</td>
-                <td>{{ $item->desc }}</td>
-                <td>{{ 'Rp'.number_format($item->harga, 2, ',', '.') }}</td>
-                <td>
-                    <form class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')"
-                        action="{{ route('produk.destroy', $item->id) }}" method="POST">
-                        @csrf @method('DELETE')
-                        <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
-                    </form>
-                    <a href="/admin/produk/{{ $item->id }}/edit" class="btn btn-sm btn-warning">Edit</a>
-                </td>
-            </tr>
-        @endforeach
+    <div class="table-responsive" style="overflow-x: auto; max-width: 100%;">
+        <table class="table table-bordered table-striped table-responsive" style="width: 100%">
+            <thead>
+                <tr>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Harga</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if ($produks->isEmpty())
+                    <tr>
+                        <td style="text-align: center; background: rgb(187, 187, 187); color: rgb(41, 41, 41); font-weight: 600"
+                            colspan="5">Data
+                            not found.
+                        </td>
+                    </tr>
+                @endif
+                @foreach ($produks as $item)
+                    <tr>
+                        <td>{{ $produks->firstItem() + $loop->index }}</td>
+                        <td>{{ $item->name }}</td>
+                        <td>{{ 'Rp'.number_format($item->harga, 2, ',', '.') }}</td>
+                        <td>
+                            <form class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')"
+                                action="{{ route('produk.destroy', $item->id) }}" method="POST">
+                                @csrf @method('DELETE')
+                                <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
+                            </form>
+                            <a href="/admin/produk/{{ $item->id }}/edit" class="btn btn-sm btn-warning">Edit</a>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
 
-    </table>
+        </table>
+    </div>
     {{ $produks->links() }}
 @endsection
