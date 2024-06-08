@@ -55,6 +55,7 @@
                     currentFiles = currentFiles.concat(newFiles);
                     updatePreview();
                     updateFileInput(currentFiles);
+                    document.getElementById('img-preview').style.display = 'none'; // Sembunyikan input setelah gambar dipilih
                 };
 
                 const updatePreview = () => {
@@ -99,6 +100,7 @@
                                     currentFiles = currentFiles.filter((_, i) => i !== index);
                                     updatePreview();
                                     updateFileInput(currentFiles);
+                                    document.getElementById('img-preview').style.display = 'flex';
                                 });
 
                                 previewWrapper.appendChild(mediaElement);
