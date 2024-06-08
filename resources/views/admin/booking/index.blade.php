@@ -6,11 +6,11 @@
     </div>
     <div class="row">
         <div class="col-md-6">
-            <a href="/admin/post/create" class="btn btn-primary mb-3">Booking</a>
+            <a href="/admin/booking/create" class="btn btn-primary mb-3">Booking</a>
         </div>
         <div class="col-md-6">
-            <form action="/admin/berita" method="GET" class="input-group mb-3">
-                <input type="text" class="form-control" name="query" value=""
+            <form action="/admin/booking" method="GET" class="input-group mb-3">
+                <input type="text" class="form-control" name="query" value="{{ $query }}"
                     placeholder="cari sesuatu" aria-label="cari sesuatu">
                 <button class="btn btn-outline-success" type="submit">Button</button>
             </form>
@@ -64,11 +64,11 @@
                 <td>{{ $item->homestay->name }}</td>
                 <td>
                     <form class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')"
-                        action="{{ route('post.destroy', $item->id) }}" method="POST">
+                        action="{{ route('booking.destroy', $item->id) }}" method="POST">
                         @csrf @method('DELETE')
                         <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                     </form>
-                    <a href="/admin/post/{{ $item->id }}/edit" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="/admin/booking/{{ $item->id }}/edit" class="btn btn-sm btn-warning">Edit</a>
                 </td>
             </tr>
         @endforeach

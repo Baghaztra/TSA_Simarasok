@@ -30,7 +30,7 @@ class BookingController extends Controller
      */
     public function create()
     {
-        return view('admin.booking.create')->with(['booking',Booking::all(),'homestay',Homestay::all()]);
+        return view('admin.booking.create', ['homestay'=>Homestay::all()]);
     }
 
     /**
@@ -47,10 +47,11 @@ class BookingController extends Controller
                 'required',
                 'regex:/^\+62\d+$/'
             ],
+            'homestay_id' => 'required|exists:homestays,id',
         ]);
 
         Booking::create($data);
-        return redirect('/booking')->with('success', 'Berhasil menambahkan bookingan baru.');
+        return redirect('/admin/booking')->with('success', 'Berhasil menambahkan bookingan baru.');
     }
 
     /**
@@ -64,9 +65,9 @@ class BookingController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Booking $booking)
+    public function edit(string $id)
     {
-        return view('admin.booking.edit')->with(['booking',Booking::all(),'homestay',Homestay::all()]);
+        return view('admin.booking.edit',['booking'=>Booking::find($id), 'homestay'=>Homestay::all()]);
     }
 
     /**
@@ -83,10 +84,11 @@ class BookingController extends Controller
                 'required',
                 'regex:/^\+62\d+$/'
             ],
+            'homestay_id' => 'required|exists:homestays,id',
         ]);
         $booking = Booking::findOrFail($id);
-        $booking::update($data);
-        return redirect('/booking')->with('warining', 'Berhasil mengubah bookingan.');
+        $booking->update($data);
+        return redirect('/admin/booking')->with('warining', 'Berhasil mengubah bookingan.');
     }
 
     /**
@@ -95,6 +97,6 @@ class BookingController extends Controller
     public function destroy(string $id)
     {
         Booking::findOrFail($id)->delete();
-        return redirect('booking')->with('danger', 'Berhasil menghapus bookingan.');
+        return redirect('/admin/booking')->with('danger', 'Berhasil menghapus bookingan.');
     }
 }

@@ -18,16 +18,15 @@ class AssetFactory extends Factory
      */
     public function definition(): array
     {
-        $homestayIds = Homestay::pluck('id')->toArray(); // Ambil semua ID homestay dalam bentuk array
+        $jenis = ['destinasi', 'homestay'][rand(0, 1)];
+        $gambar = ['dummy1.jpg', 'dummy2.jpg', 'dummy3.jpg'][rand(0, 2)];
+        $jenis_id = $jenis=='destinasi'?(DestinasiPariwisata::all()->random()->id):(Homestay::all()->random()->id);
 
         return [
-            'name' => fake()->name(),
-            'email' => fake()->email(),
-            'notelp' => '+62' . fake()->numerify('###########'),
-            'checkin' => fake()->date(),
-            'checkout' => fake()->date(),
-            'homestay_id' => fake()->randomElement($homestayIds), // Pilih random ID dari array
+            'nama' => $gambar,
+            'tipe' => 'gambar',
+            'jenis' => $jenis,
+            'jenis_id' => $jenis_id,
         ];
     }
-
 }
