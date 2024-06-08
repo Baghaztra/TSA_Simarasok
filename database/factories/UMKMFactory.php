@@ -20,7 +20,7 @@ class UMKMFactory extends Factory
         return [
             'name' => fake()->sentence(),
             'owner' => fake()->name(),
-            'notelp' => fake()->phoneNumber(),
+            'notelp' => '+62' . fake()->numerify('###########'),
             // 'category_id' => rand(1,3),
         ];
     }

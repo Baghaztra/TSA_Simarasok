@@ -6,6 +6,7 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\UMKMController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AssetController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\SigninController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DestinasiPariwisataController;
@@ -31,6 +32,10 @@ Route::get('/',function(){
     return view('frontend.home.index');
 });
 
+Route::resource('/booking', BookingController::class);
+
+
+// diakses hanya jika sudah login
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin', function () {
         return view('admin.dashboard');
@@ -54,6 +59,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('sign-out', [SigninController::class, 'logout'])->name('logout');
 });
 
+// Diakses hanya jika tidak login
 Route::middleware(['guest'])->group(function () {
     Route::get('sign-in', [SigninController::class, 'index'])->name('login');
     Route::post('proses', [SigninController::class, 'authentication'])->name('proses-signin');

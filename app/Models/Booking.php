@@ -5,18 +5,19 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class DestinasiPariwisata extends Model
+class Booking extends Model
 {
     use HasFactory;
     protected $fillable = [
         'name',
-        'desc',
-        'harga',
+        'email',
         'notelp',
-        'lokasi',
+        'checkin',
+        'checkout',
+        'homestay_id',
     ];
 
-    function media(){
-        return $this->hasMany(Asset::class, 'jenis_id')->where('jenis', 'destinasi');
+    function homestay(){
+        return $this->belongsTo(Homestay::class, 'homestay_id');
     }
 }
