@@ -5,7 +5,7 @@
         <h1 class="h2">Form Edit Produk</h1>
     </div>
     <div class="col-6">
-        <a href="/admin/produk/" class="btn btn-sm btn-warning mb-3">Kembali</a>
+        <button id="kembali" class="btn btn-sm btn-warning mb-3">Kembali</button>
         <form action="/admin/produk/{{ $produks->id }}" method="post" enctype="multipart/form-data">
             @csrf @method('put')
             <div class="mb-3">
@@ -182,4 +182,9 @@
             <div style="height: 25vh"></div>
         </form>
     </div>
+    <script>
+        document.getElementById('kembali').addEventListener('click', function() {
+            window.history.back();
+        });
+    </script>
 @endsection
