@@ -2,11 +2,11 @@
 
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Daftar Berita</h1>
+        <h1 class="h2">Daftar Bookingn</h1>
     </div>
     <div class="row">
         <div class="col-md-6">
-            <a href="/admin/post/create" class="btn btn-primary mb-3">Entri Data Berita</a>
+            <a href="/admin/post/create" class="btn btn-primary mb-3">Booking</a>
         </div>
         <div class="col-md-6">
             <form action="/admin/berita" method="GET" class="input-group mb-3">
@@ -37,16 +37,15 @@
     <table class="table table-bordered table-striped">
         <tr>
             <th>No</th>
-            <th>judul</th>
-            <th>slug</th>
-            <th>isi</th>
-            <th>kategori</th>
-            <th>author</th>
-            <th>media</th>
-            <th>status</th>
+            <th>Nama client</th>
+            <th>email</th>
+            <th>notelp</th>
+            <th>checkin</th>
+            <th>checkuot</th>
+            <th>homestay</th>
             <th>action</th>
         </tr>
-        @if ($beritas->isEmpty())
+        @if ($booking->isEmpty())
             <tr>
                 <td style="text-align: center; background: rgb(187, 187, 187); color: rgb(41, 41, 41); font-weight: 600"
                     colspan="7">Data
@@ -54,24 +53,15 @@
                 </td>
             </tr>
         @endif
-        @foreach ($beritas as $item)
+        @foreach ($booking as $item)
             <tr>
-                <td>{{ $beritas->firstItem() + $loop->index }}</td>
-                <td>{{ $item->judul }}</td>
-                <td>{{ $item->slug }}</td>
-                <td>{!! $item->content !!}</td>
-                <td>{{ $item->category->name }}</td>
-                <td>{{ $item->author->name }}</td>
-                <td>
-                    @foreach ($item->media as $i)
-                        @if ($i->tipe=='gambar')
-                            <img src="/images/{{ $i->nama }}" alt="{{ $i->nama }}" style="max-width: 100px">
-                        @else
-                            <video controls src="/images/{{ $i->nama }}" style="max-width: 100px"></video>
-                        @endif
-                    @endforeach
-                </td>
-                <td>{{ $item->status }}</td>
+                <td>{{ $booking->firstItem() + $loop->index }}</td>
+                <td>{{ $item->name }}</td>
+                <td>{{ $item->email }}</td>
+                <td>{{ $item->notelp }}</td>
+                <td>{{ $item->checkin }}</td>
+                <td>{{ $item->checkout }}</td>
+                <td>{{ $item->homestay->name }}</td>
                 <td>
                     <form class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')"
                         action="{{ route('post.destroy', $item->id) }}" method="POST">
@@ -84,5 +74,5 @@
         @endforeach
 
     </table>
-    {{ $beritas->links() }}
+    {{ $booking->links() }}
 @endsection
