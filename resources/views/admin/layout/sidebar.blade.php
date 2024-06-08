@@ -2,7 +2,7 @@
     <!-- Sidebar scroll-->
     <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-            <a href="/admin" class="text-nowrap logo-img">
+            <a href="/" class="text-nowrap logo-img">
                 <img src="/assets/images/logos/favicon.png" width="35" alt="" />
                 <span class="fs-6" style="font-weight: bold; color:black">Admin Simarasok</span>
             </a>

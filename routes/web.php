@@ -28,7 +28,7 @@ Route::get('/post', function () {
 });
 
 Route::get('/',function(){
-    return view('frontend.layouts.main');
+    return view('frontend.home.index');
 });
 
 Route::middleware(['auth'])->group(function () {
