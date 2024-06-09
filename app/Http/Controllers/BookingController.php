@@ -103,7 +103,7 @@ class BookingController extends Controller
     // Booking sebagai tamu
     public function formBooking(Request $request)
     {
-        return view('frontend.homestay.booking', ['homestay'=>Homestay::findOrFail(1)]);
+        return view('frontend.homestay.booking', ['homestay'=>Homestay::findOrFail($request->homestay_id)]);
     }
 
     // Booking sebagai tamu
