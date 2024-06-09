@@ -49,7 +49,7 @@
                                             <div class="row no-gutters">
                                                 <div class="col-md d-flex">
                                                     <div class="form-group p-4 border-0">
-                                                        <label for="#">Cuaca</label>
+                                                        <label for="">Cuaca</label>
                                                         <div class="form-field">
                                                         </div>
                                                     </div>
