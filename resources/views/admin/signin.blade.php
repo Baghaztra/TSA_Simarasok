@@ -21,7 +21,7 @@
                         <div class="card mb-0">
                             <div class="card-body">
                                 <a href="/sign-in" class="text-nowrap logo-img text-center d-block py-3 w-100">
-                                    <img src="/assets/images/logos/favicon.png" width="40" alt="">
+                                    <img src="/media/frontend/icons/favicon.png" width="40" alt="">
                                     <span class="fs-6" style="font-weight: bold; color: black">Simarasok</span>
                                 </a>
                                 <p class="text-center">Wonderful Indonesia</p>
