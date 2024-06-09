@@ -41,7 +41,7 @@ Route::get('/',function(){
     return view('frontend.home.index')->with(['destinasis'=> $data,'umkm' => $umkm, 'homestay'=>$penginapan]);
 });
 
-Route::get('/booking', [BookingController::class, 'formBooking']);
+Route::post('/booking', [BookingController::class, 'formBooking']);
 Route::put('/booking/send', [BookingController::class, 'booking']);
 
 
