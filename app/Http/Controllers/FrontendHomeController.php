@@ -10,7 +10,7 @@ class FrontendHomeController extends Controller
      * Display a listing of the resource.
      */
 
-     //NYOBA AJA BLM BERHASUL :V
+     //NYOBA AJA BLM BERHASIL :V
     public function getWeather()
     {
         $apiKey = env('SBIqQETzA6cfKh94Y6NwH9XBlS5ud9oT');

@@ -107,7 +107,7 @@
                     <div class="row">
                         <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
                             <div class="services services-1 color-1 d-block img"
-                                style="background-image: url(images/services-1.jpg);">
+                                style="background-image: url(/media/frontend/images/Home.jpg);">
                                 <div class="icon d-flex align-items-center justify-content-center"><span
                                         class="flaticon-paragliding"></span></div>
                                 <div class="media-body">
@@ -119,7 +119,7 @@
                         </div>
                         <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
                             <div class="services services-1 color-2 d-block img"
-                                style="background-image: url(images/services-2.jpg);">
+                                style="background-image: url(/media/frontend/images/Home.jpg);">
                                 <div class="icon d-flex align-items-center justify-content-center"><span
                                         class="flaticon-route"></span></div>
                                 <div class="media-body">
@@ -131,7 +131,7 @@
                         </div>
                         <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
                             <div class="services services-1 color-3 d-block img"
-                                style="background-image: url(images/services-3.jpg);">
+                                style="background-image: url(/media/frontend/images/Home.jpg);">
                                 <div class="icon d-flex align-items-center justify-content-center"><span
                                         class="flaticon-tour-guide"></span></div>
                                 <div class="media-body">
@@ -143,7 +143,7 @@
                         </div>
                         <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
                             <div class="services services-1 color-4 d-block img"
-                                style="background-image: url(images/services-4.jpg);">
+                                style="background-image: url(/media/frontend/images/Home.jpg);">
                                 <div class="icon d-flex align-items-center justify-content-center"><span
                                         class="flaticon-map"></span></div>
                                 <div class="media-body">
