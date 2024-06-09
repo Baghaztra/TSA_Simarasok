@@ -1,16 +1,22 @@
 <?php
 
 use App\Models\Post;
+use App\Models\UMKM;
+use App\Models\Produk;
+use App\Models\Homestay;
+use App\Models\DestinasiPariwisata;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UMKMController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AssetController;
+use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\SigninController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\DestinasiPariwisataController;
 use App\Http\Controllers\HomestayController;
-use App\Http\Controllers\ProdukController;
+use App\Http\Controllers\FrontendHomestayController;
+use App\Http\Controllers\FrontendDestinasiController;
+use App\Http\Controllers\DestinasiPariwisataController;
 
 /*
 |--------------------------------------------------------------------------
@@ -28,8 +34,14 @@ Route::get('/post', function () {
 });
 
 Route::get('/',function(){
-    return view('frontend.home.index');
+    $data = DestinasiPariwisata::all();
+    $umkm = Produk::all();
+    $penginapan = Homestay::all();
+    return view('frontend.home.index')->with(['destinasis'=> $data,'umkm' => $umkm, 'homestay'=>$penginapan]);
 });
+
+Route::get('/list-destinasi', [FrontendDestinasiController::class, 'index']);
+Route::get('/list-homestay', [FrontendHomestayController::class, 'index']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin', function () {
@@ -58,3 +70,4 @@ Route::middleware(['guest'])->group(function () {
     Route::get('sign-in', [SigninController::class, 'index'])->name('login');
     Route::post('proses', [SigninController::class, 'authentication'])->name('proses-signin');
 });
+

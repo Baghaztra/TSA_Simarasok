@@ -22,7 +22,7 @@
     <link rel="icon" type="image/png" href="/media/frontend/icons/favicon.png">
 
 
-
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/FrontendAssets/css/flaticon.css">
     <link rel="stylesheet" href="/FrontendAssets/css/style.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -66,7 +66,16 @@
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
     <script src="/FrontendAssets/js/google-map.js"></script>
     <script src="/FrontendAssets/js/main.js"></script>
+    <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons@4.28.0/dist/feather.min.js"
+        integrity="sha384-uO3SXW5IuS1ZpFPKugNNWqTZRRglnUJK6UAZ/gxOX80nxEkN9NcGZTftn6RzhGWE" crossorigin="anonymous">
+    </script>
+    <script>
+        feather.replace({
+            'aria-hidden': 'true'
+        })
+    </script>
 </body>
 
 </html>

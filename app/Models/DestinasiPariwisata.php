@@ -16,6 +16,6 @@ class DestinasiPariwisata extends Model
     ];
 
     function media(){
-        return $this->hasMany(Asset::class, 'jenis_id')->where('jenis', 'destinasi');;
+        return $this->hasMany(Asset::class, 'jenis_id')->where('jenis', 'destinasi');
     }
 }
