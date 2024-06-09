@@ -35,13 +35,16 @@
                     <div class="ftco-search d-flex justify-content-center">
                         <div class="row">
                             <div class="col-md-12 nav-link-wrap">
-                                <div class="nav nav-pills text-center" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                    <a class="nav-link mr-md-1" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1" role="tab" aria-controls="v-pills-1" aria-selected="true">Laporan Terkini</a>
+                                <div class="nav nav-pills text-center" id="v-pills-tab" role="tablist"
+                                    aria-orientation="vertical">
+                                    <a class="nav-link mr-md-1" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1"
+                                        role="tab" aria-controls="v-pills-1" aria-selected="true">Laporan Terkini</a>
                                 </div>
                             </div>
                             <div class="col-md-12 tab-wrap">
                                 <div class="tab-content" id="v-pills-tabContent">
-                                    <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel" aria-labelledby="v-pills-nextgen-tab">
+                                    <div class="tab-pane fade show active" id="v-pills-1" role="tabpanel"
+                                        aria-labelledby="v-pills-nextgen-tab">
                                         <form action="#" class="search-property-1">
                                             <div class="row no-gutters">
                                                 <div class="col-md d-flex">
@@ -82,7 +85,7 @@
                 </div>
             </div>
         </div>
-    </section>    
+    </section>
     <div class="ftco-section services-section">
         <div class="container">
             <div class="row d-flex">
@@ -170,7 +173,7 @@
                     @break
                 @endif
                 <div class="col-md-4 ftco-animate">
-                    <div class="project-wrap">
+                    <div class="project-wrap" style="background-color: white; box-shadow: 0 4px 8px rgba(163, 163, 163, 0.2);">
                         @if (count($item->media) > 0)
                             <a href="#" class="img"
                                 style="background-image: url('{{ asset('media/' . $item->media[0]->nama) }}');"></a>
@@ -188,6 +191,16 @@
                                         <span data-feather="phone-call" style="width: 16px"
                                             class="mr-2"></span>{{ $item->notelp }}
                                     </a></li>
+                            </ul>
+                            <ul>
+                                <li>
+                                    <form method="POST" action="/booking-wisata">
+                                        @csrf
+                                        <input type="hidden" name="destinasi_id" value="{{ $item->id }}">
+                                        <button type="submit" class="btn btn-primary rounded-2 btn-sm mt-2">Pesan
+                                            Sekarang</button>
+                                    </form>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -253,7 +266,7 @@
                 @break
             @endif
             <div class="col-md-4 ftco-animate">
-                <div class="project-wrap">
+                <div class="project-wrap" style="background-color: white; box-shadow: 0 4px 8px rgba(163, 163, 163, 0.2);">
                     @if (count($item->media) > 0)
                         <a href="#" class="img"
                             style="background-image: url('{{ asset('media/' . $item->media[0]->nama) }}');"></a>
@@ -277,6 +290,16 @@
                                     <span data-feather="phone-call" style="width: 16px"
                                         class="mr-2"></span>{{ $item->notelp }}
                                 </a>
+                            </li>
+                        </ul>
+                        <ul>
+                            <li>
+                                <form method="POST" action="/booking">
+                                    @csrf
+                                    <input type="hidden" name="homestay_id" value="{{ $item->id }}">
+                                    <button type="submit" class="btn btn-primary rounded-2 btn-sm mt-2">Pesan
+                                        Sekarang</button>
+                                </form>
                             </li>
                         </ul>
                     </div>

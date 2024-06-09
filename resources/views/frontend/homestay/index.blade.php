@@ -43,7 +43,7 @@
                                         <a
                                             href="#">{{ strlen($item->name) > 15 ? substr($item->name, 0, 30) . '...' : $item->name }}</a>
                                     </h3>
-                                    <p class="location"><span class="fa fa-map-marker mr-2"></span>Lokasi</p>
+                                    <p class="location"><span class="fa fa-map-marker mr-2"></span>{{ $item->lokasi }}</p>
                                     <ul>
                                         <li style="color: black">
                                             <a href="https://api.whatsapp.com/send?phone={{ $item->notelp }}"
@@ -51,6 +51,16 @@
                                                 <span data-feather="phone-call" style="width: 16px"
                                                     class="mr-2"></span>{{ $item->notelp }}
                                             </a>
+                                        </li>
+                                    </ul>
+                                    <ul>
+                                        <li>
+                                            <form method="POST" action="/booking">
+                                                @csrf
+                                                <input type="hidden" name="homestay_id" value="{{ $item->id }}">
+                                                <button type="submit" class="btn btn-primary rounded-2 btn-sm mt-2">Pesan
+                                                    Sekarang</button>
+                                            </form>
                                         </li>
                                     </ul>
                                 </div>
@@ -68,7 +78,7 @@
                                     <li class="disabled"><span>&lt;</span></li>
                                 @else
                                     <li><a href="{{ $homestays->previousPageUrl() }}">&lt;</a></li>
-                                @endif
+                                @endif  
 
                                 @foreach ($homestays->links()->elements as $element)
                                     @if (is_string($element))

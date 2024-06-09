@@ -53,6 +53,16 @@
                                             </a>
                                         </li>
                                     </ul>
+                                    <ul>
+                                        <li>
+                                            <form method="POST" action="/booking-wisata">
+                                                @csrf
+                                                <input type="hidden" name="destinasi_id" value="{{ $item->id }}">
+                                                <button type="submit" class="btn btn-primary rounded-2 btn-sm mt-2">Pesan
+                                                    Sekarang</button>
+                                            </form>
+                                        </li>
+                                    </ul>
                                 </div>
                             </div>
                         </div>
