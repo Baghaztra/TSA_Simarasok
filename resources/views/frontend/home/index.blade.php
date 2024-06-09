@@ -182,7 +182,11 @@
                             <h3><a
                                     href="#">{{ strlen($item->name) > 15 ? substr($item->name, 0, 30) . '...' : $item->name }}</a>
                             </h3>
-                            <p class="location"><span class="fa fa-map-marker mr-2"></span>Lokasi</p>
+                            <p class="location mb-1"><span class="fa fa-map-marker mr-2"></span>Lokasi</p>
+                            <ul>
+                                <span data-feather="percent" style="width: 16px; color: rgb(86, 86, 86)"></span>
+                                <li style="color: rgb(86, 86, 86)">RP. {{ $item->harga }}/orang</li>
+                            </ul>
                             <ul>
                                 <a href=""></a>
                                 <li style="color: black"><a
@@ -197,8 +201,7 @@
                                     <form method="POST" action="/booking-wisata">
                                         @csrf
                                         <input type="hidden" name="destinasi_id" value="{{ $item->id }}">
-                                        <button type="submit" class="btn btn-primary rounded-2 btn-sm mt-2">Pesan
-                                            Sekarang</button>
+                                        <button type="submit" class="btn btn-primary rounded-2 btn-sm mt-2">Lihat Destinasi</button>
                                     </form>
                                 </li>
                             </ul>
@@ -252,6 +255,7 @@
             </div>
         </div>
     </section> --}}
+
 <div class="ftco-section">
     <div class="container">
         <div class="row justify-content-center pb-4">
@@ -282,7 +286,11 @@
                             <a
                                 href="#">{{ strlen($item->name) > 15 ? substr($item->name, 0, 15) . '...' : $item->name }}</a>
                         </h3>
-                        <p class="location"><span class="fa fa-map-marker mr-2"></span>Lokasi</p>
+                        <p class="location mb-1"><span class="fa fa-map-marker mr-2"></span>Lokasi</p>
+                        <ul>
+                            <span data-feather="percent" style="width: 16px; color: rgb(86, 86, 86)"></span>
+                            <li style="color: rgb(86, 86, 86)">RP. {{ $item->harga }}/orang</li>
+                        </ul>
                         <ul>
                             <li style="color: black">
                                 <a href="https://api.whatsapp.com/send?phone={{ $item->notelp }}"

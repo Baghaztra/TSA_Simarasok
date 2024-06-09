@@ -43,7 +43,11 @@
                                         <a
                                             href="#">{{ strlen($item->name) > 15 ? substr($item->name, 0, 30) . '...' : $item->name }}</a>
                                     </h3>
-                                    <p class="location"><span class="fa fa-map-marker mr-2"></span>{{ $item->lokasi }}</p>
+                                    <p class="location mb-1"><span class="fa fa-map-marker mr-2"></span>{{ $item->lokasi }}</p>
+                                    <ul>
+                                        <span data-feather="percent" style="width: 16px; color: rgb(86, 86, 86)"></span>
+                                        <li style="color: rgb(86, 86, 86)">RP. {{ $item->harga }}/orang</li>
+                                    </ul>
                                     <ul>
                                         <li style="color: black">
                                             <a href="https://api.whatsapp.com/send?phone={{ $item->notelp }}"
@@ -78,7 +82,7 @@
                                     <li class="disabled"><span>&lt;</span></li>
                                 @else
                                     <li><a href="{{ $homestays->previousPageUrl() }}">&lt;</a></li>
-                                @endif  
+                                @endif
 
                                 @foreach ($homestays->links()->elements as $element)
                                     @if (is_string($element))
