@@ -19,6 +19,7 @@ return new class extends Migration
             $table->date('checkin');
             $table->date('checkout');
             $table->foreignId('homestay_id')->constrained('homestays');
+            $table->string('status')->default('waiting');
             $table->timestamps();
         });
     }

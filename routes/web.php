@@ -12,6 +12,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\AssetController;
 use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\SigninController;
+use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomestayController;
 use App\Http\Controllers\FrontendHomestayController;
@@ -40,6 +41,9 @@ Route::get('/',function(){
     return view('frontend.home.index')->with(['destinasis'=> $data,'umkm' => $umkm, 'homestay'=>$penginapan]);
 });
 
+Route::post('/booking', [BookingController::class, 'formBooking']);
+Route::put('/booking/send', [BookingController::class, 'booking']);
+
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin', function () {
@@ -55,11 +59,13 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/admin/destinasipariwisata', DestinasiPariwisataController::class);
     Route::resource('/admin/produk', ProdukController::class);
     Route::resource('/admin/homestay', HomestayController::class);
+    Route::resource('/admin/booking', BookingController::class);
 
     Route::put('/admin/users/{id}', [UserController::class, 'update']);
     Route::get('updateStatus/{id}', [UserController::class, 'updateStatus']);
     Route::delete('/media/{id}', [AssetController::class, 'destroy']);
     Route::delete('/assets/{id}', [AssetController::class, 'destroy'])->name('assets.destroy');
+    Route::get('/admin/booking/{id}/approve', [BookingController::class, 'approve']);
 
     Route::get('sign-out', [SigninController::class, 'logout'])->name('logout');
 });
