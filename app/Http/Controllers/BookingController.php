@@ -124,4 +124,17 @@ class BookingController extends Controller
         Booking::create($data);
         return redirect('/');
     }
+
+    // approve bookingan
+    public function approve(string $id){
+        $bookingan=Booking::findOrFail($id);
+        if($bookingan->status=='approved'){
+            $bookingan->update(['status'=>'canceled']);
+            $message = 'Bookingan '.$bookingan->nama.' dibatalkan';
+        }else{
+            $bookingan->update(['status'=>'approved']);
+            $message = 'Bookingan '.$bookingan->nama.' disetujui';
+        }
+        return redirect('admin/booking')->with('success', $message);
+    }
 }

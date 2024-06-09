@@ -65,6 +65,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('updateStatus/{id}', [UserController::class, 'updateStatus']);
     Route::delete('/media/{id}', [AssetController::class, 'destroy']);
     Route::delete('/assets/{id}', [AssetController::class, 'destroy'])->name('assets.destroy');
+    Route::get('/admin/booking/{id}/approve', [BookingController::class, 'approve']);
 
     Route::get('sign-out', [SigninController::class, 'logout'])->name('logout');
 });

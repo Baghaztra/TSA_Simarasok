@@ -56,7 +56,7 @@
                             {{ $message }}
                         </div>
                     @enderror
-                    <input type="hidden" name="umkm_id" value="{{ $homestay->id }}">
+                    <input type="hidden" name="homestay_id" value="{{ $homestay->id }}">
                     <button type="submit">Booking now</button>
                 </form>
             </div>

@@ -43,6 +43,7 @@
             <th>checkin</th>
             <th>checkuot</th>
             <th>homestay</th>
+            <th>Status</th>
             <th>action</th>
         </tr>
         @if ($booking->isEmpty())
@@ -62,6 +63,13 @@
                 <td>{{ $item->checkin }}</td>
                 <td>{{ $item->checkout }}</td>
                 <td>{{ $item->homestay->name }}</td>
+                <td>
+                    <a href="/admin/booking/{{$item->id}}/approve" onclick="return confirm('{{$item->status=='approved'?'Cancel':'Approve'}} {{ $item->name }}?')">
+                        <span class="badge {{ $item->status=='approved'?'text-bg-success':($item->status=='canceled'?'text-bg-danger':'text-bg-light') }} rounded-3" id="status">
+                            {{ $item->status}}
+                        </span>
+                    </a>
+                </td>
                 <td>
                     <form class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')"
                         action="{{ route('booking.destroy', $item->id) }}" method="POST">
