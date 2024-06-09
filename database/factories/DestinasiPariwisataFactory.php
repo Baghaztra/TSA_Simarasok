@@ -20,7 +20,8 @@ class DestinasiPariwisataFactory extends Factory
             'name' => fake()->sentence(),
             'desc' => fake()->paragraphs(3, true),
             'harga' => rand(10, 500)*1000,
-            'notelp' => fake()->phoneNumber(),
+            'notelp' => '+62' . fake()->numerify('###########'),
+            'lokasi' => 'https://maps.google.com/?q=' . fake()->latitude . ',' . fake()->longitude,
         ];
     }
 }

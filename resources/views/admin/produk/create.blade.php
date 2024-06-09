@@ -5,11 +5,11 @@
         <h1 class="h2">Form Create Produk</h1>
     </div>
     <div class="col-6">
-        <a href="/admin/produk/{{ $produks->umkm_id }}" class="btn btn-sm btn-warning mb-3">Kembali</a>
-        <form action="/admin/produk/{{ $produks->umkm_id }}" method="post" enctype="multipart/form-data">
+        <a id="kembali" class="btn btn-sm btn-warning mb-3">Kembali</a>
+        <form action="/admin/produk" method="post" enctype="multipart/form-data">
             @csrf
             <div class="mb-3">
-                <label class="form-label">Nama Lokasi</label>
+                <label class="form-label">Nama Produk</label>
                 <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
                     value="{{ old('name') }}" placeholder="ex. Keripik XXXX">
                 @error('name')
@@ -21,7 +21,7 @@
 
             <div class="mb-3">
                 <label class="form-label" for="gambar">Media</label>
-                <input type="file" name="gambar[]" id="gambar" class="form-control @error('gambar') is-invalid @enderror" onchange="previewFiles(event)" accept=".jpg, .jpeg, .png, .mp4, .mkv" hidden multiple>
+                <input type="file" name="gambar[]" id="gambar" class="form-control @error('gambar') is-invalid @enderror" onchange="previewFiles(event)" accept=".jpg, .jpeg, .png" hidden multiple>
                 <div id="preview-container"></div>
                 <label class="form-label" for="gambar">
                     <div id="img-preview" class="img-thumbnail" style="width: 300px; height: 150px; display: flex; justify-content: center; align-items: center; cursor: pointer; background-color: aliceblue">
@@ -40,6 +40,7 @@
                         currentFiles = currentFiles.concat(newFiles);
                         updatePreview();
                         updateFileInput(currentFiles);
+                        document.getElementById('img-preview').style.display = 'none'; // Sembunyikan input setelah gambar dipilih
                     };
 
                     const updatePreview = () => {
@@ -81,6 +82,7 @@
                                         currentFiles = currentFiles.filter((_, i) => i !== index);
                                         updatePreview();
                                         updateFileInput(currentFiles);
+                                        document.getElementById('img-preview').style.display = 'flex';
                                     });
 
                                     previewWrapper.appendChild(mediaElement);
@@ -136,8 +138,15 @@
                 @enderror
             </div>
 
+            <input type="hidden" name="umkm_id" value="{{ $umkm_id }}">
+
             <button class="btn btn-sm btn-primary" type="submit">Submit</button>
             <div style="height: 25vh"></div>
         </form>
     </div>
+    <script>
+        document.getElementById('kembali').addEventListener('click', function() {
+            window.history.back();
+        });
+    </script>
 @endsection

@@ -84,6 +84,8 @@ class UMKMController extends Controller
 
     public function destroy(string $id)
     {
+        $produk = Produk::where('umkm_id', $id)->delete();
+
         $umkm = UMKM::findOrFail($id);
 
         $umkm->delete();

@@ -16,6 +16,10 @@ class Homestay extends Model
     ];
 
     function media(){
-        return $this->hasMany(Asset::class, 'jenis_id')->where('jenis', 'homestay');;
+        return $this->hasMany(Asset::class, 'jenis_id')->where('jenis', 'homestay');
+    }
+
+    function bookingLog(){
+        return $this->hasMany(Booking::class, 'homestay_id');
     }
 }

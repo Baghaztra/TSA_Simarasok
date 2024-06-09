@@ -5,7 +5,7 @@
         <h1 class="h2">Form Edit Produk</h1>
     </div>
     <div class="col-6">
-        <a href="/admin/produk/" class="btn btn-sm btn-warning mb-3">Kembali</a>
+        <button id="kembali" class="btn btn-sm btn-warning mb-3">Kembali</button>
         <form action="/admin/produk/{{ $produks->id }}" method="post" enctype="multipart/form-data">
             @csrf @method('put')
             <div class="mb-3">
@@ -21,7 +21,7 @@
 
             <div class="mb-3">
                 <label class="form-label" for="gambar">Media</label>
-                <input type="file" name="gambar[]" id="gambar" class="form-control @error('gambar') is-invalid @enderror" onchange="previewFiles(event)" accept=".jpg, .jpeg, .png, .mp4, .mkv" hidden multiple>
+                <input type="file" name="gambar[]" id="gambar" class="form-control @error('gambar') is-invalid @enderror" onchange="previewFiles(event)" accept=".jpg, .jpeg, .png" hidden multiple>
                 <div id="preview-container">
                     <!-- Pratinjau media yang ada -->
                     @foreach($produks->media as $media)
@@ -55,6 +55,7 @@
                     currentFiles = currentFiles.concat(newFiles);
                     updatePreview();
                     updateFileInput(currentFiles);
+                    document.getElementById('img-preview').style.display = 'none'; // Sembunyikan input setelah gambar dipilih
                 };
 
                 const updatePreview = () => {
@@ -99,6 +100,7 @@
                                     currentFiles = currentFiles.filter((_, i) => i !== index);
                                     updatePreview();
                                     updateFileInput(currentFiles);
+                                    document.getElementById('img-preview').style.display = 'flex';
                                 });
 
                                 previewWrapper.appendChild(mediaElement);
@@ -180,4 +182,9 @@
             <div style="height: 25vh"></div>
         </form>
     </div>
+    <script>
+        document.getElementById('kembali').addEventListener('click', function() {
+            window.history.back();
+        });
+    </script>
 @endsection

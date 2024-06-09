@@ -19,7 +19,7 @@ class HomestayFactory extends Factory
         return [
             'name' => fake()->sentence(),
             'desc' => fake()->paragraphs(3, true),
-            'notelp' => fake()->phoneNumber(),
+            'notelp' => '+62' . fake()->numerify('###########'),
             'harga' => rand(10, 100)*10000,
         ];
     }

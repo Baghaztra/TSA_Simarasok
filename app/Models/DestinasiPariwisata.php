@@ -13,6 +13,7 @@ class DestinasiPariwisata extends Model
         'desc',
         'harga',
         'notelp',
+        'lokasi',
     ];
 
     function media(){

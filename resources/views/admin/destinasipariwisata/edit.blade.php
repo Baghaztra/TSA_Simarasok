@@ -186,6 +186,17 @@
                 @enderror
             </div>
 
+            <div class="mb-3">
+                <label class="form-label">Link loksi</label>
+                <input type="text" class="form-control @error('lokasi') is-invalid @enderror" name="lokasi"
+                    value="{{ old('lokasi', $destinasis->lokasi) }}">
+                @error('lokasi')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+
             <button class="btn btn-sm btn-primary" type="submit">Submit</button>
             <div style="height: 25vh"></div>
         </form>

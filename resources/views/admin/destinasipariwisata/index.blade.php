@@ -47,7 +47,7 @@
                     <a href="/admin/destinasipariwisata/{{ $item->id }}/edit" class="btn btn-sm btn-warning">Edit</a>
                     <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#details-modal" 
                         data-nama="{{ $item->name }}" data-desc="{{ $item->desc }}" data-harga="{{ $item->harga }}"
-                        data-gambar="{{ $item->media }}" data-notelp="{{ $item->notelp }}">Detail</button>
+                        data-gambar="{{ $item->media }}" data-notelp="{{ $item->notelp }}" data-lokasi="{{ $item->lokasi }}">Detail</button>
                 </td>
             </tr>
         @endforeach
@@ -68,6 +68,7 @@
                     <div id="desc" class="mb-3"></div>
                     <p><strong>Harga Tiket:</strong> <span id="harga"></span></p>
                     <p><strong>Contack person:</strong> <span id="notelp"></span></p>
+                    <a id="lokasi" href="" target="_blank">Lihat lokasi</a>
                 </div>
             </div>
         </div>
@@ -84,6 +85,7 @@
                 const harga = detailModal.querySelector('#harga');
                 const notelp = detailModal.querySelector('#notelp');
                 const mediaContainer = detailModal.querySelector('#media');
+                const lokasi = detailModal.querySelector('#lokasi');
                 
                 namaDestinasi.innerHTML = button.getAttribute('data-nama');
                 deskripsi.innerHTML = button.getAttribute('data-desc');
@@ -94,6 +96,7 @@
                 });
                 // console.log(fharga);
                 notelp.innerHTML = button.getAttribute('data-notelp');
+                lokasi.setAttribute('href', button.getAttribute('data-lokasi'));
                 
                 const objectMedia = JSON.parse(button.getAttribute('data-gambar'));
                 // console.log(objectMedia);

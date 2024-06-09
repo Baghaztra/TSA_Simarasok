@@ -40,8 +40,6 @@ Route::get('/',function(){
     return view('frontend.home.index')->with(['destinasis'=> $data,'umkm' => $umkm, 'homestay'=>$penginapan]);
 });
 
-Route::get('/list-destinasi', [FrontendDestinasiController::class, 'index']);
-Route::get('/list-homestay', [FrontendHomestayController::class, 'index']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin', function () {
@@ -69,5 +67,7 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['guest'])->group(function () {
     Route::get('sign-in', [SigninController::class, 'index'])->name('login');
     Route::post('proses', [SigninController::class, 'authentication'])->name('proses-signin');
+    Route::get('/list-destinasi', [FrontendDestinasiController::class, 'index']);
+    Route::get('/list-homestay', [FrontendHomestayController::class, 'index']);
 });
 

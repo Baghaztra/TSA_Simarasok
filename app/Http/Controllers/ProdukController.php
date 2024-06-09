@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Asset;
 use App\Models\Produk;
+use App\Models\UMKM;
 use Illuminate\Http\Request;
+use App\Http\Requests\StoreProdukRequest;
 
 class ProdukController extends Controller
 {
@@ -18,7 +20,7 @@ class ProdukController extends Controller
         if (!empty($query)) {
             $produk = Produk::where('name', 'like', '%'.$query.'$')->latest()->paginate(10);
         }else{
-            $produk = Produk::latest()->paginate(10);
+            $produk = Produk::where('umkm_id', $request->umkm_id )->latest()->paginate(10);
         }
         return view("admin.produk.index", ['produks' => $produk, 'q'=>$query, 'umkm_id'=>$request->umkm_id]);
     }
@@ -26,41 +28,41 @@ class ProdukController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
         $produk = Produk::all();
-        return view('admin.produk.create')->with(['produk' => $produk]);
+        return view('admin.produk.create')->with(['produks' => $produk, 'umkm_id' => $request->umkm_id]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(StoreProdukRequest $request)
     {
        $validate = $request->validate([
             'name' => 'required',
             'desc' => 'required',
             'harga' => 'required',
-            'umkm_id' => 'required|exists:umkms,id'
+            'umkm_id' => 'required|exists:umkms,id',
        ]);
        $produk = Produk::create($validate);
 
        if ($request->hasFile('gambar')) {
-        $i = 0;
-        foreach($request->file('gambar') as $file) {
-            $fileName = time() . $i . '.' . $file->getClientOriginalExtension();
-            $i++;
-            $file->move(public_path('assets'), $fileName);
-            $asset = new Asset();
-            $asset->nama = $fileName;
-            $asset->tipe = in_array($file->getClientOriginalExtension(), ['jpg', 'jpeg', 'png']) ? 'gambar' : 'video';
-            $asset->jenis = 'produk';
-            $asset->jenis_id = $produk->id;
-            $asset->save();
+            $i = 0;
+            foreach($request->file('gambar') as $file) {
+                $fileName = time() . $i . '.' . $file->getClientOriginalExtension();
+                $i++;
+                $file->move(public_path('media'), $fileName);
+                $asset = new Asset();
+                $asset->nama = $fileName;
+                $asset->tipe = in_array($file->getClientOriginalExtension(), ['jpg', 'jpeg', 'png']) ? 'gambar' : 'video';
+                $asset->jenis = 'produk';
+                $asset->jenis_id = $produk->id;
+                $asset->save();
+            }
         }
+        return redirect('admin/produk?umkm_id='.$request->umkm_id)->with(['success' => 'Berhasil menambahkan Produk baru.']);
     }
-    return redirect('admin/produk')->with('success', 'Berhasil menambahkan Produk baru.');
-}
 
     /**
      * Display the specified resource.
@@ -76,7 +78,7 @@ class ProdukController extends Controller
     public function edit(string $id)
     {
         $produk = Produk::findOrFail($id);
-        return view('admin.produk.edit')->with('produks', $produk);
+        return view('admin.produk.edit')->with(['produks' => $produk]);
     }
 
     /**
@@ -98,7 +100,7 @@ class ProdukController extends Controller
             $i = 0;
             foreach($request->file('gambar') as $file) {
                 $fileName = time() . $i++ . '.' . $file->getClientOriginalExtension();
-                $file->move(public_path('assets'), $fileName);
+                $file->move(public_path('media'), $fileName);
                 $asset = new Asset();
                 $asset->nama = $fileName;
                 $asset->tipe = in_array($file->getClientOriginalExtension(), ['jpg', 'jpeg', 'png']) ? 'gambar' : 'video';
@@ -107,8 +109,7 @@ class ProdukController extends Controller
                 $asset->save();
             }
         }
-
-        return redirect('admin/produk')->with('warning', 'Berhasil mengubah data Produk.');
+        return redirect('admin/produk?umkm_id='.$request->umkm_id)->with('warning', 'Berhasil mengubah data Produk.');
     }
 
     /**
@@ -127,6 +128,6 @@ class ProdukController extends Controller
 
         $produk->delete();
 
-        return redirect('admin/produk/')->with('danger', 'Berhasil menghapus data Produk.');
+        return redirect('admin/produk?umkm_id='.$umkm_id)->with('danger', 'Berhasil menghapus data Produk.');
     }
 }

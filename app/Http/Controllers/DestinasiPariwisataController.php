@@ -33,18 +33,30 @@ class DestinasiPariwisataController extends Controller
     // Store a newly created resource in storage.
 
     public function store(StoreDestinasiPariwisataRequest $request) {
-        $request->validate([
+        $data=$request->validate([
             'name' => 'required',
             'desc' => 'required',
-            'harga' => 'required',
+            'harga' => 'required|numeric',
+            'notelp' => [
+                'required',
+                'regex:/^\+62\d+$/'
+            ],
+            'lokasi' => [
+                'required',
+                'regex:/^(https:\/\/www\.google\.com\/maps\/|https:\/\/maps\.app\.goo\.gl\/)/'
+            ],
+        ], [
+            'name.required' => 'Nama destinasi harus diisi.',
+            'desc.required' => 'Deskripsi harus diisi.',
+            'harga.required' => 'Harga harus diisi.',
+            'harga.numeric' => 'Harga harus berupa angka.',
+            'notelp.required' => 'Nomor telepon harus diisi.',
+            'notelp.regex' => 'Nomor telepon harus diawali dengan +62 dan hanya berisi angka tanpa spasi.',
+            'lokasi.required' => 'Lokasi harus diisi.',
+            'lokasi.regex' => 'Lokasi harus diawali dengan https://www.google.com/maps/ atau https://maps.app.goo.gl/.'
         ]);
 
-        $destinasi = DestinasiPariwisata::create([
-            'name' => $request->name,
-            'desc' => $request->desc,
-            'harga' => $request->harga,
-            'notelp' => $request->notelp,
-        ]);
+        $destinasi = DestinasiPariwisata::create($data);
 
         if ($request->hasFile('gambar')) {
             $i = 0;
@@ -73,12 +85,29 @@ class DestinasiPariwisataController extends Controller
     public function update(UpdateDestinasiPariwisataRequest $request, string $id){
         $destinasi = DestinasiPariwisata::findOrFail($id);
 
-        $data = [
-            'name' => $request->name,
-            'desc' => $request->desc,
-            'harga' => $request->harga,
-            'notelp' => $request->notelp,
-        ];
+        $data = $request->validate([
+            'name' => 'required',
+            'desc' => 'required',
+            'harga' => 'required|numeric',
+            'notelp' => [
+                'required',
+                'regex:/^\+62\d+$/'
+            ],
+            'lokasi' => [
+                'required',
+                'regex:/^(https:\/\/www\.google\.com\/maps\/|https:\/\/maps\.app\.goo\.gl\/)/'
+            ],
+        ], [
+            'name.required' => 'Nama destinasi harus diisi.',
+            'desc.required' => 'Deskripsi harus diisi.',
+            'harga.required' => 'Harga harus diisi.',
+            'harga.numeric' => 'Harga harus berupa angka.',
+            'notelp.required' => 'Nomor telepon harus diisi.',
+            'notelp.regex' => 'Nomor telepon harus diawali dengan +62 dan hanya berisi angka tanpa spasi.',
+            'lokasi.required' => 'Lokasi harus diisi.',
+            'lokasi.regex' => 'Lokasi harus diawali dengan https://www.google.com/maps/ atau https://maps.app.goo.gl/.'
+        ]);
+        
         $destinasi->update($data);
 
         if ($request->hasFile('gambar')) {
