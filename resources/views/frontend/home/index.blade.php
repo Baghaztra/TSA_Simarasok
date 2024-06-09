@@ -173,7 +173,7 @@
                     @break
                 @endif
                 <div class="col-md-4 ftco-animate">
-                    <div class="project-wrap">
+                    <div class="project-wrap" style="background-color: white; box-shadow: 0 4px 8px rgba(163, 163, 163, 0.2);">
                         @if (count($item->media) > 0)
                             <a href="#" class="img"
                                 style="background-image: url('{{ asset('media/' . $item->media[0]->nama) }}');"></a>
@@ -266,7 +266,7 @@
                 @break
             @endif
             <div class="col-md-4 ftco-animate">
-                <div class="project-wrap">
+                <div class="project-wrap" style="background-color: white; box-shadow: 0 4px 8px rgba(163, 163, 163, 0.2);">
                     @if (count($item->media) > 0)
                         <a href="#" class="img"
                             style="background-image: url('{{ asset('media/' . $item->media[0]->nama) }}');"></a>
