@@ -43,7 +43,11 @@
                                         <a
                                             href="#">{{ strlen($item->name) > 15 ? substr($item->name, 0, 30) . '...' : $item->name }}</a>
                                     </h3>
-                                    <p class="location"><span class="fa fa-map-marker mr-2"></span>Lokasi</p>
+                                    <p class="location mb-1 fs-12"><span class="fa fa-map-marker mr-2"><a href="{{ $item->lokasi }}"></span>Lihat Lokasi</a></p>
+                                    <ul>
+                                        <span data-feather="percent" style="width: 16px; color: rgb(86, 86, 86)"></span>
+                                        <li style="color: rgb(86, 86, 86)">RP. {{ number_format($item->harga ,2,",",".") }}/orang</li>
+                                    </ul>
                                     <ul>
                                         <li style="color: black">
                                             <a href="https://api.whatsapp.com/send?phone={{ $item->notelp }}"
@@ -51,6 +55,15 @@
                                                 <span data-feather="phone-call" style="width: 16px"
                                                     class="mr-2"></span>{{ $item->notelp }}
                                             </a>
+                                        </li>
+                                    </ul>
+                                    <ul>
+                                        <li>
+                                            <form method="POST" action="/booking-wisata">
+                                                @csrf
+                                                <input type="hidden" name="destinasi_id" value="{{ $item->id }}">
+                                                <button type="submit" class="btn btn-primary rounded-2 btn-sm mt-2">Detail Destinasi</button>
+                                            </form>
                                         </li>
                                     </ul>
                                 </div>

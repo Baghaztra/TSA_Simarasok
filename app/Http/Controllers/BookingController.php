@@ -99,4 +99,42 @@ class BookingController extends Controller
         Booking::findOrFail($id)->delete();
         return redirect('/admin/booking')->with('danger', 'Berhasil menghapus bookingan.');
     }
+
+    // Booking sebagai tamu
+    public function formBooking(Request $request)
+    {
+        return view('frontend.homestay.booking', ['homestay'=>Homestay::findOrFail($request->homestay_id)]);
+    }
+
+    // Booking sebagai tamu
+    public function booking(Request $request)
+    {
+        $data=$request->validate([
+            'name' => 'required',
+            'email' => 'required',
+            'checkin' => 'required',
+            'checkout' => 'required',
+            'notelp' => [
+                'required',
+                'regex:/^\+62\d+$/'
+            ],
+            'homestay_id' => 'required|exists:homestays,id',
+        ]);
+
+        Booking::create($data);
+        return redirect('/');
+    }
+
+    // approve bookingan
+    public function approve(string $id){
+        $bookingan=Booking::findOrFail($id);
+        if($bookingan->status=='approved'){
+            $bookingan->update(['status'=>'canceled']);
+            $message = 'Bookingan '.$bookingan->nama.' dibatalkan';
+        }else{
+            $bookingan->update(['status'=>'approved']);
+            $message = 'Bookingan '.$bookingan->nama.' disetujui';
+        }
+        return redirect('admin/booking')->with('success', $message);
+    }
 }

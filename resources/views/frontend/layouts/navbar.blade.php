@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark ftco_navbar bg-dark ftco-navbar-light" id="ftco-navbar">
     <div class="container">
-        <a class="navbar-brand" href="index.html">Simarasok<span>Desa Wisata Sumatera Barat</span></a>
+        <a class="navbar-brand" href="/">Simarasok<span>Desa Wisata Sumatera Barat</span></a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#ftco-nav" aria-controls="ftco-nav" aria-expanded="false" aria-label="Toggle navigation">
             <span class="oi oi-menu"></span> Menu
         </button>
@@ -13,6 +13,7 @@
                 <li class="nav-item {{ request()->is('list-umkm') ? 'active' : '' }}"><a href="/list-umkm" class="nav-link">UMKM</a></li>
                 <li class="nav-item"><a href="blog.html" class="nav-link">Souvenir</a></li>
                 <li class="nav-item"><a href="contact.html" class="nav-link">Video</a></li>
+                <li class="nav-item {{ request()->is('hubungi-kami') ? 'active' : ''}}"><a href="\hubungi-kami" class="nav-link">Hubungi Kami</a></li>
             </ul>
         </div>
     </div>

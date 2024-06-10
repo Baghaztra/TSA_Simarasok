@@ -15,6 +15,7 @@ class Booking extends Model
         'checkin',
         'checkout',
         'homestay_id',
+        'status',
     ];
 
     function homestay(){

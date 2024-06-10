@@ -37,12 +37,10 @@
     <table class="table table-bordered table-striped">
         <tr>
             <th>No</th>
-            <th>Nama client</th>
-            <th>email</th>
+            <th>Nama</th>
             <th>notelp</th>
-            <th>checkin</th>
-            <th>checkuot</th>
             <th>homestay</th>
+            <th>Status</th>
             <th>action</th>
         </tr>
         @if ($booking->isEmpty())
@@ -57,22 +55,104 @@
             <tr>
                 <td>{{ $booking->firstItem() + $loop->index }}</td>
                 <td>{{ $item->name }}</td>
-                <td>{{ $item->email }}</td>
                 <td>{{ $item->notelp }}</td>
-                <td>{{ $item->checkin }}</td>
-                <td>{{ $item->checkout }}</td>
                 <td>{{ $item->homestay->name }}</td>
+                <td>
+                    <a href="/admin/booking/{{$item->id}}/approve" onclick="return confirm('{{$item->status=='approved'?'Cancel':'Approve'}} {{ $item->name }}?')">
+                        <span class="badge {{ $item->status=='approved'?'text-bg-success':($item->status=='canceled'?'text-bg-danger':'text-bg-light') }} rounded-3" id="status">
+                            {{ $item->status}}
+                        </span>
+                    </a>
+                </td>
                 <td>
                     <form class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')"
                         action="{{ route('booking.destroy', $item->id) }}" method="POST">
                         @csrf @method('DELETE')
                         <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                     </form>
-                    <a href="/admin/booking/{{ $item->id }}/edit" class="btn btn-sm btn-warning">Edit</a>
+                    <a href="/admin/booking/{{ $item->id }}/edit" class="btn btn-sm btn-warning d-inline">Edit</a>
+                    <button class="btn btn-sm btn-primary d-inline" data-bs-toggle="modal" data-bs-target="#details-modal" 
+                        data-nama="{{ $item->name }}" data-email="{{ $item->email }}" data-notelp="{{ $item->notelp }}"
+                        data-checkin="{{ $item->checkin }}" data-checkout="{{ $item->checkout }}" data-status="{{ $item->status }}"
+                        data-homestay="{{ $item->homestay->name }}" data-id="{{ $item->id }}">Detail</button>
                 </td>
             </tr>
         @endforeach
-
     </table>
+
+    <!-- Modal -->
+    <div class="modal fade" id="details-modal" tabindex="-1" aria-hidden="true">
+        <div class="modal-dialog" >
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5"  id="nama-homestay"></h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <table>
+                        <tr>
+                            <td>Nama</td>
+                            <td> : </td>
+                            <td id="name"></td>
+                        </tr>
+                        <tr>
+                            <td>Email</td>
+                            <td> : </td>
+                            <td id="email"></td>
+                        </tr>
+                        <tr>
+                            <td>Notelp</td>
+                            <td> : </td>
+                            <td id="notelp"></td>
+                        </tr>
+                        <tr>
+                            <td>Dari</td>
+                            <td> : </td>
+                            <td id="checkin"></td>
+                        </tr>
+                        <tr>
+                            <td>Sampai</td>
+                            <td> : </td>
+                            <td id="checkout"></td>
+                        </tr>
+                        <tr>
+                            <td>Status</td>
+                            <td> : </td>
+                            <td id="status"></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="modal-footer">
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const detailModal = document.getElementById('details-modal');
+            detailModal.addEventListener('show.bs.modal', (event) => {
+                const button = event.relatedTarget;
+    
+                const namaHomestay = detailModal.querySelector('#nama-homestay');
+                const nama = detailModal.querySelector('#name');
+                const email = detailModal.querySelector('#email');
+                const notelp = detailModal.querySelector('#notelp');
+                const checkin = detailModal.querySelector('#checkin');
+                const checkout = detailModal.querySelector('#checkout');
+                const status = detailModal.querySelector('#status');
+                
+                namaHomestay.innerHTML = button.getAttribute('data-homestay');
+                nama.innerHTML = button.getAttribute('data-nama');
+                email.innerHTML = button.getAttribute('data-email');
+                notelp.innerHTML = button.getAttribute('data-notelp');
+                checkin.innerHTML = button.getAttribute('data-checkin');
+                checkout.innerHTML = button.getAttribute('data-checkout');
+                status.innerHTML = button.getAttribute('data-status');
+            });
+        });
+    </script>
+
     {{ $booking->links() }}
 @endsection
