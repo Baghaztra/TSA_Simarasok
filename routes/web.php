@@ -18,6 +18,7 @@ use App\Http\Controllers\HomestayController;
 use App\Http\Controllers\FrontendHomestayController;
 use App\Http\Controllers\FrontendDestinasiController;
 use App\Http\Controllers\DestinasiPariwisataController;
+use App\Http\Controllers\FrontendKontakController;
 
 /*
 |--------------------------------------------------------------------------
@@ -78,3 +79,9 @@ Route::middleware(['guest'])->group(function () {
 Route::get('/list-destinasi', [FrontendDestinasiController::class, 'index']);
 Route::get('/list-homestay', [FrontendHomestayController::class, 'index']);
 
+
+
+
+
+
+Route::get('/hubungi-kami',[FrontendKontakController::class,'index']);    

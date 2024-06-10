@@ -49,7 +49,7 @@
                                             <div class="row no-gutters">
                                                 <div class="col-md d-flex">
                                                     <div class="form-group p-4 border-0">
-                                                        <label for="#">Cuaca</label>
+                                                        <label for="">Cuaca</label>
                                                         <div class="form-field">
                                                         </div>
                                                     </div>
@@ -107,7 +107,7 @@
                     <div class="row">
                         <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
                             <div class="services services-1 color-1 d-block img"
-                                style="background-image: url(images/services-1.jpg);">
+                                style="background-image: url(/media/frontend/images/Home.jpg);">
                                 <div class="icon d-flex align-items-center justify-content-center"><span
                                         class="flaticon-paragliding"></span></div>
                                 <div class="media-body">
@@ -119,7 +119,7 @@
                         </div>
                         <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
                             <div class="services services-1 color-2 d-block img"
-                                style="background-image: url(images/services-2.jpg);">
+                                style="background-image: url(/media/frontend/images/Home.jpg);">
                                 <div class="icon d-flex align-items-center justify-content-center"><span
                                         class="flaticon-route"></span></div>
                                 <div class="media-body">
@@ -131,7 +131,7 @@
                         </div>
                         <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
                             <div class="services services-1 color-3 d-block img"
-                                style="background-image: url(images/services-3.jpg);">
+                                style="background-image: url(/media/frontend/images/Home.jpg);">
                                 <div class="icon d-flex align-items-center justify-content-center"><span
                                         class="flaticon-tour-guide"></span></div>
                                 <div class="media-body">
@@ -143,7 +143,7 @@
                         </div>
                         <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
                             <div class="services services-1 color-4 d-block img"
-                                style="background-image: url(images/services-4.jpg);">
+                                style="background-image: url(/media/frontend/images/Home.jpg);">
                                 <div class="icon d-flex align-items-center justify-content-center"><span
                                         class="flaticon-map"></span></div>
                                 <div class="media-body">
@@ -182,7 +182,11 @@
                             <h3><a
                                     href="#">{{ strlen($item->name) > 15 ? substr($item->name, 0, 30) . '...' : $item->name }}</a>
                             </h3>
-                            <p class="location"><span class="fa fa-map-marker mr-2"></span>Lokasi</p>
+                            <p class="location mb-1"><span class="fa fa-map-marker mr-2"></span>Lokasi</p>
+                            <ul>
+                                <span data-feather="percent" style="width: 16px; color: rgb(86, 86, 86)"></span>
+                                <li style="color: rgb(86, 86, 86)">RP. {{ $item->harga }}/orang</li>
+                            </ul>
                             <ul>
                                 <a href=""></a>
                                 <li style="color: black"><a
@@ -197,8 +201,7 @@
                                     <form method="POST" action="/booking-wisata">
                                         @csrf
                                         <input type="hidden" name="destinasi_id" value="{{ $item->id }}">
-                                        <button type="submit" class="btn btn-primary rounded-2 btn-sm mt-2">Pesan
-                                            Sekarang</button>
+                                        <button type="submit" class="btn btn-primary rounded-2 btn-sm mt-2">Lihat Destinasi</button>
                                     </form>
                                 </li>
                             </ul>
@@ -252,6 +255,7 @@
             </div>
         </div>
     </section> --}}
+
 <div class="ftco-section">
     <div class="container">
         <div class="row justify-content-center pb-4">
@@ -282,7 +286,11 @@
                             <a
                                 href="#">{{ strlen($item->name) > 15 ? substr($item->name, 0, 15) . '...' : $item->name }}</a>
                         </h3>
-                        <p class="location"><span class="fa fa-map-marker mr-2"></span>Lokasi</p>
+                        <p class="location mb-1"><span class="fa fa-map-marker mr-2"></span>Lokasi</p>
+                        <ul>
+                            <span data-feather="percent" style="width: 16px; color: rgb(86, 86, 86)"></span>
+                            <li style="color: rgb(86, 86, 86)">RP. {{ $item->harga }}/orang</li>
+                        </ul>
                         <ul>
                             <li style="color: black">
                                 <a href="https://api.whatsapp.com/send?phone={{ $item->notelp }}"

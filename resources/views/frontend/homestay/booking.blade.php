@@ -24,7 +24,7 @@
                 </div>
             </div>
             <div class="container">
-                <form action="/booking/send" method="post">
+                <form action="/booking/send" method="POST">
                     @csrf @method('put')
                     <input type="text" name="name" placeholder="Nama pemesan" value="{{ old('name') }}">
                     @error('name')
