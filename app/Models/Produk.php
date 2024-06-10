@@ -18,4 +18,9 @@ class Produk extends Model
     function media(){
         return $this->hasMany(Asset::class, 'jenis_id')->where('jenis', 'produk');;
     }
+
+    function umkm()
+    {
+        return $this->belongsTo(UMKM::class);
+    }
 }
