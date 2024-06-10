@@ -37,13 +37,13 @@
         <table class="table table-bordered table-striped table-responsive" style="max-width: 100%">
             <thead>
                 <tr>
-                    <th class="col">No</th>
-                    <th class="col">Nama</th>
-                    <th class="col">Email</th>
-                    <th class="col">Alias</th>
-                    <th class="col">Roles</th>
-                    <th class="col">Status</th>
-                    <th class="col">Action</th>
+                    <th>No</th>
+                    <th>Nama</th>
+                    <th>Email</th>
+                    <th>Alias</th>
+                    <th>Roles</th>
+                    <th>Status</th>
+                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
