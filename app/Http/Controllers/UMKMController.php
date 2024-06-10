@@ -16,7 +16,7 @@ class UMKMController extends Controller
         $query = $request->input('query');
 
         if (!empty($query)) {
-            $umkm = UMKM::where('name', 'like', '%'.$query.'$')->latest()->paginate(10);
+            $umkm = UMKM::where("name", "like", "%" . $query . '%')->latest()->paginate(10);
         }else{
             $umkm = UMKM::latest()->paginate(10);
         }

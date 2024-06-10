@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Asset;
 use App\Models\Produk;
 use App\Models\UMKM;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProdukRequest;
 
@@ -18,7 +19,7 @@ class ProdukController extends Controller
         $query = $request->input('query');
 
         if (!empty($query)) {
-            $produk = Produk::where('name', 'like', '%'.$query.'$')->latest()->paginate(10);
+            $produk = Produk::where("name", "like", "%" . $query . '%')->where("umkm_id", $request->umkm_id)->latest()->paginate(10);
         }else{
             $produk = Produk::where('umkm_id', $request->umkm_id )->latest()->paginate(10);
         }
@@ -31,7 +32,8 @@ class ProdukController extends Controller
     public function create(Request $request)
     {
         $produk = Produk::all();
-        return view('admin.produk.create')->with(['produks' => $produk, 'umkm_id' => $request->umkm_id]);
+        $kategori = Category::all();
+        return view('admin.produk.create')->with(['produks' => $produk, 'kategoris' => $kategori,'umkm_id' => $request->umkm_id]);
     }
 
     /**
@@ -44,6 +46,7 @@ class ProdukController extends Controller
             'desc' => 'required',
             'harga' => 'required',
             'umkm_id' => 'required|exists:umkms,id',
+            'category_id' => 'required|exists:categories,id',
        ]);
        $produk = Produk::create($validate);
 
@@ -78,7 +81,8 @@ class ProdukController extends Controller
     public function edit(string $id)
     {
         $produk = Produk::findOrFail($id);
-        return view('admin.produk.edit')->with(['produks' => $produk]);
+        $kategori = Category::All();
+        return view('admin.produk.edit')->with(['produks' => $produk, 'kategoris' => $kategori]);
     }
 
     /**
@@ -93,6 +97,7 @@ class ProdukController extends Controller
             'desc' => $request->desc,
             'harga' => $request->harga,
             'umkm_id' => $request->umkm_id,
+            'category_id' => $request->category_id,
         ];
         $produk->update($data);
 
@@ -129,5 +134,17 @@ class ProdukController extends Controller
         $produk->delete();
 
         return redirect('admin/produk?umkm_id='.$umkm_id)->with('danger', 'Berhasil menghapus data Produk.');
+    }
+
+    public function catcreate(Request $request) {
+        return view('admin.produk.catcreate',['categories'=>Category::all(), 'umkm_id' => $request->umkm_id]);
+    }
+
+    public function strcreate(Request $request) {
+        $validated = $request->validate([
+            'name'=>'required',
+        ]);
+        Category::create($validated);
+        return redirect('admin/produk/create?umkm_id='.$request->umkm_id);
     }
 }
