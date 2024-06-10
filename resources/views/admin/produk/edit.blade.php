@@ -25,7 +25,7 @@
                 <div id="preview-container">
                     <!-- Pratinjau media yang ada -->
                     @foreach($produks->media as $media)
-                    <div style="position: relative; display: inline-block;" data-media-id="{{ $media->id }}">
+                    <div id="lobak" style="position: relative; display: inline-block;" data-media-id="{{ $media->id }}">
                         @if($media->tipe === 'gambar')
                         <img src="/assets/{{ $media->nama }}" class="img-thumbnail" style="width: 300px; display: block;">
                         @elseif($media->tipe === 'video')
@@ -55,7 +55,7 @@
                     currentFiles = currentFiles.concat(newFiles);
                     updatePreview();
                     updateFileInput(currentFiles);
-                    document.getElementById('img-preview').style.display = 'none'; // Sembunyikan input setelah gambar dipilih
+                    document.getElementById('img-preview').style.display = 'none';
                 };
 
                 const updatePreview = () => {
@@ -138,7 +138,13 @@
                           })
                           .catch(error => console.error('Error:', error));
                     }
+                    document.getElementById('img-preview').style.display = 'flex';
                 };
+            </script>
+            <script>
+                const lobak = document.getElementById('img-preview');
+                const kocak = document.querySelectorAll('#lobak');
+                lobak.style.display = (kocak.length > 0) ? 'none' : 'flex';
             </script>
 
             <div class="mb-3">
