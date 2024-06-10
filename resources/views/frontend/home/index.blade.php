@@ -13,6 +13,10 @@
                     class="icon-video popup-vimeo d-flex align-items-center justify-content-center mb-4">
                     <span class="fa fa-play"></span>
                 </a>
+                {{-- <iframe width="560" height="315" src="https://www.youtube.com/embed/z3OfmuNMIDI?si=d7eXBkWIdbWBA47H"
+                    title="YouTube video player" frameborder="0"
+                    allow="accelerometer; autoplay1; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin" class="popup-vimeo" allowfullscreen></iframe> --}}
             </div>
         </div>
     </div>
@@ -100,7 +104,7 @@
                             Semantics, a large language ocean.
                             A small river named Duden flows by their place and supplies it with the necessary
                             regelialia.</p>
-                        <p><a href="#" class="btn btn-primary py-3 px-4">Search Destination</a></p>
+                        <p><a href="/list-destinasi" class="btn btn-primary py-3 px-4">Search Destination</a></p>
                     </div>
                 </div>
                 <div class="col-md-6">
@@ -173,7 +177,8 @@
                     @break
                 @endif
                 <div class="col-md-4 ftco-animate">
-                    <div class="project-wrap" style="background-color: white; box-shadow: 0 4px 8px rgba(163, 163, 163, 0.2);">
+                    <div class="project-wrap"
+                        style="background-color: white; box-shadow: 0 4px 8px rgba(163, 163, 163, 0.2);">
                         @if (count($item->media) > 0)
                             <a href="#" class="img"
                                 style="background-image: url('{{ asset('media/' . $item->media[0]->nama) }}');"></a>
@@ -182,10 +187,11 @@
                             <h3><a
                                     href="#">{{ strlen($item->name) > 15 ? substr($item->name, 0, 30) . '...' : $item->name }}</a>
                             </h3>
-                            <p class="location mb-1"><span class="fa fa-map-marker mr-2"></span>Lokasi</p>
+                            <p class="location mb-1 fs-12"><span class="fa fa-map-marker mr-2"> <a href="{{ $item->lokasi }}"></span>Lihat Lokasi</a></p>
                             <ul>
                                 <span data-feather="percent" style="width: 16px; color: rgb(86, 86, 86)"></span>
-                                <li style="color: rgb(86, 86, 86)">RP. {{ $item->harga }}/orang</li>
+                                <li style="color: rgb(86, 86, 86)">RP.
+                                    {{ number_format($item->harga, 2, ',', '.') }}/orang</li>
                             </ul>
                             <ul>
                                 <a href=""></a>
@@ -201,7 +207,8 @@
                                     <form method="POST" action="/booking-wisata">
                                         @csrf
                                         <input type="hidden" name="destinasi_id" value="{{ $item->id }}">
-                                        <button type="submit" class="btn btn-primary rounded-2 btn-sm mt-2">Lihat Destinasi</button>
+                                        <button type="submit" class="btn btn-primary rounded-2 btn-sm mt-2">Detail
+                                            Destinasi</button>
                                     </form>
                                 </li>
                             </ul>
@@ -270,7 +277,8 @@
                 @break
             @endif
             <div class="col-md-4 ftco-animate">
-                <div class="project-wrap" style="background-color: white; box-shadow: 0 4px 8px rgba(163, 163, 163, 0.2);">
+                <div class="project-wrap"
+                    style="background-color: white; box-shadow: 0 4px 8px rgba(163, 163, 163, 0.2);">
                     @if (count($item->media) > 0)
                         <a href="#" class="img"
                             style="background-image: url('{{ asset('media/' . $item->media[0]->nama) }}');"></a>
@@ -289,7 +297,8 @@
                         <p class="location mb-1"><span class="fa fa-map-marker mr-2"></span>Lokasi</p>
                         <ul>
                             <span data-feather="percent" style="width: 16px; color: rgb(86, 86, 86)"></span>
-                            <li style="color: rgb(86, 86, 86)">RP. {{ $item->harga }}/orang</li>
+                            <li style="color: rgb(86, 86, 86)">RP.
+                                {{ number_format($item->harga, 2, ',', '.') }}/orang</li>
                         </ul>
                         <ul>
                             <li style="color: black">

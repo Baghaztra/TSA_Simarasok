@@ -46,7 +46,7 @@
                                     <p class="location mb-1"><span class="fa fa-map-marker mr-2"></span>{{ $item->lokasi }}</p>
                                     <ul>
                                         <span data-feather="percent" style="width: 16px; color: rgb(86, 86, 86)"></span>
-                                        <li style="color: rgb(86, 86, 86)">RP. {{ $item->harga }}/orang</li>
+                                        <li style="color: rgb(86, 86, 86)">RP. {{ number_format($item->harga,2,",",".") }} /orang</li>
                                     </ul>
                                     <ul>
                                         <li style="color: black">
