@@ -17,7 +17,7 @@ class HomestayFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->sentence(),
+            'name' => fake()->city() . ' ' . fake()->word() . ' Homestay',
             'desc' => fake()->paragraphs(3, true),
             'notelp' => '+62' . fake()->numerify('###########'),
             'harga' => rand(10, 100)*10000,

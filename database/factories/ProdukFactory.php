@@ -18,7 +18,7 @@ class ProdukFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => fake()->sentence(),
+            'name' => fake()->words(2, true),
             'desc' => fake()->paragraphs(3, true),
             'harga' => rand(5, 50)*1000,
             'umkm_id' => UMKM::all()->random()->id,

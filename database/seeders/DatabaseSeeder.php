@@ -35,8 +35,20 @@ class DatabaseSeeder extends Seeder
 
         Category::factory(5)->create();
         DestinasiPariwisata::factory(10)->create();
-        Homestay::factory(20)->create();   
+        Homestay::factory(20)->create();  
+        
         UMKM::factory(20)->create();
+
+        // produk untuk tiap umkm
+        for ($i=1; $i < 20; $i++) { 
+            Produk::factory()->create([
+                'name' => fake()->words(2, true),
+                'desc' => fake()->paragraphs(3, true),
+                'harga' => rand(5, 50)*1000,
+                'umkm_id' => $i,
+            ]);
+        }
+        // produk lain
         Produk::factory(15)->create();
         
         // gambar untuk tiap destinasi
@@ -57,8 +69,9 @@ class DatabaseSeeder extends Seeder
                 'jenis_id' => $i,
             ]);
         }
-        // gambar untuk tiap produk
-        for ($i=1; $i <= 15; $i++) { 
+
+        // gambar untuk tiap produk (20+15)
+        for ($i=1; $i <= 35; $i++) { 
             Asset::factory()->create([
                 'nama' => ['dummy1.jpg', 'dummy2.jpg', 'dummy3.jpg'][rand(0, 2)],
                 'tipe' => 'gambar',
