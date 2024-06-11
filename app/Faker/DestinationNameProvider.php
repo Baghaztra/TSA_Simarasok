@@ -16,6 +16,6 @@ class DestinationNameProvider extends Base
 
     public static function destinationName()
     {
-        return static::randomElement(static::$adjectives) . ' ' . static::randomElement(static::$nouns);
+        return static::randomElement(static::$adjectives) . ' '. fake()->word .' ' . static::randomElement(static::$nouns);
     }
 }

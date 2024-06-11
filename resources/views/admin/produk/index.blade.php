@@ -75,6 +75,7 @@
                 <tr>
                     <td>{{ $produks->firstItem() + $loop->index }}</td>
                     <td>{{ $item->name }}</td>
+                    {{-- @dd($item->category) --}}
                     <td>{{ $item->category->name }}</td>
                     <td>{{ 'Rp'.number_format($item->harga, 2, ',', '.') }}</td>
                     <td>
