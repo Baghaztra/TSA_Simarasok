@@ -11,17 +11,11 @@ class BookingController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $query = $request->input('query');
-    
-        if (!empty($query)) {
-            $booking = Booking::where('name', 'like', '%' . $query . '%')->latest()->paginate(10);
-        } else {
-            $booking = Booking::latest()->paginate(10);
-        }
-        
-        return view("admin.booking.index", ['booking' => $booking, 'query' => $query]);
+        $booking = Booking::latest()->Cari()->paginate(10);
+
+        return view("admin.booking.index", ['booking' => $booking, 'query' => request('query')]);
     }
     
 

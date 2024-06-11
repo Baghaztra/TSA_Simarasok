@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Booking extends Model
 {
@@ -20,5 +21,14 @@ class Booking extends Model
 
     function homestay(){
         return $this->belongsTo(Homestay::class, 'homestay_id');
+    }
+
+    function scopeCari(Builder $query) : void {
+        if (request('query')) {
+            $query->where('name', 'like', '%'.request('query').'%')
+                  ->orWhereHas('homestay', function($q) {
+                    $q->where('name', 'like', '%'.request('query').'%');
+                    });
+        } 
     }
 }
