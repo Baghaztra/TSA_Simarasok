@@ -22,6 +22,7 @@ class ProdukFactory extends Factory
             'desc' => fake()->paragraphs(3, true),
             'harga' => rand(5, 50)*1000,
             'umkm_id' => UMKM::all()->random()->id,
+            'category_id' => rand(1,5),
         ];
     }
 }

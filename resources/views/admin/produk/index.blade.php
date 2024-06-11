@@ -2,7 +2,20 @@
 
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Daftar Produk</h1>
+        @if (!$produks->isEmpty())
+        @php
+            $item1 = $produks->first();
+        @endphp
+
+        @if ($item1->umkm)
+            <h1 class="h2">Daftar Produk {{ $item1->umkm->name }}</h1>
+        @else
+            <h1 class="h2">Daftar Produk</h1>
+        @endif
+        @else
+            <h1 class="h2">Daftar Produk</h1>
+        @endif
+
     </div>
     <a href="/admin/umkm/" class="btn btn-sm btn-warning mb-3">Kembali</a>
     <div class="row" style="width: 100%">
@@ -13,7 +26,8 @@
             </form>
         </div>
         <div class="col-md-6">
-            <form action="/admin/produk/{{ $umkm_id }}" method="GET" class="input-group mb-3">
+            <form action="/admin/produk" method="GET" class="input-group mb-3">
+                <input type="hidden" name="umkm_id" value="{{ $umkm_id }}">
                 <input type="text" class="form-control" name="query" value="{{ $q }}"
                     placeholder="cari sesuatu" aria-label="cari sesuatu">
                 <button class="btn btn-outline-success" type="submit">Button</button>
@@ -43,6 +57,7 @@
             <tr>
                 <th>No</th>
                 <th>Nama</th>
+                <th>Kategori</th>
                 <th>Harga</th>
                 <th>Aksi</th>
             </tr>
@@ -60,6 +75,7 @@
                 <tr>
                     <td>{{ $produks->firstItem() + $loop->index }}</td>
                     <td>{{ $item->name }}</td>
+                    <td>{{ $item->category->name }}</td>
                     <td>{{ 'Rp'.number_format($item->harga, 2, ',', '.') }}</td>
                     <td>
                         <form class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')"
@@ -69,7 +85,7 @@
                         </form>
                         <a href="/admin/produk/{{ $item->id }}/edit" class="btn btn-sm btn-warning">Edit</a>
                         <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#details-modal"
-                        data-nama="{{ $item->name }}" data-desc="{{ $item->desc }}" data-harga="{{ $item->harga }}"
+                        data-nama="{{ $item->name }}" data-desc="{{ $item->desc }}" data-category="{{ $item->category->name }}"  data-harga="{{ $item->harga }}"
                         data-gambar="{{ $item->media }}">Detail</button>
                     </td>
                 </tr>
@@ -90,6 +106,7 @@
                 <div class="modal-body">
                     <div id="media" class="mb-3"></div>
                     <div id="desc" class="mb-3"></div>
+                    <p><strong>Kategori Produk:</strong> <span id="category"></span></p>
                     <p><strong>Harga Per Satuan:</strong> <span id="harga"></span></p>
                 </div>
             </div>
@@ -104,11 +121,14 @@
 
                 const namaDestinasi = detailModal.querySelector('#nama-destinasi');
                 const deskripsi = detailModal.querySelector('#desc');
+                const category = detailModal.querySelector('#category');
                 const harga = detailModal.querySelector('#harga');
                 const mediaContainer = detailModal.querySelector('#media');
 
                 namaDestinasi.innerHTML = button.getAttribute('data-nama');
                 deskripsi.innerHTML = button.getAttribute('data-desc');
+                category.innerHTML = button.getAttribute('data-category');
+
                 harga.innerHTML= parseFloat(button.getAttribute('data-harga')).toLocaleString('id-ID', {
                     style: 'currency',
                     currency: 'IDR',

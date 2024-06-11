@@ -19,7 +19,7 @@ class Category extends Model
     //     return Category::where('jenis','Berita')->get();
     // }
 
-    // public static function categoryProduk() {
-    //     return Category::where('jenis','Produk')->get();
-    // }
+    /* public static function categoryProduk() {
+        return Category::All();
+    } */
 }
