@@ -3,6 +3,8 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Faker\Factory as FakerFactory;
+use App\Faker\DestinationNameProvider;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\DestinasiPariwisata>
@@ -16,12 +18,15 @@ class DestinasiPariwisataFactory extends Factory
      */
     public function definition(): array
     {
+        $faker = FakerFactory::create();
+        $faker->addProvider(new DestinationNameProvider($faker));
+
         return [
-            'name' => fake()->sentence(),
-            'desc' => fake()->paragraphs(3, true),
-            'harga' => rand(10, 500)*1000,
-            'notelp' => '+62' . fake()->numerify('###########'),
-            'lokasi' => 'https://maps.google.com/?q=' . fake()->latitude . ',' . fake()->longitude,
+            'name' => $faker->destinationName(),  // Menggunakan custom provider
+            'desc' => $faker->paragraphs(3, true),
+            'harga' => rand(10, 500) * 1000,
+            'notelp' => '+628' . $faker->numerify('##########'),
+            'lokasi' => 'https://maps.google.com/?q=' . $faker->latitude . ',' . $faker->longitude,
         ];
     }
 }

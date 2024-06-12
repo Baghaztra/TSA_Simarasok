@@ -127,6 +127,31 @@
                 </script>
             </div>
 
+            <script>
+                function handleCategoryChange(select) {
+                    if (select.value === 'create_category') {
+                        window.location.href = '/admin/produk/catcreate?umkm_id={{ $umkm_id }}'; // URL untuk fungsi catcreate
+                    }
+                }
+            </script>
+            <div class="mb-3">
+                <label class="form-label">Kategori</label>
+                <select name="category_id" class="form-control @error('category_id') is-invalid @enderror" id="" onchange="handleCategoryChange(this)">
+                    <option value="">---Pilih Kategori---</option>
+                    @foreach ($kategoris as $item)
+                        <option value="{{ $item->id }}" @if (old('category_id') == $item->id) selected @endif>
+                            {{ $item->name }}</option>
+                    @endforeach
+                    <option value="create_category">+ Tambah Kategori Baru</option>
+                </select>
+                @error('category_id')
+                    <div class="invalid-feedback">
+                        {{-- {{ $message }} --}}
+                        {{ "Kategori jangan lupa dipilih yaa :)" }}
+                    </div>
+                @enderror
+            </div>
+
             <div class="mb-3">
                 <label class="form-label">Harga</label>
                 <input type="number" class="form-control @error('harga') is-invalid @enderror" name="harga"

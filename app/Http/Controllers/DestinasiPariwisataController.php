@@ -95,7 +95,7 @@ class DestinasiPariwisataController extends Controller
             ],
             'lokasi' => [
                 'required',
-                'regex:/^(https:\/\/www\.google\.com\/maps\/|https:\/\/maps\.app\.goo\.gl\/)/'
+                'regex:/^(https:\/\/www\.google\.com\/maps\/|https:\/\/maps\.)/'
             ],
         ], [
             'name.required' => 'Nama destinasi harus diisi.',

@@ -7,13 +7,21 @@
 
         <div class="collapse navbar-collapse" id="ftco-nav">
             <ul class="navbar-nav ml-auto">
-                <li class="nav-item {{ request()->is('/') ? 'active' : '' }}"><a href="/" class="nav-link">Home</a></li>
-                <li class="nav-item {{ request()->is('list-destinasi') ? 'active' : '' }}"><a href="/list-destinasi" class="nav-link">Destinasi</a></li>
-                <li class="nav-item {{ request()->is('list-homestay') ? 'active' : '' }}"><a href="/list-homestay" class="nav-link">Homestay</a></li>
-                <li class="nav-item {{ request()->is('list-umkm') ? 'active' : '' }}"><a href="/list-umkm" class="nav-link">UMKM</a></li>
-                <li class="nav-item"><a href="blog.html" class="nav-link">Souvenir</a></li>
-                <li class="nav-item"><a href="contact.html" class="nav-link">Video</a></li>
-                <li class="nav-item {{ request()->is('hubungi-kami') ? 'active' : ''}}"><a href="\hubungi-kami" class="nav-link">Hubungi Kami</a></li>
+                <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
+                    <a href="/" class="nav-link">Home</a>
+                </li>
+                <li class="nav-item {{ request()->is('list-destinasi') ? 'active' : '' }}">
+                    <a href="/list-destinasi" class="nav-link">Destinasi</a>
+                </li>
+                <li class="nav-item {{ request()->is('list-homestay') ? 'active' : '' }}">
+                    <a href="/list-homestay" class="nav-link">Homestay</a>
+                </li>
+                <li class="nav-item {{ request()->is('list-umkm') ? 'active' : '' }}">
+                    <a href="/list-umkm" class="nav-link">UMKM</a>
+                </li>
+                <li class="nav-item {{ request()->is('hubungi-kami') ? 'active' : ''}}">
+                    <a href="/hubungi-kami" class="nav-link">Hubungi Kami</a>
+                </li>
             </ul>
         </div>
     </div>

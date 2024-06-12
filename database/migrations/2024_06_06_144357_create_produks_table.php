@@ -17,6 +17,7 @@ return new class extends Migration
             $table->text('desc');
             $table->integer('harga');
             $table->foreignId('umkm_id')->constrained('umkms');
+            $table->foreignId('category_id')->constrained('categories');
             $table->timestamps();
         });
     }

@@ -59,9 +59,12 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/admin/umkm', UMKMController::class);
     Route::resource('/admin/user', UserController::class);
     Route::resource('/admin/destinasipariwisata', DestinasiPariwisataController::class);
-    Route::resource('/admin/produk', ProdukController::class);
     Route::resource('/admin/homestay', HomestayController::class);
     Route::resource('/admin/booking', BookingController::class);
+
+    Route::get('/admin/produk/catcreate', [ProdukController::class, 'catcreate'])->name('produk.catcreate');
+    Route::post('/admin/produk/strcreate', [ProdukController::class, 'strcreate'])->name('produk.strcreate');
+    Route::resource('/admin/produk', ProdukController::class);
 
     Route::put('/admin/users/{id}', [UserController::class, 'update']);
     Route::get('updateStatus/{id}', [UserController::class, 'updateStatus']);
@@ -75,9 +78,10 @@ Route::middleware(['auth'])->group(function () {
 Route::middleware(['guest'])->group(function () {
     Route::get('sign-in', [SigninController::class, 'index'])->name('login');
     Route::post('proses', [SigninController::class, 'authentication'])->name('proses-signin');
-    });
-    
+});
+
 Route::get('/list-destinasi', [FrontendDestinasiController::class, 'index']);
 Route::get('/list-homestay', [FrontendHomestayController::class, 'index']);
 Route::get('/list-umkm', [FrontendUMKMController::class, 'index']);
+Route::get('/hubungi-kami',[FrontendKontakController::class,'index']);
 Route::get('/umkm/{id}', [FrontendUMKMController::class, 'show'])->name('umkm.show');
