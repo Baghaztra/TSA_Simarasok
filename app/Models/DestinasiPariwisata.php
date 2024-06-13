@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class DestinasiPariwisata extends Model
 {
@@ -19,4 +20,14 @@ class DestinasiPariwisata extends Model
     function media(){
         return $this->hasMany(Asset::class, 'jenis_id')->where('jenis', 'destinasi');
     }
+
+    // Ini Scope yang kubuat gas, bisa pake ini aja kalau mau, tiba tiba rajin cuy
+    /*
+        function scopeCari(Builder $query, $term=NULL) {
+            if(!empty($term)) {
+                $query->where('name', 'like', '%' . $term . '%');
+            }
+            return $query;
+        }
+    */
 }

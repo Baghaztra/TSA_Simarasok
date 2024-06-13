@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Booking extends Model
 {
@@ -21,4 +22,18 @@ class Booking extends Model
     function homestay(){
         return $this->belongsTo(Homestay::class, 'homestay_id');
     }
+
+    // Ini Scope yang kubuat gas, bisa pake ini aja kalau mau, tiba tiba rajin cuy (rajin, tapi copas ini dari kodingan sebelumnya EHEK(Ini juga di copas lagi dari sebelumnya EHEK))
+    // Belum tau ini berhasil atau enggak, soalnya pake orwherehas
+    /*
+        function scopeCari(Builder $query, $term=NULL) {
+            if(!empty($term)) {
+                $query->where('name', 'like', '%' . $term . '%')
+                ->orwherehas('homestay', function($qry) use ($term) {
+                    $qry->where('name', 'like', '%' . $term . '%');
+                });
+            }
+            return $query;
+        }
+    */
 }

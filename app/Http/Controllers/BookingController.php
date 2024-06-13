@@ -13,17 +13,29 @@ class BookingController extends Controller
      */
     public function index(Request $request)
     {
-        $query = $request->input('query');
-    
+        $query = $request->input('q');
+
         if (!empty($query)) {
             $booking = Booking::where('name', 'like', '%' . $query . '%')->latest()->paginate(10);
         } else {
             $booking = Booking::latest()->paginate(10);
         }
-        
-        return view("admin.booking.index", ['booking' => $booking, 'query' => $query]);
+
+        return view("admin.booking.index", ['booking' => $booking, 'q' => $query]);
     }
-    
+
+    // index yang udah baim(in case gak tau kalau aku yang ubah) gubah
+    // BTW query ubah jadi q lagi
+    /*
+        public function index()
+        {
+            $query = request('q');
+
+            $booking = Booking::latest()->cari($query)->paginate(10);
+
+            return view("admin.booking.index", ['booking' => $booking, 'q' => $query]);
+        }
+    */
 
     /**
      * Show the form for creating a new resource.

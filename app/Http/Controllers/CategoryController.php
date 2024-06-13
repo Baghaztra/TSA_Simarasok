@@ -12,15 +12,12 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $query = $request->input('query');
+        $query = request('q');
 
-        if (!empty($query)) {
-            $kategori = Category::where("name", "like", "%" . $query . '%')->latest()->paginate(10);;
-        } else {
-            $kategori = Category::latest()->paginate(10);
-        }
+        $kategori = Category::latest()->cari($query)->paginate(10);
+
         return view("admin.category.index",['kategoris'=>$kategori, 'q'=>$query]);
     }
 

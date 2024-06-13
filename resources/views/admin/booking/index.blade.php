@@ -2,17 +2,19 @@
 
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Daftar Bookingn</h1>
+        <h1 class="h2">Daftar Booking</h1> {{-- Perbaiki minor --}}
     </div>
     <div class="row">
         <div class="col-md-6">
             <a href="/admin/booking/create" class="btn btn-primary mb-3">Booking</a>
         </div>
         <div class="col-md-6">
+
+            {{-- Seperti sebelumnya lagi, Button ubah jadi Search dan name inputan diganti jadi q --}}
             <form action="/admin/booking" method="GET" class="input-group mb-3">
-                <input type="text" class="form-control" name="query" value="{{ $query }}"
+                <input type="text" class="form-control" name="q" value="{{ $q }}"
                     placeholder="cari sesuatu" aria-label="cari sesuatu">
-                <button class="btn btn-outline-success" type="submit">Button</button>
+                <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
     </div>
@@ -71,7 +73,7 @@
                         <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                     </form>
                     <a href="/admin/booking/{{ $item->id }}/edit" class="btn btn-sm btn-warning d-inline">Edit</a>
-                    <button class="btn btn-sm btn-primary d-inline" data-bs-toggle="modal" data-bs-target="#details-modal" 
+                    <button class="btn btn-sm btn-primary d-inline" data-bs-toggle="modal" data-bs-target="#details-modal"
                         data-nama="{{ $item->name }}" data-email="{{ $item->email }}" data-notelp="{{ $item->notelp }}"
                         data-checkin="{{ $item->checkin }}" data-checkout="{{ $item->checkout }}" data-status="{{ $item->status }}"
                         data-homestay="{{ $item->homestay->name }}" data-id="{{ $item->id }}">Detail</button>
@@ -134,7 +136,7 @@
             const detailModal = document.getElementById('details-modal');
             detailModal.addEventListener('show.bs.modal', (event) => {
                 const button = event.relatedTarget;
-    
+
                 const namaHomestay = detailModal.querySelector('#nama-homestay');
                 const nama = detailModal.querySelector('#name');
                 const email = detailModal.querySelector('#email');
@@ -142,7 +144,7 @@
                 const checkin = detailModal.querySelector('#checkin');
                 const checkout = detailModal.querySelector('#checkout');
                 const status = detailModal.querySelector('#status');
-                
+
                 namaHomestay.innerHTML = button.getAttribute('data-homestay');
                 nama.innerHTML = button.getAttribute('data-nama');
                 email.innerHTML = button.getAttribute('data-email');

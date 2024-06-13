@@ -14,16 +14,15 @@ class ProdukController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
-    {
-        $query = $request->input('query');
 
-        if (!empty($query)) {
-            $produk = Produk::where("name", "like", "%" . $query . '%')->where("umkm_id", $request->umkm_id)->latest()->paginate(10);
-        }else{
-            $produk = Produk::where('umkm_id', $request->umkm_id )->latest()->paginate(10);
-        }
-        return view("admin.produk.index", ['produks' => $produk, 'q'=>$query, 'umkm_id'=>$request->umkm_id]);
+    public function index()
+    {
+        $query = request('q');
+
+        $produk = Produk::latest()->cari($query)->where('umkm_id', request('id'))->paginate(10);
+        $umkm = UMKM::where('id', request('id'))->first();
+
+        return view("admin.produk.index", ['produks' => $produk, 'umkms' => $umkm, 'q' => $query]);
     }
 
     /**

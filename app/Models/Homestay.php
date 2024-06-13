@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Homestay extends Model
 {
@@ -22,4 +23,14 @@ class Homestay extends Model
     function bookingLog(){
         return $this->hasMany(Booking::class, 'homestay_id');
     }
+
+    // Ini Scope yang kubuat gas, bisa pake ini aja kalau mau, tiba tiba rajin cuy (rajin, tapi copas ini dari kodingan sebelumnya EHEK)
+    /*
+        function scopeCari(Builder $query, $term=NULL) {
+            if(!empty($term)) {
+                $query->where('name', 'like', '%' . $term . '%');
+            }
+            return $query;
+        }
+    */
 }

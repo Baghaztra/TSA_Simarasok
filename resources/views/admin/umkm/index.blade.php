@@ -10,9 +10,9 @@
         </div>
         <div class="col-md-6">
             <form action="/admin/umkm" method="GET" class="input-group mb-3">
-                <input type="text" class="form-control" name="query" value="{{ $q }}"
+                <input type="text" class="form-control" name="q" value="{{ $q }}"
                     placeholder="cari sesuatu" aria-label="cari sesuatu">
-                <button class="btn btn-outline-success" type="submit">Button</button>
+                <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
     </div>
@@ -57,8 +57,8 @@
                 <td>{{ $item->owner }}</td>
                 <td>{{ $item->notelp }}</td>
                 <td>
-                    <form action="/admin/produk" method="get">
-                        <input type="hidden" name="umkm_id" value="{{ $item->id }}">
+                    <form class="d-inline" action="/admin/produk" method="get">
+                        <input type="hidden" name="id" value="{{ $item->id }}">
                         <button type="submit" class="btn btn-sm btn-success">Produk</button>
                     </form>
                     <form class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')"
