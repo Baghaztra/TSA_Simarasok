@@ -12,6 +12,9 @@
         @else
             <h1 class="h2">Daftar Produk</h1>
         @endif
+        @else
+            <h1 class="h2">Daftar Produk</h1>
+        @endif
 
     </div>
     <a href="/admin/umkm/" class="btn btn-sm btn-warning mb-3">Kembali</a>
