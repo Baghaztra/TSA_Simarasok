@@ -26,11 +26,12 @@
             <div class="container">
                 <div class="row">
                     @foreach ($umkms as $item)
+                    {{-- @dd($item->produk[0]->media) --}}
                         <div class="col-md-4 ftco-animate">
                             <div class="project-wrap">
                                 @if (is_countable($item->media) && count($item->media) > 0)
                                     <a href="{{ route('umkm.show', $item->id) }}" class="img"
-                                        style="background-image: url('{{ asset('media/' . $item->media[0]->nama) }}');"></a>
+                                        style="background-image: url('{{ asset('/media/' . $item->produk[0]->media) }}');"></a>
                                 @else
                                     <a href="{{ route('umkm.show', $item->id) }}" class="img"
                                         style="background-color: #f8f9fa; align-items: center; justify-content: center; display: flex;">
