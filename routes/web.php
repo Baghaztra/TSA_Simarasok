@@ -16,7 +16,6 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomestayController;
 use App\Http\Controllers\FrontendUMKMController;
-use App\Http\Controllers\FrontendProdukController;
 use App\Http\Controllers\FrontendHomestayController;
 use App\Http\Controllers\FrontendDestinasiController;
 use App\Http\Controllers\DestinasiPariwisataController;
