@@ -24,7 +24,7 @@ class HomestayController extends Controller
         // return view("admin.homestay.index", ['homestay' => $homestay, 'q' => $query]);
 
         $homestay = Homestay::latest()->cari()->paginate(10);
-        return view("admin.homestay.index", ['homestay' => $homestay, 'q' => request('query')]);
+        return view("admin.homestay.index", ['homestay' => $homestay, 'q' => request('q')]);
 
     }
 

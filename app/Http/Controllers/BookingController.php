@@ -25,7 +25,7 @@ class BookingController extends Controller
 
         $booking = Booking::latest()->Cari()->paginate(10);
 
-        return view("admin.booking.index", ['booking' => $booking, 'q' => request('query')]);
+        return view("admin.booking.index", ['booking' => $booking, 'q' => request('q')]);
 
     }
 
