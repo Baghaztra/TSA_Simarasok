@@ -11,16 +11,21 @@ class HomestayController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $query = $request->input('q');
 
-        if (!empty($query)) {
-            $homestay = Homestay::where("name", "like", "%" . $query . '%')->latest()->paginate(10);;
-        } else {
-            $homestay = Homestay::latest()->paginate(10);
-        }
-        return view("admin.homestay.index", ['homestay' => $homestay, 'q' => $query]);
+        // $query = $request->input('q');
+
+        // if (!empty($query)) {
+        //     $homestay = Homestay::where("name", "like", "%" . $query . '%')->latest()->paginate(10);;
+        // } else {
+        //     $homestay = Homestay::latest()->paginate(10);
+        // }
+        // return view("admin.homestay.index", ['homestay' => $homestay, 'q' => $query]);
+
+        $homestay = Homestay::latest()->cari()->paginate(10);
+        return view("admin.homestay.index", ['homestay' => $homestay, 'q' => request('query')]);
+
     }
 
 
