@@ -23,13 +23,14 @@ class BookingController extends Controller
 
         // return view("admin.booking.index", ['booking' => $booking, 'q' => $query]);
 
-        // $booking = Booking::latest()->Cari()->paginate(10);
+        $booking = Booking::latest()->Cari()->paginate(10);
 
-        return view("admin.booking.index", ['booking' => $booking, 'query' => request('query')]);
+        return view("admin.booking.index", ['booking' => $booking, 'q' => request('query')]);
 
     }
 
     // index yang udah baim(in case gak tau kalau aku yang ubah) gubah
+    // >>> Bagas: jir, pake watermark -v-)
     // BTW query ubah jadi q lagi
     /*
         public function index()
