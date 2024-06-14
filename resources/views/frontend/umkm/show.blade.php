@@ -30,7 +30,7 @@
                     <div class="project-wrap">
                         @if (is_countable($umkm->media) && count($umkm->media) > 0)
                             <a href="#" class="img"
-                                style="background-image: url('{{ asset('media/' . $umkm->media[0]->nama) }}');"></a>
+                                style="background-image: url('{{ asset('media/' . $item->produk[0]->media[0]->nama) }}');"></a>
                         @else
                             <div class="img"
                                 style="background-color: #f8f9fa; align-items: center; justify-content: center; display: flex;">

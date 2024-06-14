@@ -37,11 +37,16 @@ Route::get('/post', function () {
     return view('posts',['posts'=>Post::all()]);
 });
 
-Route::get('/',function(){
+Route::get('/', function () {
     $data = DestinasiPariwisata::all();
-    $umkm = Produk::all();
+    $umkms = UMKM::with('produk.media')->get();
     $penginapan = Homestay::all();
-    return view('frontend.home.index')->with(['destinasis'=> $data,'umkm' => $umkm, 'homestay'=>$penginapan]);
+
+    return view('frontend.home.index')->with([
+        'destinasis' => $data,
+        'umkms' => $umkms,
+        'homestay' => $penginapan
+    ]);
 });
 
 Route::post('/booking', [BookingController::class, 'formBooking']);
@@ -86,3 +91,4 @@ Route::get('/list-homestay', [FrontendHomestayController::class, 'index']);
 Route::get('/list-umkm', [FrontendUMKMController::class, 'index']);
 Route::get('/hubungi-kami',[FrontendKontakController::class,'index']);
 Route::get('/umkm/{id}', [FrontendUMKMController::class, 'show'])->name('umkm.show');
+Route::get('/hubungi-kami',[FrontendKontakController::class,'index']);
