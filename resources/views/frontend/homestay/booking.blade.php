@@ -38,12 +38,24 @@
                             {{ $message }}
                         </div>
                     @enderror
-                    <input type="text" name="notelp" placeholder="nomor telpon" value="{{ old('notelp') }}">
-                    @error('notelp')
-                        <div class="invalid-feedback">
-                            {{ $message }}
+                    <div class="form-group">
+                        <div class="input-group">
+                            <select name="country_code" class="form-control">
+                                @foreach($countryCodes as $code => $country)
+                                    <option value="{{ $code }}" {{ old('country_code', '+62') == $code ? 'selected' : '' }}>
+                                        {{ $country }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <input type="text" name="notelp" placeholder="nomor telpon" value="{{ old('notelp') }}" class="form-control">
                         </div>
-                    @enderror
+                        @error('notelp')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div>
+                    
                     <input type="date" name="checkin" {{ old('checkin') }}>
                     @error('checkin')
                         <div class="invalid-feedback">
