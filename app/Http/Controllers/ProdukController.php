@@ -17,12 +17,10 @@ class ProdukController extends Controller
 
     public function index()
     {
-        $query = request('q');
-
-        $produk = Produk::latest()->cari($query)->where('umkm_id', request('id'))->paginate(10);
+        $produk = Produk::latest()->cari()->where('umkm_id', request('id'))->paginate(10);
         $umkm = UMKM::where('id', request('id'))->first();
 
-        return view("admin.produk.index", ['produks' => $produk, 'umkms' => $umkm, 'q' => $query]);
+        return view("admin.produk.index", ['produks' => $produk, 'umkms' => $umkm, 'q' => request('q')]);
     }
 
     /**
@@ -32,7 +30,8 @@ class ProdukController extends Controller
     {
         $produk = Produk::all();
         $kategori = Category::all();
-        return view('admin.produk.create')->with(['produks' => $produk, 'kategoris' => $kategori,'umkm_id' => $request->umkm_id]);
+        $umkm = UMKM::where('id', request('umkm_id'))->first();
+        return view('admin.produk.create')->with(['produks' => $produk, 'kategoris' => $kategori, 'umkms'=> $umkm]);
     }
 
     /**
@@ -63,7 +62,7 @@ class ProdukController extends Controller
                 $asset->save();
             }
         }
-        return redirect('admin/produk?umkm_id='.$request->umkm_id)->with(['success' => 'Berhasil menambahkan Produk baru.']);
+        return redirect('admin/produk?id='.$request->umkm_id)->with(['success' => 'Berhasil menambahkan Produk baru.']);
     }
 
     /**
@@ -113,7 +112,7 @@ class ProdukController extends Controller
                 $asset->save();
             }
         }
-        return redirect('admin/produk?umkm_id='.$request->umkm_id)->with('warning', 'Berhasil mengubah data Produk.');
+        return redirect('admin/produk?id='.$request->umkm_id)->with('warning', 'Berhasil mengubah data Produk.');
     }
 
     /**
@@ -122,17 +121,16 @@ class ProdukController extends Controller
     public function destroy(string $id)
     {
         $produk = Produk::findOrfail($id);
-        $umkm_id= $produk->umkm_id;
         foreach ($produk->media as $media) {
             if (file_exists(public_path('media/' . $media->nama))) {
                 unlink(public_path('media/' . $media->nama));
             }
             $media->delete();
         }
-
+        $back = $produk->umkm_id;
         $produk->delete();
 
-        return redirect('admin/produk?umkm_id='.$umkm_id)->with('danger', 'Berhasil menghapus data Produk.');
+        return redirect('admin/produk?id='.$back)->with('danger', 'Berhasil menghapus data Produk.');
     }
 
     public function catcreate(Request $request) {

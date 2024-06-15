@@ -26,10 +26,9 @@ class UMKM extends Model
         return $this->hasMany(Produk::class, 'umkm_id');
     }
 
-    function scopeCari(Builder $query, $term=NULL) {
-        if(!empty($term)) {
-            $query->where('name', 'like', '%' . $term . '%')->orWhere('owner', 'like', '%' . $term . '%');
+    function scopeCari(Builder $query) : void {
+        if (request('q')) {
+            $query->where('name', 'like', '%'.request('q').'%');
         }
-        return $query;
     }
 }

@@ -126,11 +126,10 @@
                         });
                 </script>
             </div>
-
             <script>
                 function handleCategoryChange(select) {
                     if (select.value === 'create_category') {
-                        window.location.href = '/admin/produk/catcreate?umkm_id={{ $umkm_id }}'; // URL untuk fungsi catcreate
+                        window.location.href = '/admin/produk/catcreate?umkm_id={{ $umkms->id }}'; // URL untuk fungsi catcreate
                     }
                 }
             </script>
@@ -163,7 +162,7 @@
                 @enderror
             </div>
 
-            <input type="hidden" name="umkm_id" value="{{ $umkm_id }}">
+            <input type="hidden" name="umkm_id" value="{{ $umkms->id }}">
 
             <button class="btn btn-sm btn-primary" type="submit">Submit</button>
             <div style="height: 25vh"></div>

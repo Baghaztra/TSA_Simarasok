@@ -14,11 +14,9 @@ class UMKMController extends Controller
 
     public function index() {
 
-        $query = request('q');
+        $umkm = UMKM::latest()->cari()->paginate(10);
 
-        $umkm = UMKM::latest()->cari($query)->paginate(10);
-
-        return view("admin.umkm.index", ['umkms' => $umkm, 'q'=>$query]);
+        return view("admin.umkm.index", ['umkms' => $umkm, 'q'=>request('q')]);
     }
 
     // Show the form for creating a new resources.

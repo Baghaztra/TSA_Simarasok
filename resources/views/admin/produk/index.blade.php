@@ -10,7 +10,7 @@
     <div class="row">
         <div class="col-md-6">
             <form action="/admin/produk/create" method="get">
-                <input type="hidden" name="id" value="{{ $umkms->id }}">
+                <input type="hidden" name="umkm_id" value="{{ $umkms->id }}">
                 <button class="btn btn-primary mb-3" type="submit">Entri Data Produk</button>
             </form>
         </div>

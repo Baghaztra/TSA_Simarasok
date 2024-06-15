@@ -14,11 +14,10 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $query = request('q');
 
-        $kategori = Category::latest()->cari($query)->paginate(10);
+        $kategori = Category::latest()->cari()->paginate(10);
 
-        return view("admin.category.index",['kategoris'=>$kategori, 'q'=>$query]);
+        return view("admin.category.index",['kategoris'=>$kategori, 'q'=>request('q')]);
     }
 
     /**

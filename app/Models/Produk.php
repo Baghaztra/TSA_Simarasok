@@ -30,10 +30,12 @@ class Produk extends Model
         return $this->belongsTo(UMKM::class);
     }
 
-    function scopeCari(Builder $query, $term=NULL) {
-        if(!empty($term)) {
-            $query->where('name', 'like', '%' . $term . '%');
+    function scopeCari(Builder $query) : void {
+        if (request('q')) {
+            $query->where('name', 'like', '%'.request('q').'%')
+            ->orWhereHas('category', function($q) {
+                $q->where('name', 'like', '%'.request('q').'%');
+            });
         }
-        return $query;
     }
 }

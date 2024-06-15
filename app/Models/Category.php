@@ -24,10 +24,9 @@ class Category extends Model
         return Category::All();
     } */
 
-    function scopeCari(Builder $query, $term=NULL) {
-        if(!empty($term)) {
-            $query->where('name', 'like', '%' . $term . '%');
+    function scopeCari(Builder $query) : void {
+        if (request('q')) {
+            $query->where('name', 'like', '%'.request('q').'%');
         }
-        return $query;
     }
 }
