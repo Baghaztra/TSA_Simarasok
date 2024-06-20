@@ -34,7 +34,9 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
         $validated = $request->validate([
-            'name'=>'required',
+            'name'=>'required|unique:categories',
+        ],[
+            'name'=>'Nama kategori tidak boleh sama dengan yang telah ada',
         ]);
         Category::create($validated);
         return redirect('admin/category')->with('success','Kategori Berhasil Ditambah');
@@ -62,7 +64,9 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, string $id)
     {
         $validated = $request->validate([
-            'name'=>'required',
+            'name'=>'required|unique:categories',
+        ],[
+            'name'=>'Nama kategori tidak boleh sama dengan yang telah ada',
         ]);
         Category::where('id',$id)->update($validated);
         return redirect('admin/category')->with('warning','Kategori Berhasil Diubah');

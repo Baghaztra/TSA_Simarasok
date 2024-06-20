@@ -139,7 +139,9 @@ class ProdukController extends Controller
 
     public function strcreate(Request $request) {
         $validated = $request->validate([
-            'name'=>'required',
+            'name'=>'required|unique:categories',
+        ],[
+            'name'=>'Nama kategori tidak boleh sama dengan yang telah ada',
         ]);
         Category::create($validated);
         return redirect('admin/produk/create?umkm_id='.$request->umkm_id);
