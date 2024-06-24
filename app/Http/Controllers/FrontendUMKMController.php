@@ -12,7 +12,7 @@ class FrontendUMKMController extends Controller
      */
     public function index()
     {
-        $umkm = UMKM::latest()->pencarian()->paginate(6);
+        $umkm = UMKM::latest()->cari()->paginate(6);
         return view ('frontend.umkm.index',['umkms' => $umkm]);
     }
 
