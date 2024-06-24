@@ -36,6 +36,7 @@
     @include('frontend.layouts.navbar')
     <!-- END nav -->
     <main>
+        {{-- @yield('header') --}}
         @yield('content')
     </main>
 
