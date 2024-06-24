@@ -15,6 +15,7 @@
                         @if ($umkm->firstProductImage())
                             <a href="#" class="img"
                                 style="background-image: url('{{ asset('media/' . $umkm->firstProductImage()) }}');"></a>
+
                         @else
                             <div class="img"
                                 style="background-color: #f8f9fa; align-items: center; justify-content: center; display: flex;">

@@ -2,35 +2,23 @@
 
 @section('content')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        @if (!$produks->isEmpty())
-        @php
-            $item1 = $produks->first();
-        @endphp
 
-        @if ($item1->umkm)
-            <h1 class="h2">Daftar Produk {{ $item1->umkm->name }}</h1>
-        @else
-            <h1 class="h2">Daftar Produk</h1>
-        @endif
-        @else
-            <h1 class="h2">Daftar Produk</h1>
-        @endif
+        <h1 class="h2">Daftar Produk {{ $umkms->name }}</h1>
 
     </div>
-    <a href="/admin/umkm/" class="btn btn-sm btn-warning mb-3">Kembali</a>
-    <div class="row" style="width: 100%">
+    <a onclick="kembali()" class="btn btn-sm btn-warning mb-3">Kembali</a>
+    <div class="row">
         <div class="col-md-6">
             <form action="/admin/produk/create" method="get">
-                <input type="hidden" name="umkm_id" value="{{ $umkm_id }}">
+                <input type="hidden" name="umkm_id" value="{{ $umkms->id }}">
                 <button class="btn btn-primary mb-3" type="submit">Entri Data Produk</button>
             </form>
         </div>
         <div class="col-md-6">
             <form action="/admin/produk" method="GET" class="input-group mb-3">
-                <input type="hidden" name="umkm_id" value="{{ $umkm_id }}">
-                <input type="text" class="form-control" name="query" value="{{ $q }}"
-                    placeholder="cari sesuatu" aria-label="cari sesuatu">
-                <button class="btn btn-outline-success" type="submit">Button</button>
+                <input type="text" class="form-control" name="q" value="{{ $q }}" placeholder="cari sesuatu" aria-label="cari sesuatu">
+                <input type="hidden" class="form-control" name="id" value="{{ $umkms->id }}">
+                <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
     </div>
@@ -75,6 +63,7 @@
                 <tr>
                     <td>{{ $produks->firstItem() + $loop->index }}</td>
                     <td>{{ $item->name }}</td>
+                    {{-- @dd($item->category) --}}
                     <td>{{ $item->category->name }}</td>
                     <td>{{ 'Rp'.number_format($item->harga, 2, ',', '.') }}</td>
                     <td>
@@ -156,4 +145,12 @@
             });
         });
     </script>
+
+    {{-- Fungsi untuk kembali --}}
+    <script>
+        function kembali() {
+            window.history.back();
+        }
+    </script>
+    {{-- Fungsi untuk kembali --}}
 @endsection

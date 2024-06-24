@@ -9,17 +9,30 @@
             <a href="/admin/homestay/create" class="btn btn-primary mb-3">Entri Data Homestay</a>
         </div>
         <div class="col-md-6">
+
+            {{-- Ganti Button jadi Search & ganti name input jadi q --}}
             <form action="/admin/homestay" method="GET" class="input-group mb-3">
-                <input type="text" class="form-control" name="query" value="{{ $q }}" placeholder="cari berdasarkan nama" aria-label="cari sesuatu">
-                <button class="btn btn-outline-success" type="submit">Button</button>
+                <input type="text" class="form-control" name="q" value="{{ $q }}" placeholder="cari berdasarkan nama" aria-label="cari sesuatu">
+                <button class="btn btn-outline-success" type="submit">Search</button>
             </form>
         </div>
     </div>
 
-    @if (session('success'))
-        <div class="alert alert-success">
-            {{ session('success') }}
-        </div>
+    {{-- Ini juga kurang lengkap bang, pesan sessionnya --}}
+    @if (session('success') || session('warning') || session('danger'))
+        @if (session('success'))
+            <div class="alert alert-success">
+                {{ session('success') }}
+            </div>
+        @elseif (session('warning'))
+            <div class="alert alert-warning">
+                {{ session('warning') }}
+            </div>
+        @else
+            <div class="alert alert-danger">
+                {{ session('danger') }}
+            </div>
+        @endif
     @endif
 
     <table class="table table-bordered table-striped">
@@ -45,7 +58,7 @@
                         <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                     </form>
                     <a href="/admin/homestay/{{ $item->id }}/edit" class="btn btn-sm btn-warning">Edit</a>
-                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#details-modal" 
+                    <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#details-modal"
                         data-nama="{{ $item->name }}" data-desc="{{ $item->desc }}" data-harga="{{ $item->harga }}"
                         data-gambar="{{ $item->media }}" data-notelp="{{ $item->notelp }}">Detail</button>
                 </td>
@@ -78,13 +91,13 @@
             const detailModal = document.getElementById('details-modal');
             detailModal.addEventListener('show.bs.modal', (event) => {
                 const button = event.relatedTarget;
-    
+
                 const namaDestinasi = detailModal.querySelector('#nama-destinasi');
                 const deskripsi = detailModal.querySelector('#desc');
                 const harga = detailModal.querySelector('#harga');
                 const notelp = detailModal.querySelector('#notelp');
                 const mediaContainer = detailModal.querySelector('#media');
-                
+
                 namaDestinasi.innerHTML = button.getAttribute('data-nama');
                 deskripsi.innerHTML = button.getAttribute('data-desc');
                 harga.innerHTML= parseFloat(button.getAttribute('data-harga')).toLocaleString('id-ID', {
@@ -94,7 +107,7 @@
                 });
                 // console.log(fharga);
                 notelp.innerHTML = button.getAttribute('data-notelp');
-                
+
                 const objectMedia = JSON.parse(button.getAttribute('data-gambar'));
                 // console.log(objectMedia);
                 mediaContainer.innerHTML = '';
@@ -115,5 +128,5 @@
             });
         });
     </script>
-    
+
 @endsection

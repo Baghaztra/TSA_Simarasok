@@ -54,6 +54,7 @@
                                                 <div class="col-md d-flex">
                                                     <div class="form-group p-4 border-0">
                                                         <label for="">Cuaca</label>
+                                                        <p id="suhu">26</p>
                                                         <div class="form-field">
                                                         </div>
                                                     </div>
@@ -225,43 +226,47 @@
     </div>
 </div>
 
-{{-- <section class="ftco-section img ftco-select-destination"
-        style="background-image: url(/media/frontend/images/GreyBG.jpg);">
-        <div class="container">
-            <div class="row justify-content-center pb-4">
-                <div class="col-md-12 heading-section text-center ftco-animate">
-                    <span class="subheading">Usaha Kecil Mikro Menengah</span>
-                    <h2 class="mb-4">TOP Produk UMKM</h2>
-                </div>
+<div class="ftco-section img ftco-select-destination" style="background-image: url(/media/frontend/images/GreyBG.jpg);">
+    <div class="container">
+        <div class="row justify-content-center pb-4">
+            <div class="col-md-12 heading-section text-center ftco-animate">
+                <span class="subheading">Usaha Kecil Mikro Menengah</span>
+                <h2 class="mb-4">TOP Produk UMKM</h2>
             </div>
         </div>
-        <div class="container container-2">
-            <div class="row">
-                <div class="col-md-12">
-                    <div class="carousel-destination owl-carousel ftco-animate">
-                        @foreach ($umkm as $umkms)
-                            <div class="item">
-                                <div class="project-destination">
-                                    @dd()
-                                    @dd($umkms->media)
-                                    @if (count($umkm->produk) > 0)
-                                        <a href="#" class="img"
-                                            style="background-image: url('{{ asset('media/' . $umkms->media[0]->id) }}');"></a>
-                                    @endif
-                                    <div class="text">
-                                        <h3>Philippines</h3>
-                                        <span>8 Tours</span>
-                                    </div>
+    </div>
+    <div class="container container-2">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="carousel-destination owl-carousel ftco-animate">
+                    @foreach ($umkms as $item)
+                        <div class="item">
+                            <div class="project-destination">
+                                @if ($item->produk->isNotEmpty() && $item->produk[0]->media->isNotEmpty())
+                                    <a href="{{ route('umkm.show', $item->id) }}" class="img" style="background-image: url('{{ asset('media/' . $item->produk[0]->media[0]->nama) }}');">
+                                        <div class="text">
+                                            <h3>{{ $item->name }}</h3>
+                                            <span>Lihat Produk</span>
+                                        </div>
                                     </a>
-                                </div>
+                                @else
+                                    <a href="#" class="img" style="background-image: url('/media/frontend/images/default.jpg');">
+                                        <div class="text">
+                                            <h3>{{ $item->name }}</h3>
+                                            <span>{{ $item->produk->count() }} Produk</span>
+                                        </div>
+                                    </a>
+                                @endif
                             </div>
-                        @endforeach
-
-                    </div>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
-    </section> --}}
+    </div>
+</div>
+
+
 
 <div class="ftco-section">
     <div class="container">

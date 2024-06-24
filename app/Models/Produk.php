@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Produk extends Model
 {
@@ -27,5 +28,14 @@ class Produk extends Model
     function umkm()
     {
         return $this->belongsTo(UMKM::class);
+    }
+
+    function scopeCari(Builder $query) : void {
+        if (request('q')) {
+            $query->where('name', 'like', '%'.request('q').'%')
+            ->orWhereHas('category', function($q) {
+                $q->where('name', 'like', '%'.request('q').'%');
+            });
+        }
     }
 }

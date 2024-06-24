@@ -12,15 +12,11 @@ class UMKMController extends Controller
 {
     // Display a listing of the resource.
 
-    public function index(Request $request) {
-        $query = $request->input('query');
+    public function index() {
 
-        if (!empty($query)) {
-            $umkm = UMKM::where("name", "like", "%" . $query . '%')->latest()->paginate(10);
-        }else{
-            $umkm = UMKM::latest()->paginate(10);
-        }
-        return view("admin.umkm.index", ['umkms' => $umkm, 'q'=>$query]);
+        $umkm = UMKM::latest()->cari()->paginate(10);
+
+        return view("admin.umkm.index", ['umkms' => $umkm, 'q'=>request('q')]);
     }
 
     // Show the form for creating a new resources.

@@ -13,7 +13,7 @@ class DestinasiPariwisataController extends Controller
     // Display a listing of the resource.
 
     public function index(Request $request) {
-        $query = $request->input('query');
+        $query = $request->input('q');
 
         if (!empty($query)) {
             $destinasi = DestinasiPariwisata::where("name", "like", "%" . $query . '%')->latest()->paginate(10);;
@@ -22,6 +22,17 @@ class DestinasiPariwisataController extends Controller
         }
         return view("admin.destinasipariwisata.index", ['destinasis' => $destinasi, 'q' => $query]);
     }
+
+    // Ini untuk index nya.. BTW name dari search nya ubah jadi q aja, biar pendek GET nya
+    /*
+        public function index() {
+            $query = request('q');
+
+            $destinasi = DestinasiPariwisata::latest()->cari($query)->paginate(10);
+
+            return view("admin.destinasipariwisata.index", ['destinasis' => $destinasi, 'q' => $query]);
+        }
+    */
 
     // Show the form for creating a new resources.
 
@@ -71,7 +82,7 @@ class DestinasiPariwisataController extends Controller
                 $asset->jenis_id = $destinasi->id;
                 $asset->save();
             }
-        } 
+        }
 
         // DestinasiPariwisata::create($destinasi);
         return redirect('admin/destinasipariwisata')->with('success', 'Berhasil menambahkan Destinasi Pariwisata baru.');
@@ -107,7 +118,7 @@ class DestinasiPariwisataController extends Controller
             'lokasi.required' => 'Lokasi harus diisi.',
             'lokasi.regex' => 'Lokasi harus diawali dengan https://www.google.com/maps/ atau https://maps.app.goo.gl/.'
         ]);
-        
+
         $destinasi->update($data);
 
         if ($request->hasFile('gambar')) {

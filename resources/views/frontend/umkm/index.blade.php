@@ -38,6 +38,7 @@
             <div class="container">
                 <div class="row">
                     @foreach ($umkms as $item)
+                    {{-- @dd($item->produk[0]->media) --}}
                         <div class="col-md-4 ftco-animate">
                             <div class="project-wrap">
                                 @if ($item->firstProductImage())

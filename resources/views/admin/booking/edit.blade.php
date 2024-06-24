@@ -32,8 +32,17 @@
 
             <div class="mb-3">
                 <label class="form-label">Nomor telpon</label>
-                <input type="text" class="form-control @error('notelp') is-invalid @enderror" name="notelp"
-                    value="{{ old('notelp', $booking->notelp) }}" placeholder="ex: +628XXXXXXXXXX">
+                <div class="input-group">
+                    {{-- @dd($countryCode) --}}
+                    <select name="country_code" class="form-control">
+                        @foreach($countryCodes as $code => $country)
+                        <option value="{{ $code }}" {{ old('country_code', $countryCode) == $code ? 'selected' : '' }}>
+                            {{ $country }}
+                        </option>
+                        @endforeach
+                    </select>
+                    <input type="text" name="notelp" placeholder="nomor telpon" value="{{ old('notelp', $notelp) }}" class="form-control">
+                </div>
                 @error('notelp')
                     <div class="invalid-feedback">
                         {{ $message }}

@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Builder;
 
 class Category extends Model
 {
@@ -22,4 +23,10 @@ class Category extends Model
     /* public static function categoryProduk() {
         return Category::All();
     } */
+
+    function scopeCari(Builder $query) : void {
+        if (request('q')) {
+            $query->where('name', 'like', '%'.request('q').'%');
+        }
+    }
 }

@@ -12,16 +12,12 @@ class CategoryController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $query = $request->input('query');
 
-        if (!empty($query)) {
-            $kategori = Category::where("name", "like", "%" . $query . '%')->latest()->paginate(10);;
-        } else {
-            $kategori = Category::latest()->paginate(10);
-        }
-        return view("admin.category.index",['kategoris'=>$kategori, 'q'=>$query]);
+        $kategori = Category::latest()->cari()->paginate(10);
+
+        return view("admin.category.index",['kategoris'=>$kategori, 'q'=>request('q')]);
     }
 
     /**
@@ -38,7 +34,9 @@ class CategoryController extends Controller
     public function store(StoreCategoryRequest $request)
     {
         $validated = $request->validate([
-            'name'=>'required',
+            'name'=>'required|unique:categories',
+        ],[
+            'name'=>'Nama kategori tidak boleh sama dengan yang telah ada',
         ]);
         Category::create($validated);
         return redirect('admin/category')->with('success','Kategori Berhasil Ditambah');
@@ -66,7 +64,9 @@ class CategoryController extends Controller
     public function update(UpdateCategoryRequest $request, string $id)
     {
         $validated = $request->validate([
-            'name'=>'required',
+            'name'=>'required|unique:categories',
+        ],[
+            'name'=>'Nama kategori tidak boleh sama dengan yang telah ada',
         ]);
         Category::where('id',$id)->update($validated);
         return redirect('admin/category')->with('warning','Kategori Berhasil Diubah');

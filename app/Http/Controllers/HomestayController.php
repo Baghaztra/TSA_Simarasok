@@ -11,17 +11,35 @@ class HomestayController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index(Request $request)
+    public function index()
     {
-        $query = $request->input('query');
 
-        if (!empty($query)) {
-            $homestay = Homestay::where("name", "like", "%" . $query . '%')->latest()->paginate(10);;
-        } else {
-            $homestay = Homestay::latest()->paginate(10);
-        }
-        return view("admin.homestay.index", ['homestay' => $homestay, 'q' => $query]);
+        // $query = $request->input('q');
+
+        // if (!empty($query)) {
+        //     $homestay = Homestay::where("name", "like", "%" . $query . '%')->latest()->paginate(10);;
+        // } else {
+        //     $homestay = Homestay::latest()->paginate(10);
+        // }
+        // return view("admin.homestay.index", ['homestay' => $homestay, 'q' => $query]);
+
+        $homestay = Homestay::latest()->cari()->paginate(10);
+        return view("admin.homestay.index", ['homestay' => $homestay, 'q' => request('q')]);
+
     }
+
+
+    // Ini index, sama kek destinasi, kuganti GET nya jadi q
+    /*
+        public function index()
+        {
+            $query = request('q');
+
+            $homestay = Homestay::latest()->cari($query)->paginate(10);
+
+            return view("admin.homestay.index", ['homestay' => $homestay, 'q' => $query]);
+        }
+    */
 
     /**
      * Show the form for creating a new resource.
@@ -63,7 +81,7 @@ class HomestayController extends Controller
                 $asset->jenis_id = $homestay->id;
                 $asset->save();
             }
-        } 
+        }
 
         // DestinasiPariwisata::create($destinasi);
         return redirect('admin/homestay')->with('success', 'Berhasil menambahkan Homestay baru.');
