@@ -29,7 +29,7 @@
                         <div class="col-md-4 ftco-animate">
                             <div class="project-wrap">
                                 @if (count($item->media) > 0)
-                                    <a href="#" class="img"
+                                    <a href="{{ route('destinasi.show', ['id' => $item->id]) }}" class="img"
                                         style="background-image: url('{{ asset('media/' . $item->media[0]->nama) }}');"></a>
                                 @else
                                     <div class="img"
@@ -58,11 +58,12 @@
                                         </li>
                                     </ul>
                                     <ul>
+                                        <li class="btn btn-outline rounded-2 btn-sm mt-2"><a href="{{ route('destinasi.show', ['id' => $item->id]) }}">Detail</a></li>
                                         <li>
                                             <form method="POST" action="/booking-wisata">
                                                 @csrf
                                                 <input type="hidden" name="destinasi_id" value="{{ $item->id }}">
-                                                <button type="submit" class="btn btn-primary rounded-2 btn-sm mt-2">Detail Destinasi</button>
+                                                <button type="submit" class="btn btn-primary rounded-2 btn-sm mt-2">Booking Destinasi</button>
                                             </form>
                                         </li>
                                     </ul>

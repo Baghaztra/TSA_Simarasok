@@ -86,7 +86,9 @@ Route::middleware(['guest'])->group(function () {
 });
 
 Route::get('/list-destinasi', [FrontendDestinasiController::class, 'index']);
+Route::get('/list-destinasi/{id}', [FrontendDestinasiController::class, 'show'])->name('destinasi.show');
 Route::get('/list-homestay', [FrontendHomestayController::class, 'index']);
+Route::get('/list-homestay/{id}', [FrontendHomestayController::class, 'show'])->name('homestay.show');
 Route::get('/list-umkm', [FrontendUMKMController::class, 'index']);
 Route::get('/hubungi-kami',[FrontendKontakController::class,'index']);
 Route::get('/umkm/{id}', [FrontendUMKMController::class, 'show'])->name('umkm.show');

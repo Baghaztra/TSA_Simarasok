@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\DestinasiPariwisata;
-    
+
 class FrontendDestinasiController extends Controller
 {
     /**
@@ -36,9 +36,10 @@ class FrontendDestinasiController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show($id)
     {
-        //
+        $destinasis = DestinasiPariwisata::with('media')->find($id);
+        return view('frontend.destinasi.show', compact('destinasis'));
     }
 
     /**

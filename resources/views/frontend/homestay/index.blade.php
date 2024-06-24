@@ -29,7 +29,7 @@
                         <div class="col-md-4 ftco-animate">
                             <div class="project-wrap">
                                 @if (count($item->media) > 0)
-                                    <a href="#" class="img"
+                                    <a href="{{ route('homestay.show', ['id' => $item->id]) }}" class="img"
                                         style="background-image: url('{{ asset('media/' . $item->media[0]->nama) }}');"></a>
                                 @else
                                     <div class="img"
@@ -41,7 +41,7 @@
                                 <div class="text p-4">
                                     <h3>
                                         <a
-                                            href="#">{{ strlen($item->name) > 15 ? substr($item->name, 0, 30) . '...' : $item->name }}</a>
+                                            href="{{ route('homestay.show', ['id' => $item->id]) }}">{{ strlen($item->name) > 15 ? substr($item->name, 0, 30) . '...' : $item->name }}</a>
                                     </h3>
                                     <p class="location mb-1"><span class="fa fa-map-marker mr-2"></span>{{ $item->lokasi }}</p>
                                     <ul>
@@ -58,6 +58,7 @@
                                         </li>
                                     </ul>
                                     <ul>
+                                        <li class="btn btn-outline rounded-2 btn-sm mt-2"><a href="{{ route('homestay.show', ['id' => $item->id]) }}">Detail</a></li>
                                         <li>
                                             <form method="POST" action="/booking">
                                                 @csrf

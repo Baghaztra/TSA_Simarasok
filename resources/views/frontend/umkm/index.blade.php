@@ -15,7 +15,7 @@
             </div>
         </div>
     </div>
-    
+
     <div class="container mt-5">
         <form action="/list-umkm" method="GET" class="input-group">
             <div class="form-outline flex-grow-1" data-mdb-input-init>

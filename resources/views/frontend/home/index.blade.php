@@ -181,7 +181,7 @@
                     <div class="project-wrap"
                         style="background-color: white; box-shadow: 0 4px 8px rgba(163, 163, 163, 0.2);">
                         @if (count($item->media) > 0)
-                            <a href="#" class="img"
+                            <a href="{{ route('destinasi.show', ['id' => $item->id]) }}" class="img"
                                 style="background-image: url('{{ asset('media/' . $item->media[0]->nama) }}');"></a>
                         @endif
                         <div class="text p-4">
@@ -204,6 +204,7 @@
                                     </a></li>
                             </ul>
                             <ul>
+                            <li class="btn btn-outline rounded-2 btn-sm mt-2"><a href="{{ route('destinasi.show', ['id' => $item->id]) }}">Detail</a></li>
                                 <li>
                                     <form method="POST" action="/booking-wisata">
                                         @csrf
@@ -285,7 +286,7 @@
                 <div class="project-wrap"
                     style="background-color: white; box-shadow: 0 4px 8px rgba(163, 163, 163, 0.2);">
                     @if (count($item->media) > 0)
-                        <a href="#" class="img"
+                        <a href="{{ route('destinasi.show', ['id' => $item->id]) }}" class="img"
                             style="background-image: url('{{ asset('media/' . $item->media[0]->nama) }}');"></a>
                     @else
                         <div class="img"
@@ -297,7 +298,7 @@
                     <div class="text p-4">
                         <h3>
                             <a
-                                href="#">{{ strlen($item->name) > 15 ? substr($item->name, 0, 15) . '...' : $item->name }}</a>
+                                href="{{ route('destinasi.show', ['id' => $item->id]) }}">{{ strlen($item->name) > 15 ? substr($item->name, 0, 15) . '...' : $item->name }}</a>
                         </h3>
                         <p class="location mb-1"><span class="fa fa-map-marker mr-2"></span>Lokasi</p>
                         <ul>
@@ -315,6 +316,7 @@
                             </li>
                         </ul>
                         <ul>
+                            <li class="btn btn-outline rounded-2 btn-sm mt-2"><a href="{{ route('destinasi.show', ['id' => $item->id]) }}">Detail</a></li>
                             <li>
                                 <form method="POST" action="/booking">
                                     @csrf

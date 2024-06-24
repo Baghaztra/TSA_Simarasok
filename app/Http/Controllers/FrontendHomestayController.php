@@ -37,7 +37,9 @@ class FrontendHomestayController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $homestays = Homestay::with('media')->find($id);
+
+        return view('frontend.homestay.show', compact('homestays'));
     }
 
     /**
