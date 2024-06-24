@@ -12,8 +12,8 @@ class FrontendUMKMController extends Controller
      */
     public function index()
     {
-        $umkms = UMKM::latest()->paginate(6);
-        return view ('frontend.umkm.index',['umkms' => $umkms]);
+        $umkm = UMKM::latest()->pencarian()->paginate(6);
+        return view ('frontend.umkm.index',['umkms' => $umkm]);
     }
 
     /**
@@ -37,8 +37,8 @@ class FrontendUMKMController extends Controller
      */
     public function show(string $id)
     {
-        $umkm = UMKM::with('produk')->findOrFail($id);
-        return view('frontend.umkm.show', ['umkm' => $umkm]);
+        $umkms = UMKM::with('produk')->findOrFail($id);
+        return view('frontend.umkm.show', ['umkm' => $umkms]);
     }
 
     /**
