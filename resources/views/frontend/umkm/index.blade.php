@@ -15,11 +15,23 @@
             </div>
         </div>
     </div>
+    
+    <div class="container mt-5">
+        <form action="/list-umkm" method="GET" class="input-group">
+            <div class="form-outline flex-grow-1" data-mdb-input-init>
+                <input type="search" name="search" class="form-control" placeholder="Cari UMKM" value="{{ request('search') }}"/>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <i data-feather="search"></i>
+            </button>
+        </form>
+    </div>
 
     <div class="ftco-section">
         <div class="container">
             <div class="row justify-content-center pb-2">
                 <div class="col-md-12 heading-section text-center ftco-animate">
+                    <span class="subheading">Simarasok</span>
                     <h2 class="mb-4">Daftar UMKM</h2>
                 </div>
             </div>
@@ -28,18 +40,18 @@
                     @foreach ($umkms as $item)
                         <div class="col-md-4 ftco-animate">
                             <div class="project-wrap">
-                                @if (is_countable($item->media) && count($item->media) > 0)
-                                    <a href="{{ route('umkm.show', $item->id) }}" class="img"
-                                        style="background-image: url('{{ asset('media/' . $item->media[0]->nama) }}');"></a>
+                                @if ($item->firstProductImage())
+                                    <a href="#" class="img"
+                                        style="background-image: url('{{ asset('media/' . $item->firstProductImage()) }}');"></a>
                                 @else
-                                    <a href="{{ route('umkm.show', $item->id) }}" class="img"
+                                    <a href="#" class="img"
                                         style="background-color: #f8f9fa; align-items: center; justify-content: center; display: flex;">
                                         <span style="color: #6c757d; font-size: 18px; text-align: center">Tidak ada gambar</span>
                                     </a>
                                 @endif
                                 <div class="text p-4">
                                     <h3>
-                                        <a href="{{ route('umkm.show', $item->id) }}">
+                                        <a href="#">
                                             {{ strlen($item->name) > 30 ? substr($item->name, 0, 30) . '...' : $item->name }}
                                         </a>
                                     </h3>
@@ -50,6 +62,11 @@
                                                 style="color: inherit; text-decoration: none;">
                                                 <span data-feather="phone-call" style="width: 16px" class="mr-2"></span>{{ $item->notelp }}
                                             </a>
+                                        </li>
+                                    </ul>
+                                    <ul>
+                                        <li>
+                                            <a href="{{ route('umkm.show', ['id' => $item->id]) }}" class="btn btn-primary rounded-2 btn-sm mt-2">Lihat Produk</a>
                                         </li>
                                     </ul>
                                 </div>
