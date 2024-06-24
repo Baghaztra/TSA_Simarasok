@@ -13,7 +13,7 @@
                 <div class="card">
                     <div class="card-header">Jumlah Destinasi</div>
                     <div class="card-body">
-                        <h3>{{ App\Models\DestinasiPariwisata::count() }}</h3>
+                        <h3>{{ $dcount }}</h3>
                     </div>
                 </div>
             </div>
@@ -21,7 +21,7 @@
                 <div class="card">
                     <div class="card-header">Jumlah UMKM</div>
                     <div class="card-body">
-                        <h3>{{ App\Models\UMKM::count() }}</h3>
+                        <h3>{{ $ucount }}</h3>
                     </div>
                 </div>
             </div>
@@ -29,7 +29,7 @@
                 <div class="card">
                     <div class="card-header">Jumlah Homestay</div>
                     <div class="card-body">
-                        <h3>{{ App\Models\Homestay::count() }}</h3>
+                        <h3>{{ $hcount }}</h3>
                     </div>
                 </div>
             </div>

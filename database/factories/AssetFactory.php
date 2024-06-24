@@ -19,7 +19,7 @@ class AssetFactory extends Factory
     public function definition(): array
     {
         $jenis = ['destinasi', 'homestay'][rand(0, 1)];
-        $gambar = ['dummy1.jpg', 'dummy2.jpg', 'dummy3.jpg'][rand(0, 2)];
+        $gambar = ['dummy1.jpg', 'dummy2.jpg', 'dummy3.jpg', 'dummy4.jpg', 'dummy5.jpg', 'dummy6.jpg', 'dummy7.jpg'][rand(0, 6)];
         $jenis_id = $jenis=='destinasi'?(DestinasiPariwisata::all()->random()->id):(Homestay::all()->random()->id);
 
         return [

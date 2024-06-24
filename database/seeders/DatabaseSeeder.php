@@ -54,7 +54,7 @@ class DatabaseSeeder extends Seeder
         // gambar untuk tiap destinasi
         for ($i=1; $i <= 10; $i++) { 
             Asset::factory()->create([
-                'nama' => ['dummy1.jpg', 'dummy2.jpg', 'dummy3.jpg'][rand(0, 2)],
+                'nama' => ['dummy1.jpg', 'dummy2.jpg', 'dummy3.jpg', 'dummy4.jpg', 'dummy5.jpg', 'dummy6.jpg', 'dummy7.jpg'][rand(0, 6)],
                 'tipe' => 'gambar',
                 'jenis' => 'destinasi',
                 'jenis_id' => $i,
@@ -63,7 +63,7 @@ class DatabaseSeeder extends Seeder
         // gambar untuk tiap homestay
         for ($i=1; $i <= 20; $i++) { 
             Asset::factory()->create([
-                'nama' => ['dummy1.jpg', 'dummy2.jpg', 'dummy3.jpg'][rand(0, 2)],
+                'nama' => ['dummy1.jpg', 'dummy2.jpg', 'dummy3.jpg', 'dummy4.jpg', 'dummy5.jpg', 'dummy6.jpg', 'dummy7.jpg'][rand(0, 6)],
                 'tipe' => 'gambar',
                 'jenis' => 'homestay',
                 'jenis_id' => $i,
@@ -73,7 +73,7 @@ class DatabaseSeeder extends Seeder
         // gambar untuk tiap produk (20+15)
         for ($i=1; $i <= 35; $i++) { 
             Asset::factory()->create([
-                'nama' => ['dummy1.jpg', 'dummy2.jpg', 'dummy3.jpg'][rand(0, 2)],
+                'nama' => ['dummy1.jpg', 'dummy2.jpg', 'dummy3.jpg', 'dummy4.jpg', 'dummy5.jpg', 'dummy6.jpg', 'dummy7.jpg'][rand(0, 6)],
                 'tipe' => 'gambar',
                 'jenis' => 'produk',
                 'jenis_id' => $i,
