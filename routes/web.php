@@ -56,9 +56,6 @@ Route::middleware(['auth'])->group(function () {
     Route::get('/admin', function () {
         return view('admin.dashboard');
     });
-    Route::get('/home', function () {
-        return view('admin.dashboard');
-    });
     // Route::resource('/admin/post', PostController::class);
     Route::resource('/admin/category', CategoryController::class);
     Route::resource('/admin/umkm', UMKMController::class);
