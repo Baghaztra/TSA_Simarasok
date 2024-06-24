@@ -2,16 +2,16 @@
 
 @section('content')
 <link rel="stylesheet" href="/css/BookingHomestay.css">
-    <div class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('/media/frontend/images/Home.jpg');">
+    <div class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('{{ asset('media/' . $homestay->media[0]->nama) }}');">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
                 <div class="col-md-9 ftco-animate pb-5 text-center">
                     <p class="breadcrumbs">
                         <span class="mr-2"><a href="/">Home <i class="fa fa-chevron-right"></i></a></span>
-                        <span>List Homestay <i class="fa fa-chevron-right"></i></span>
+                        <span>Booking Homestay <i class="fa fa-chevron-right"></i></span>
                     </p>
-                    <h1 class="mb-0 bread">List Homestay</h1>
+                    <h1 class="mb-0 bread">Booking Homestay</h1>
                 </div>
             </div>
         </div>

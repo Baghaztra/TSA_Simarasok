@@ -13,7 +13,7 @@
                 <li class="nav-item {{ request()->is('list-destinasi') ? 'active' : '' }}">
                     <a href="/list-destinasi" class="nav-link">Destinasi</a>
                 </li>
-                <li class="nav-item {{ request()->is('list-homestay') ? 'active' : '' }}">
+                <li class="nav-item {{ request()->is('/list-homestay*') ? 'active' : '' }}">
                     <a href="/list-homestay" class="nav-link">Homestay</a>
                 </li>
                 <li class="nav-item {{ request()->is('list-umkm') ? 'active' : '' }}">
