@@ -54,7 +54,10 @@ Route::put('/booking/send', [BookingController::class, 'booking']);
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin', function () {
-        return view('admin.dashboard');
+        $dcount =  DestinasiPariwisata::count();
+        $ucount =  UMKM::count();
+        $hcount =  Homestay::count();
+        return view('admin.dashboard')->with(['dcount' => $dcount, 'ucount' => $ucount, 'hcount' => $hcount,]);
     });
     // Route::resource('/admin/post', PostController::class);
     Route::resource('/admin/category', CategoryController::class);
