@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Produk;
 use App\Models\UMKM;
 use Illuminate\Http\Request;
 
@@ -38,7 +39,9 @@ class FrontendUMKMController extends Controller
     public function show(string $id)
     {
         $umkms = UMKM::with('produk')->findOrFail($id);
-        return view('frontend.umkm.show', ['umkm' => $umkms]);
+        $produk = UMKM::findOrFail($id)->produk()->Cari()->get();
+        // dd($produk);
+        return view('frontend.umkm.show', ['umkm' => $umkms, 'produk'=>$produk]);
     }
 
     /**

@@ -32,9 +32,9 @@
             </div>
 
             <div class="container mt-5">
-                <form action="/umkm/{id}" method="GET" class="input-group">
+                <form action="/umkm/{{ $umkm->id }}" method="GET" class="input-group">
                     <div class="form-outline flex-grow-1" data-mdb-input-init>
-                        <input type="search" name="search" class="form-control" placeholder="Cari Produk" value="{{ request('search') }}"/>
+                        <input type="search" name="q" class="form-control" placeholder="Cari Produk" value="{{ request('q') }}"/>
                     </div>
                     <button type="submit" class="btn btn-primary">
                         <i data-feather="search"></i>
@@ -48,7 +48,7 @@
                 </div>
             </div>
             <div class="row">
-                @foreach ($umkm->produk as $prdk)
+                @foreach ($produk as $prdk)
                     <div class="col-md-4 ftco-animate">
                         <div class="project-wrap">
                             @if (is_countable($prdk->media) && count($prdk->media) > 0)

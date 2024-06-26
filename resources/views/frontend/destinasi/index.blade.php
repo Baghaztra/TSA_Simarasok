@@ -15,6 +15,18 @@
             </div>
         </div>
     </div>
+
+    <div class="container mt-5">
+        <form action="/list-destinasi" method="GET" class="input-group">
+            <div class="form-outline flex-grow-1" data-mdb-input-init>
+                <input type="search" name="q" class="form-control" placeholder="Cari Destinasi" value="{{ request('q') }}"/>
+            </div>
+            <button type="submit" class="btn btn-primary">
+                <i data-feather="search"></i>
+            </button>
+        </form>
+    </div>
+
     <div class="ftco-section">
         <div class="container">
             <div class="row justify-content-center pb-2">

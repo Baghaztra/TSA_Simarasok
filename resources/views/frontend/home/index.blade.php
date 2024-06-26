@@ -204,15 +204,16 @@
                                     </a></li>
                             </ul>
                             <ul>
-                            <li class="btn btn-outline rounded-2 btn-sm mt-2"><a href="{{ route('destinasi.show', ['id' => $item->id]) }}">Detail</a></li>
-                                <li>
+                                <li class="btn btn-outline rounded-2 btn-sm mt-2"><a href="{{ route('destinasi.show', ['id' => $item->id]) }}">Detail</a></li>
+                                {{-- ini kalau ada booking destinasi --}}
+                                {{-- <li>
                                     <form method="POST" action="/booking-wisata">
                                         @csrf
                                         <input type="hidden" name="destinasi_id" value="{{ $item->id }}">
                                         <button type="submit" class="btn btn-primary rounded-2 btn-sm mt-2">Detail
                                             Destinasi</button>
                                     </form>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                     </div>
@@ -231,7 +232,7 @@
     <div class="container">
         <div class="row justify-content-center pb-4">
             <div class="col-md-12 heading-section text-center ftco-animate">
-                <span class="subheading">Usaha Kecil Mikro Menengah</span>
+                <span class="subheading">Usaha Mikro Kecil Menengah</span>
                 <h2 class="mb-4">TOP Produk UMKM</h2>
             </div>
         </div>
@@ -316,7 +317,7 @@
                             </li>
                         </ul>
                         <ul>
-                            <li class="btn btn-outline rounded-2 btn-sm mt-2"><a href="{{ route('destinasi.show', ['id' => $item->id]) }}">Detail</a></li>
+                            <li class="btn btn-outline rounded-2 btn-sm mt-2"><a href="{{ route('homestay.show', ['id' => $item->id]) }}">Detail</a></li>
                             <li>
                                 <form method="POST" action="/booking">
                                     @csrf

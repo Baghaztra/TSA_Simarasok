@@ -14,6 +14,7 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\SigninController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\DashbaordController;
 use App\Http\Controllers\HomestayController;
 use App\Http\Controllers\FrontendUMKMController;
 use App\Http\Controllers\FrontendHomestayController;
@@ -53,13 +54,7 @@ Route::put('/booking/send', [BookingController::class, 'booking']);
 
 
 Route::middleware(['auth'])->group(function () {
-    Route::get('/admin', function () {
-        $dcount =  DestinasiPariwisata::count();
-        $ucount =  UMKM::count();
-        $hcount =  Homestay::count();
-        return view('admin.dashboard')->with(['dcount' => $dcount, 'ucount' => $ucount, 'hcount' => $hcount,]);
-    });
-    // Route::resource('/admin/post', PostController::class);
+    Route::get('/admin', [DashbaordController::class, 'index']);
     Route::resource('/admin/category', CategoryController::class);
     Route::resource('/admin/umkm', UMKMController::class);
     Route::resource('/admin/user', UserController::class);

@@ -12,7 +12,7 @@ class FrontendDestinasiController extends Controller
      */
     public function index()
     {
-        $destinasis = DestinasiPariwisata::latest()->paginate(6);
+        $destinasis = DestinasiPariwisata::latest()->cari()->paginate(6);
         return view('frontend.destinasi.index', ['destinasis' => $destinasis]);
     }
 

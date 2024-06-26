@@ -12,7 +12,7 @@ class FrontendHomestayController extends Controller
      */
     public function index()
     {
-        $homestays = Homestay::latest()->paginate(6);
+        $homestays = Homestay::latest()->cari()->paginate(6);
         return view ('frontend.homestay.index',['homestays' => $homestays]);
     }
 

@@ -38,29 +38,27 @@
         <div class="row mt-4">
             <!-- Grafik Booking -->
             @php
-                $months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
-                $bookings = [];
-                foreach ($months as $month) {
-                    $bookings[$month] = rand(0, 100); // Angka random antara 0 dan 100
-                }
+                $bookings = json_encode(array_values($monthlyBookings));
+                $months = json_encode($months);
             @endphp
             <div class="col-md-6">
                 <canvas id="bookingChart"></canvas>
             </div>
         </div>
         
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
                 var ctx = document.getElementById('bookingChart').getContext('2d');
                 var bookingChart = new Chart(ctx, {
-                    type: 'bar', // Tipe grafik, bisa 'line', 'bar', dll.
+                    type: 'bar', // Tipe grafik, bisa diganti dengan 'line' atau lainnya
                     data: {
-                        labels: {!! json_encode(array_keys($bookings)) !!}, // Bulan sebagai label
+                        labels: {!! $months !!},
                         datasets: [{
-                            label: 'Jumlah Booking',
-                            data: {!! json_encode(array_values($bookings)) !!}, // Jumlah booking per bulan
-                            backgroundColor: 'rgba(54, 162, 235, 0.2)',
-                            borderColor: 'rgba(54, 162, 235, 1)',
+                            label: 'Number of Bookings',
+                            data: {!! $bookings !!},
+                            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                            borderColor: 'rgba(75, 192, 192, 1)',
                             borderWidth: 1
                         }]
                     },

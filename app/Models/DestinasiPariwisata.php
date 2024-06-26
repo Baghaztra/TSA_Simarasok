@@ -30,4 +30,10 @@ class DestinasiPariwisata extends Model
             return $query;
         }
     */
+
+    function scopeCari(Builder $query) : void {
+        if (request('q')) {
+            $query->where('name', 'like', '%'.request('q').'%');
+        } 
+    }
 }
