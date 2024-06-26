@@ -59,7 +59,7 @@
                                     <p class="location"><span class="fa fa-map-marker mr-2"></span>Lokasi</p>
                                     <ul>
                                         <li style="color: black">
-                                            <a href="https://api.whatsapp.com/send?phone={{ $item->notelp }}"
+                                            <a href="https://api.whatsapp.com/send?phone={{ str_replace('+', '', $item->notelp) }}"
                                                 style="color: inherit; text-decoration: none;">
                                                 <span data-feather="phone-call" style="width: 16px" class="mr-2"></span>{{ $item->notelp }}
                                             </a>

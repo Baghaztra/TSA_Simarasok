@@ -62,8 +62,8 @@
                                     </ul>
                                     <ul>
                                         <li style="color: black">
-                                            <a href="https://api.whatsapp.com/send?phone={{ $item->notelp }}"
-                                                style="color: inherit; text-decoration: none;">
+                                            <a href="https://api.whatsapp.com/send?phone={{ str_replace('+', '', $item->notelp) }}"
+                                                style="color: inherit; text-decoration: none;" target="_blank">
                                                 <span data-feather="phone-call" style="width: 16px"
                                                     class="mr-2"></span>{{ $item->notelp }}
                                             </a>

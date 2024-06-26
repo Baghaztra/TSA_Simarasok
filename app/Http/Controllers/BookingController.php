@@ -165,9 +165,9 @@ class BookingController extends Controller
             'notelp' => 'required',
             'homestay_id' => 'required|exists:homestays,id',
         ]);
-
+    
         $notelp = $request->input('country_code') . $request->input('notelp');
-
+    
         Booking::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
@@ -176,8 +176,30 @@ class BookingController extends Controller
             'checkout' => $request->input('checkout'),
             'homestay_id' => $request->input('homestay_id'),
         ]);
-        return redirect('/');
-    }
+    
+        $cp = Homestay::findOrFail($request->input('homestay_id'))->notelp;
+        $cp = str_replace('+', '', $cp);
+
+        $waktu = date('H') >= 5 && date('H') < 12 ? 'pagi' : (date('H') >= 12 && date('H') < 18 ? 'siang' : 'malam');
+        $pemesan = $request->input('name');
+        $homestay_name = Homestay::findOrFail($request->input('homestay_id'))->name;
+        $checkin = date('d F', strtotime($request->input('checkin')));
+        $checkout = date('d F', strtotime($request->input('checkout')));
+
+        $msg = "Selamat $waktu, \nSaya $pemesan, ingin memesan kamar di $homestay_name dari tanggal $checkin sampai $checkout.";
+        $msg = rawurlencode($msg);
+        $whatsappUrl = "https://api.whatsapp.com/send?phone=$cp&text=$msg";
+        // dd($whatsappUrl);
+
+        $media = Homestay::findOrFail($request->input('homestay_id'))->media->first()->nama;
+        $nama = Homestay::findOrFail($request->input('homestay_id'))->name;
+    
+        return view('frontend.homestay.sendWA', [
+            'whatsappUrl' => $whatsappUrl, 
+            'media' => $media,
+            'nama' => $nama,
+        ]);
+    }    
 
     // approve bookingan
     public function approve(string $id){

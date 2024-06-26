@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="container">
-
+        halo :D
         @foreach ($posts as $post)
             <div class="card mb-3 shadow">
                 <img
