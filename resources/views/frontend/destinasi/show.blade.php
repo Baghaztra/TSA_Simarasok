@@ -1,6 +1,10 @@
 @extends('frontend.layouts.main')
 
 @section('content')
+    <div class="hero-wrap hero-wrap-2 "
+    style="background-image: url('{{ asset('media/' . $destinasis->media[0]->nama) }}');height: 100px;">
+        <div class="overlay" style="height: 100px;"></div>
+    </div>
     <div class="ftco-section">
         <div class="container">
             <div class="row justify-content-center pb-2">

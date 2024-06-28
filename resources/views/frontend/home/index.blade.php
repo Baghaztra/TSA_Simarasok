@@ -9,10 +9,11 @@
                     <h1 class="mb-4">Nagari Awak Basamo</h1>
                     <p class="caps">Travel to the any corner of the world, without going around in circles</p>
                 </div>
-                <a href="https://www.youtube.com/embed/nx6Iy1RpcXU?si=ZB6QiOTk-VqgZjAY"
+                <a href="https://www.youtube.com/watch?v=xicIX_jgfWU"
                     class="icon-video popup-vimeo d-flex align-items-center justify-content-center mb-4">
                     <span class="fa fa-play"></span>
                 </a>
+                {{-- <iframe width="420" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe> --}}
                 {{-- <iframe width="560" height="315" src="https://www.youtube.com/embed/z3OfmuNMIDI?si=d7eXBkWIdbWBA47H"
                     title="YouTube video player" frameborder="0"
                     allow="accelerometer; autoplay1; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"

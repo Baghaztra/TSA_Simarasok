@@ -224,7 +224,7 @@ class BookingController extends Controller
         foreach ($countries as $country) {
             if (isset($country['idd']['root']) && isset($country['idd']['suffixes'])) {
                 $code = $country['idd']['root'] . $country['idd']['suffixes'][0];
-                $countryCodes[$code] = $country['name']['common'] . " ($code)";
+                $countryCodes[$code] = "($code) " . $country['name']['common'];
             }
         }
 
