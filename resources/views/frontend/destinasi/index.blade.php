@@ -72,11 +72,11 @@
                                     <ul>
                                         <li class="btn btn-outline rounded-2 btn-sm mt-2"><a href="{{ route('destinasi.show', ['id' => $item->id]) }}">Detail</a></li>
                                         <li>
-                                            <form method="POST" action="/booking-wisata">
+                                            {{-- <form method="POST" action="/booking-wisata">
                                                 @csrf
                                                 <input type="hidden" name="destinasi_id" value="{{ $item->id }}">
                                                 <button type="submit" class="btn btn-primary rounded-2 btn-sm mt-2">Booking Destinasi</button>
-                                            </form>
+                                            </form> --}}
                                         </li>
                                     </ul>
                                 </div>
