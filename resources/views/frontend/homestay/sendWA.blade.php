@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="hero-wrap hero-wrap-2 "
-    style="background-image: url('{{ asset('media/' . $homestay->media[0]->nama) }}');height: 100px;">
+    style="background-image: url('{{ asset('media/' . $media) }}');height: 100px;">
         <div class="overlay" style="height: 100px;"></div>
     </div>
 <div class="mt-3 page-wrapper p-t-130 p-b-100">
