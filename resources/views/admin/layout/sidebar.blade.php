@@ -34,13 +34,13 @@
                         <span class="hide-menu">Homestay</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
+                {{-- <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('admin/booking*') ? 'active' : '' }}"
                         href="{{ route('booking.index') }}" aria-expanded="false">
                         <span data-feather="book" class="align-text-bottom"></span>
                         <span class="hide-menu">Booking</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('admin/umkm*') ? 'active' : '' }}"
                         href="{{ route('umkm.index') }}" aria-expanded="false">

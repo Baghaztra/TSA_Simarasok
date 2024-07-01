@@ -14,13 +14,14 @@ use App\Http\Controllers\ProdukController;
 use App\Http\Controllers\SigninController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\DashbaordController;
 use App\Http\Controllers\HomestayController;
+use App\Http\Controllers\DashbaordController;
 use App\Http\Controllers\FrontendUMKMController;
+use App\Http\Controllers\FrontendVideoController;
+use App\Http\Controllers\FrontendKontakController;
 use App\Http\Controllers\FrontendHomestayController;
 use App\Http\Controllers\FrontendDestinasiController;
 use App\Http\Controllers\DestinasiPariwisataController;
-use App\Http\Controllers\FrontendKontakController;
 
 /*
 |--------------------------------------------------------------------------
@@ -89,3 +90,4 @@ Route::get('/hubungi-kami',[FrontendKontakController::class,'index']);
 Route::get('/list-umkm/{id}', [FrontendUMKMController::class, 'show'])->name('umkm.show');
 Route::get('/hubungi-kami',[FrontendKontakController::class,'index']);
 Route::get('/produk/{id}', [FrontendUMKMController::class, 'produk'])->name('umkm.produk');
+Route::get('/list-video', [FrontendVideoController::class, 'index']);

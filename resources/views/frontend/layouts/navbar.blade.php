@@ -19,6 +19,9 @@
                 <li class="nav-item {{ request()->is('list-umkm') || request()->is('umkm*') || request()->is('produk*') || request()->is('list-umkm/*') ? 'active' : '' }}">
                     <a href="/list-umkm" class="nav-link">UMKM</a>
                 </li>
+                <li class="nav-item {{ request()->is('list-video/*') ? 'active' : '' }}">
+                    <a href="/list-video" class="nav-link">Video</a>
+                </li>
                 <li class="nav-item {{ request()->is('hubungi-kami') ? 'active' : ''}}">
                     <a href="/hubungi-kami" class="nav-link">Hubungi Kami</a>
                 </li>

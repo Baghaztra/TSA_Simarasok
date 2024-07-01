@@ -35,7 +35,7 @@
             </div>
         </div>
         
-        <div class="row mt-4">
+        {{-- <div class="row mt-4">
             <!-- Grafik Booking -->
             @php
                 $bookings = json_encode(array_values($monthlyBookings));
@@ -45,7 +45,7 @@
                 <canvas id="bookingChart"></canvas>
             </div>
         </div>
-        
+     
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function () {
@@ -71,6 +71,6 @@
                     }
                 });
             });
-        </script>
+        </script> --}}
     </div>
 @endsection
