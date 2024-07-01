@@ -36,6 +36,7 @@ class DatabaseSeeder extends Seeder
         Category::factory(5)->create();
         DestinasiPariwisata::factory(10)->create();
         Homestay::factory(20)->create();  
+        Post::factory(30)->create();  
         
         UMKM::factory(20)->create();
 
@@ -80,8 +81,6 @@ class DatabaseSeeder extends Seeder
             ]);
         }
 
-
-        Post::factory(30)->create();  
         // gambar untuk tiap Post
         for ($i=1; $i <= 30; $i++) { 
             Asset::factory()->create([
