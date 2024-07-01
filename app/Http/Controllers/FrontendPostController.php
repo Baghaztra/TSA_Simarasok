@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class FrontendVideoController extends Controller
+class FrontendPostController extends Controller
 {
     public function index()
     {
