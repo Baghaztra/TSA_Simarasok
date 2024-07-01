@@ -10,13 +10,13 @@
                 <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
                     <a href="/" class="nav-link">Home</a>
                 </li>
-                <li class="nav-item {{ request()->is('list-destinasi') ? 'active' : '' }}">
+                <li class="nav-item {{ request()->is('list-destinasi') || request()->is('list-destinasi/*') ? 'active' : '' }}">
                     <a href="/list-destinasi" class="nav-link">Destinasi</a>
                 </li>
-                <li class="nav-item {{ request()->is('list-homestay') ? 'active' : '' }}">
+                <li class="nav-item {{ request()->is('list-homestay') || request()->is('list-homestay/*') ? 'active' : '' }}">
                     <a href="/list-homestay" class="nav-link">Homestay</a>
                 </li>
-                <li class="nav-item {{ request()->is('list-umkm*') || request()->is('umkm*') || request()->is('produk*') ? 'active' : '' }}">
+                <li class="nav-item {{ request()->is('list-umkm') || request()->is('umkm*') || request()->is('produk*') || request()->is('list-umkm/*') ? 'active' : '' }}">
                     <a href="/list-umkm" class="nav-link">UMKM</a>
                 </li>
                 <li class="nav-item {{ request()->is('hubungi-kami') ? 'active' : ''}}">

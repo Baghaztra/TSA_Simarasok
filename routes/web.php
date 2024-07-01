@@ -86,6 +86,6 @@ Route::get('/list-homestay', [FrontendHomestayController::class, 'index']);
 Route::get('/list-homestay/{id}', [FrontendHomestayController::class, 'show'])->name('homestay.show');
 Route::get('/list-umkm', [FrontendUMKMController::class, 'index']);
 Route::get('/hubungi-kami',[FrontendKontakController::class,'index']);
-Route::get('/umkm/{id}', [FrontendUMKMController::class, 'show'])->name('umkm.show');
+Route::get('/list-umkm/{id}', [FrontendUMKMController::class, 'show'])->name('umkm.show');
 Route::get('/hubungi-kami',[FrontendKontakController::class,'index']);
 Route::get('/produk/{id}', [FrontendUMKMController::class, 'produk'])->name('umkm.produk');
