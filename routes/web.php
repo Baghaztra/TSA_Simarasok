@@ -62,6 +62,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/admin/destinasipariwisata', DestinasiPariwisataController::class);
     Route::resource('/admin/homestay', HomestayController::class);
     Route::resource('/admin/booking', BookingController::class);
+    Route::resource('/admin/post', PostController::class);
 
     Route::get('/admin/produk/catcreate', [ProdukController::class, 'catcreate'])->name('produk.catcreate');
     Route::post('/admin/produk/strcreate', [ProdukController::class, 'strcreate'])->name('produk.strcreate');

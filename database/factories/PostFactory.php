@@ -19,12 +19,10 @@ class PostFactory extends Factory
     public function definition(): array
     {
         return [
-            'judul' => fake()->sentence(),
+            'title' => fake()->sentence(),
             'slug' => Post::make_slug(fake()->sentence()),
-            // 'gambar' => fake()->imageUrl(),
             'content' => fake()->paragraphs(5, true),
-            'user_id' => User::all()->random()->id,
-            'category_id' => rand(1,3),
+            'category' => ['Hard News','Soft News','Feature'][rand(0,2)],
             'status' => ['publish', 'draft'][rand(0, 1)],
         ];
     }

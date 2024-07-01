@@ -26,12 +26,12 @@ class DatabaseSeeder extends Seeder
         User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@example.com',
-            'password' => bcrypt('123123123'),
+            'password' => bcrypt('1'),
             'alias' => 'A',
             'roles' => 'admin',
             'status' => 'active',
         ]);
-        User::factory(5)->create();
+        // User::factory(5)->create();
 
         Category::factory(5)->create();
         DestinasiPariwisata::factory(10)->create();
@@ -76,6 +76,18 @@ class DatabaseSeeder extends Seeder
                 'nama' => ['dummy1.jpg', 'dummy2.jpg', 'dummy3.jpg', 'dummy4.jpg', 'dummy5.jpg', 'dummy6.jpg', 'dummy7.jpg'][rand(0, 6)],
                 'tipe' => 'gambar',
                 'jenis' => 'produk',
+                'jenis_id' => $i,
+            ]);
+        }
+
+
+        Post::factory(30)->create();  
+        // gambar untuk tiap Post
+        for ($i=1; $i <= 30; $i++) { 
+            Asset::factory()->create([
+                'nama' => ['dummy1.jpg', 'dummy2.jpg', 'dummy3.jpg', 'dummy4.jpg', 'dummy5.jpg', 'dummy6.jpg', 'dummy7.jpg'][rand(0, 6)],
+                'tipe' => 'gambar',
+                'jenis' => 'post',
                 'jenis_id' => $i,
             ]);
         }
