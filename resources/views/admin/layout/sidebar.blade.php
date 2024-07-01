@@ -20,6 +20,13 @@
                         <span class="hide-menu">Dashboard</span>
                     </a>
                 </li>
+                {{-- <li class="sidebar-item">
+                    <a class="sidebar-link {{ request()->is('admin/post*') ? 'active' : '' }}"
+                        href="{{ route('w.index') }}" aria-expanded="false">
+                        <span data-feather="map" class="align-text-bottom"></span>
+                        <span class="hide-menu">Post</span>
+                    </a>
+                </li> --}}
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('admin/destinasipariwisata*') ? 'active' : '' }}"
                         href="{{ route('destinasipariwisata.index') }}" aria-expanded="false">

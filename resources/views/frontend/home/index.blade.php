@@ -9,10 +9,10 @@
                     <h1 class="mb-4">Nagari Awak Basamo</h1>
                     <p class="caps">Travel to the any corner of the world, without going around in circles</p>
                 </div>
-                <a href="https://www.youtube.com/watch?v=xicIX_jgfWU"
+                {{-- <a href="https://www.youtube.com/watch?v=xicIX_jgfWU"
                     class="icon-video popup-vimeo d-flex align-items-center justify-content-center mb-4">
                     <span class="fa fa-play"></span>
-                </a>
+                </a> --}}
                 {{-- <iframe width="420" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe> --}}
                 {{-- <iframe width="560" height="315" src="https://www.youtube.com/embed/z3OfmuNMIDI?si=d7eXBkWIdbWBA47H"
                     title="YouTube video player" frameborder="0"
@@ -99,13 +99,7 @@
                     <div class="w-100">
                         <span class="subheading">Simarasok Website</span>
                         <h2 class="mb-4">It's time to start your adventure</h2>
-                        <p>A small river named Duden flows by their place and supplies it with the necessary regelialia.
-                            It is a paradisematic country, in which roasted parts of sentences fly into your mouth.</p>
-                        <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia,
-                            there live the blind texts. Separated they live in Bookmarksgrove right at the coast of the
-                            Semantics, a large language ocean.
-                            A small river named Duden flows by their place and supplies it with the necessary
-                            regelialia.</p>
+                        <p>Nagari Simarasok merupakan nagari yang terletak di Kecamatan Baso, kabupaten Agam.  Nagari Simarasok memiliki potensi alam yang luar biasa. Berada diketinggian 800 – 1200 mdpl dengan luas 1789 Ha nagari ini terbagi atas empat jorong yaitu jorong Simarasok, jorong Koto Tuo, jorong Kampeh dan jorong Sungai Angek. Memiliki suhu udara 20 – 24oC dan curah hujan perbulannya 123,04 mm. Dengan jumlah penduduk 6.872 orang.Selain potensi alam tersebut, di Nagari Simarasok terdapat pula kekayaan budaya, kuliner dan edukasi.</p>
                         <p><a href="/list-destinasi" class="btn btn-primary py-3 px-4">Search Destination</a></p>
                     </div>
                 </div>
@@ -342,7 +336,7 @@
 </div>
 
 
-<div class="ftco-section ftco-about img"style="background-image: url(/media/frontend/images/gambar1.jpg);">
+{{-- <div class="ftco-section ftco-about img"style="background-image: url(/media/frontend/images/gambar1.jpg);">
 <div class="overlay"></div>
 <div class="container py-md-5">
     <div class="row py-md-5">
@@ -354,9 +348,9 @@
         </div>
     </div>
 </div>
-</div>
+</div> --}}
 
-<div class="ftco-section ftco-about ftco-no-pt img">
+{{-- <div class="ftco-section ftco-about ftco-no-pt img">
 <div class="container">
     <div class="row d-flex">
         <div class="col-md-12 about-intro">
@@ -382,5 +376,5 @@
         </div>
     </div>
 </div>
-</div>
+</div> --}}
 @endsection
