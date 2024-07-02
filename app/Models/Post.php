@@ -26,12 +26,23 @@ class Post extends Model
     }
 
     function scopeHardNews(Builder $query) : void {
-        $query->where('category', 'is', 'Hard News');
+        $query->where('category', 'Hard News');
     }
     function scopeSoftNews(Builder $query) : void {
-        $query->where('category', 'is', 'Soft News');
+        $query->where('category', 'Soft News');
     }
     function scopeFeature(Builder $query) : void {
-        $query->where('category', 'is', 'Feature');
+        $query->where('category', 'Feature');
+    }
+
+    public function scopeCari(Builder $query, $keyword = null): Builder
+    {
+        if ($keyword) {
+            $query->where(function($q) use ($keyword) {
+                $q->where('title', 'like', "%{$keyword}%")
+                  ->orWhere('content', 'like', "%{$keyword}%");
+            });
+        }
+        return $query;
     }
 }

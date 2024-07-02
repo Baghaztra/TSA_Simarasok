@@ -92,7 +92,11 @@ Route::get('/list-umkm/{id}', [FrontendUMKMController::class, 'show'])->name('um
 Route::get('/hubungi-kami',[FrontendKontakController::class,'index']);
 Route::get('/produk/{id}', [FrontendUMKMController::class, 'produk'])->name('umkm.produk');
 Route::get('/list-post', [FrontendPostController::class, 'index']);
-Route::get('/list-hard-news', [FrontendPostController::class, 'hardNews']);
-Route::get('/list-soft-news', [FrontendPostController::class, 'softNews']);
-Route::get('/list-feature', [FrontendPostController::class, 'feature']);
+Route::get('/list-hard-news', [FrontendPostController::class, 'hardNews'])->name('post.hardNews');
+Route::get('/list-soft-news', [FrontendPostController::class, 'softNews'])->name('post.softNews');
+Route::get('/list-feature', [FrontendPostController::class, 'feature'])->name('post.feature');
 Route::get('/list-feature/{id}', [FrontendPostController::class, 'show'])->name('post.show');
+Route::get('/list-hard-news/{slug}', [FrontendPostController::class, 'show'])->name('post.hardNewsDetail');
+Route::get('/list-soft-news/{slug}', [FrontendPostController::class, 'show'])->name('post.softNewsDetail');
+Route::get('/list-feature/{slug}', [FrontendPostController::class, 'show'])->name('post.featureDetail');
+
