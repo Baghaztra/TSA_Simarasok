@@ -7,10 +7,9 @@ use Illuminate\Http\Request;
 
 class FrontendPostController extends Controller
 {
-    public function index(Request $request)
+    public function index()
     {
-        $keyword = $request->input('keyword');
-        $posts = Post::latest()->cari($keyword)->paginate(3);
+        $posts = Post::latest()->cari()->paginate(3);
         $sidebarPosts = Post::latest()->softNews()->take(3)->get()->merge(Post::latest()->feature()->take(3)->get());
 
         return view('frontend.post.index', [
@@ -21,7 +20,7 @@ class FrontendPostController extends Controller
 
     public function hardNews()
     {
-        $posts = Post::latest()->cari()->hardNews()->paginate(5);
+        $posts = Post::latest()->cari()->hardNews()->paginate(6);
         return view('frontend.post.hardNews', ['posts' => $posts]);
     }
 

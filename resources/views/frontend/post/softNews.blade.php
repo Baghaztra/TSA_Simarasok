@@ -47,7 +47,7 @@
                 @endforeach
             @else
                 <div class="col">
-                    <p>No soft news available.</p>
+                    <p>Soft News tidak ditemukan.</p>
                 </div>
             @endif
         </div>
