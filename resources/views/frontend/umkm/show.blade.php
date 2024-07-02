@@ -26,7 +26,7 @@
                             href="https://api.whatsapp.com/send?phone={{ str_replace('+', '', $umkm->notelp) }}">{{ $umkm->notelp }}</a></p>
                 </div>
                 <div class="col-md-6 ftco-animate">
-                    <div class="container mt-3">
+                    <div class="container mt-3 mb-4">
                         <form action="/umkm/{{ $umkm->id }}" method="GET" class="input-group">
                             <div class="form-outline flex-grow-1" data-mdb-input-init>
                                 <input type="search" name="q" class="form-control" placeholder="Cari Produk"
@@ -37,7 +37,7 @@
                             </button>
                         </form>
                     </div>
-                </div>
+                </div>                
             </div>
 
             {{-- <div class="row justify-content-center pb-2">

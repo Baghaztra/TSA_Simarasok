@@ -22,6 +22,10 @@
                 <li class="nav-item {{ request()->is('list-video/*') ? 'active' : '' }}">
                     <a href="/list-video" class="nav-link">Video</a>
                 </li>
+                <li class="nav-item {{ request()->is('list-post') || request()->is('list-hard-news*') || request()->is('list-soft-news*') || request()->is('list-feature*') ||  request()->is('list-post/*') ? 'active' : '' }}">
+                    <a href="/list-post" class="nav-link">Berita</a>
+                </li>
+                              
                 <li class="nav-item {{ request()->is('hubungi-kami') ? 'active' : ''}}">
                     <a href="/hubungi-kami" class="nav-link">Hubungi Kami</a>
                 </li>

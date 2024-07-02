@@ -32,12 +32,12 @@ class Post extends Model
     }
 
     function scopeHardNews(Builder $query) : void {
-        $query->where('category', 'is', 'Hard News');
+        $query->where('category', 'Hard News');
     }
     function scopeSoftNews(Builder $query) : void {
-        $query->where('category', 'is', 'Soft News');
+        $query->where('category', 'Soft News');
     }
     function scopeFeature(Builder $query) : void {
-        $query->where('category', 'is', 'Feature');
+        $query->where('category', 'Feature');
     }
 }

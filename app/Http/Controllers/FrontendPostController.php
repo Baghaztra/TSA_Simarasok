@@ -7,27 +7,39 @@ use Illuminate\Http\Request;
 
 class FrontendPostController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $posts = Post::latest()->cari()->paginate(6);
-        return view('frontend.post.index', ['posts' => $posts]);
+        $keyword = $request->input('keyword');
+        $posts = Post::latest()->cari($keyword)->paginate(3);
+        $sidebarPosts = Post::latest()->softNews()->take(3)->get()->merge(Post::latest()->feature()->take(3)->get());
+
+        return view('frontend.post.index', [
+            'posts' => $posts,
+            'sidebarPosts' => $sidebarPosts,
+        ]);
     }
 
     public function hardNews()
     {
-        $posts = Post::latest()->cari()->hardNews()->paginate(6);
-        return view('frontend.post.index', ['posts' => $posts]);
+        $posts = Post::latest()->cari()->hardNews()->paginate(5);
+        return view('frontend.post.hardNews', ['posts' => $posts]);
     }
 
     public function softNews()
     {
         $posts = Post::latest()->cari()->softNews()->paginate(6);
-        return view('frontend.post.index', ['posts' => $posts]);
+        return view('frontend.post.softNews', ['posts' => $posts]);
     }
 
     public function feature()
     {
         $posts = Post::latest()->cari()->feature()->paginate(6);
-        return view('frontend.post.index', ['posts' => $posts]);
+        return view('frontend.post.feature', ['posts' => $posts]);
     }
+
+    public function show($slug)
+    {
+        $post = Post::where('slug', $slug)->firstOrFail();
+        return view('frontend.post.show', compact('post'));
+    }      
 }
