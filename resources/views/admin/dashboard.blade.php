@@ -19,7 +19,15 @@
             </div>
             <div class="col-md-3">
                 <div class="card">
-                    <div class="card-header">Jumlah UMKM</div>
+                    <div class="card-header">Jumlah Post</div>
+                    <div class="card-body">
+                        <h3>{{ $pcount }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">Jumlah Produk</div>
                     <div class="card-body">
                         <h3>{{ $ucount }}</h3>
                     </div>

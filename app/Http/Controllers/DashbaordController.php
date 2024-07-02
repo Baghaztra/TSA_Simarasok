@@ -8,6 +8,8 @@ use App\Models\Homestay;
 use Illuminate\Http\Request;
 use App\Models\DestinasiPariwisata;
 use App\Http\Controllers\Controller;
+use App\Models\Post;
+use App\Models\Produk;
 
 class DashbaordController extends Controller
 {
@@ -28,11 +30,13 @@ class DashbaordController extends Controller
         }
 
         $dcount =  DestinasiPariwisata::count();
-        $ucount =  UMKM::count();
+        $pcount =  Post::count();
+        $ucount =  Produk::count();
         $hcount =  Homestay::count();
         return view('admin.dashboard')
               ->with(['dcount' => $dcount, 
                       'ucount' => $ucount, 
+                      'pcount' => $pcount, 
                       'hcount' => $hcount,
                       'monthlyBookings' => $monthlyBookings, 
                       'months' => $months]);
