@@ -16,7 +16,7 @@
                 <li class="nav-item {{ request()->is('list-homestay') || request()->is('list-homestay/*') ? 'active' : '' }}">
                     <a href="/list-homestay" class="nav-link">Homestay</a>
                 </li>
-                <li class="nav-item {{ request()->is('list-produk') || request()->is('produk*') || request()->is('produk*') || request()->is('list-produk/*') ? 'active' : '' }}">
+                <li class="nav-item {{ request()->is('list-produk') || request()->is('produk/*') ? 'active' : '' }}">
                     <a href="/list-produk" class="nav-link">Produk</a>
                 </li>
                 <li class="nav-item ">
