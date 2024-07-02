@@ -40,15 +40,4 @@ class Post extends Model
     function scopeFeature(Builder $query) : void {
         $query->where('category', 'Feature');
     }
-
-    public function scopeCari(Builder $query, $keyword = null): Builder
-    {
-        if ($keyword) {
-            $query->where(function($q) use ($keyword) {
-                $q->where('title', 'like', "%{$keyword}%")
-                  ->orWhere('content', 'like', "%{$keyword}%");
-            });
-        }
-        return $query;
-    }
 }
