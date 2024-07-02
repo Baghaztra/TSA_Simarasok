@@ -25,6 +25,12 @@ class Post extends Model
         return str_replace(' ', '-', strtolower($judul));
     }
 
+    function scopeCari(Builder $query) : void {
+        if (request('q')) {
+            $query->where('title', 'like', '%'.request('q').'%');
+        } 
+    }
+
     function scopeHardNews(Builder $query) : void {
         $query->where('category', 'Hard News');
     }
