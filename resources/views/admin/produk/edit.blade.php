@@ -27,9 +27,9 @@
                     @foreach($produks->media as $media)
                     <div id="lobak" style="position: relative; display: inline-block;" data-media-id="{{ $media->id }}">
                         @if($media->tipe === 'gambar')
-                        <img src="/assets/{{ $media->nama }}" class="img-thumbnail" style="width: 300px; display: block;">
+                        <img src="/media/{{ $media->nama }}" class="img-thumbnail" style="width: 300px; display: block;">
                         @elseif($media->tipe === 'video')
-                        <video src="/assets/{{ $media->nama }}" class="img-thumbnail" style="width: 300px; display: block;" controls></video>
+                        <video src="/media/{{ $media->nama }}" class="img-thumbnail" style="width: 300px; display: block;" controls></video>
                         @endif
                         <button onclick="removeExistingMedia({{ $media->id }})" style="position: absolute; top: 5px; right: 5px; background-color: rgba(255, 255, 255, 0.8); border: none; border-radius: 50%; cursor: pointer;">&#x2715;</button>
                     </div>
@@ -122,7 +122,7 @@
                     const mediaElement = document.querySelector(`[data-media-id='${id}']`);
                     if (mediaElement) {
                         mediaElement.remove();
-                        fetch(`/assets/${id}`, {
+                        fetch(`/media/${id}`, {
                             method: 'DELETE',
                             headers: {
                                 'X-CSRF-TOKEN': '{{ csrf_token() }}',

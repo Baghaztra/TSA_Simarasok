@@ -20,7 +20,7 @@ class AssetFactory extends Factory
      */
     public function definition(): array
     {
-        $jenis = ['destinasi', 'homestay', 'post', 'produk'][rand(0, 3)];
+        $jenis = ['destinasi', 'homestay', 'post'][rand(0, 2)];
         $gambar = '';
         $jenis_id = '';
         if ($jenis == 'destinasi') {
@@ -32,9 +32,6 @@ class AssetFactory extends Factory
         }elseif ($jenis == 'post') {
             $gambar = ['P1','P2','P3','P4'][rand(0, 3)] . '.jpg';
             $jenis_id = Post::all()->random()->id;
-        }elseif ($jenis == 'produk') {
-            $gambar = ['K1','K2','K3','K4'][rand(0, 3)] . '.jpg';
-            $jenis_id = Produk::all()->random()->id;
         }
 
         return [

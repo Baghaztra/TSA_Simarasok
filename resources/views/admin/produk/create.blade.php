@@ -158,7 +158,6 @@
 
             <div class="mb-3">
                 <label class="form-label">Penyediaan</label>
-                <span class="text-danger"> (wajib dipilih)</span>
 
                 <div>
                     <div class="form-check form-check-inline">

@@ -16,8 +16,8 @@
                 <li class="nav-item {{ request()->is('list-homestay') || request()->is('list-homestay/*') ? 'active' : '' }}">
                     <a href="/list-homestay" class="nav-link">Homestay</a>
                 </li>
-                <li class="nav-item {{ request()->is('list-umkm') || request()->is('umkm*') || request()->is('produk*') || request()->is('list-umkm/*') ? 'active' : '' }}">
-                    <a href="/list-umkm" class="nav-link">UMKM</a>
+                <li class="nav-item {{ request()->is('list-produk') || request()->is('produk*') || request()->is('produk*') || request()->is('list-produk/*') ? 'active' : '' }}">
+                    <a href="/list-produk" class="nav-link">Produk</a>
                 </li>
                 <li class="nav-item {{ request()->is('list-video/*') ? 'active' : '' }}">
                     <a href="/list-video" class="nav-link">Video</a>
