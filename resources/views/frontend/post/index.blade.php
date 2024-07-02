@@ -18,7 +18,11 @@
 
     <div class="content-wrap">
         <div class="container clearfix">
-            <h1> Hard News </h1>
+            <div class="row justify-content-center pb-2">
+                <div class="col-md-12 heading-section">
+                    <h2 class="mb-4 mt-4">Simarasok Terkini</h2>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-lg-8 postcontent nobottommargin clearfix">
                     <div id="posts" class="post-grid grid-container grid-2 clearfix" data-layout="fitRows">
@@ -74,10 +78,10 @@
                         <h4>Info lainnya</h4>
                         <ul>
                             <li><a href="{{ route('post.softNews') }}">
-                                    <div>Soft News</div>
+                                    <div>Berita Simarasok</div>
                                 </a></li>
                             <li><a href="{{ route('post.feature') }}">
-                                    <div>Features</div>
+                                    <div>Terkait Simarasok</div>
                                 </a></li>
                         </ul>
                     </div>

@@ -5,11 +5,11 @@
         <div class="overlay" style="height: 100px;"></div>
     </div>
     <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1>Hard News</h1>
+        <div class="row justify-content-center pb-2">
+            <div class="col heading-section">
+                <h2 class="mb-4 mt-4">Berita Simarasok</h2>
             </div>
-            <div class="col-auto mt-3">
+            <div class="col-auto mt-4">
                 <form action="/list-hard-news" method="GET" class="input-group">
                     <div class="form-outline" data-mdb-input-init>
                         <input type="search" name="q" class="form-control" placeholder="Cari"
@@ -28,15 +28,18 @@
                     <div class="col-md-4 mb-4">
                         @if ($post->media->isNotEmpty())
                             <a href="{{ route('post.hardNewsDetail', $post->slug) }}">
-                                <img src="{{ asset('media/' . $post->media->first()->nama) }}" class="img-fluid" style="width: 100%; height: 200px; object-fit: cover;" alt="{{ $post->title }}">
+                                <img src="{{ asset('media/' . $post->media->first()->nama) }}" class="img-fluid"
+                                    style="width: 100%; height: 200px; object-fit: cover;" alt="{{ $post->title }}">
                             </a>
                         @else
                             <a href="{{ route('post.hardNewsDetail', $post->slug) }}">
-                                <img src="{{ asset('path/to/placeholder/image.jpg') }}" class="img-fluid" style="width: 100%; height: 200px; object-fit: cover;" alt="Placeholder Image">
+                                <img src="{{ asset('path/to/placeholder/image.jpg') }}" class="img-fluid"
+                                    style="width: 100%; height: 200px; object-fit: cover;" alt="Placeholder Image">
                             </a>
                         @endif
                         <h5><a href="{{ route('post.hardNewsDetail', $post->slug) }}">{{ $post->title }}</a></h5>
-                        <p>{{ Str::limit($post->content, 150) }}<a href="{{ route('post.hardNewsDetail', $post->slug) }}">Selengkapnya</a></p>
+                        <p>{{ Str::limit($post->content, 150) }}<a
+                                href="{{ route('post.hardNewsDetail', $post->slug) }}">Selengkapnya</a></p>
                         {{-- <div class="card-footer text-muted">
                             Category: {{ $post->category }}
                         </div> --}}
@@ -46,7 +49,7 @@
                 <p>Hard News tidak ditemukan.</p>
             @endif
         </div>
-        
+
         <div class="d-flex justify-content-center mt-4 mb-5">
             @if ($posts->lastPage() > 1)
                 <div class="block-27">
@@ -56,7 +59,7 @@
                         @else
                             <li><a href="{{ $posts->previousPageUrl() }}">&lt;</a></li>
                         @endif
-        
+
                         @foreach ($posts->links()->elements as $element)
                             @if (is_string($element))
                                 <li class="disabled"><span>{{ $element }}</span></li>
@@ -71,7 +74,7 @@
                                 @endforeach
                             @endif
                         @endforeach
-        
+
                         @if ($posts->hasMorePages())
                             <li><a href="{{ $posts->nextPageUrl() }}">&gt;</a></li>
                         @else
@@ -80,6 +83,6 @@
                     </ul>
                 </div>
             @endif
-        </div>        
+        </div>
     </div>
 @endsection

@@ -6,11 +6,11 @@
         <div class="overlay" style="height: 100px;"></div>
     </div>
     <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1>Feature</h1>
+        <div class="row justify-content-center pb-2">
+            <div class="col heading-section">
+                <h2 class="mb-4 mt-4">Terkait Simarasok</h2>
             </div>
-            <div class="col-auto mt-3">
+            <div class="col-auto mt-4">
                 <form action="/list-feature" method="GET" class="input-group">
                     <div class="form-outline" data-mdb-input-init>
                         <input type="search" name="q" class="form-control" placeholder="Cari"
@@ -28,16 +28,16 @@
                 @foreach ($posts as $post)
                     <div class="col-md-4 mb-4">
                         @if ($post->media->isNotEmpty())
-                            <a href="{{ route('post.featurDetail', $post->slug) }}">
+                            <a href="{{ route('post.featureDetail', $post->slug) }}">
                                 <img src="{{ asset('media/' . $post->media->first()->nama) }}" class="img-fluid" style="width: 100%; height: 200px; object-fit: cover;" alt="{{ $post->title }}">
                             </a>
                         @else
-                            <a href="{{ route('post.featurDetail', $post->slug) }}">
+                            <a href="{{ route('post.featureDetail', $post->slug) }}">
                                 <img src="{{ asset('path/to/placeholder/image.jpg') }}" class="img-fluid" style="width: 100%; height: 200px; object-fit: cover;" alt="Placeholder Image">
                             </a>
                         @endif
-                        <h5><a href="{{ route('post.featurDetail', $post->slug) }}">{{ $post->title }}</a></h5>
-                        <p>{{ Str::limit($post->content, 150) }}<a href="{{ route('post.featurDetail', $post->slug) }}">Selengkapnya</a></p>
+                        <h5><a href="{{ route('post.featureDetail', $post->slug) }}">{{ $post->title }}</a></h5>
+                        <p>{{ Str::limit($post->content, 150) }}<a href="{{ route('post.featureDetail', $post->slug) }}">Selengkapnya</a></p>
                         {{-- <div class="card-footer text-muted">
                             Category: {{ $post->category }}
                         </div> --}}
