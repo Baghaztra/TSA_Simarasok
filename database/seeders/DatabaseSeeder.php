@@ -35,25 +35,25 @@ class DatabaseSeeder extends Seeder
 
         Category::factory(5)->create();
         DestinasiPariwisata::factory(10)->create();
-        Homestay::factory(20)->create();  
-        Post::factory(30)->create();  
-        
-        UMKM::factory(20)->create();
+        Homestay::factory(20)->create();
+        Post::factory(30)->create();
+
+        // UMKM::factory(20)->create();
 
         // produk untuk tiap umkm
-        for ($i=1; $i < 20; $i++) { 
+        /* for ($i=1; $i < 20; $i++) {
             Produk::factory()->create([
                 'name' => fake()->words(2, true),
                 'desc' => fake()->paragraphs(3, true),
                 'harga' => rand(5, 50)*1000,
                 'umkm_id' => $i,
             ]);
-        }
+        } */
         // produk lain
-        Produk::factory(15)->create();
-        
+        Produk::factory(30)->create();
+
         // gambar untuk tiap destinasi
-        for ($i=1; $i <= 10; $i++) { 
+        for ($i=1; $i <= 10; $i++) {
             Asset::factory()->create([
                 'nama' => ['dummy1.jpg', 'dummy2.jpg', 'dummy3.jpg', 'dummy4.jpg', 'dummy5.jpg', 'dummy6.jpg', 'dummy7.jpg'][rand(0, 6)],
                 'tipe' => 'gambar',
@@ -62,7 +62,7 @@ class DatabaseSeeder extends Seeder
             ]);
         }
         // gambar untuk tiap homestay
-        for ($i=1; $i <= 20; $i++) { 
+        for ($i=1; $i <= 20; $i++) {
             Asset::factory()->create([
                 'nama' => ['dummy1.jpg', 'dummy2.jpg', 'dummy3.jpg', 'dummy4.jpg', 'dummy5.jpg', 'dummy6.jpg', 'dummy7.jpg'][rand(0, 6)],
                 'tipe' => 'gambar',
@@ -72,7 +72,7 @@ class DatabaseSeeder extends Seeder
         }
 
         // gambar untuk tiap produk (20+15)
-        for ($i=1; $i <= 35; $i++) { 
+        for ($i=1; $i <= 35; $i++) {
             Asset::factory()->create([
                 'nama' => ['dummy1.jpg', 'dummy2.jpg', 'dummy3.jpg', 'dummy4.jpg', 'dummy5.jpg', 'dummy6.jpg', 'dummy7.jpg'][rand(0, 6)],
                 'tipe' => 'gambar',
@@ -82,7 +82,7 @@ class DatabaseSeeder extends Seeder
         }
 
         // gambar untuk tiap Post
-        for ($i=1; $i <= 30; $i++) { 
+        for ($i=1; $i <= 30; $i++) {
             Asset::factory()->create([
                 'nama' => ['dummy1.jpg', 'dummy2.jpg', 'dummy3.jpg', 'dummy4.jpg', 'dummy5.jpg', 'dummy6.jpg', 'dummy7.jpg'][rand(0, 6)],
                 'tipe' => 'gambar',

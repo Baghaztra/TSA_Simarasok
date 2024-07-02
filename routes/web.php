@@ -57,15 +57,15 @@ Route::put('/booking/send', [BookingController::class, 'booking']);
 Route::middleware(['auth'])->group(function () {
     Route::get('/admin', [DashbaordController::class, 'index']);
     Route::resource('/admin/category', CategoryController::class);
-    Route::resource('/admin/umkm', UMKMController::class);
     Route::resource('/admin/user', UserController::class);
     Route::resource('/admin/destinasipariwisata', DestinasiPariwisataController::class);
     Route::resource('/admin/homestay', HomestayController::class);
     Route::resource('/admin/booking', BookingController::class);
     Route::resource('/admin/post', PostController::class);
 
-    Route::get('/admin/produk/catcreate', [ProdukController::class, 'catcreate'])->name('produk.catcreate');
-    Route::post('/admin/produk/strcreate', [ProdukController::class, 'strcreate'])->name('produk.strcreate');
+    /* Route::resource('/admin/umkm', UMKMController::class); */
+    /* Route::get('/admin/produk/catcreate', [ProdukController::class, 'catcreate'])->name('produk.catcreate');
+    Route::post('/admin/produk/strcreate', [ProdukController::class, 'strcreate'])->name('produk.strcreate'); */
     Route::resource('/admin/produk', ProdukController::class);
 
     Route::put('/admin/users/{id}', [UserController::class, 'update']);

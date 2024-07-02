@@ -13,29 +13,27 @@ class Produk extends Model
         'name',
         'desc',
         'harga',
-        'umkm_id',
-        'category_id',
+        'event',
+        /* 'umkm_id',
+        'category_id', */
     ];
 
     function media(){
         return $this->hasMany(Asset::class, 'jenis_id')->where('jenis', 'produk');;
     }
 
-    function category(){
+    /* function category(){
         return $this->belongsTo(Category::class, 'category_id');
     }
 
     function umkm()
     {
         return $this->belongsTo(UMKM::class);
-    }
+    } */
 
     function scopeCari(Builder $query) : void {
         if (request('q')) {
-            $query->where('name', 'like', '%'.request('q').'%')
-            ->orWhereHas('category', function($q) {
-                $q->where('name', 'like', '%'.request('q').'%');
-            });
+            $query->where('name', 'like', '%'.request('q').'%');
         }
     }
 }

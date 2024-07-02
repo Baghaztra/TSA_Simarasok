@@ -126,32 +126,54 @@
                         });
                 </script>
             </div>
-            <script>
-                function handleCategoryChange(select) {
-                    if (select.value === 'create_category') {
-                        window.location.href = '/admin/produk/catcreate?umkm_id={{ $umkms->id }}'; // URL untuk fungsi catcreate
-                    }
-                }
-            </script>
-            <div class="mb-3">
-                <label class="form-label">Kategori</label>
-                <select name="category_id" class="form-control @error('category_id') is-invalid @enderror" id="" onchange="handleCategoryChange(this)">
-                    <option value="">---Pilih Kategori---</option>
-                    @foreach ($kategoris as $item)
-                        <option value="{{ $item->id }}" @if (old('category_id') == $item->id) selected @endif>
-                            {{ $item->name }}</option>
-                    @endforeach
-                    <option value="create_category">+ Tambah Kategori Baru</option>
-                </select>
-                @error('category_id')
-                    <div class="invalid-feedback">
-                        {{-- {{ $message }} --}}
-                        {{ "Kategori jangan lupa dipilih yaa :)" }}
-                    </div>
-                @enderror
-            </div>
+
+            {{-- Penanganan Kategori --}}
+
+                {{-- <script>
+                        function handleCategoryChange(select) {
+                            if (select.value === 'create_category') {
+                                window.location.href = '/admin/produk/catcreate?umkm_id={{ $umkms->id }}'; // URL untuk fungsi catcreate
+                            }
+                        }
+                    </script>
+
+                    <div class="mb-3">
+                        <label class="form-label">Kategori</label>
+                        <select name="category_id" class="form-control @error('category_id') is-invalid @enderror" id="" onchange="handleCategoryChange(this)">
+                            <option value="">---Pilih Kategori---</option>
+                            @foreach ($kategoris as $item)
+                                <option value="{{ $item->id }}" @if (old('category_id') == $item->id) selected @endif>
+                                    {{ $item->name }}</option>
+                            @endforeach
+                            <option value="create_category">+ Tambah Kategori Baru</option>
+                        </select>
+                        @error('category_id')
+                            <div class="invalid-feedback">
+                                {{ $message }}
+                            </div>
+                        @enderror
+                    </div> --}}
+
+            {{-- Penanganan Kategori --}}
 
             <div class="mb-3">
+                <label class="form-label">Penyediaan</label>
+                <span class="text-danger"> (wajib dipilih)</span>
+
+                <div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="hargaRadio" name="type" value="harga" {{ (old('type') == 'harga' || old('type') === null) ? 'checked' : '' }}>
+                        <label class="form-check-label" for="hargaRadio">Dijual</label>
+                    </div>
+
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" id="eventRadio" name="type" value="event" {{ old('type') == 'event' ? 'checked' : '' }}>
+                        <label class="form-check-label" for="eventRadio">Khusus</label>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mb-3" id="hargaInput" style="display: none">
                 <label class="form-label">Harga</label>
                 <input type="number" class="form-control @error('harga') is-invalid @enderror" name="harga"
                     value="{{ old('harga') }}" placeholder="Masukkan angka saja, tanpa titik dan sebagainya">
@@ -162,13 +184,57 @@
                 @enderror
             </div>
 
-            <input type="hidden" name="umkm_id" value="{{ $umkms->id }}">
+            <div class="mb-3" id="eventInput" style="display: none">
+                <label class="form-label">Event</label>
+                <input type="text" class="form-control @error('event') is-invalid @enderror" name="event"
+                    value="{{ old('event') }}" placeholder="Masukkan hari khusus">
+                @error('event')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+
+            {{-- <input type="hidden" name="umkm_id" value="{{ $umkms->id }}"> --}}
 
             <button class="btn btn-sm btn-primary" type="submit">Submit</button>
             <div style="height: 25vh"></div>
         </form>
     </div>
     <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            // Ambil elemen radio buttons dan input fields
+            var hargaRadio = document.getElementById('hargaRadio');
+            var eventRadio = document.getElementById('eventRadio');
+            var hargaInput = document.getElementById('hargaInput');
+            var eventInput = document.getElementById('eventInput');
+
+            // Fungsi untuk menampilkan input berdasarkan nilai radio yang dipilih
+            function showInputBasedOnRadio() {
+                if (hargaRadio.checked) {
+                    hargaInput.style.display = 'block';
+                    eventInput.style.display = 'none';
+
+                    eventInput.querySelector('input').disabled = true; // Menambah atribut disabled pada input event
+                    hargaInput.querySelector('input').disabled = false; // Menghapus atribut disabled pada input harga
+
+                } else if (eventRadio.checked) {
+                    hargaInput.style.display = 'none';
+                    eventInput.style.display = 'block';
+
+                    hargaInput.querySelector('input').disabled = true; // Menambah atribut disabled pada input harga
+                    eventInput.querySelector('input').disabled = false; // Menghapus atribut disabled pada input event
+                }
+            }
+
+            // Panggil fungsi saat halaman dimuat untuk menyesuaikan tampilan input
+            showInputBasedOnRadio();
+
+            // Tambahkan event listener pada radio buttons untuk perubahan
+            hargaRadio.addEventListener('change', showInputBasedOnRadio);
+            eventRadio.addEventListener('change', showInputBasedOnRadio);
+        });
+
         document.getElementById('kembali').addEventListener('click', function() {
             window.history.back();
         });

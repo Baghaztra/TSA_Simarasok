@@ -49,10 +49,10 @@
                     </a>
                 </li> --}}
                 <li class="sidebar-item">
-                    <a class="sidebar-link {{ request()->is('admin/umkm*') ? 'active' : '' }}"
-                        href="{{ route('umkm.index') }}" aria-expanded="false">
+                    <a class="sidebar-link {{ request()->is('admin/produk*') ? 'active' : '' }}"
+                        href="{{ route('produk.index') }}" aria-expanded="false">
                         <span data-feather="shopping-cart" class="align-text-bottom"></span>
-                        <span class="hide-menu">UMKM</span>
+                        <span class="hide-menu">Produk</span>
                     </a>
                 </li>
                 <li class="sidebar-item">

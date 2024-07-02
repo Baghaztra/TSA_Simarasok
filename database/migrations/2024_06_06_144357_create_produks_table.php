@@ -14,10 +14,12 @@ return new class extends Migration
         Schema::create('produks', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->text('desc');
-            $table->integer('harga');
-            $table->foreignId('umkm_id')->constrained('umkms');
-            $table->foreignId('category_id')->constrained('categories');
+            $table->text('desc')->nullable();
+            $table->integer('harga')->nullable();
+            $table->string('event')->nullable();
+
+            /* $table->foreignId('umkm_id')->constrained('umkms');
+            $table->foreignId('category_id')->constrained('categories'); */
             $table->timestamps();
         });
     }
