@@ -22,10 +22,10 @@ class UpdatePostRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'judul' => 'required|string|max:255',
-            'content' => 'required',
-            'category_id' => 'required|exists:categories,id',
-            'user_id' => 'required|exists:users,id',
+            // 'judul' => 'required|string|max:255',
+            // 'content' => 'required',
+            // 'category_id' => 'required|exists:categories,id',
+            // 'user_id' => 'required|exists:users,id',
             // 'gambar' => 'nullable|image|mimes:jpeg,png,jpg',
         ];
     }
