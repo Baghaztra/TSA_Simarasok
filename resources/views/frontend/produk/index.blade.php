@@ -55,7 +55,11 @@
                                             {{ strlen($produk->name) > 30 ? substr($produk->name, 0, 30) . '...' : $produk->name }}
                                         </a>
                                     </h3>
-                                    <p> Rp {{ number_format($produk->harga, 0, ',', '.') }}</p>
+                                    @if (is_null($produk->harga))
+                                        <p> Disajikan pada {{ $produk->event }}</p>
+                                    @else
+                                        <p> Rp {{ number_format($produk->harga, 0, ',', '.') }}</p>
+                                    @endif
                                     {{-- <p class="price">{{ $produk->harga }}</span></p> --}}
                                 </div>
                             </div>
