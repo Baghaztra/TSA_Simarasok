@@ -50,8 +50,8 @@ Route::get('/', function () {
     ]);
 });
 
-Route::post('/booking', [BookingController::class, 'formBooking']);
-Route::put('/booking/send', [BookingController::class, 'booking']);
+// Route::post('/booking', [BookingController::class, 'formBooking']);
+// Route::put('/booking/send', [BookingController::class, 'booking']);
 
 
 Route::middleware(['auth'])->group(function () {
@@ -60,11 +60,11 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/admin/user', UserController::class);
     Route::resource('/admin/destinasipariwisata', DestinasiPariwisataController::class);
     Route::resource('/admin/homestay', HomestayController::class);
-    Route::resource('/admin/booking', BookingController::class);
+    // Route::resource('/admin/booking', BookingController::class);
     Route::resource('/admin/post', PostController::class);
 
-    /* Route::resource('/admin/umkm', UMKMController::class); */
-    /* Route::get('/admin/produk/catcreate', [ProdukController::class, 'catcreate'])->name('produk.catcreate');
+    /* Route::resource('/admin/umkm', UMKMController::class); 
+    Route::get('/admin/produk/catcreate', [ProdukController::class, 'catcreate'])->name('produk.catcreate');
     Route::post('/admin/produk/strcreate', [ProdukController::class, 'strcreate'])->name('produk.strcreate'); */
     Route::resource('/admin/produk', ProdukController::class);
 
@@ -72,7 +72,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('updateStatus/{id}', [UserController::class, 'updateStatus']);
     Route::delete('/media/{id}', [AssetController::class, 'destroy']);
     Route::delete('/assets/{id}', [AssetController::class, 'destroy'])->name('assets.destroy');
-    Route::get('/admin/booking/{id}/approve', [BookingController::class, 'approve']);
+    // Route::get('/admin/booking/{id}/approve', [BookingController::class, 'approve']);
     Route::put('/admin/post/toggleStatus/{id}', [PostController::class, 'toggleStatus'])->name('post.toggleStatus');
 
     Route::get('sign-out', [SigninController::class, 'logout'])->name('logout');

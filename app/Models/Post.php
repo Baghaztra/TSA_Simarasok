@@ -30,6 +30,10 @@ class Post extends Model
             $query->where('title', 'like', '%'.request('q').'%');
         } 
     }
+    
+    function scopePublished(Builder $query) : void {
+        $query->where('status', 'publish');
+    }
 
     function scopeHardNews(Builder $query) : void {
         $query->where('category', 'Hard News');
