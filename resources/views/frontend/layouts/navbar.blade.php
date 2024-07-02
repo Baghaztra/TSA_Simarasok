@@ -19,8 +19,8 @@
                 <li class="nav-item {{ request()->is('list-produk') || request()->is('produk*') || request()->is('produk*') || request()->is('list-produk/*') ? 'active' : '' }}">
                     <a href="/list-produk" class="nav-link">Produk</a>
                 </li>
-                <li class="nav-item {{ request()->is('list-video/*') ? 'active' : '' }}">
-                    <a href="/list-video" class="nav-link">Video</a>
+                <li class="nav-item ">
+                    <a href="https://www.youtube.com/@ibrahimrisyad9881" target="_blank" class="nav-link">Video</a>
                 </li>
                 <li class="nav-item {{ request()->is('list-post') || request()->is('list-hard-news*') || request()->is('list-soft-news*') || request()->is('list-feature*') ||  request()->is('list-post/*') ? 'active' : '' }}">
                     <a href="/list-post" class="nav-link">Berita</a>
