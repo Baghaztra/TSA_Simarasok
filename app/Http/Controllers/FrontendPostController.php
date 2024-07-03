@@ -9,7 +9,7 @@ class FrontendPostController extends Controller
 {
     public function index()
     {
-        $posts = Post::latest()->cari()->paginate(3);
+        $posts = Post::latest()->cari()->published()->paginate(3);
         $sidebarPosts = Post::latest()->softNews()->take(3)->get()->merge(Post::latest()->feature()->take(3)->get());
 
         return view('frontend.post.index', [
@@ -20,19 +20,19 @@ class FrontendPostController extends Controller
 
     public function hardNews()
     {
-        $posts = Post::latest()->cari()->hardNews()->paginate(6);
+        $posts = Post::latest()->cari()->published()->hardNews()->paginate(5);
         return view('frontend.post.hardNews', ['posts' => $posts]);
     }
 
     public function softNews()
     {
-        $posts = Post::latest()->cari()->softNews()->paginate(6);
+        $posts = Post::latest()->cari()->published()->softNews()->paginate(6);
         return view('frontend.post.softNews', ['posts' => $posts]);
     }
 
     public function feature()
     {
-        $posts = Post::latest()->cari()->feature()->paginate(6);
+        $posts = Post::latest()->cari()->published()->feature()->paginate(6);
         return view('frontend.post.feature', ['posts' => $posts]);
     }
 

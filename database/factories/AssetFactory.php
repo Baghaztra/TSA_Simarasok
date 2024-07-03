@@ -5,6 +5,7 @@ namespace Database\Factories;
 use App\Models\DestinasiPariwisata;
 use App\Models\Homestay;
 use App\Models\Post;
+use App\Models\Produk;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -20,9 +21,18 @@ class AssetFactory extends Factory
     public function definition(): array
     {
         $jenis = ['destinasi', 'homestay', 'post'][rand(0, 2)];
-        $gambar = ['dummy1.jpg', 'dummy2.jpg', 'dummy3.jpg', 'dummy4.jpg', 'dummy5.jpg', 'dummy6.jpg', 'dummy7.jpg'][rand(0, 6)];
-        $jenis_id = $jenis=='destinasi'?(DestinasiPariwisata::all()->random()->id):
-                    ($jenis=='homestay'?(Homestay::all()->random()->id):(Post::all()->random()->id));
+        $gambar = '';
+        $jenis_id = '';
+        if ($jenis == 'destinasi') {
+            $gambar = ['D1','D2','D3','D4','D5'][rand(0, 4)] . '.jpg';
+            $jenis_id = DestinasiPariwisata::all()->random()->id;
+        }elseif ($jenis == 'homestay') {
+            $gambar = ['H1','H2','H3','H4','H5'][rand(0, 4)] . '.jpg';
+            $jenis_id = Homestay::all()->random()->id;
+        }elseif ($jenis == 'post') {
+            $gambar = ['P1','P2','P3','P4'][rand(0, 3)] . '.jpg';
+            $jenis_id = Post::all()->random()->id;
+        }
 
         return [
             'nama' => $gambar,

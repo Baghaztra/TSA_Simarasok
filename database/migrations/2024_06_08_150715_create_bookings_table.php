@@ -13,13 +13,13 @@ return new class extends Migration
     {
         Schema::create('bookings', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('email');
-            $table->string('notelp');
-            $table->date('checkin');
-            $table->date('checkout');
-            $table->foreignId('homestay_id')->constrained('homestays');
-            $table->string('status')->default('waiting');
+            // $table->string('name');
+            // $table->string('email');
+            // $table->string('notelp');
+            // $table->date('checkin');
+            // $table->date('checkout');
+            // $table->foreignId('homestay_id')->constrained('homestays');
+            // $table->string('status')->default('waiting');
             $table->timestamps();
         });
     }
