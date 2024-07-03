@@ -41,12 +41,14 @@ Route::get('/post', function () {
 
 Route::get('/', function () {
     $data = DestinasiPariwisata::all();
-    $umkms = UMKM::with('produk.media')->get();
+    // $umkms = UMKM::with('produk.media')->get();
+    $produk = Produk::all();
     $penginapan = Homestay::all();
 
     return view('frontend.home.index')->with([
         'destinasis' => $data,
-        'umkms' => $umkms,
+        // 'umkms' => $umkms,
+        'produk' => $produk,
         'homestay' => $penginapan
     ]);
 });

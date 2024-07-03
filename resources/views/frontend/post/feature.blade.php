@@ -37,6 +37,7 @@
                             </a>
                         @endif
                         <h5><a href="{{ route('post.featureDetail', $post->slug) }}">{{ $post->title }}</a></h5>
+                        <span style="font-style: italic;"><i class="fa fa-calendar"></i> {{ $post->created_at->format('d M Y') }}</span>
                         <p>{{ Str::limit($post->content, 150) }}<a href="{{ route('post.featureDetail', $post->slug) }}">Selengkapnya</a></p>
                         {{-- <div class="card-footer text-muted">
                             Category: {{ $post->category }}

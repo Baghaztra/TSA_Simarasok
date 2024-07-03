@@ -6,7 +6,8 @@
     </div>
     <div class="container mt-5">
         <h1>{{ $post->title }}</h1>
-        <p>Category: {{ $post->category }}</p>
+        <span style="font-style: italic;"><i class="fa fa-calendar"></i> {{ $post->created_at->format('d M Y') }}</span>
+        {{-- <p>Category: {{ $post->category }}</p> --}}
         <div>
             @if ($post->media->isNotEmpty())
                 <img src="{{ asset('media/' . $post->media->first()->nama) }}" class="img-fluid" style="width: 50%; height: auto; object-fit: cover;" alt="{{ $post->title }}">

@@ -44,10 +44,7 @@
                                     <a href="{{ route('post.hardNewsDetail', $post->slug) }}"
                                         style="color:black; text-decoration: none;">{{ $post->title }}</a>
                                 </div>
-                                <ul class="entry-meta clearfix">
-                                    {{-- <li>{{ $post->created_at->format('d M Y') }}</li>
-                                    <li><a href="#"> {{ $post->views }}</a></li> --}}
-                                </ul>
+                                <span style="font-style: italic;"><i class="fa fa-calendar"></i> {{ $post->created_at->format('d M Y') }}</span>
                                 <div class="entry-content" style="text-align:justify; margin-top: 15px;">
                                     <p>
                                         {{ Str::limit($post->content, 150, '...') }}
