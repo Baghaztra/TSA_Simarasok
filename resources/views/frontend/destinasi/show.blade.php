@@ -12,14 +12,14 @@
                     <h2 class="mb-4">{{ $destinasis->name }}</h2>
                 </div>
             </div>
-
             <div class="row">
-                <div class="col-md-6 ftco-animate">
+                <div class="col-lg-3"></div>
+                <div class="ftco-animate col-lg-6" style="">
                     <div id="slider" class="carousel slide mb-3">
-                        <div class="carousel-indicators">
+                        <div class="carousel-indicators" style="position: absolute; top: 10px">
                             @if ($destinasis->media->count() > 0)
                                 @foreach ($destinasis->media as $index => $media)
-                                    {{-- <button type="button" data-bs-target="#slider" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button> --}}
+                                    <button type="button" data-bs-target="#slider" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
                                 @endforeach
                             @endif
                         </div>
@@ -27,7 +27,11 @@
                             @if ($destinasis->media->count() > 0)
                                 @foreach ($destinasis->media as $index => $media)
                                     <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                                        <img src="{{ asset('media/' . $media->nama) }}" class="d-block w-100" alt="Gambar {{ $index + 1 }}">
+                                        @if ($media->tipe == 'video')
+                                        <video src="{{ asset('media/' . $media->nama) }}"  loading="lazy" class="d-block w-100" controls muted autoplay></video>
+                                        @else
+                                        <img src="{{ asset('media/' . $media->nama) }}"  loading="lazy" class="d-block w-100" alt="Gambar {{ $index + 1 }}">
+                                        @endif
                                     </div>
                                 @endforeach
                             @else
@@ -48,6 +52,8 @@
                         </button>
                     </div>
                 </div>
+            </div>
+            <div class="row">
 
                 {{-- <div class="col-md-6 ftco-animate">
                     <div class="project-wrap">
@@ -62,7 +68,7 @@
                         @endif
                     </div>
                 </div> --}}
-                <div class="col-md-6 ftco-animate">
+                <div class="ftco-animate">
                     <div class="mb-3">{!! $destinasis->desc !!}</div>
                     <p><strong>Harga tiket :</strong> {{ $destinasis->harga }} / Orang</p>
                     <p><strong>Lokasi :</strong> <a href="{{ $destinasis->lokasi }}" target="_blank">Lihat Lokasi</a></p>

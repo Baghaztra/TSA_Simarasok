@@ -39,7 +39,21 @@ class FrontendDestinasiController extends Controller
     public function show($id)
     {
         $destinasis = DestinasiPariwisata::with('media')->find($id);
+        $destinasis->desc = $this->convertOembedToIframe($destinasis->desc);
         return view('frontend.destinasi.show', compact('destinasis'));
+    }
+
+    private function convertOembedToIframe($content)
+    {
+        return preg_replace_callback(
+            '/<oembed url="(https:\/\/youtu\.be\/[^"]+)"><\/oembed>/',
+            function ($matches) {
+                $url = $matches[1];
+                $embedUrl = str_replace('youtu.be/', 'www.youtube.com/embed/', $url);
+                return '<iframe src="' . $embedUrl . '" frameborder="0" allowfullscreen></iframe>';
+            },
+            $content
+        );
     }
 
     /**
