@@ -44,7 +44,7 @@
                                         style="color:black; text-decoration: none;">{{ $post->title }}</a>
                                 </div>
                                 <div class="entry-meta clearfix">
-                                    <span>{{ $post->created_at->format('d M Y') }}</span>
+                                    <span><i class="fa fa-calendar"></i> {{ $post->created_at->format('d M Y') }}</span>
                                 </div>
                                 <div class="entry-content" style="text-align:justify; margin-top: 15px;">
                                     <p>

@@ -17,7 +17,7 @@
 
     <div class="ftco-section ftco-about img"style="background-image: url(/media/frontend/images/gambar1.jpg);">
         <div class="overlay"></div>
-        <div class="container py-md-5">
+        {{-- <div class="container py-md-5">
             <div class="row py-md-5">
                 <div class="col-md d-flex align-items-center justify-content-center">
                     <a href="https://vimeo.com/45830194"
@@ -26,8 +26,8 @@
                     </a>
                 </div>
             </div>
-        </div>
-        </div>
+        </div> --}}
+    </div>
 
     <div class="ftco-section ftco-about ftco-no-pt img">
         <div class="container">
@@ -98,7 +98,7 @@
         </div>
     </div>
 
-    <div class="ftco-section contact-section ftco-no-pt">
+    {{-- <div class="ftco-section contact-section ftco-no-pt">
         <div class="container">
             <div class="row block-9">
                 <div class="col-md-6 order-md-last d-flex">
@@ -129,5 +129,5 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> --}}
 @endsection

@@ -6,22 +6,20 @@
                     <h2 class="ftco-heading-2">About</h2>
                     <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
                     <ul class="ftco-footer-social list-unstyled float-md-left float-lft">
-                        <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="fa fa-facebook"></span></a></li>
-                        <li class="ftco-animate"><a href="#"><span class="fa fa-instagram"></span></a></li>
+                        {{-- <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li> --}}
+                        <li class="ftco-animate"><a target="_blank" href="https://www.youtube.com/@pesonasimarasok2880"><span class="fa fa-youtube"></span></a></li>
+                        <li class="ftco-animate"><a target="_blank" href="https://www.instagram.com/pesona_simarasok/"><span class="fa fa-instagram"></span></a></li>
                     </ul>
                 </div>
             </div>
             <div class="col-md pt-5 border-left">
                 <div class="ftco-footer-widget pt-md-5 mb-4 ml-md-5">
-                    <h2 class="ftco-heading-2">Infromation</h2>
+                    <h2 class="ftco-heading-2">Kolaborasi</h2>
                     <ul class="list-unstyled">
-                        <li><a href="#" class="py-2 d-block">Online Enquiry</a></li>
-                        <li><a href="#" class="py-2 d-block">General Enquiries</a></li>
-                        <li><a href="#" class="py-2 d-block">Booking Conditions</a></li>
-                        <li><a href="#" class="py-2 d-block">Privacy and Policy</a></li>
-                        <li><a href="#" class="py-2 d-block">Refund Policy</a></li>
-                        <li><a href="#" class="py-2 d-block">Call Us</a></li>
+                        <li><a target="_blank" href="https://ti.pnp.ac.id/" class="py-2 d-block">Teknologi Informasi</a></li>
+                        <li><a target="_blank" href="https://an.pnp.ac.id/" class="py-2 d-block">Administrasi Niaga</a></li>
+                        <li><a target="_blank" href="https://bing.pnp.ac.id/" class="py-2 d-block">Bahasa Inggris</a></li>
+                        <li><a target="_blank" href="https://elektro.pnp.ac.id/" class="py-2 d-block">Teknik ELektro</a></li>
                     </ul>
                 </div>
             </div>
