@@ -228,32 +228,49 @@
         <div class="row justify-content-center pb-4">
             <div class="col-md-12 heading-section text-center ftco-animate">
                 <span class="subheading">Usaha Mikro Kecil Menengah</span>
-                <h2 class="mb-4">TOP Produk UMKM</h2>
+                <h2 class="mb-4">Top Produk</h2>
             </div>
         </div>
     </div>
-    <div class="container container-2">
+    <div class="container">
         <div class="row">
             <div class="col-md-12">
                 <div class="carousel-destination owl-carousel ftco-animate">
-                    @foreach ($umkms as $item)
-                        <div class="item">
-                            <div class="project-destination">
-                                @if ($item->produk->isNotEmpty() && $item->produk[0]->media->isNotEmpty())
-                                    <a href="{{ route('umkm.show', $item->id) }}" class="img" style="background-image: url('{{ asset('media/' . $item->produk[0]->media[0]->nama) }}');">
-                                        <div class="text">
-                                            <h3>{{ $item->name }}</h3>
-                                            <span>Lihat Produk</span>
-                                        </div>
-                                    </a>
+                    @foreach ($produk as $index => $item)
+                        @if ($index >= 6)
+                            @break
+                        @endif
+                        <div class="ftco-animate">
+                            <div class="project-wrap" style="background-color: white; box-shadow: 0 4px 8px rgba(163, 163, 163, 0.2);">
+                                @if (count($item->media) > 0)
+                                    <a href="{{ route('produk.show', ['id' => $item->id]) }}" class="img" style="background-image: url('{{ asset('media/' . $item->media[0]->nama) }}');"></a>
                                 @else
-                                    <a href="#" class="img" style="background-image: url('/media/frontend/images/default.jpg');">
-                                        <div class="text">
-                                            <h3>{{ $item->name }}</h3>
-                                            <span>{{ $item->produk->count() }} Produk</span>
-                                        </div>
-                                    </a>
+                                    <div class="img" style="background-color: #f8f9fa; align-items: center; justify-content: center; display: flex;">
+                                        <span style="color: #6c757d; font-size: 18px; text-align: center">Tidak ada gambar</span>
+                                    </div>
                                 @endif
+                                <div class="text p-4">
+                                    <h3>
+                                        <a href="{{ route('produk.show', ['id' => $item->id]) }}">{{ strlen($item->name) > 12 ? substr($item->name, 0, 12) . '...' : $item->name }}</a>
+                                    </h3>
+                                    <ul>
+                                        @if (is_null($item->harga))
+                                            <p> Disajikan pada {{ $item->event }}</p>
+                                        @else
+                                            <p> Rp {{ number_format($item->harga, 0, ',', '.') }}</p>
+                                        @endif
+                                    </ul>
+                                    {{-- <ul>
+                                        <li style="color: black">
+                                            <a href="https://api.whatsapp.com/send?phone={{ str_replace('+', '', $item->notelp) }}" style="color: inherit; text-decoration: none;">
+                                                <span data-feather="phone-call" style="width: 16px" class="mr-2"></span>{{ $item->notelp }}
+                                            </a>
+                                        </li>
+                                    </ul> --}}
+                                    <ul>
+                                        <li class="btn btn-outline rounded-2 btn-sm mt-2"><a href="{{ route('produk.show', ['id' => $item->id]) }}">Detail</a></li>
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     @endforeach

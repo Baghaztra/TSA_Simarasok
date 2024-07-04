@@ -73,10 +73,10 @@
                         <h4>Info lainnya</h4>
                         <ul>
                             <li><a href="{{ route('post.softNews') }}">
-                                    <div>Soft News</div>
+                                    <div>Berita Simarasok</div>
                                 </a></li>
                             <li><a href="{{ route('post.feature') }}">
-                                    <div>Features</div>
+                                    <div>Terkait Simarasok</div>
                                 </a></li>
                         </ul>
                     </div>

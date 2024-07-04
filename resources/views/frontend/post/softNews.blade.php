@@ -5,11 +5,11 @@
         <div class="overlay" style="height: 100px;"></div>
     </div>
     <div class="container">
-        <div class="row">
-            <div class="col">
-                <h1>Soft News</h1>
+        <div class="row justify-content-center pb-2">
+            <div class="col heading-section">
+                <h2 class="mb-4 mt-4">Berita Simarasok</h2>
             </div>
-            <div class="col-auto mt-3">
+            <div class="col-auto mt-4">
                 <form action="/list-soft-news" method="GET" class="input-group">
                     <div class="form-outline" data-mdb-input-init>
                         <input type="search" name="q" class="form-control" placeholder="Cari"
@@ -38,6 +38,7 @@
                             </a>
                         @endif
                         <h5><a href="{{ route('post.softNewsDetail', $post->slug) }}">{{ $post->title }}</a></h5>
+                        <span style="font-style: italic;"><i class="fa fa-calendar"></i> {{ $post->created_at->format('d M Y') }}</span>
                         <p>{{ Str::limit($post->content, 150) }}<a
                                 href="{{ route('post.softNewsDetail', $post->slug) }}">Selengkapnya</a></p>
                         {{-- <div class="card-footer text-muted">
