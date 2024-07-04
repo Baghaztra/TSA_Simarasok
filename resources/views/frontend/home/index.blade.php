@@ -7,22 +7,17 @@
                 <div class="col-md-7 ftco-animate">
                     <span class="subheading">Welcome to Simarasok</span>
                     <h1 class="mb-4">Nagari Awak Basamo</h1>
-                    <p class="caps">Travel to the any corner of the world, without going around in circles</p>
+                    <p class="caps">Project Base Learning Politeknik Negeri Padang</p>
                 </div>
                 {{-- <a href="https://www.youtube.com/watch?v=xicIX_jgfWU"
                     class="icon-video popup-vimeo d-flex align-items-center justify-content-center mb-4">
                     <span class="fa fa-play"></span>
                 </a> --}}
-                {{-- <iframe width="420" height="345" src="https://www.youtube.com/embed/tgbNymZ7vqY"></iframe> --}}
-                {{-- <iframe width="560" height="315" src="https://www.youtube.com/embed/z3OfmuNMIDI?si=d7eXBkWIdbWBA47H"
-                    title="YouTube video player" frameborder="0"
-                    allow="accelerometer; autoplay1; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    referrerpolicy="strict-origin-when-cross-origin" class="popup-vimeo" allowfullscreen></iframe> --}}
             </div>
         </div>
     </div>
 
-    <script>
+    {{-- <script>
         $(document).ready(function() {
             $('.popup-vimeo').magnificPopup({
                 type: 'iframe',
@@ -32,7 +27,9 @@
                 fixedContentPos: false
             });
         });
-    </script>
+    </script> --}}
+
+    {{-- info --}}
     <section class="ftco-section ftco-no-pb ftco-no-pt">
         <div class="container">
             <div class="row">
@@ -42,8 +39,7 @@
                             <div class="col-md-12 nav-link-wrap">
                                 <div class="nav nav-pills text-center" id="v-pills-tab" role="tablist"
                                     aria-orientation="vertical">
-                                    <a class="nav-link mr-md-1" id="v-pills-1-tab" data-toggle="pill" href="#v-pills-1"
-                                        role="tab" aria-controls="v-pills-1" aria-selected="true">Laporan Terkini</a>
+                                    <div class="nav-link mr-md-1" id="v-pills-1-tab" aria-selected="true" style="cursor: default">Info mase</div>
                                 </div>
                             </div>
                             <div class="col-md-12 tab-wrap">
@@ -55,12 +51,49 @@
                                                 <div class="col-md d-flex">
                                                     <div class="form-group p-4 border-0">
                                                         <label for="">Cuaca</label>
-                                                        <p id="suhu">26</p>
+                                                        <p id="suhu">{{ $suhu<20?'Dingin':'Panas' }}</p>
                                                         <div class="form-field">
                                                         </div>
                                                     </div>
                                                 </div>
                                                 <div class="col-md d-flex">
+                                                    <div class="form-group p-4 border-0">
+                                                        <label for="">Rata-rata kecepatan internet</label>
+                                                        <div class="input-group">
+                                                            <select class="form-select" id="jaringan-select" style="height: 50px" style="display: inline;">
+                                                                @foreach ($jaringan as $i=>$item)
+                                                                    <option value="{{ $item['speed'] }}" {{ $i==0?'selected':'' }}>{{ $item['provider'] }}</option>
+                                                                @endforeach
+                                                            </select>
+                                                            <div id="alert-speed" class="alert alert-primary px-2" style="border-top-right-radius: 6px; border-bottom-right-radius: 6px; width: 90px; height: 50px; text-align: center;">
+                                                                {{ $jaringan[0]['speed'] }}
+                                                            </div>
+                                                        </div>
+
+                                                        <script>
+                                                            document.getElementById('jaringan-select').addEventListener('change', function() {
+                                                                var select = this;
+                                                                var selectedOption = select.options[select.selectedIndex];
+                                                                var speed = selectedOption.value;
+                                                                
+                                                                var alertSpeed = document.getElementById('alert-speed');
+                                                                alertSpeed.textContent = speed;
+
+                                                                var speedValue = parseInt(speed);
+                                                                if (speedValue >= 100) {
+                                                                    alertSpeed.className = 'alert alert-success px-2';
+                                                                } else if (speedValue >= 50) {
+                                                                    alertSpeed.className = 'alert alert-warning px-2';
+                                                                } else {
+                                                                    alertSpeed.className = 'alert alert-danger px-2';
+                                                                }
+                                                            });
+                                                        </script>
+                                                        {{-- <div class="form-field">
+                                                        </div> --}}
+                                                    </div>
+                                                </div>
+                                                {{-- <div class="col-md d-flex">
                                                     <div class="form-group p-4 border-0">
                                                         <label for="#">Top Destinasi</label>
                                                         <div class="form-field">
@@ -80,7 +113,7 @@
                                                         <div class="form-field">
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                             </div>
                                         </form>
                                     </div>
@@ -159,12 +192,13 @@
         </div>
     </div>
 
+    {{-- destinasi --}}
     <div class="ftco-section">
         <div class="container">
             <div class="row justify-content-center pb-4">
                 <div class="col-md-12 heading-section text-center ftco-animate">
-                    <span class="subheading">Destinasi</span>
-                    <h2 class="mb-4">Top Destination</h2>
+                    <span class="subheading">Destinasi Pariwisata</span>
+                    <h2 class="mb-4">Destinatsi</h2>
                 </div>
             </div>
             <div class="row">
@@ -181,13 +215,16 @@
                         @endif
                         <div class="text p-4">
                             <h3><a
-                                    href="#">{{ strlen($item->name) > 15 ? substr($item->name, 0, 30) . '...' : $item->name }}</a>
+                                    href="{{ route('destinasi.show', ['id' => $item->id]) }}" target="_blank">{{ strlen($item->name) > 15 ? substr($item->name, 0, 30) . '...' : $item->name }}</a>
                             </h3>
                             <p class="location mb-1 fs-12"><span class="fa fa-map-marker mr-2"> <a href="{{ $item->lokasi }}"></span>Lihat Lokasi</a></p>
                             <ul>
                                 <span data-feather="percent" style="width: 16px; color: rgb(86, 86, 86)"></span>
-                                <li style="color: rgb(86, 86, 86)">RP.
-                                    {{ number_format($item->harga, 2, ',', '.') }}/orang</li>
+                                @if ($item->harga == 0)
+                                <li style="color: rgb(86, 86, 86)">Gratis</li>
+                                @else
+                                <li style="color: rgb(86, 86, 86)">RP.{{ number_format($item->harga, 2, ',', '.') }}/orang</li>
+                                @endif
                             </ul>
                             <ul>
                                 <a href=""></a>
@@ -220,15 +257,16 @@
                 <p><a href="/list-destinasi" class="btn btn-primary">Lihat Destinasi Lainnya</a></p>
             </div>
         </div>
+      </div>
     </div>
-</div>
 
+{{-- Produk --}}
 <div class="ftco-section img ftco-select-destination" style="background-image: url(/media/frontend/images/GreyBG.jpg);">
     <div class="container">
         <div class="row justify-content-center pb-4">
             <div class="col-md-12 heading-section text-center ftco-animate">
-                <span class="subheading">Usaha Mikro Kecil Menengah</span>
-                <h2 class="mb-4">Top Produk</h2>
+                <span class="subheading">Kuliner dan Cinderamata</span>
+                <h2 class="mb-4">Produk</h2>
             </div>
         </div>
     </div>
@@ -281,13 +319,13 @@
 </div>
 
 
-
+{{-- Homestay --}}
 <div class="ftco-section">
     <div class="container">
         <div class="row justify-content-center pb-4">
             <div class="col-md-12 heading-section text-center ftco-animate">
-                <span class="subheading">Penginapam</span>
-                <h2 class="mb-4">Top Penginapan</h2>
+                <span class="subheading">Penginapan</span>
+                <h2 class="mb-4">Penginapan</h2>
             </div>
         </div>
         <div class="row">
@@ -316,8 +354,12 @@
                         <p class="location mb-1"><span class="fa fa-map-marker mr-2"></span>Lokasi</p>
                         <ul>
                             <span data-feather="percent" style="width: 16px; color: rgb(86, 86, 86)"></span>
-                            <li style="color: rgb(86, 86, 86)">RP.
-                                {{ number_format($item->harga, 2, ',', '.') }}/orang</li>
+                            @if ($item->harga==0)
+                            {{-- Siapa tau ada v: --}}
+                            <li style="color: rgb(86, 86, 86)">Gratis</li>
+                            @else
+                            <li style="color: rgb(86, 86, 86)">Rp {{ number_format($item->harga, 2, ',', '.') }}/orang</li>
+                            @endif
                         </ul>
                         <ul>
                             <li style="color: black">
@@ -349,7 +391,7 @@
             <p><a href="/list-homestay" class="btn btn-primary">Lihat Penginapan Lainnya</a></p>
         </div>
     </div>
-</div>
+  </div>
 </div>
 
 

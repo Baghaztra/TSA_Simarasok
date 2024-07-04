@@ -23,6 +23,7 @@ use App\Http\Controllers\FrontendProdukController;
 use App\Http\Controllers\FrontendHomestayController;
 use App\Http\Controllers\FrontendDestinasiController;
 use App\Http\Controllers\DestinasiPariwisataController;
+use App\Http\Controllers\FrontendHomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -39,19 +40,7 @@ Route::get('/post', function () {
     return view('posts',['posts'=>Post::all()]);
 });
 
-Route::get('/', function () {
-    $data = DestinasiPariwisata::all();
-    // $umkms = UMKM::with('produk.media')->get();
-    $produk = Produk::all();
-    $penginapan = Homestay::all();
-
-    return view('frontend.home.index')->with([
-        'destinasis' => $data,
-        // 'umkms' => $umkms,
-        'produk' => $produk,
-        'homestay' => $penginapan
-    ]);
-});
+Route::get('/', [FrontendHomeController::class, 'index']);
 
 // Route::post('/booking', [BookingController::class, 'formBooking']);
 // Route::put('/booking/send', [BookingController::class, 'booking']);

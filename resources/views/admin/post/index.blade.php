@@ -2,20 +2,20 @@
 
 @section('header')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Daftar Postingan</h1>
+    <h1 class="h2">Daftar Berita</h1>
 </div>
 @endsection
 
 @section('content')
     <div class="row pt-3 sticky-top">
         <div class="col-md-6">
-            <a href="/admin/post/create" class="btn btn-primary mb-3">Postingan Baru</a>
+            <a href="/admin/post/create" class="btn btn-primary mb-3">Tambahkan</a>
         </div>
         <div class="col-md-6">
             <form action="/admin/post" method="GET" class="input-group mb-3">
                 <input type="text" class="form-control" name="q" value="{{ request('q') }}"
-                    placeholder="cari berdasarkan judul" aria-label="cari sesuatu">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                    placeholder="cari berdasarkan judul" aria-label="Cari berdasarkan judul">
+                <button class="btn btn-outline-success" type="submit">Cari</button>
             </form>
         </div>
     </div>
@@ -40,10 +40,10 @@
     <table class="table table-bordered table-striped">
         <tr>
             <th>No</th>
-            <th>judul</th>
-            <th>kategori</th>
-            <th>status</th>
-            <th>action</th>
+            <th>Judul</th>
+            {{-- <th>kategori</th> --}}
+            <th>Status</th>
+            <th>Aksi</th>
         </tr>
         @if ($posts->isEmpty())
             <tr>
@@ -57,7 +57,7 @@
             <tr>
                 <td>{{ $posts->firstItem() + $loop->index }}</td>
                 <td>{{ $item->title }}</td>
-                <td>{{ $item->category }}</td>
+                {{-- <td>{{ $item->category }}</td> --}}
                 <td>
                     <form action="{{ route('post.toggleStatus', $item->id) }}" class="ms-3" method="POST">
                         @csrf

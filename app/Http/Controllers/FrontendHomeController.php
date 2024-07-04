@@ -2,13 +2,42 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Models\Produk;
 use GuzzleHttp\Client;
+use App\Models\Homestay;
+use Illuminate\Http\Request;
+use App\Models\DestinasiPariwisata;
+use App\Http\Controllers\Controller;
+
 class FrontendHomeController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
+    public function index(){
+        $destinasis = DestinasiPariwisata::latest()->get();
+        $produk = Produk::latest()->get();
+        $penginapan = Homestay::latest()->get();
+
+        // Menunggu API dari D3 Telekomunikasi
+        $suhu = rand(10,30);
+        
+        // Menunggu data dari D4 Telekomunikasi
+        $jaringan = [
+            ['provider'=>'Telkomsel','speed'=>'100mbps'],
+            ['provider'=>'Axis','speed'=>'1mbps'],
+            ['provider'=>'Indosat','speed'=>'700mbps'],
+            ['provider'=>'XL','speed'=>'50mbps'],
+        ];
+
+        return view('frontend.home.index')->with([
+            'suhu' => $suhu,
+            'jaringan' => $jaringan,
+            'destinasis' => $destinasis,
+            'produk' => $produk,
+            'homestay' => $penginapan
+        ]);
+    }
 
      //NYOBA AJA BLM BERHASIL :V
     public function getWeather()
@@ -37,48 +66,4 @@ class FrontendHomeController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
-    {
-        //
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
 }

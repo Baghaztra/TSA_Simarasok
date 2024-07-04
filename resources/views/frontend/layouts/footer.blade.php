@@ -3,18 +3,15 @@
         <div class="row mb-5">
             <div class="col-md pt-5">
                 <div class="ftco-footer-widget pt-md-5 mb-4">
-                    <h2 class="ftco-heading-2">About</h2>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-                    <ul class="ftco-footer-social list-unstyled float-md-left float-lft">
-                        {{-- <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li> --}}
-                        <li class="ftco-animate"><a target="_blank" href="https://www.youtube.com/@pesonasimarasok2880"><span class="fa fa-youtube"></span></a></li>
-                        <li class="ftco-animate"><a target="_blank" href="https://www.instagram.com/pesona_simarasok/"><span class="fa fa-instagram"></span></a></li>
-                    </ul>
+                    <h2 class="ftco-heading-2">Developer</h2>
+                    <p>
+                        <abbr title="Talent Scouting Academic Project Base Learning">TSA-PBL</abbr>, salah satu program <abbr title="Merdeka Belajar Kampus Merdeka">MBKM</abbr> dalam pengembangan skill mahasiswa yang berjalan di dalam kampus dengan menggabungkan beberapa program studi dan jurusan di <abbr title="Politeknik Negeri Padang">PNP</abbr>.
+                    </p>
                 </div>
             </div>
             <div class="col-md pt-5 border-left">
                 <div class="ftco-footer-widget pt-md-5 mb-4 ml-md-5">
-                    <h2 class="ftco-heading-2">Kolaborasi</h2>
+                    <h2 class="ftco-heading-2">TSA-PBL PNP 2024</h2>
                     <ul class="list-unstyled">
                         <li><a target="_blank" href="https://ti.pnp.ac.id/" class="py-2 d-block">Teknologi Informasi</a></li>
                         <li><a target="_blank" href="https://an.pnp.ac.id/" class="py-2 d-block">Administrasi Niaga</a></li>
@@ -24,6 +21,29 @@
                 </div>
             </div>
             <div class="col-md pt-5 border-left">
+                <div class="ftco-footer-widget pt-md-5 mb-4 ml-md-5">
+                    <h2 class="ftco-heading-2">Ucapan terimaksih</h2>
+                    <ul class="list-unstyled">
+                        <li><a class="py-2 d-block">Koordinator MBKM PNP</a></li>
+                        <li><a class="py-2 d-block">Kaprodi</a></li>
+                        <li><a class="py-2 d-block">Dosen pembimbing</a></li>
+                        <li><a class="py-2 d-block">Rekan Mahasiswa</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md pt-5 border-left">
+                <div class="ftco-footer-widget pt-md-5 mb-4">
+                    <h2 class="ftco-heading-2">Ikuti Kami</h2>
+                    <div class="block-23 mb-3">
+                        <ul class="list-unstyled">
+                            {{-- <li class="ftco-animate"><a href="#"><span class="fa fa-twitter"></span></a></li> --}}
+                            {{-- <li class="ftco-animate"><a href="#"><span class="fa fa-youtube"></span></a></li> --}}
+                            <li><a target="_blank" href="https://www.instagram.com/tsa.pnp/"><span class="fa fa-instagram" style="color: gray"></span> @tsa.pnp</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            {{-- <div class="col-md pt-5 border-left">
                 <div class="ftco-footer-widget pt-md-5 mb-4">
                     <h2 class="ftco-heading-2">Experience</h2>
                     <ul class="list-unstyled">
@@ -35,25 +55,13 @@
                         <li><a href="#" class="py-2 d-block">Party</a></li>
                     </ul>
                 </div>
-            </div>
-            <div class="col-md pt-5 border-left">
-                <div class="ftco-footer-widget pt-md-5 mb-4">
-                    <h2 class="ftco-heading-2">Have a Questions?</h2>
-                    <div class="block-23 mb-3">
-                        <ul>
-                            <li><span class="icon fa fa-map-marker"></span><span class="text">203 Fake St. Mountain View, San Francisco, California, USA</span></li>
-                            <li><a href="#"><span class="icon fa fa-phone"></span><span class="text">+2 392 3929 210</span></a></li>
-                            <li><a href="#"><span class="icon fa fa-paper-plane"></span><span class="text">info@yourdomain.com</span></a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
+            </div> --}}
         </div>
         <div class="row">
             <div class="col-md-12 text-center">
 
                 <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | This template is used with <i class="fa fa-heart" aria-hidden="true"></i> by <a href="https://pnp.ac.id" target="_blank">Us</a>
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a href="https://pnp.ac.id" target="_blank">TSA-MBKM PNP</a>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
                 </div>
             </div>

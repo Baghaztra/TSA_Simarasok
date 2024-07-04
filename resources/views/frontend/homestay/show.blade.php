@@ -69,9 +69,10 @@
                     </div>
                 </div> --}}
                 <div class="ftco-animate">
-                    <div class="mb-3">{!! $homestays->desc !!}</div>
+                    <div class="mb-5">{!! $homestays->desc !!}</div>
                     <p><strong>Harga :</strong> {{ $homestays->harga }} / Malam</p>
-                    <p><strong>Cp:</strong> <a href="https://api.whatsapp.com/send?phone={{ str_replace('+', '', $homestays->notelp) }}">{{ $homestays->notelp }}</a></p>
+                    <p><strong><span data-feather="phone" style="width: 16px"
+                        class="mr-2"></span></strong> <a href="https://api.whatsapp.com/send?phone={{ str_replace('+', '', $homestays->notelp) }}">{{ $homestays->notelp }}</a></p>
                 </div>
             </div>
         </div>

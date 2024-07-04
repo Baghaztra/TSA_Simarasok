@@ -11,15 +11,7 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="card">
-                    <div class="card-header">Jumlah Destinasi</div>
-                    <div class="card-body">
-                        <h3>{{ $dcount }}</h3>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3">
-                <div class="card">
-                    <div class="card-header">Jumlah Post</div>
+                    <div class="card-header">Berita</div>
                     <div class="card-body">
                         <h3>{{ $pcount }}</h3>
                     </div>
@@ -27,17 +19,25 @@
             </div>
             <div class="col-md-3">
                 <div class="card">
-                    <div class="card-header">Jumlah Produk</div>
+                    <div class="card-header">Destinasi</div>
                     <div class="card-body">
-                        <h3>{{ $ucount }}</h3>
+                        <h3>{{ $dcount }}</h3>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="card">
-                    <div class="card-header">Jumlah Homestay</div>
+                    <div class="card-header">Penginapan</div>
                     <div class="card-body">
                         <h3>{{ $hcount }}</h3>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">Kuliner</div>
+                    <div class="card-body">
+                        <h3>{{ $ucount }}</h3>
                     </div>
                 </div>
             </div>

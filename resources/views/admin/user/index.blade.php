@@ -9,13 +9,13 @@
 @section('content')
     <div class="row">
         <div class="col-md-6">
-            <a href="/admin/user/create" class="btn btn-primary mb-3">Add New User</a>
+            <a href="/admin/user/create" class="btn btn-primary mb-3">Tambahkan</a>
         </div>
         <div class="col-md-6">
             <form action="/admin/user" method="GET" class="input-group mb-3">
                 <input type="text" class="form-control" name="query" value="{{ $q }}"
-                    placeholder="cari sesuatu" aria-label="cari sesuatu">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                    placeholder="Cari berdasarkan nama" aria-label="cari sesuatu">
+                <button class="btn btn-outline-success" type="submit">Cari</button>
             </form>
         </div>
     </div>
@@ -46,7 +46,7 @@
                     {{-- <th>Alias</th>
                     <th>Roles</th> --}}
                     <th>Status</th>
-                    <th>Action</th>
+                    <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>

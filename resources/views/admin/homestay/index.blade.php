@@ -2,21 +2,21 @@
 
 @section('header')    
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <h1 class="h2">Daftar Homestay</h1>
+    <h1 class="h2">Daftar Penginapan</h1>
 </div>
 @endsection
 
 @section('content')
     <div class="row pt-3 sticky-top">
         <div class="col-md-6">
-            <a href="/admin/homestay/create" class="btn btn-primary mb-3">Entri Data Homestay</a>
+            <a href="/admin/homestay/create" class="btn btn-primary mb-3">Tambahkan</a>
         </div>
         <div class="col-md-6">
 
             {{-- Ganti Button jadi Search & ganti name input jadi q --}}
             <form action="/admin/homestay" method="GET" class="input-group mb-3">
-                <input type="text" class="form-control" name="q" value="{{ $q }}" placeholder="cari berdasarkan nama" aria-label="cari sesuatu">
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <input type="text" class="form-control" name="q" value="{{ $q }}" placeholder="Cari berdasarkan nama" aria-label="cari sesuatu">
+                <button class="btn btn-outline-success" type="submit">Cari</button>
             </form>
         </div>
     </div>

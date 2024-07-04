@@ -2,7 +2,7 @@
     <!-- Sidebar scroll-->
     <div>
         <div class="brand-logo d-flex align-items-center justify-content-between">
-            <a href="/admin" class="text-nowrap logo-img">
+            <a href="/" class="text-nowrap logo-img">
                 <img src="/media/frontend/icons/favicon.png" width="35" alt="" />
                 <span class="fs-6" style="font-weight: bold; color:black">Admin Simarasok</span>
             </a>
@@ -24,7 +24,7 @@
                     <a class="sidebar-link {{ request()->is('admin/post*') ? 'active' : '' }}"
                         href="{{ route('post.index') }}" aria-expanded="false">
                         <span data-feather="file-text" class="align-text-bottom"></span>
-                        <span class="hide-menu">Postingan</span>
+                        <span class="hide-menu">Berita</span>
                     </a>
                 </li>
                 <li class="sidebar-item">
@@ -38,7 +38,7 @@
                     <a class="sidebar-link {{ request()->is('admin/homestay*') ? 'active' : '' }}"
                         href="{{ route('homestay.index') }}" aria-expanded="false">
                         <span data-feather="moon" class="align-text-bottom"></span>
-                        <span class="hide-menu">Homestay</span>
+                        <span class="hide-menu">Penginapan</span>
                     </a>
                 </li>
                 {{-- <li class="sidebar-item">
@@ -52,7 +52,7 @@
                     <a class="sidebar-link {{ request()->is('admin/produk*') ? 'active' : '' }}"
                         href="{{ route('produk.index') }}" aria-expanded="false">
                         <span data-feather="shopping-cart" class="align-text-bottom"></span>
-                        <span class="hide-menu">Produk</span>
+                        <span class="hide-menu">Kuliner</span>
                     </a>
                 </li>
                 {{-- <li class="sidebar-item">

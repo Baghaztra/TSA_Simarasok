@@ -3,7 +3,7 @@
 @section('header')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     {{-- <h1 class="h2">Daftar Produk {{ $umkms->name }}</h1> --}}
-    <h1 class="h2">Daftar Produk</h1>
+    <h1 class="h2">Daftar Kuliner</h1>
 </div>
 @endsection
 
@@ -16,13 +16,13 @@
                 <input type="hidden" name="umkm_id" value="{{ $umkms->id }}">
                 <button class="btn btn-primary mb-3" type="submit">Entri Data Produk</button>
             </form> --}}
-            <a href="/admin/produk/create" class="btn btn-primary mb-3">Entri Data Produk</a>
+            <a href="/admin/produk/create" class="btn btn-primary mb-3">Tambahkan</a>
         </div>
         <div class="col-md-6">
             <form action="/admin/produk" method="GET" class="input-group mb-3">
-                <input type="text" class="form-control" name="q" value="{{ $q }}" placeholder="cari sesuatu" aria-label="cari sesuatu">
+                <input type="text" class="form-control" name="q" value="{{ $q }}" placeholder="Cari berdasarkan nama" aria-label="cari sesuatu">
                 {{-- <input type="hidden" class="form-control" name="id" value="{{ $umkms->id }}"> --}}
-                <button class="btn btn-outline-success" type="submit">Search</button>
+                <button class="btn btn-outline-success" type="submit">Cari</button>
             </form>
         </div>
     </div>

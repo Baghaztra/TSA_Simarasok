@@ -69,10 +69,17 @@
                     </div>
                 </div> --}}
                 <div class="ftco-animate">
-                    <div class="mb-3">{!! $destinasis->desc !!}</div>
-                    <p><strong>Harga tiket :</strong> {{ $destinasis->harga }} / Orang</p>
-                    <p><strong>Lokasi :</strong> <a href="{{ $destinasis->lokasi }}" target="_blank">Lihat Lokasi</a></p>
-                    <p><strong>Cp:</strong> <a href="https://api.whatsapp.com/send?phone={{ str_replace('+', '', $destinasis->notelp) }}">{{ $destinasis->notelp }}</a></p>
+                    <div class="mb-5">{!! $destinasis->desc !!}</div>
+                    <p><strong>Tiket masuk :</strong> 
+                        @if ($destinasis->harga==0)
+                            <b class="text-primary" style="text-shadow: 0px 0px 4px #ff9101;">Gratis</b>
+                        @else
+                            Rp {{ number_format($destinasis->harga, 0, ',', '.') }} / Orang
+                        @endif
+                    </p>
+                    <p><strong><span data-feather="phone" style="width: 16px"
+                        class="mr-2"></span></strong> <a href="https://api.whatsapp.com/send?phone={{ str_replace('+', '', $destinasis->notelp) }}">{{ $destinasis->notelp }}</a></p>
+                    <p><a href="{{ $destinasis->lokasi }}" class="btn btn-primary" target="_blank">Lihat Lokasi</a></p>
                 </div>
             </div>
         </div>

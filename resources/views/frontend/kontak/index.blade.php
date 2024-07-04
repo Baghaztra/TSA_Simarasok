@@ -63,8 +63,8 @@
                         <div class="icon d-flex align-items-center justify-content-center">
                             <span class="fa fa-map-marker"></span>
                         </div>
-                        <h3 class="mb-2">Address</h3>
-                        <p>198 West 21th Street, Suite 721 New York NY 10016</p>
+                        <h3 class="mb-2">Alamat</h3>
+                        <p>Nagari Simarasok, Kecamatan Baso, Kabupaten Agam, Sumatera Barat</p>
                     </div>
                 </div>
                 <div class="col-md-3 d-flex">
@@ -91,7 +91,7 @@
                             <span class="fa fa-globe"></span>
                         </div>
                         <h3 class="mb-2">Website</h3>
-                        <p><a href="#">yoursite.com</a></p>
+                        <p><a href="https://jadesta.kemenparekraf.go.id/desa/simarasok">kemenparekraf.go.id</a></p>
                     </div>
                 </div>
             </div>

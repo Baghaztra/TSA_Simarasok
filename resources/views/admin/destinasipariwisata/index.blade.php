@@ -10,13 +10,13 @@
 {{-- <div class="pt-5"></div> --}}
 <div class="row pt-3 sticky-top">
     <div class="col-md-6">
-        <a href="/admin/destinasipariwisata/create" class="btn btn-primary mb-3">Add</a>
+        <a href="/admin/destinasipariwisata/create" class="btn btn-primary mb-3">Tambahkan</a>
     </div>
     <div class="col-md-6">
         {{-- Di form ini ganti Button jadi Search & ganti name input jadi q --}}
         <form action="/admin/destinasipariwisata" method="GET" class="input-group mb-3">
-            <input type="text" class="form-control" name="q" value="{{ $q }}" placeholder="cari berdasarkan nama" aria-label="cari sesuatu">
-            <button class="btn btn-outline-success" type="submit">Search</button>
+            <input type="text" class="form-control" name="q" value="{{ $q }}" placeholder="Cari berdasarkan nama" aria-label="cari sesuatu">
+            <button class="btn btn-outline-success" type="submit">Cari</button>
         </form>
     </div>
 </div>

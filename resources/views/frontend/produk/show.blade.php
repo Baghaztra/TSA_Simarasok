@@ -17,8 +17,12 @@
                     <img src="{{ asset('media/' . $produk->media[0]->nama) }}" class="img-fluid" alt="Gambar Produk">
                 </div>
                 <div class="col-md-6 ftco-animate">
-                    <p>{{ $produk->desc }}</p>
-                    <p><strong>Harga:</strong> Rp {{ number_format($produk->harga, 0, ',', '.') }}</p>
+                    <p class="mb-3">{!! $produk->desc !!}</p>
+                    @if (is_null($produk->harga))
+                        <strong> Disajikan pada {{ $produk->event }}</strong>
+                    @else
+                        <strong> Rp {{ number_format($produk->harga, 0, ',', '.') }}</strong>
+                    @endif
                 </div>
             </div>
         </div>
