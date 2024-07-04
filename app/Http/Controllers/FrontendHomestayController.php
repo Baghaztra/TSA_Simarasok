@@ -78,4 +78,62 @@ class FrontendHomestayController extends Controller
     {
         //
     }
+
+    public function wagw(string $id) {
+        $homestays = Homestay::with('media')->find($id);
+
+        return view('frontend.homestay.formWA')->with(['homestay' => $homestays]);
+    }
+
+    public function wagwSend(Request $request) {
+        $nama = $request->name;
+        $nomor = $request->nomor;
+
+        $nomor = '6285264298792';
+
+        $token = 'tY2qgx#Zv4RkH22X_nNd';
+
+        // nomor WA untuk API WA
+        if (intval(strval($request->wa)[0]) == 0) {
+            $wa = '62' . intval(substr(strval($request->wa), 1));
+        }
+        else {
+            $wa = $nomor;
+        }
+
+        $pesan = "$nama ini ingin memesan penginapan anda.\nKlik link dibawah ini untuk menghubungi beliau.\n\nNomor WhatsApp pemesan:\nwa.me//$wa";
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://api.fonnte.com/send',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => '',
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => 'POST',
+            CURLOPT_POSTFIELDS => array(
+                'target' => "$nomor",
+                'message' => "$pesan",
+            ),
+            CURLOPT_HTTPHEADER => array(
+                'Authorization: ' . $token //change TOKEN to your actual token
+            ),
+        ));
+
+        $response = curl_exec($curl);
+        if (curl_errno($curl)) {
+            $error_msg = curl_error($curl);
+        }
+        curl_close($curl);
+
+        if (isset($error_msg)) {
+            echo $error_msg;
+        }
+
+        return redirect('/list-homestay');
+    }
+
 }

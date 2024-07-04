@@ -55,7 +55,7 @@ Route::middleware(['auth'])->group(function () {
     // Route::resource('/admin/booking', BookingController::class);
     Route::resource('/admin/post', PostController::class);
 
-    /* Route::resource('/admin/umkm', UMKMController::class); 
+    /* Route::resource('/admin/umkm', UMKMController::class);
     Route::get('/admin/produk/catcreate', [ProdukController::class, 'catcreate'])->name('produk.catcreate');
     Route::post('/admin/produk/strcreate', [ProdukController::class, 'strcreate'])->name('produk.strcreate'); */
     Route::resource('/admin/produk', ProdukController::class);
@@ -97,3 +97,5 @@ Route::get('/list-hard-news/{slug}', [FrontendPostController::class, 'show'])->n
 Route::get('/list-soft-news/{slug}', [FrontendPostController::class, 'show'])->name('post.softNewsDetail');
 Route::get('/list-feature/{slug}', [FrontendPostController::class, 'show'])->name('post.featureDetail');
 
+Route::get('/list-homestay/{id}/Form-WA', [FrontendHomestayController::class, 'wagw']);
+Route::post('/sendWA', [FrontendHomestayController::class, 'wagwSend']);
