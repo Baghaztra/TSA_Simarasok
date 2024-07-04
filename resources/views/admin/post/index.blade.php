@@ -1,10 +1,13 @@
 @extends('admin.layout.main')
 
+@section('header')
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Daftar Postingan</h1>
+</div>
+@endsection
+
 @section('content')
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Daftar Postingan</h1>
-    </div>
-    <div class="row">
+    <div class="row pt-3 sticky-top">
         <div class="col-md-6">
             <a href="/admin/post/create" class="btn btn-primary mb-3">Postingan Baru</a>
         </div>
@@ -56,7 +59,7 @@
                 <td>{{ $item->title }}</td>
                 <td>{{ $item->category }}</td>
                 <td>
-                    <form action="{{ route('post.toggleStatus', $item->id) }}" method="POST">
+                    <form action="{{ route('post.toggleStatus', $item->id) }}" class="ms-3" method="POST">
                         @csrf
                         @method('PUT')
                         <div class="form-check form-switch">

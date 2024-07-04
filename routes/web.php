@@ -83,6 +83,9 @@ Route::middleware(['guest'])->group(function () {
     Route::get('sign-in', [SigninController::class, 'index'])->name('login');
     Route::post('proses', [SigninController::class, 'authentication'])->name('proses-signin');
 });
+Route::get('/account-disabled', function () {
+    return view('admin.disabled');
+})->name('account.disabled');
 
 Route::get('/list-destinasi', [FrontendDestinasiController::class, 'index']);
 Route::get('/list-destinasi/{id}', [FrontendDestinasiController::class, 'show'])->name('destinasi.show');

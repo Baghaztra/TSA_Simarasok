@@ -55,13 +55,13 @@
                         <span class="hide-menu">Produk</span>
                     </a>
                 </li>
-                <li class="sidebar-item">
+                {{-- <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('admin/category*') ? 'active' : '' }}"
                         href="{{ route('category.index') }}" aria-expanded="false">
                         <span data-feather="list" class="align-text-bottom"></span>
                         <span class="hide-menu">Kategori</span>
                     </a>
-                </li>
+                </li> --}}
                 <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('admin/user*') ? 'active' : '' }}"
                         href="{{ route('user.index') }}" aria-expanded="false">

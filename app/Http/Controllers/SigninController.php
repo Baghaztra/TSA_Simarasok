@@ -28,7 +28,7 @@ class SigninController extends Controller
                 }
             }else{
                 Auth::logout();
-                echo "Akun anda disable silahkan hubungi Admin";
+                return redirect()->route('account.disabled');
             }
         } else {
             return redirect('sign-in')->with('error', 'Email atau password salah.')->onlyInput('email');

@@ -10,11 +10,11 @@ class FrontendPostController extends Controller
     public function index()
     {
         $posts = Post::latest()->cari()->published()->paginate(3);
-        $sidebarPosts = Post::latest()->softNews()->take(3)->get()->merge(Post::latest()->feature()->take(3)->get());
+        // $sidebarPosts = Post::latest()->softNews()->take(3)->get()->merge(Post::latest()->feature()->take(3)->get());
 
         return view('frontend.post.index', [
             'posts' => $posts,
-            'sidebarPosts' => $sidebarPosts,
+            // 'sidebarPosts' => $sidebarPosts,
         ]);
     }
 
@@ -39,6 +39,20 @@ class FrontendPostController extends Controller
     public function show($slug)
     {
         $post = Post::where('slug', $slug)->firstOrFail();
+        $post->content = $this->convertOembedToIframe($post->content);
         return view('frontend.post.show', compact('post'));
     }      
+
+    private function convertOembedToIframe($content)
+    {
+        return preg_replace_callback(
+            '/<oembed url="(https:\/\/youtu\.be\/[^"]+)"><\/oembed>/',
+            function ($matches) {
+                $url = $matches[1];
+                $embedUrl = str_replace('youtu.be/', 'www.youtube.com/embed/', $url);
+                return '<iframe src="' . $embedUrl . '" frameborder="0" allowfullscreen></iframe>';
+            },
+            $content
+        );
+    }
 }

@@ -1,9 +1,12 @@
 @extends('admin.layout.main')
 
+@section('header')
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Form Edit User</h1>
+</div>
+@endsection
+
 @section('content')
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Form Edit User</h1>
-    </div>
     <div class="col-6">
         <a href="/admin/user" class="btn btn-sm btn-warning mb-3">Kembali</a>
         <form action="/admin/users/{{ $users->id }}" method="post" enctype="multipart/form-data">
@@ -38,7 +41,7 @@
                     </div>
                 @enderror
             </div>
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label for="roles" class="form-label">Role</label>
                 <select name="roles" class="form-control  @error('roles') is-invalid @enderror"">
                     <option>Pilih Role User</option>
@@ -50,7 +53,7 @@
                         {{ $message }}
                     </div>
                 @enderror
-            </div>
+            </div> --}}
             <button class="btn btn-sm btn-primary" type="submit">Submit</button>
             <div style="height: 25vh"></div>
         </form>

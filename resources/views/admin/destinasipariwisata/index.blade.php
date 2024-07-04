@@ -1,23 +1,25 @@
 @extends('admin.layout.main')
 
-@section('content')
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Daftar Destinasi Pariwisata</h1>
-    </div>
-    <div class="row">
-        <div class="col-md-6">
-            <a href="/admin/destinasipariwisata/create" class="btn btn-primary mb-3">Entri Data Destinasi Pariwisata</a>
-        </div>
-        <div class="col-md-6">
-            {{-- Di form ini ganti Button jadi Search & ganti name input jadi q --}}
-            <form action="/admin/destinasipariwisata" method="GET" class="input-group mb-3">
-                <input type="text" class="form-control" name="q" value="{{ $q }}" placeholder="cari berdasarkan nama" aria-label="cari sesuatu">
-                <button class="btn btn-outline-success" type="submit">Search</button>
-            </form>
-        </div>
-    </div>
+@section('header')
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 mb-3 border-bottom">
+    <h1 class="h2">Daftar Destinasi Pariwisata</h1>
+</div>
+@endsection
 
-    {{-- Nambahin pesan session nya, kurang lengkap --}}
+@section('content')
+{{-- <div class="pt-5"></div> --}}
+<div class="row pt-3 sticky-top">
+    <div class="col-md-6">
+        <a href="/admin/destinasipariwisata/create" class="btn btn-primary mb-3">Add</a>
+    </div>
+    <div class="col-md-6">
+        {{-- Di form ini ganti Button jadi Search & ganti name input jadi q --}}
+        <form action="/admin/destinasipariwisata" method="GET" class="input-group mb-3">
+            <input type="text" class="form-control" name="q" value="{{ $q }}" placeholder="cari berdasarkan nama" aria-label="cari sesuatu">
+            <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+    </div>
+</div>
     @if (session('success') || session('warning') || session('danger'))
         @if (session('success'))
             <div class="alert alert-success">

@@ -25,13 +25,13 @@ class UserFactory extends Factory
         return [
             'name' => $name,
             'email' => $this->faker->unique()->safeEmail(),
-            'email_verified_at' => now(),
+            // 'email_verified_at' => now(),
             'password' => bcrypt('password'),
             'alias' => $alias,
             // 'roles' => $this->faker->randomElement(['admin', 'moderator', 'publisher','owner umkm']),
-            'roles' => 'admin',
+            // 'roles' => 'admin',
             'status' => $this->faker->randomElement(['active', 'disable']),
-            'remember_token' => Str::random(10),
+            // 'remember_token' => Str::random(10),
         ];
     }
 

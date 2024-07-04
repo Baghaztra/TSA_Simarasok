@@ -1,16 +1,16 @@
 @extends('admin.layout.main')
 
+@section('header')
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    {{-- <h1 class="h2">Daftar Produk {{ $umkms->name }}</h1> --}}
+    <h1 class="h2">Daftar Produk</h1>
+</div>
+@endsection
+
 @section('content')
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-
-        {{-- <h1 class="h2">Daftar Produk {{ $umkms->name }}</h1> --}}
-        <h1 class="h2">Daftar Produk</h1>
-
-    </div>
-
     {{-- <a onclick="kembali()" class="btn btn-sm btn-warning mb-3">Kembali</a> --}}
 
-    <div class="row">
+    <div class="row pt-3 sticky-top">
         <div class="col-md-6">
             {{-- <form action="/admin/produk/create" method="get">
                 <input type="hidden" name="umkm_id" value="{{ $umkms->id }}">

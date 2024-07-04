@@ -22,7 +22,7 @@ class PostFactory extends Factory
             'title' => fake()->sentence(),
             'slug' => Post::make_slug(fake()->sentence()),
             'content' => fake()->paragraphs(5, true),
-            'category' => ['Hard News','Soft News','Feature'][rand(0,2)],
+            // 'category' => ['Hard News','Soft News','Feature'][rand(0,2)],
             'status' => ['publish', 'draft'][rand(0, 1)],
         ];
     }

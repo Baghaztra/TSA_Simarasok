@@ -28,12 +28,12 @@ class DatabaseSeeder extends Seeder
             'email' => 'admin@example.com',
             'password' => bcrypt('1'),
             'alias' => 'A',
-            'roles' => 'admin',
+            // 'roles' => 'admin',
             'status' => 'active',
         ]);
-        // User::factory(5)->create();
+        User::factory(5)->create();
 
-        Category::factory(5)->create();
+        // Category::factory(5)->create();
         DestinasiPariwisata::factory(10)->create();
         Homestay::factory(20)->create();
         Post::factory(30)->create();

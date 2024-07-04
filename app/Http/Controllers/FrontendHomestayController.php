@@ -38,8 +38,21 @@ class FrontendHomestayController extends Controller
     public function show(string $id)
     {
         $homestays = Homestay::with('media')->find($id);
-
+        $homestays->desc = $this->convertOembedToIframe($homestays->desc);
         return view('frontend.homestay.show', compact('homestays'));
+    }
+
+    private function convertOembedToIframe($content)
+    {
+        return preg_replace_callback(
+            '/<oembed url="(https:\/\/youtu\.be\/[^"]+)"><\/oembed>/',
+            function ($matches) {
+                $url = $matches[1];
+                $embedUrl = str_replace('youtu.be/', 'www.youtube.com/embed/', $url);
+                return '<iframe src="' . $embedUrl . '" frameborder="0" allowfullscreen></iframe>';
+            },
+            $content
+        );
     }
 
     /**

@@ -1,12 +1,15 @@
 @extends('admin.layout.main')
 
+@section('header')
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Daftar User</h1>
+</div>
+@endsection
+
 @section('content')
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Daftar User</h1>
-    </div>
     <div class="row">
         <div class="col-md-6">
-            <a href="/admin/user/create" class="btn btn-primary mb-3">Entri Data User</a>
+            <a href="/admin/user/create" class="btn btn-primary mb-3">Add New User</a>
         </div>
         <div class="col-md-6">
             <form action="/admin/user" method="GET" class="input-group mb-3">
@@ -40,8 +43,8 @@
                     <th>No</th>
                     <th>Nama</th>
                     <th>Email</th>
-                    <th>Alias</th>
-                    <th>Roles</th>
+                    {{-- <th>Alias</th>
+                    <th>Roles</th> --}}
                     <th>Status</th>
                     <th>Action</th>
                 </tr>
@@ -59,8 +62,8 @@
                             <td>{{ $users->firstItem() + $loop->index }}</td>
                             <td>{{ $item->name }}</td>
                             <td>{{ $item->email }}</td>
-                            <td>{{ $item->alias }}</td>
-                            <td>{{ $item->roles }}</td>
+                            {{-- <td>{{ $item->alias }}</td>
+                            <td>{{ $item->roles }}</td> --}}
                             <td>
                                 <a href="/updateStatus/{{$item->id}}" onclick="return confirm('Apakah anda ingin ganti status user?')">
                                     <span class="badge {{ $item->status == 'active' ? 'text-bg-success rounded-3' : 'text-bg-light rounded-3' }}" id="status">
