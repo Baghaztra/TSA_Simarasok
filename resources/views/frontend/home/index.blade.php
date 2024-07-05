@@ -130,11 +130,38 @@
             <div class="row d-flex">
                 <div class="col-md-6 order-md-last heading-section pl-md-5 ftco-animate d-flex align-items-center">
                     <div class="w-100">
-                        <span class="subheading">Simarasok Website</span>
-                        <h2 class="mb-4">It's time to start your adventure</h2>
-                        <p>Nagari Simarasok merupakan nagari yang terletak di Kecamatan Baso, kabupaten Agam.  Nagari Simarasok memiliki potensi alam yang luar biasa. Berada diketinggian 800 – 1200 mdpl dengan luas 1789 Ha nagari ini terbagi atas empat jorong yaitu jorong Simarasok, jorong Koto Tuo, jorong Kampeh dan jorong Sungai Angek. Memiliki suhu udara 20 – 24oC dan curah hujan perbulannya 123,04 mm. Dengan jumlah penduduk 6.872 orang.Selain potensi alam tersebut, di Nagari Simarasok terdapat pula kekayaan budaya, kuliner dan edukasi.</p>
-                        <p><a href="/list-destinasi" class="btn btn-primary py-3 px-4">Search Destination</a></p>
+                        <span class="subheading">Simarasok itu apa sih?</span>
+                        <h2 class="mb-4">Simarasok</h2>
+                        <p>Nagari Simarasok, sebuah desa wisata yang asri di dataran tinggi Kabupaten Agam, Sumatera Barat, menyambut para wisatawan dengan pesonanya. Terletak sekitar 108 km dari ibukota provinsi Sumatera Barat, desa ini dapat ditempuh dalam waktu 3-4 jam perjalanan.</p>
+                        <p>Nama "Simarasok" sendiri berasal dari kata "Sei Marasok", yang berarti "sungai yang meresap". Hal ini mencerminkan kondisi geografis desa yang diapit oleh perbukitan kapur yang memiliki banyak gua dan aliran sungai bawah tanah.</p>
+                        <div id="more-content" style="display: none">
+                            <p>Membentang seluas 1789 Ha dengan ketinggian 800-1200 mdpl, Nagari Simarasok terdiri dari empat jorong: Jorong Simarasok, Jorong Sungai Angek, Jorong Koto Tuo, dan Jorong Kampeh. Desa ini memiliki iklim tropis dengan kelembaban udara rata-rata 83%-88% dan temperatur berkisar antara 20°C hingga 29°C.</p>
+                            <p>Sejak tahun 2022, Nagari Simarasok telah resmi ditetapkan sebagai desa wisata dengan klasifikasi desa wisata berkembang. Desa ini menawarkan berbagai daya tarik wisata yang memadukan keindahan alam, nilai historis, dan kearifan lokal, dikemas dalam aktivitas wisata adventure tourism.</p>
+                            <p>Desa Wisata Simarasok adalah destinasi wisata ideal bagi para pecinta alam, petualangan, dan budaya yang ingin merasakan pengalaman autentik pedesaan Sumatera Barat, seperti memiliki beberapa objek utama yaitu:</p>
+                            <ul>
+                                @foreach ($destinasis as $item)
+                                <li><a href="/list-destinasi/{{ $item->id }}">{{ $item->name }}</a></li>
+                                @endforeach
+                            </ul>
+                        </div>
+                        <br>
+                        <a id="read-more-btn" class="text-primary" onclick="showMore()">Selengkapnya</a>
                     </div>
+                    <script>
+                        function showMore() {
+                            var moreContent = document.getElementById("more-content");
+                            var readMoreBtn = document.getElementById("read-more-btn");
+                
+                            if (moreContent.style.display === "none" || moreContent.style.display === "") {
+                                moreContent.style.display = "block";
+                                readMoreBtn.innerHTML = "Sembunyikan";
+                            } else{
+                                moreContent.style.display = "none";
+                                readMoreBtn.innerHTML = "Selengkapnya";
+                            }
+                        }
+                    </script>
+                    
                 </div>
                 <div class="col-md-6">
                     <div class="row">
