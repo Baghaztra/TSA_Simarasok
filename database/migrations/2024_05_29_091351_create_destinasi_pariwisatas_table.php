@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('harga');
             $table->string('notelp');
             $table->string('lokasi');
+            $table->string('status');
             $table->timestamps();
         });
     }

@@ -21,7 +21,7 @@ class FrontendHomeController extends Controller
 
         // Menunggu API dari D3 Telekomunikasi
         $suhu = rand(10,30);
-        
+
         // Menunggu data dari D4 Telekomunikasi
         $jaringan = [
             ['provider'=>'Telkomsel','speed'=>'100mbps'],

@@ -28,7 +28,7 @@
                                 @foreach ($destinasis->media as $index => $media)
                                     <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                                         @if ($media->tipe == 'video')
-                                        <video src="{{ asset('media/' . $media->nama) }}"  loading="lazy" class="d-block w-100" controls muted autoplay></video>
+                                        <video src="{{ asset('media/' . $media->nama) }}" style="height: 100px"  loading="lazy" class="d-block w-100" controls muted autoplay></video>
                                         @else
                                         <img src="{{ asset('media/' . $media->nama) }}"  loading="lazy" class="d-block w-100" alt="Gambar {{ $index + 1 }}">
                                         @endif
@@ -70,7 +70,7 @@
                 </div> --}}
                 <div class="ftco-animate">
                     <div class="mb-5">{!! $destinasis->desc !!}</div>
-                    <p><strong>Tiket masuk :</strong> 
+                    <p><strong>Tiket masuk :</strong>
                         @if ($destinasis->harga==0)
                             <b class="text-primary" style="text-shadow: 0px 0px 4px #ff9101;">Gratis</b>
                         @else
