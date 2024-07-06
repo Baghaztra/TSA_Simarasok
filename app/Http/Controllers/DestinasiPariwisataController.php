@@ -56,6 +56,7 @@ class DestinasiPariwisataController extends Controller
                 'required',
                 'regex:/^(https:\/\/www\.google\.com\/maps\/|https:\/\/maps\.app\.goo\.gl\/)/'
             ],
+            'status' => 'required',
         ], [
             'name.required' => 'Nama destinasi harus diisi.',
             'desc.required' => 'Deskripsi harus diisi.',
@@ -64,7 +65,8 @@ class DestinasiPariwisataController extends Controller
             'notelp.required' => 'Nomor telepon harus diisi.',
             'notelp.regex' => 'Nomor telepon harus diawali dengan +62 dan hanya berisi angka tanpa spasi.',
             'lokasi.required' => 'Lokasi harus diisi.',
-            'lokasi.regex' => 'Lokasi harus diawali dengan https://www.google.com/maps/ atau https://maps.app.goo.gl/.'
+            'lokasi.regex' => 'Lokasi harus diawali dengan https://www.google.com/maps/ atau https://maps.app.goo.gl/.',
+            'status.required' => 'Masukkan Status'
         ]);
 
         $destinasi = DestinasiPariwisata::create($data);
