@@ -61,7 +61,7 @@
                     <a href="/admin/destinasipariwisata/{{ $item->id }}/edit" class="btn btn-sm btn-warning">Edit</a>
                     <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#details-modal"
                         data-nama="{{ $item->name }}" data-desc="{{ $item->desc }}" data-harga="{{ $item->harga }}"
-                        data-gambar="{{ $item->media }}" data-notelp="{{ $item->notelp }}" data-lokasi="{{ $item->lokasi }}">Detail</button>
+                        data-gambar="{{ $item->media }}" data-notelp="{{ $item->notelp }}" data-lokasi="{{ $item->lokasi }}" data-status="{{ $item->status }}">Detail</button>
                 </td>
             </tr>
         @endforeach
@@ -80,8 +80,9 @@
                 <div class="modal-body">
                     <div id="media" class="mb-3"></div>
                     <div id="desc" class="mb-3"></div>
-                    <p><strong>Harga Tiket:</strong> <span id="harga"></span></p>
-                    <p><strong>Contack person:</strong> <span id="notelp"></span></p>
+                    <p><strong>Harga Tiket : </strong> <span id="harga"></span></p>
+                    <p><strong>Contack person : </strong> <span id="notelp"></span></p>
+                    <p><strong>Status : </strong><span id="status"></span></p>
                     <a id="lokasi" href="" target="_blank">Lihat lokasi</a>
                 </div>
             </div>
@@ -100,6 +101,7 @@
                 const notelp = detailModal.querySelector('#notelp');
                 const mediaContainer = detailModal.querySelector('#media');
                 const lokasi = detailModal.querySelector('#lokasi');
+                const status = detailModal.querySelector('#status');
 
                 namaDestinasi.innerHTML = button.getAttribute('data-nama');
                 deskripsi.innerHTML = button.getAttribute('data-desc');
@@ -111,7 +113,7 @@
                 // console.log(fharga);
                 notelp.innerHTML = button.getAttribute('data-notelp');
                 lokasi.setAttribute('href', button.getAttribute('data-lokasi'));
-
+                status.innerHTML = button.getAttribute('data-status');
                 const objectMedia = JSON.parse(button.getAttribute('data-gambar'));
                 // console.log(objectMedia);
                 mediaContainer.innerHTML = '';

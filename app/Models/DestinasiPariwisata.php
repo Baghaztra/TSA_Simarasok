@@ -15,6 +15,7 @@ class DestinasiPariwisata extends Model
         'harga',
         'notelp',
         'lokasi',
+        'status',
     ];
 
     function media(){
@@ -34,6 +35,6 @@ class DestinasiPariwisata extends Model
     function scopeCari(Builder $query) : void {
         if (request('q')) {
             $query->where('name', 'like', '%'.request('q').'%');
-        } 
+        }
     }
 }

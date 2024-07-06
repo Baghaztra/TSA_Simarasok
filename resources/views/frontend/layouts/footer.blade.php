@@ -5,7 +5,7 @@
                 <div class="ftco-footer-widget pt-md-5 mb-4">
                     <h2 class="ftco-heading-2">Developer</h2>
                     <p>
-                        <abbr title="Talent Scouting Academic Project Base Learning">TSA-PBL</abbr>, salah satu program <abbr title="Merdeka Belajar Kampus Merdeka">MBKM</abbr> dalam pengembangan skill mahasiswa yang berjalan di dalam kampus dengan menggabungkan beberapa program studi dan jurusan di <abbr title="Politeknik Negeri Padang">PNP</abbr>.
+                        <abbr title="Talent Scouting Academic Project Base Learning">TSA-PBL</abbr>, salah satu program <abbr title="Merdeka Belajar Kampus Merdeka">MBKM</abbr> dalam pengembangan skill mahasiswa yang berjalan di dalam kampus dengan menggabungkan beberapa program studi dan jurusan di <abbr title="Politeknik Negeri Padang">PNP</abbr>
                     </p>
                 </div>
             </div>

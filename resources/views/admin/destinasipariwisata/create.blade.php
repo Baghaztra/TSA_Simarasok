@@ -44,11 +44,11 @@
                         updatePreview();
                         updateFileInput(currentFiles);
                     };
-                
+
                     const updatePreview = () => {
                         const previewContainer = document.getElementById('preview-container');
                         previewContainer.innerHTML = '';
-                        
+
                         currentFiles.forEach((file, index) => {
                             const reader = new FileReader();
                             reader.onload = () => {
@@ -56,7 +56,7 @@
                                 const previewWrapper = document.createElement('div');
                                 previewWrapper.style.position = 'relative';
                                 previewWrapper.style.display = 'inline-block';
-                
+
                                 if (file.type.startsWith('image/')) {
                                     mediaElement = document.createElement('img');
                                     mediaElement.src = reader.result;
@@ -65,12 +65,12 @@
                                     mediaElement.src = reader.result;
                                     mediaElement.controls = true;
                                 }
-                
+
                                 if (mediaElement) {
                                     mediaElement.classList.add('img-thumbnail');
                                     mediaElement.style.width = '300px';
                                     mediaElement.style.display = 'block';
-                
+
                                     const removeButton = document.createElement('button');
                                     removeButton.innerHTML = '&#x2715;';
                                     removeButton.style.position = 'absolute';
@@ -85,7 +85,7 @@
                                         updatePreview();
                                         updateFileInput(currentFiles);
                                     });
-                
+
                                     previewWrapper.appendChild(mediaElement);
                                     previewWrapper.appendChild(removeButton);
                                     previewContainer.appendChild(previewWrapper);
@@ -94,7 +94,7 @@
                             reader.readAsDataURL(file);
                         });
                     };
-                
+
                     const updateFileInput = (updatedFiles) => {
                         const dataTransfer = new DataTransfer();
                         updatedFiles.forEach(file => dataTransfer.items.add(file));
@@ -140,7 +140,7 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Contack person</label>
+                <label class="form-label">Contact person</label>
                 <input type="text" class="form-control @error('notelp') is-invalid @enderror" name="notelp"
                     value="{{ old('notelp') }}" placeholder="ex: +628XXXXXXXXXX">
                 @error('notelp')
@@ -151,7 +151,7 @@
             </div>
 
             <div class="mb-3">
-                <label class="form-label">Link loksi</label>
+                <label class="form-label">Link lokasi</label>
                 <input type="text" class="form-control @error('lokasi') is-invalid @enderror" name="lokasi"
                     value="{{ old('lokasi') }}">
                 @error('lokasi')
@@ -160,7 +160,24 @@
                     </div>
                 @enderror
             </div>
-            
+
+            <div class="mb-3">
+                <label class="form-label">Status Destinasi</label>
+                <select name="status" id="status" class="form-select @error('status') is-invalid @enderror">
+                    <option value="" disabled selected>Masukan Status</option>
+                    <option value="normal" {{ old('status') == 'normal' ? 'selected' : '' }}>Normal</option>
+                    <option value="perbaikan" {{ old('status') == 'perbaikan' ? 'selected' : '' }}>Sedang Perbaikan</option>
+                    <option value="ditutup" {{ old('status') == 'ditutup' ? 'selected' : '' }}>Ditutup</option>
+                </select>
+                @error('status')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
+
+
+
             <button class="btn btn-sm btn-primary" type="submit">Submit</button>
             <div style="height: 25vh"></div>
         </form>

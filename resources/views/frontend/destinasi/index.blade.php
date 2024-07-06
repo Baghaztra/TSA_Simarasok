@@ -73,15 +73,26 @@
                                             </a>
                                         </li>
                                     </ul>
-                                    <ul>
-                                        <li class="btn btn-outline rounded-2 btn-sm mt-2"><a href="{{ route('destinasi.show', ['id' => $item->id]) }}">Detail</a></li>
-                                        <li>
-                                            {{-- <form method="POST" action="/booking-wisata">
+                                    <ul class="list-unstyled d-flex justify-content-between">
+                                        <li class="btn btn-outline rounded-2 btn-sm mt-2">
+                                            <a href="{{ route('destinasi.show', ['id' => $item->id]) }}">Detail</a>
+                                        </li>
+                                        <li class="fs-12"">
+                                            {{-- @if ($item->status == 'Normal')
+                                                <i data-feather="circle" style="color: green;"></i> Normal --}}
+                                            @if ($item->status == 'Perbaikan')
+                                                <i data-feather="tool" style="width: 20px"></i> Perbaikan
+                                            @elseif ($item->status == 'Tutup')
+                                                <i data-feather="alert-circle" style="color: red; width: 20px"></i> Ditutup
+                                            @endif
+                                        </li>
+                                        {{-- <li>
+                                            <form method="POST" action="/booking-wisata">
                                                 @csrf
                                                 <input type="hidden" name="destinasi_id" value="{{ $item->id }}">
                                                 <button type="submit" class="btn btn-primary rounded-2 btn-sm mt-2">Booking Destinasi</button>
-                                            </form> --}}
-                                        </li>
+                                            </form>
+                                        </li> --}}
                                     </ul>
                                 </div>
                             </div>
