@@ -117,12 +117,20 @@
                     const dataTransfer = new DataTransfer();
                     updatedFiles.forEach(file => dataTransfer.items.add(file));
                     document.getElementById('gambar').files = dataTransfer.files;
-                };
+                };            
+                const mediaToDelete = [];
 
                 const removeExistingMedia = (id) => {
                     const mediaElement = document.querySelector(`[data-media-id='${id}']`);
                     if (mediaElement) {
                         mediaElement.remove();
+                        mediaToDelete.push(id); // Menggunakan push untuk menambahkan elemen ke array
+                    }
+                    console.log(mediaToDelete);
+                };
+
+                const confirmDeleteMedia = () => {
+                    mediaToDelete.forEach(id => {
                         fetch(`/media/${id}`, {
                             method: 'DELETE',
                             headers: {
@@ -130,15 +138,15 @@
                                 'Content-Type': 'application/json'
                             }
                         }).then(response => response.json())
-                          .then(data => {
-                              if (data.success) {
-                                  console.log('Media deleted successfully');
-                              } else {
-                                  console.error('Failed to delete media');
-                              }
-                          })
-                          .catch(error => console.error('Error:', error));
-                    }
+                        .then(data => {
+                            if (data.success) {
+                                console.log('Media deleted successfully');
+                            } else {
+                                console.error('Failed to delete media');
+                            }
+                        })
+                        .catch(error => console.error('Error:', error));
+                    });
                 };
             </script>
 
@@ -215,7 +223,8 @@
                 @enderror
             </div>
 
-            <button class="btn btn-sm btn-primary" type="submit">Submit</button>
+            <button class="btn btn-sm btn-primary" type="submit" onclick="confirmDeleteMedia()">Submit</button>
+
             <div style="height: 25vh"></div>
         </form>
     </div>

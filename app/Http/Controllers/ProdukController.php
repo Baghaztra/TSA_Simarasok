@@ -87,16 +87,17 @@ class ProdukController extends Controller
         $produk = Produk::create($validate);
 
         if ($request->hasFile('gambar')) {
-            $i = 0;
+            $i = 1;
             foreach($request->file('gambar') as $file) {
                 $fileName = time() . $i . '.' . $file->getClientOriginalExtension();
                 $i++;
                 $file->move(public_path('media'), $fileName);
                 $asset = new Asset();
                 $asset->nama = $fileName;
-                $asset->tipe = in_array($file->getClientOriginalExtension(), ['jpg', 'jpeg', 'png']) ? 'gambar' : 'video';
+                $asset->tipe = 'gambar';
                 $asset->jenis = 'produk';
                 $asset->jenis_id = $produk->id;
+                // dd($asset->nama);
                 $asset->save();
             }
         }

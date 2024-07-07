@@ -47,8 +47,7 @@
                                     <span><i class="fa fa-calendar"></i> {{ $post->created_at->format('d M Y') }}</span>
                                 </div>
                                 <div class="entry-content" style="text-align:justify; margin-top: 15px;">
-                                    <p>
-                                        {{ Str::limit($post->content, 150, '...') }}
+                                    <p>                                         {{ Str::limit($post->content, 150, '...') }}
                                         <br />
                                         <a href="{{ route('post.hardNewsDetail', $post->slug) }}"
                                             class="more-link">Selengkapnya</a>
