@@ -1,21 +1,21 @@
 @extends('frontend.layouts.main')
 
 @section('content')
-    <div class="hero-wrap hero-wrap-2 js-fullheight"
-        style="background-image: url('{{ asset('media/' . $umkm->firstProductImage()) }}');">
-        <div class="overlay"></div>
-        <div class="container">
-            <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
-                <div class="col-md-9 ftco-animate pb-5 text-center">
-                    <p class="breadcrumbs">
-                        <span><a href="/">Home</a></span>
-                        <span><i class="fa fa-chevron-right"></i> <a href="/list-umkm">UMKM </a></span>
-                        <span><i class="fa fa-chevron-right"></i> {{ $umkm->name }} </span>
-                    </p>
-                    <h1 class="mb-0 bread">{{ $umkm->name }}</h1>
-                </div>
+    <div class="hero-wrap hero-wrap-2" style="height: 100px; background-color: rgb(0, 0, 0)">
+        <div class="overlay" style="height: 100px; background-color: rgb(0, 0, 0); color: black"></div>
+    </div>
+    <div class="container">
+        <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
+            <div class="col-md-9 ftco-animate pb-5 text-center">
+                <p class="breadcrumbs">
+                    <span><a href="/">Home</a></span>
+                    <span><i class="fa fa-chevron-right"></i> <a href="/list-umkm">UMKM </a></span>
+                    <span><i class="fa fa-chevron-right"></i> {{ $umkm->name }} </span>
+                </p>
+                <h1 class="mb-0 bread">{{ $umkm->name }}</h1>
             </div>
         </div>
+    </div>
     </div>
     <div class="ftco-section">
         <div class="container">
@@ -23,7 +23,8 @@
                 <div class="col-md-6 ftco-animate">
                     <p><strong>Pemilik:</strong> {{ $umkm->owner }}</p>
                     <p><strong>No. Telepon:</strong> <a
-                            href="https://api.whatsapp.com/send?phone={{ str_replace('+', '', $umkm->notelp) }}">{{ $umkm->notelp }}</a></p>
+                            href="https://api.whatsapp.com/send?phone={{ str_replace('+', '', $umkm->notelp) }}">{{ $umkm->notelp }}</a>
+                    </p>
                 </div>
                 <div class="col-md-6 ftco-animate">
                     <div class="container mt-3 mb-4">
@@ -37,7 +38,7 @@
                             </button>
                         </form>
                     </div>
-                </div>                
+                </div>
             </div>
 
             {{-- <div class="row justify-content-center pb-2">

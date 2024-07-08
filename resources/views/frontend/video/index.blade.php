@@ -4,7 +4,7 @@
     <div class="hero-wrap hero-wrap-2 js-fullheight" style="position: relative; overflow: hidden; height: 100vh;">
         <!-- YouTube Video Embed -->
         <iframe class="video-background"
-            src="https://www.youtube.com/embed/9bLsezbwF44?si=Tcm9biHJKVxYuBOM&autoplay=1&mute=1&loop=1&playlist=9bLsezbwF44"
+            src="https://www.youtube.com/embed/9bLsezbwF44?si=Tcm9biHJKVxYuBOM&autoplay=0&mute=1&loop=1&playlist=9bLsezbwF44"
             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="YouTube Video Background"></iframe>
 
         <div class="overlay"
