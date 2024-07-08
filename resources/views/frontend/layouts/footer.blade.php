@@ -59,11 +59,38 @@
         </div>
         <div class="row">
             <div class="col-md-12 text-center">
-
-                <p><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                    Copyright &copy;<script>document.write(new Date().getFullYear());</script> <a href="https://pnp.ac.id" target="_blank">TSA-MBKM PNP</a>
-                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></p>
+                <h1 class="ftco-heading-2 fs-5 fw-bold">TSA TEAM</h1>
+                <div class="row">
+                    <div class="col" name="trpl" id="trpl" onclick="">
+                        <button href="#" class="small btn btn-primary btn-sm">D4 TRPL</button>
+                    </div>
+                    <div class="col" name="tkom" id="tkom">
+                        <button href="#" class="small btn btn-primary btn-sm">D3 Teknik Komputer</button>
+                    </div>
+                    <div class="col" name="ed" id="ed">
+                        <button href="#" class="small btn btn-primary btn-sm">D3 Bahasa Inggris</button>
+                    </div>
+                    <div class="col" name="d3telkom" id="d3telkom">
+                        <button href="#" class="small btn btn-primary btn-sm">D3 Telekomunikasi</button>
+                    </div>
+                    <div class="col" name="upwdpw" id="upwdpw">
+                        <button href="#" class="small btn btn-primary btn-sm">D4 UPW & D3 DPW</button>
+                    </div>
+                    <div class="col" name="d4telkom" id="d4telkom">
+                        <button href="#" class="small btn btn-primary btn-sm">D4 Telekomunikasi</button>
+                    </div>
+                    <div class="col" name="d3ab" id="d3ab">
+                        <button href="#" class="small btn btn-primary btn-sm">D3 Administrasi Bisnis</button>
+                    </div>
                 </div>
+                <p>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                    Copyright &copy;<script>document.write(new Date().getFullYear());</script>
+                    <a href="https://pnp.ac.id" target="_blank">TSA-MBKM PNP</a>
+                    <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+                </p>
             </div>
         </div>
+
+
     </footer>

@@ -10,7 +10,7 @@
                         <span class="mr-2"><a href="/">Home <i class="fa fa-chevron-right"></i></a></span>
                         <span>List Destinasi <i class="fa fa-chevron-right"></i></span>
                     </p>
-                    <h1 class="mb-0 bread">List Destinasi</h1>
+                    <h1 class="mb-0 bread">Daftar Destinasi</h1>
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@
             <div class="row justify-content-center pb-2">
                 <div class="col-md-12 heading-section text-center ftco-animate">
                     <span class="subheading">Destinasi</span>
-                    <h2 class="mb-4">List Destinasi</h2>
+                    <h2 class="mb-4">Daftar Destinasi</h2>
                 </div>
             </div>
             <div class="container">
