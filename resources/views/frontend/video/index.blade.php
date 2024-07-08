@@ -4,7 +4,7 @@
     <div class="hero-wrap hero-wrap-2 js-fullheight" style="position: relative; overflow: hidden; height: 100vh;">
         <!-- YouTube Video Embed -->
         <iframe class="video-background"
-            src="https://www.youtube.com/embed/9bLsezbwF44?si=Tcm9biHJKVxYuBOM&autoplay=1&mute=1&loop=1&playlist=9bLsezbwF44"
+            src="https://www.youtube.com/embed/9bLsezbwF44?si=Tcm9biHJKVxYuBOM&autoplay=0&mute=1&loop=1&playlist=9bLsezbwF44"
             frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="YouTube Video Background"></iframe>
 
         <div class="overlay"
@@ -26,23 +26,7 @@
             </div>
             <div class="row">
                 <!-- Tambahkan konten video di sini sesuai kebutuhan -->
-                <div class="card mb-2" style="width: 50%;">
-                    <a href="https://www.youtube.com/watch?v=9bLsezbwF44" target="_blank" rel="noopener noreferrer" style="display: block; position: relative; width: 100%; height: 0; padding-top: 56.25%;">
-                        <iframe src="https://www.youtube.com/embed/9bLsezbwF44?autoplay=0&mute=1&loop=1&playlist=9bLsezbwF44" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" class="card-img-top" alt="Ini video"></iframe>
-                        <div class="card-body">
-                            <p class="card-text">Goa Nan Panjang</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="card mb-2" style="width: 50%;">
-                    <a href="https://www.youtube.com/watch?v=9bLsezbwF44" target="_blank" rel="noopener noreferrer" style="display: block; position: relative; width: 100%; height: 0; padding-top: 56.25%;">
-                        <iframe src="https://www.youtube.com/embed/9bLsezbwF44?autoplay=0&mute=1&loop=1&playlist=9bLsezbwF44" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" class="card-img-top" alt="Ini video"></iframe>
-                        <div class="card-body">
-                            <p class="card-text">Goa Nan Panjang</p>
-                        </div>
-                    </a>
-                </div>
-                <div class="card mb-2" style="width: 50%;">
+                <div class="card mb-2 ml-10 vb" style="width: 50%;">
                     <a href="https://www.youtube.com/watch?v=9bLsezbwF44" target="_blank" rel="noopener noreferrer" style="display: block; position: relative; width: 100%; height: 0; padding-top: 56.25%;">
                         <iframe src="https://www.youtube.com/embed/9bLsezbwF44?autoplay=0&mute=1&loop=1&playlist=9bLsezbwF44" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" class="card-img-top" alt="Ini video"></iframe>
                         <div class="card-body">

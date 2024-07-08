@@ -1,9 +1,8 @@
 @extends('frontend.layouts.main')
 
 @section('content')
-    <div class="hero-wrap hero-wrap-2 "
-    style="background-image: url('{{ asset('media/' . $homestays->media[0]->nama) }}');height: 100px;">
-        <div class="overlay" style="height: 100px;"></div>
+    <div class="hero-wrap hero-wrap-2" style="height: 100px; background-color: rgb(0, 0, 0)">
+        <div class="overlay" style="height: 100px; background-color: rgb(0, 0, 0); color: black"></div>
     </div>
     <div class="ftco-section">
         <div class="container">
@@ -20,7 +19,10 @@
                         <div class="carousel-indicators" style="position: absolute; top: 10px">
                             @if ($homestays->media->count() > 0)
                                 @foreach ($homestays->media as $index => $media)
-                                    <button type="button" data-bs-target="#slider" data-bs-slide-to="{{ $index }}" class="{{ $index === 0 ? 'active' : '' }}" aria-current="{{ $index === 0 ? 'true' : 'false' }}" aria-label="Slide {{ $index + 1 }}"></button>
+                                    <button type="button" data-bs-target="#slider" data-bs-slide-to="{{ $index }}"
+                                        class="{{ $index === 0 ? 'active' : '' }}"
+                                        aria-current="{{ $index === 0 ? 'true' : 'false' }}"
+                                        aria-label="Slide {{ $index + 1 }}"></button>
                                 @endforeach
                             @endif
                         </div>
@@ -29,16 +31,20 @@
                                 @foreach ($homestays->media as $index => $media)
                                     <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                                         @if ($media->tipe == 'video')
-                                        <video src="{{ asset('media/' . $media->nama) }}"  loading="lazy" class="d-block w-100" controls muted autoplay></video>
+                                            <video src="{{ asset('media/' . $media->nama) }}" loading="lazy"
+                                                class="d-block w-100" controls muted autoplay></video>
                                         @else
-                                        <img src="{{ asset('media/' . $media->nama) }}"  loading="lazy" class="d-block w-100" alt="Gambar {{ $index + 1 }}">
+                                            <img src="{{ asset('media/' . $media->nama) }}" loading="lazy"
+                                                class="d-block w-100" alt="Gambar {{ $index + 1 }}">
                                         @endif
                                     </div>
                                 @endforeach
                             @else
                                 <div class="carousel-item active">
-                                    <div class="img" style="background-color: #f8f9fa; align-items: center; justify-content: center; display: flex;">
-                                        <span style="color: #6c757d; font-size: 18px; text-align: center">Tidak ada gambar</span>
+                                    <div class="img"
+                                        style="background-color: #f8f9fa; align-items: center; justify-content: center; display: flex;">
+                                        <span style="color: #6c757d; font-size: 18px; text-align: center">Tidak ada
+                                            gambar</span>
                                     </div>
                                 </div>
                             @endif
@@ -71,8 +77,9 @@
                 <div class="ftco-animate">
                     <div class="mb-5">{!! $homestays->desc !!}</div>
                     <p><strong>Harga :</strong> {{ $homestays->harga }} / Malam</p>
-                    <p><strong><span data-feather="phone" style="width: 16px"
-                        class="mr-2"></span></strong> <a href="https://api.whatsapp.com/send?phone={{ str_replace('+', '', $homestays->notelp) }}">{{ $homestays->notelp }}</a></p>
+                    <p><strong><span data-feather="phone" style="width: 16px" class="mr-2"></span></strong> <a
+                            href="https://api.whatsapp.com/send?phone={{ str_replace('+', '', $homestays->notelp) }}">{{ $homestays->notelp }}</a>
+                    </p>
                 </div>
             </div>
         </div>
