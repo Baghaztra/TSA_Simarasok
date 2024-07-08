@@ -143,17 +143,27 @@
                 // console.log(objectMedia);
                 mediaContainer.innerHTML = '';
                 objectMedia.forEach(item => {
-                    // console.log(media);
                     var media;
                     if (item.tipe == 'gambar') {
                         media = document.createElement('img');
-                    }else{
+                        media.setAttribute('src', "/media/" + item.nama);
+                    }else if(item.tipe == 'video'){
                         media = document.createElement('video');
+                        media.setAttribute('src', "/media/" + item.nama);
                         media.setAttribute('controls', true);
+                    }else if(item.tipe == 'youtube'){
+                        const videoId = item.nama.split('v=')[1] || item.nama.split('/').pop();
+                        media = document.createElement('iframe');
+                        media.src = `https://www.youtube.com/embed/${videoId}`;
+                        media.frameBorder = '0';
+                        media.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+                        media.allowFullscreen = true;
+                    }else{
+                        console.log('Error pada media');
                     }
+                    console.log(media);
                     media.classList.add('m-1');
                     media.style.height = '200px';
-                    media.setAttribute('src', "/media/" + item.nama);
                     mediaContainer.appendChild(media);
                 });
             });

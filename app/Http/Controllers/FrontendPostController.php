@@ -18,23 +18,23 @@ class FrontendPostController extends Controller
         ]);
     }
 
-    public function hardNews()
-    {
-        $posts = Post::latest()->cari()->published()->hardNews()->paginate(5);
-        return view('frontend.post.hardNews', ['posts' => $posts]);
-    }
+    // public function hardNews()
+    // {
+    //     $posts = Post::latest()->cari()->published()->hardNews()->paginate(5);
+    //     return view('frontend.post.hardNews', ['posts' => $posts]);
+    // }
 
-    public function softNews()
-    {
-        $posts = Post::latest()->cari()->published()->softNews()->paginate(6);
-        return view('frontend.post.softNews', ['posts' => $posts]);
-    }
+    // public function softNews()
+    // {
+    //     $posts = Post::latest()->cari()->published()->softNews()->paginate(6);
+    //     return view('frontend.post.softNews', ['posts' => $posts]);
+    // }
 
-    public function feature()
-    {
-        $posts = Post::latest()->cari()->published()->feature()->paginate(6);
-        return view('frontend.post.feature', ['posts' => $posts]);
-    }
+    // public function feature()
+    // {
+    //     $posts = Post::latest()->cari()->published()->feature()->paginate(6);
+    //     return view('frontend.post.feature', ['posts' => $posts]);
+    // }
 
     public function show($slug)
     {
