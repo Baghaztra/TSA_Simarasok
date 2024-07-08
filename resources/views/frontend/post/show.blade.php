@@ -25,8 +25,14 @@
                                 <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
                                     @if ($media->tipe == 'video')
                                     <video src="{{ asset('media/' . $media->nama) }}"  loading="lazy" class="d-block w-100" controls muted autoplay></video>
-                                    @else
+                                    @elseif ($media->tipe == 'gambar')
                                     <img src="{{ asset('media/' . $media->nama) }}"  loading="lazy" class="d-block w-100" alt="Gambar {{ $index + 1 }}">
+                                    @elseif ($media->tipe == 'youtube')
+                                    <iframe src="{{ strpos($media->nama, 'youtube.com') !== false ? str_replace('watch?v=', 'embed/', $media->nama) : (strpos($media->nama, 'youtu.be') !== false ? 'https://www.youtube.com/embed/' 
+                                                    . explode('youtu.be/', $media->nama)[1] : $media->nama) }}" 
+                                        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                        allowfullscreen class="d-block w-100" style="height: auto">
+                                    </iframe>
                                     @endif
                                 </div>
                             @endforeach
