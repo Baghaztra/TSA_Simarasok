@@ -25,6 +25,7 @@ use App\Http\Controllers\FrontendProdukController;
 use App\Http\Controllers\FrontendHomestayController;
 use App\Http\Controllers\FrontendDestinasiController;
 use App\Http\Controllers\DestinasiPariwisataController;
+use App\Http\Controllers\ProviderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -53,7 +54,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/admin/user', UserController::class);
     Route::resource('/admin/destinasipariwisata', DestinasiPariwisataController::class);
     Route::resource('/admin/homestay', HomestayController::class);
-    // Route::resource('/admin/booking', BookingController::class);
+    Route::resource('/admin/provider', ProviderController::class);
     Route::resource('/admin/post', PostController::class);
 
     /* Route::resource('/admin/umkm', UMKMController::class);

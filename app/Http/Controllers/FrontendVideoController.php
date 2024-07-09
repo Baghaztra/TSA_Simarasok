@@ -12,7 +12,9 @@ class FrontendVideoController extends Controller
      */
     public function index(Request $request)
     {
-
+        $videos = [
+            'Gua Ngantuk' => 'httsgdkjasdad',
+        ];
         return view('frontend.video.index');
     }
 

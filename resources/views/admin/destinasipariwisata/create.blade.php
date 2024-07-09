@@ -203,7 +203,7 @@
             <div class="mb-3">
                 <label class="form-label">Status Destinasi</label>
                 <select name="status" id="status" class="form-select @error('status') is-invalid @enderror">
-                    <option value="" disabled selected>Masukan Status</option>
+                    <option value="" disabled selected>Pilih Status</option>
                     <option value="normal" {{ old('status') == 'normal' ? 'selected' : '' }}>Normal</option>
                     <option value="perbaikan" {{ old('status') == 'perbaikan' ? 'selected' : '' }}>Sedang Perbaikan</option>
                     <option value="ditutup" {{ old('status') == 'ditutup' ? 'selected' : '' }}>Ditutup</option>
@@ -215,7 +215,27 @@
                 @enderror
             </div>
 
-
+            <div class="mb-3">
+                <label class="form-label">Kecepatan Internet</label>
+                @foreach ($providers as $item)
+                    <div class="input-group row mb-1">
+                        <label class="form-label col-4">{{ $item->name }}</label>
+                        <select class="form-select col-8 @error('providers') is-invalid @enderror" name="providers[]">
+                            <option value="" disabled selected>Pilih Status</option>
+                            <option value="Very Good" {{ old('providers.' . $loop->index) == 'Very Good' ? 'selected' : '' }}>Very Good</option>
+                            <option value="Good" {{ old('providers.' . $loop->index) == 'Good' ? 'selected' : '' }}>Good</option>
+                            <option value="Normal" {{ old('providers.' . $loop->index) == 'Normal' ? 'selected' : '' }}>Normal</option>
+                            <option value="Fair" {{ old('providers.' . $loop->index) == 'Fair' ? 'selected' : '' }}>Fair</option>
+                            <option value="Bad" {{ old('providers.' . $loop->index) == 'Bad' ? 'selected' : '' }}>Bad</option>
+                        </select>
+                    </div>
+                @endforeach
+                @error('providers')
+                    <div class="invalid-feedback">
+                        {{ $message }}
+                    </div>
+                @enderror
+            </div>
 
             <button class="btn btn-sm btn-primary" type="submit">Submit</button>
             <div style="height: 25vh"></div>

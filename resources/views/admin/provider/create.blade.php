@@ -1,17 +1,20 @@
 @extends('admin.layout.main')
 
+@section('header')
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Provider Baru</h1>
+</div>
+@endsection
+
 @section('content')
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">Form Edit Kategori</h1>
-    </div>
     <div class="col-6">
-        <a href="/admin/category" class="btn btn-sm btn-warning mb-3">Kembali</a>
-        <form action="/admin/category/{{ $category->id }}" method="post" enctype="multipart/form-data">
-            @csrf @method('put')
+        <a href="/admin/provider" class="btn btn-sm btn-warning mb-3">Kembali</a>
+        <form action="/admin/provider" method="post" enctype="multipart/form-data">
+            @csrf
             <div class="mb-3">
-                <label class="form-label">Nama Kategori</label>
+                <label class="form-label">Nama Provider</label>
                 <input type="text" class="form-control @error('name') is-invalid @enderror" name="name"
-                    value="{{ old('name', $category->name) }}">
+                    value="">
                 @error('name')
                     <div class="invalid-feedback">
                         {{ $message }}

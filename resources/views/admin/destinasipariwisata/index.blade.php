@@ -60,8 +60,22 @@
                     </form>
                     <a href="/admin/destinasipariwisata/{{ $item->id }}/edit" class="btn btn-sm btn-warning">Edit</a>
                     <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#details-modal"
-                        data-nama="{{ $item->name }}" data-desc="{{ $item->desc }}" data-harga="{{ $item->harga }}"
-                        data-gambar="{{ $item->media }}" data-notelp="{{ $item->notelp }}" data-lokasi="{{ $item->lokasi }}" data-status="{{ $item->status }}">Detail</button>
+                        data-nama="{{ $item->name }}" 
+                        data-desc="{{ $item->desc }}" 
+                        data-harga="{{ $item->harga }}"
+                        data-gambar="{{ $item->media }}" 
+                        data-notelp="{{ $item->notelp }}" 
+                        data-lokasi="{{ $item->lokasi }}" 
+                        data-status="{{ $item->status }}"
+                        data-provider="{{ $item->provider->map(function($provider) {
+                            return [
+                                'name' => $provider->provider->name,
+                                'signal' => $provider->signal,
+                            ];
+                        })->toJson() }}">
+                        Detail
+                    </button>
+
                 </td>
             </tr>
         @endforeach
@@ -83,6 +97,8 @@
                     <p><strong>Harga Tiket : </strong> <span id="harga"></span></p>
                     <p><strong>Contack person : </strong> <span id="notelp"></span></p>
                     <p><strong>Status : </strong><span id="status"></span></p>
+                    <u><strong>Kualitas Internet:</strong></u>
+                    <ul id="provider" class="mb-3"></ul>
                     <a id="lokasi" href="" target="_blank">Lihat lokasi</a>
                 </div>
             </div>
@@ -102,6 +118,7 @@
                 const mediaContainer = detailModal.querySelector('#media');
                 const lokasi = detailModal.querySelector('#lokasi');
                 const status = detailModal.querySelector('#status');
+                const provider = detailModal.querySelector('#provider');
 
                 namaDestinasi.innerHTML = button.getAttribute('data-nama');
                 deskripsi.innerHTML = button.getAttribute('data-desc');
@@ -141,6 +158,15 @@
                     media.style.height = '200px';
                     media.setAttribute('src', "/media/" + item.nama);
                     mediaContainer.appendChild(media);
+                });
+                const listProvider = JSON.parse(button.getAttribute('data-provider'));
+                console.log(listProvider);
+                provider.innerHTML = '';
+                listProvider.forEach(item => {
+                    const prov = document.createElement('li');
+                    prov.innerHTML = "<strong>"+ item.name +"</strong> : "+item.signal;
+                    // console.log(prov);
+                    provider.appendChild(prov);
                 });
             });
         });

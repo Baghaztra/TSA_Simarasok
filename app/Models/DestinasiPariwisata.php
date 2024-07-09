@@ -28,6 +28,10 @@ class DestinasiPariwisata extends Model
                     ->where('tipe', 'youtube');
     }
 
+    function provider(){
+        return $this->hasMany(DestinasiProvider::class, 'destinasi_id');
+    }
+
     // Ini Scope yang kubuat gas, bisa pake ini aja kalau mau, tiba tiba rajin cuy
     /*
         function scopeCari(Builder $query, $term=NULL) {
