@@ -14,7 +14,8 @@ class FrontendVideoController extends Controller
     {
         $videos = [
             'Pemandian Batu Putiah' => "https://youtu.be/XoqO-ABX_VA",
-            'Sungai Angek Rafting' => "https://youtu.be/zyzm3VJQssg",
+            'Sungai Angek Rafting' => "https://youtu.be/ZppvbstTY3Y",
+            'UMKM Simarasok : Kue Bolu' => "https://youtu.be/8UeUTG-ndqY",
             'Homestay Rumah Gadang'=> "https://youtu.be/vlz892nCSn0",
             'Petualangan di Bawah Pulai Camp' => "https://youtu.be/FKk_ZpmCRls",
         ];

@@ -45,7 +45,7 @@
                                 <div class="nav nav-pills text-center" id="v-pills-tab" role="tablist"
                                     aria-orientation="vertical">
                                     <div class="nav-link mr-md-1" id="v-pills-1-tab" aria-selected="true"
-                                        style="cursor: default">Info mase</div>
+                                        style="cursor: default">Informasi</div>
                                 </div>
                             </div>
                             <div class="col-md-12 tab-wrap">
@@ -188,9 +188,10 @@
                 </div>
                 <div class="col-md-6">
                     <div class="row">
-                        <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
-                            <div class="services services-1 color-1 d-block img"
-                                style="background-image: url(/media/frontend/images/Home.jpg);">
+                        <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate" style="z-index: 2; position: relative">
+                            <div class="services services-1 color-1 d-block img" style="z-index: 2; position: relative">
+                                <img src="{{ asset('/media/frontend/images/Home.jpg') }}"  alt="Background Image"
+                                style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
                                 <div class="icon d-flex align-items-center justify-content-center"><span
                                         class="flaticon-paragliding"></span></div>
                                 <div class="media-body">
@@ -200,9 +201,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
-                            <div class="services services-1 color-2 d-block img"
-                                style="background-image: url(/media/frontend/images/Home.jpg);">
+                        <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate" style="z-index: 2; position: relative">
+                            <div class="services services-1 color-2 d-block img">
+                                <img src="{{ asset('/media/frontend/images/Home.jpg') }}"  alt="Background Image"
+                                style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
+
                                 <div class="icon d-flex align-items-center justify-content-center"><span
                                         class="flaticon-route"></span></div>
                                 <div class="media-body">
@@ -212,9 +215,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
-                            <div class="services services-1 color-3 d-block img"
-                                style="background-image: url(/media/frontend/images/Home.jpg);">
+                        <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate" style="z-index: 2; position: relative">
+                            <div class="services services-1 color-3 d-block img">
+                                <img src="{{ asset('/media/frontend/images/Home.jpg') }}"  alt="Background Image"
+                                style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
                                 <div class="icon d-flex align-items-center justify-content-center"><span
                                         class="flaticon-tour-guide"></span></div>
                                 <div class="media-body">
@@ -224,9 +228,10 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate">
-                            <div class="services services-1 color-4 d-block img"
-                                style="background-image: url(/media/frontend/images/Home.jpg);">
+                        <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate" style="z-index: 2; position: relative">
+                            <div class="services services-1 color-4 d-block img">
+                                <img src="{{ asset('/media/frontend/images/Home.jpg') }}"  alt="Background Image"
+                                style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
                                 <div class="icon d-flex align-items-center justify-content-center"><span
                                         class="flaticon-map"></span></div>
                                 <div class="media-body">
@@ -317,9 +322,10 @@
 </div>
 
 {{-- Produk --}}
-<div class="ftco-section img ftco-select-destination"
-    style="background-image: url(/media/frontend/images/GreyBG.jpg);">
-    <div class="container">
+<div class="ftco-section img ftco-select-destination">
+    <img src="{{ asset('/media/frontend/images/GreyBG.jpg') }}" alt="Background Image"
+        style="width: 100%; height: auto; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
+    <div class="container" style="position: relative; z-index: 2;">
         <div class="row justify-content-center pb-4">
             <div class="col-md-12 heading-section text-center ftco-animate">
                 <span class="subheading">Kuliner dan Cinderamata</span>

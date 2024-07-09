@@ -1,4 +1,6 @@
-<footer class="ftco-footer bg-bottom ftco-no-pt" style="background-image: url(/media/frontend/images/GreyBG.jpg);">
+<footer class="ftco-footer bg-bottom ftco-no-pt" style="position: relative; z-index: 2;">
+    <img src="{{ asset('/media/frontend/images/GreyBG.jpg') }}" alt="Background Image"
+        style="width: 100%; height: auto; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
     {{-- <style>
         .card-box {
             padding: 20px;
