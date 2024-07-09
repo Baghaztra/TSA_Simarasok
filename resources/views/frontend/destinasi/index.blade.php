@@ -19,7 +19,8 @@
     <div class="container mt-5">
         <form action="/list-destinasi" method="GET" class="input-group">
             <div class="form-outline flex-grow-1" data-mdb-input-init>
-                <input type="search" name="q" class="form-control" placeholder="Cari Destinasi" value="{{ request('q') }}"/>
+                <input type="search" name="q" class="form-control" placeholder="Cari Destinasi"
+                    value="{{ request('q') }}" />
             </div>
             <button type="submit" class="btn btn-primary">
                 <i data-feather="search"></i>
@@ -41,8 +42,10 @@
                         <div class="col-md-4 ftco-animate">
                             <div class="project-wrap">
                                 @if (count($item->media) > 0)
-                                    <a href="{{ route('destinasi.show', ['id' => $item->id]) }}" class="img"
-                                        style="background-image: url('{{ asset('media/' . $item->media[0]->nama) }}');"></a>
+                                    <a href="{{ route('destinasi.show', ['id' => $item->id]) }}" class="img-wrapper">
+                                        <img src="{{ asset('media/' . $item->media[0]->nama) }}"
+                                            alt="{{ $item->media[0]->nama }}" class="img-fluid">
+                                    </a>
                                 @else
                                     <div class="img"
                                         style="background-color: #f8f9fa; align-items: center; justify-content: center; display: flex;">
@@ -55,13 +58,15 @@
                                         <a
                                             href="#">{{ strlen($item->name) > 15 ? substr($item->name, 0, 30) . '...' : $item->name }}</a>
                                     </h3>
-                                    <p class="location mb-1 fs-12"><span class="fa fa-map-marker mr-2"><a href="{{ $item->lokasi }}" target="_blank"></span>Lihat Lokasi</a></p>
+                                    <p class="location mb-1 fs-12"><span class="fa fa-map-marker mr-2"><a
+                                                href="{{ $item->lokasi }}" target="_blank"></span>Lihat Lokasi</a></p>
                                     <ul>
                                         <span data-feather="percent" style="width: 16px; color: rgb(86, 86, 86)"></span>
                                         @if ($item->harga == 0)
-                                        <li style="color: rgb(86, 86, 86)">Gratis</li>
+                                            <li style="color: rgb(86, 86, 86)">Gratis</li>
                                         @else
-                                        <li style="color: rgb(86, 86, 86)">RP.{{ number_format($item->harga, 2, ',', '.') }}/orang</li>
+                                            <li style="color: rgb(86, 86, 86)">
+                                                RP.{{ number_format($item->harga, 2, ',', '.') }}/orang</li>
                                         @endif
                                     </ul>
                                     <ul>

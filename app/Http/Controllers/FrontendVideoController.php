@@ -12,8 +12,14 @@ class FrontendVideoController extends Controller
      */
     public function index(Request $request)
     {
+        $videos = [
+            'Pemandian Batu Putiah' => "https://youtu.be/XoqO-ABX_VA",
+            'Sungai Angek Rafting' => "https://youtu.be/zyzm3VJQssg",
+            'Homestay Rumah Gadang'=> "https://youtu.be/vlz892nCSn0",
+            'Petualangan di Bawah Pulai Camp' => "https://youtu.be/FKk_ZpmCRls",
+        ];
 
-        return view('frontend.video.index');
+        return view('frontend.video.index', compact('videos'));
     }
 
     /**

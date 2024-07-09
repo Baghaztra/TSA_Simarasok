@@ -1,7 +1,8 @@
 @extends('frontend.layouts.main')
 
 @section('content')
-    <div class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('/media/frontend/images/Home.jpg');">
+    <div class="hero-wrap hero-wrap-2 js-fullheight">
+        <img src="/media/frontend/images/Home.jpg" alt="">
         <div class="overlay"></div>
         <div class="container">
             <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">

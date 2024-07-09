@@ -92,6 +92,7 @@
                                 class="fa fa-instagram" style="color: gray"></span> @tsa.pnp</a></li>
                         </p>
                 </div>
+
             </div>
             <div class="col-md pt-5 border-left">
                 <div class="ftco-footer-widget pt-md-5 mb-4 ml-md-5">

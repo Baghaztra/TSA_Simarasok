@@ -19,7 +19,8 @@
     <div class="container mt-5">
         <form action="/list-produk" method="GET" class="input-group">
             <div class="form-outline flex-grow-1" data-mdb-input-init>
-                <input type="search" name="q" class="form-control" placeholder="Cari Produk" value="{{ request('q') }}"/>
+                <input type="search" name="q" class="form-control" placeholder="Cari Produk"
+                    value="{{ request('q') }}" />
             </div>
             <button type="submit" class="btn btn-primary">
                 <i data-feather="search"></i>
@@ -41,12 +42,15 @@
                         <div class="col-md-4 ftco-animate">
                             <div class="project-wrap">
                                 @if (count($produk->media) > 0)
-                                    <a href="{{ route('produk.show', $produk->id) }}" class="img"
-                                       style="background-image: url('{{ asset('media/' . $produk->media[0]->nama) }}');"></a>
+                                    <a href="{{ route('produk.show', ['id' => $produk->id]) }}" class="img-wrapper">
+                                        <img src="{{ asset('media/' . $produk->media[0]->nama) }}"
+                                            alt="{{ $produk->media[0]->nama }}" class="img-fluid">
+                                    </a>
                                 @else
                                     <div class="img"
-                                         style="background-color: #f8f9fa; align-items: center; justify-content: center; display: flex;">
-                                        <span style="color: #6c757d; font-size: 18px; text-align: center">Tidak ada gambar</span>
+                                        style="background-color: #f8f9fa; align-items: center; justify-content: center; display: flex;">
+                                        <span style="color: #6c757d; font-size: 18px; text-align: center">Tidak ada
+                                            gambar</span>
                                     </div>
                                 @endif
                                 <div class="text p-4">

@@ -19,7 +19,8 @@
     <div class="container mt-5">
         <form action="/list-homestay" method="GET" class="input-group">
             <div class="form-outline flex-grow-1" data-mdb-input-init>
-                <input type="search" name="q" class="form-control" placeholder="Cari Penginapan" value="{{ request('q') }}"/>
+                <input type="search" name="q" class="form-control" placeholder="Cari Penginapan"
+                    value="{{ request('q') }}" />
             </div>
             <button type="submit" class="btn btn-primary">
                 <i data-feather="search"></i>
@@ -41,8 +42,10 @@
                         <div class="col-md-4 ftco-animate">
                             <div class="project-wrap">
                                 @if (count($item->media) > 0)
-                                    <a href="{{ route('homestay.show', ['id' => $item->id]) }}" class="img"
-                                        style="background-image: url('{{ asset('media/' . $item->media[0]->nama) }}');"></a>
+                                    <a href="{{ route('homestay.show', ['id' => $item->id]) }}" class="img-wrapper">
+                                        <img src="{{ asset('media/' . $item->media[0]->nama) }}"
+                                            alt="{{ $item->media[0]->nama }}" class="img-fluid">
+                                    </a>
                                 @else
                                     <div class="img"
                                         style="background-color: #f8f9fa; align-items: center; justify-content: center; display: flex;">
@@ -55,10 +58,12 @@
                                         <a
                                             href="{{ route('homestay.show', ['id' => $item->id]) }}">{{ strlen($item->name) > 15 ? substr($item->name, 0, 30) . '...' : $item->name }}</a>
                                     </h3>
-                                    <p class="location mb-1"><span class="fa fa-map-marker mr-2"></span>{{ $item->lokasi }}</p>
+                                    <p class="location mb-1"><span class="fa fa-map-marker mr-2"></span>{{ $item->lokasi }}
+                                    </p>
                                     <ul>
                                         <span data-feather="percent" style="width: 16px; color: rgb(86, 86, 86)"></span>
-                                        <li style="color: rgb(86, 86, 86)">RP. {{ number_format($item->harga,2,",",".") }} /orang</li>
+                                        <li style="color: rgb(86, 86, 86)">RP. {{ number_format($item->harga, 2, ',', '.') }}
+                                            /orang</li>
                                     </ul>
                                     <ul>
                                         <li style="color: black">
@@ -70,15 +75,18 @@
                                         </li>
                                     </ul>
                                     <ul>
-                                        <li class="btn btn-outline rounded-2 btn-sm mt-2"><a href="{{ route('homestay.show', ['id' => $item->id]) }}">Detail</a></li>
+                                        <li class="btn btn-outline rounded-2 btn-sm mt-2"><a
+                                                href="{{ route('homestay.show', ['id' => $item->id]) }}">Detail</a></li>
                                         <li>
                                             {{-- <form method="POST" action="/booking">
                                                 @csrf --}}
-                                                {{-- <input type="hidden" name="homestay_id" value="{{ $item->id }}"> --}}
-                                                <a href="list-homestay/{{ $item->id }}/Form-WA" class="btn btn-primary rounded-2 btn-sm mt-2">Pesan Sekarang via Form</a>
+                                            {{-- <input type="hidden" name="homestay_id" value="{{ $item->id }}"> --}}
+                                            <a href="list-homestay/{{ $item->id }}/Form-WA"
+                                                class="btn btn-primary rounded-2 btn-sm mt-2">Pesan Sekarang via Form</a>
 
-                                                <a href="https://api.whatsapp.com/send?phone={{ str_replace('+', '', $item->notelp) }}" target="_blank" class="btn btn-primary rounded-2 btn-sm mt-2">Pesan
-                                                    Sekarang</a>
+                                            <a href="https://api.whatsapp.com/send?phone={{ str_replace('+', '', $item->notelp) }}"
+                                                target="_blank" class="btn btn-primary rounded-2 btn-sm mt-2">Pesan
+                                                Sekarang</a>
                                             {{-- </form> --}}
                                         </li>
                                     </ul>
