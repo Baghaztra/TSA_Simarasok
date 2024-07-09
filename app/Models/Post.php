@@ -44,4 +44,10 @@ class Post extends Model
     function scopeFeature(Builder $query) : void {
         $query->where('category', 'Feature');
     }
+
+    function getCleanContentAttribute()
+    {
+        // Menghapus tag <p>
+        return strip_tags($this->attributes['content']);
+    }
 }
