@@ -27,6 +27,7 @@ class DestinasiPariwisataFactory extends Factory
             'harga' => rand(10, 500) * 1000,
             'notelp' => '+628' . $faker->numerify('##########'),
             'lokasi' => 'https://maps.google.com/?q=' . $faker->latitude . ',' . $faker->longitude,
+            'status' => $this->faker->randomElement(['Normal','Perbaikan','Tutup']),
         ];
     }
 }

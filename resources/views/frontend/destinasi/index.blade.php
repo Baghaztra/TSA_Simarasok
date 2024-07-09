@@ -10,7 +10,7 @@
                         <span class="mr-2"><a href="/">Home <i class="fa fa-chevron-right"></i></a></span>
                         <span>List Destinasi <i class="fa fa-chevron-right"></i></span>
                     </p>
-                    <h1 class="mb-0 bread">List Destinasi</h1>
+                    <h1 class="mb-0 bread">Daftar Destinasi</h1>
                 </div>
             </div>
         </div>
@@ -32,7 +32,7 @@
             <div class="row justify-content-center pb-2">
                 <div class="col-md-12 heading-section text-center ftco-animate">
                     <span class="subheading">Destinasi</span>
-                    <h2 class="mb-4">List Destinasi</h2>
+                    <h2 class="mb-4">Daftar Destinasi</h2>
                 </div>
             </div>
             <div class="container">
@@ -73,15 +73,26 @@
                                             </a>
                                         </li>
                                     </ul>
-                                    <ul>
-                                        <li class="btn btn-outline rounded-2 btn-sm mt-2"><a href="{{ route('destinasi.show', ['id' => $item->id]) }}">Detail</a></li>
-                                        <li>
-                                            {{-- <form method="POST" action="/booking-wisata">
+                                    <ul class="list-unstyled d-flex justify-content-between">
+                                        <li class="btn btn-outline rounded-2 btn-sm mt-2">
+                                            <a href="{{ route('destinasi.show', ['id' => $item->id]) }}">Detail</a>
+                                        </li>
+                                        <li class="fs-12"">
+                                            {{-- @if ($item->status == 'Normal')
+                                                <i data-feather="circle" style="color: green;"></i> Normal --}}
+                                            @if ($item->status == 'Perbaikan')
+                                                <i data-feather="tool" style="width: 20px"></i> Perbaikan
+                                            @elseif ($item->status == 'Tutup')
+                                                <i data-feather="alert-circle" style="color: red; width: 20px"></i> Ditutup
+                                            @endif
+                                        </li>
+                                        {{-- <li>
+                                            <form method="POST" action="/booking-wisata">
                                                 @csrf
                                                 <input type="hidden" name="destinasi_id" value="{{ $item->id }}">
                                                 <button type="submit" class="btn btn-primary rounded-2 btn-sm mt-2">Booking Destinasi</button>
-                                            </form> --}}
-                                        </li>
+                                            </form>
+                                        </li> --}}
                                     </ul>
                                 </div>
                             </div>

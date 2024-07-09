@@ -8,9 +8,9 @@
                 <div class="col-md-9 ftco-animate pb-5 text-center">
                     <p class="breadcrumbs">
                         <span class="mr-2"><a href="/">Home <i class="fa fa-chevron-right"></i></a></span>
-                        <span>List Berita <i class="fa fa-chevron-right"></i></span>
+                        <span>Berita Terbaru<i class="fa fa-chevron-right"></i></span>
                     </p>
-                    <h1 class="mb-0 bread">List Berita</h1>
+                    <h1 class="mb-0 bread">Daftar Berita</h1>
                 </div>
             </div>
         </div>
@@ -59,6 +59,7 @@
                                 <div class="entry-content" style="text-align:justify; margin-top: 15px;">
                                     <p>
                                         {{ Str::limit($post->clean_content, 150, '...') }}
+                                    <p>
                                         <br />
                                         <a href="{{ route('post.hardNewsDetail', $post->slug) }}"
                                             class="more-link">Selengkapnya</a>

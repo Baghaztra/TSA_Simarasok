@@ -16,14 +16,15 @@ use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomestayController;
 use App\Http\Controllers\DashbaordController;
+use App\Http\Controllers\FrontendHomeController;
 use App\Http\Controllers\FrontendPostController;
 use App\Http\Controllers\FrontendUMKMController;
+use App\Http\Controllers\FrontendVideoController;
 use App\Http\Controllers\FrontendKontakController;
 use App\Http\Controllers\FrontendProdukController;
 use App\Http\Controllers\FrontendHomestayController;
 use App\Http\Controllers\FrontendDestinasiController;
 use App\Http\Controllers\DestinasiPariwisataController;
-use App\Http\Controllers\FrontendHomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -99,3 +100,4 @@ Route::get('/list-feature/{slug}', [FrontendPostController::class, 'show'])->nam
 
 Route::get('/list-homestay/{id}/Form-WA', [FrontendHomestayController::class, 'wagw']);
 Route::post('/sendWA', [FrontendHomestayController::class, 'wagwSend']);
+Route::get('/list-video', [FrontendVideoController::class, 'index']);

@@ -14,11 +14,17 @@ class Post extends Model
         'title',
         'slug',
         'content',
-        'category',
+        // 'category',
         'status',
     ];
     function media(){
         return $this->hasMany(Asset::class, 'jenis_id')->where('jenis', 'post');
+    }
+    public function youtubeLinks()
+    {
+        return $this->hasMany(Asset::class, 'jenis_id')
+                    ->where('jenis', 'post')
+                    ->where('tipe', 'youtube');
     }
 
     public static function make_slug($judul) {
@@ -34,7 +40,6 @@ class Post extends Model
     function scopePublished(Builder $query) : void {
         $query->where('status', 'publish');
     }
-
     function scopeHardNews(Builder $query) : void {
         $query->where('category', 'Hard News');
     }
@@ -50,4 +55,5 @@ class Post extends Model
         // Menghapus tag <p>
         return strip_tags($this->attributes['content']);
     }
+
 }

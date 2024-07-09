@@ -1,7 +1,7 @@
 @extends('frontend.layouts.main')
 
 @section('content')
-    <div class="hero-wrap hero-wrap-2" style="background-image: url('{{ asset('media/' . $homestay->media[0]->nama) }}');height: 100px;">
+    <div class="hero-wrap hero-wrap-2" style="background-color: black; color: black; height: 100px;">
         <div class="overlay" style="height: 100px;"></div>
     </div>
     <div class="ftco-section">
@@ -24,9 +24,10 @@
                         </div>
                         <div class="mb-3">
                             <label class="form-label">Nomor WhatsApp</label>
-                            <input type="number" class="form-control" name="wa" placeholder="Masukkan nomor yang akan dihubungi ex.08xxxx">
+                            <input type="number" class="form-control" name="target" placeholder="Masukkan nomor yang akan dihubungi ex.08xxxx">
                         </div>
-                        <input type="hidden" name="nomor" value={{ $homestay->notelp }}>
+                        <input type="hidden" name="pemilik" value={{ $homestay->notelp }}>
+                        <input type="hidden" name="homestay" value="{{ $homestay->name }}">
                         <button type="submit" class="btn btn-primary">Kirim</button>
                     </form>
                 </div>
