@@ -140,7 +140,7 @@
         <div class="container">
             <div class="row d-flex">
                 <div class="col-md-6 order-md-last heading-section pl-md-5 ftco-animate d-flex align-items-center">
-                    <div class="w-100">
+                    <div class="w-100 text-justify">
                         <span class="subheading">Simarasok itu apa sih?</span>
                         <h2 class="mb-4">Simarasok</h2>
                         <p>Nagari Simarasok, sebuah desa wisata yang asri di dataran tinggi Kabupaten Agam, Sumatera Barat,
@@ -324,7 +324,7 @@
 {{-- Produk --}}
 <div class="ftco-section img ftco-select-destination">
     <img src="{{ asset('/media/frontend/images/GreyBG.jpg') }}" alt="Background Image"
-        style="width: 100%; height: auto; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
+        style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
     <div class="container" style="position: relative; z-index: 2;">
         <div class="row justify-content-center pb-4">
             <div class="col-md-12 heading-section text-center ftco-animate">
