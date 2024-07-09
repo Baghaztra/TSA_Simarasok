@@ -39,30 +39,6 @@ class FrontendHomeController extends Controller
         ]);
     }
 
-     //NYOBA AJA BLM BERHASIL :V
-    public function getWeather()
-    {
-        $apiKey = env('SBIqQETzA6cfKh94Y6NwH9XBlS5ud9oT');
-        $locationKey = '3439598'; // Simarasok location key
-        $client = new Client();
-        $response = $client->request('GET', "SBIqQETzA6cfKh94Y6NwH9XBlS5ud9oT", [
-            'query' => [
-                'apikey' => $apiKey,
-                'language' => 'id-ID'
-            ]
-        ]);
-
-        $data = json_decode($response->getBody()->getContents(), true);
-
-        if (isset($data[0])) {
-            $currentConditions = $data[0];
-        } else {
-            $currentConditions = null;
-        }
-
-        return view('frontend.home.index', compact('currentConditions'));
-    }
-
     /**
      * Show the form for creating a new resource.
      */
