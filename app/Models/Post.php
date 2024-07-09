@@ -40,14 +40,20 @@ class Post extends Model
     function scopePublished(Builder $query) : void {
         $query->where('status', 'publish');
     }
+    function scopeHardNews(Builder $query) : void {
+        $query->where('category', 'Hard News');
+    }
+    function scopeSoftNews(Builder $query) : void {
+        $query->where('category', 'Soft News');
+    }
+    function scopeFeature(Builder $query) : void {
+        $query->where('category', 'Feature');
+    }
 
-    // function scopeHardNews(Builder $query) : void {
-    //     $query->where('category', 'Hard News');
-    // }
-    // function scopeSoftNews(Builder $query) : void {
-    //     $query->where('category', 'Soft News');
-    // }
-    // function scopeFeature(Builder $query) : void {
-    //     $query->where('category', 'Feature');
-    // }
+    function getCleanContentAttribute()
+    {
+        // Menghapus tag <p>
+        return strip_tags($this->attributes['content']);
+    }
+
 }
