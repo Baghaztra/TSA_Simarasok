@@ -85,6 +85,17 @@ class DestinasiPariwisataController extends Controller
                 $asset->save();
             }
         }
+        if ($request->filled('youtube_links')) {
+            $youtubeLinks = json_decode($request->input('youtube_links'), true);
+            foreach ($youtubeLinks as $link) {
+                $asset = new Asset();
+                $asset->nama = $link;
+                $asset->tipe = 'youtube';
+                $asset->jenis = 'destinasi';
+                $asset->jenis_id = $destinasi->id;
+                $asset->save();
+            }
+        }
 
         // DestinasiPariwisata::create($destinasi);
         return redirect('admin/destinasipariwisata')->with('success', 'Berhasil menambahkan Destinasi Pariwisata baru.');
@@ -132,6 +143,33 @@ class DestinasiPariwisataController extends Controller
                 $asset->nama = $fileName;
                 $asset->tipe = in_array($file->getClientOriginalExtension(), ['jpg', 'jpeg', 'png']) ? 'gambar' : 'video';
                 $asset->jenis = 'destinasi';
+                $asset->jenis_id = $destinasi->id;
+                $asset->save();
+            }
+        }
+        if ($request->filled('youtube_links')) {
+            $youtubeLinks = json_decode($request->input('youtube_links'), true);
+            foreach ($youtubeLinks as $link) {
+                $asset = new Asset();
+                $asset->nama = $link;
+                $asset->tipe = 'youtube';
+                $asset->jenis = 'destinasi';
+                $asset->jenis_id = $destinasi->id;
+                $asset->save();
+            }
+        }
+        if ($request->filled('youtube_links')) {
+            $youtubeLinks = json_decode($request->input('youtube_links'), true);
+
+            // Hapus link YouTube lama
+            $destinasi->youtubeLinks()->delete();
+
+            // Simpan link YouTube baru
+            foreach ($youtubeLinks as $link) {
+                $asset = new Asset();
+                $asset->nama = $link;
+                $asset->tipe = 'youtube';
+                $asset->jenis = 'post';
                 $asset->jenis_id = $destinasi->id;
                 $asset->save();
             }

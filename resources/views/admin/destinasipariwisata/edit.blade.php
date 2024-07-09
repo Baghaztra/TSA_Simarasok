@@ -43,6 +43,11 @@
                         <i data-feather="plus" style="width: 100px; height: 100px;"></i>
                     </div>
                 </label>
+                <div class="input-group mb-3">
+                    <input type="text" id="youtube-link" class="form-control" placeholder="Masukkan link YouTube">
+                    <button class="btn btn-primary" type="button" onclick="addYouTubeVideo()">Tambahkan</button>
+                </div>
+                <input type="hidden" name="youtube_links" id="youtube-links">
                 @error('gambar')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -52,20 +57,20 @@
 
             <script>
                 let currentFiles = [];
-
+            
                 const previewFiles = (event) => {
                     const newFiles = Array.from(event.target.files);
                     currentFiles = currentFiles.concat(newFiles);
                     updatePreview();
                     updateFileInput(currentFiles);
                 };
-
+            
                 const updatePreview = () => {
                     const previewContainer = document.getElementById('preview-container');
-
+                    
                     // Hapus pratinjau file yang baru ditambahkan saja (biarkan media yang ada tetap)
                     previewContainer.querySelectorAll('[data-new]').forEach(el => el.remove());
-
+                    
                     currentFiles.forEach((file, index) => {
                         const reader = new FileReader();
                         reader.onload = () => {
@@ -74,7 +79,7 @@
                             previewWrapper.style.position = 'relative';
                             previewWrapper.style.display = 'inline-block';
                             previewWrapper.dataset.new = true; // Menandai sebagai media baru
-
+                            
                             if (file.type.startsWith('image/')) {
                                 mediaElement = document.createElement('img');
                                 mediaElement.src = reader.result;
@@ -83,12 +88,12 @@
                                 mediaElement.src = reader.result;
                                 mediaElement.controls = true;
                             }
-
+            
                             if (mediaElement) {
                                 mediaElement.classList.add('img-thumbnail');
                                 mediaElement.style.width = '300px';
                                 mediaElement.style.display = 'block';
-
+            
                                 const removeButton = document.createElement('button');
                                 removeButton.innerHTML = '&#x2715;';
                                 removeButton.style.position = 'absolute';
@@ -103,7 +108,7 @@
                                     updatePreview();
                                     updateFileInput(currentFiles);
                                 });
-
+            
                                 previewWrapper.appendChild(mediaElement);
                                 previewWrapper.appendChild(removeButton);
                                 previewContainer.appendChild(previewWrapper);
@@ -111,26 +116,19 @@
                         }
                         reader.readAsDataURL(file);
                     });
+                    updateYouTubeLinksPreview();
                 };
-
+            
                 const updateFileInput = (updatedFiles) => {
                     const dataTransfer = new DataTransfer();
                     updatedFiles.forEach(file => dataTransfer.items.add(file));
                     document.getElementById('gambar').files = dataTransfer.files;
-                };            
-                const mediaToDelete = [];
-
+                };
+            
                 const removeExistingMedia = (id) => {
                     const mediaElement = document.querySelector(`[data-media-id='${id}']`);
                     if (mediaElement) {
                         mediaElement.remove();
-                        mediaToDelete.push(id); // Menggunakan push untuk menambahkan elemen ke array
-                    }
-                    console.log(mediaToDelete);
-                };
-
-                const confirmDeleteMedia = () => {
-                    mediaToDelete.forEach(id => {
                         fetch(`/media/${id}`, {
                             method: 'DELETE',
                             headers: {
@@ -138,14 +136,72 @@
                                 'Content-Type': 'application/json'
                             }
                         }).then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                console.log('Media deleted successfully');
-                            } else {
-                                console.error('Failed to delete media');
-                            }
-                        })
-                        .catch(error => console.error('Error:', error));
+                          .then(data => {
+                              if (data.success) {
+                                  console.log('Media deleted successfully');
+                              } else {
+                                  console.error('Failed to delete media');
+                              }
+                          })
+                          .catch(error => console.error('Error:', error));
+                    }
+                };
+
+                // let currentFiles = [];
+                let youtubeLinks = @json($destinasis->youtubeLinks->pluck('nama')); // Ambil link YouTube dari post
+
+                document.addEventListener("DOMContentLoaded", function() {
+                    updateYouTubeLinksPreview();
+                });
+
+                const addYouTubeVideo = () => {
+                    const link = document.getElementById('youtube-link').value;
+                    if (link) {
+                        youtubeLinks.push(link);
+                        document.getElementById('youtube-links').value = JSON.stringify(youtubeLinks);
+                        updateYouTubeLinksPreview();
+                        document.getElementById('youtube-link').value = '';
+                    }
+                };
+
+                const updateYouTubeLinksPreview = () => {
+                    const previewContainer = document.getElementById('preview-container');
+                    
+                    previewContainer.querySelectorAll('[data-youtube]').forEach(el => el.remove());
+                    
+                    youtubeLinks.forEach((link, index) => {
+                        const videoId = link.split('v=')[1] || link.split('/').pop();
+                        const iframe = document.createElement('iframe');
+                        iframe.width = '300';
+                        iframe.height = '150';
+                        iframe.src = `https://www.youtube.com/embed/${videoId}`;
+                        iframe.frameBorder = '0';
+                        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+                        iframe.allowFullscreen = true;
+                        
+                        const previewWrapper = document.createElement('div');
+                        previewWrapper.style.position = 'relative';
+                        previewWrapper.style.display = 'inline-block';
+                        previewWrapper.dataset.youtube = true; // Menandai sebagai media baru
+                        
+                        const removeButton = document.createElement('button');
+                        removeButton.innerHTML = '&#x2715;';
+                        removeButton.style.position = 'absolute';
+                        removeButton.style.top = '5px';
+                        removeButton.style.right = '5px';
+                        removeButton.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+                        removeButton.style.border = 'none';
+                        removeButton.style.borderRadius = '50%';
+                        removeButton.style.cursor = 'pointer';
+                        removeButton.addEventListener('click', () => {
+                            youtubeLinks.splice(index, 1);
+                            document.getElementById('youtube-links').value = JSON.stringify(youtubeLinks);
+                            updateYouTubeLinksPreview();
+                        });
+
+                        previewWrapper.appendChild(iframe);
+                        previewWrapper.appendChild(removeButton);
+                        previewContainer.appendChild(previewWrapper);
                     });
                 };
             </script>
