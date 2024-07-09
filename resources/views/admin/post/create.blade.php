@@ -50,6 +50,7 @@
                 </label>
                 <input type="file" name="gambar[]" id="gambar" class="form-control @error('gambar') is-invalid @enderror" onchange="previewFiles(event)" accept=".jpg, .jpeg, .png, .mp4, .mkv" hidden multiple required>
                 <div id="preview-container"></div>
+                <div id="preview-youtube"></div>
                 <label class="form-label" for="gambar">
                     <div id="img-preview" class="img-thumbnail" style="width: 300px; height: 150px; display: flex; justify-content: center; align-items: center; cursor: pointer; background-color: aliceblue">
                         <i data-feather="plus" style="width: 100px; height: 100px;"></i>
@@ -126,7 +127,7 @@
                         const link = document.getElementById('youtube-link').value;
                         const videoId = link.split('v=')[1] || link.split('/').pop();
                         youtubeLinks.push(link);
-                        const previewContainer = document.getElementById('preview-container');
+                        const previewContainer = document.getElementById('preview-youtube');
                         const iframe = document.createElement('iframe');
                         iframe.width = '300';
                         iframe.height = '150';
