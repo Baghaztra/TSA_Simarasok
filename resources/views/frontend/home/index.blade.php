@@ -3,9 +3,9 @@
     <div class="hero-wrap js-fullheight" style="position: relative;">
         <img src="/media/frontend/images/Home.jpg" alt="Background Image"
             style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
-        {{-- <div class="overlay"
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: 1;">
-        </div> --}}
+        <div class="overlay"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: -1;">
+        </div>
         <div class="container" style="position: relative; z-index: 2;">
             <div class="row no-gutters slider-text js-fullheight align-items-center" data-scrollax-parent="true">
                 <div class="col-md-7 ftco-animate">

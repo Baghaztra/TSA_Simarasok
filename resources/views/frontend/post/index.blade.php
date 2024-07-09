@@ -1,14 +1,18 @@
 @extends('frontend.layouts.main')
 
 @section('content')
-    <div class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('/media/frontend/images/Home.jpg');">
-        <div class="overlay"></div>
-        <div class="container">
+    <div class="hero-wrap hero-wrap-2 js-fullheight" style="position: relative;">
+        <img src="/media/frontend/images/Home.jpg" alt="Background Image"
+            style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
+        <div class="overlay"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: -1;">
+        </div>
+        <div class="container" style="position: relative; z-index: 2;">
             <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
                 <div class="col-md-9 ftco-animate pb-5 text-center">
                     <p class="breadcrumbs">
                         <span class="mr-2"><a href="/">Home <i class="fa fa-chevron-right"></i></a></span>
-                        <span>Berita Terbaru<i class="fa fa-chevron-right"></i></span>
+                        <span>Berita Terbaru <i class="fa fa-chevron-right"></i></span>
                     </p>
                     <h1 class="mb-0 bread">Daftar Berita</h1>
                 </div>
@@ -16,14 +20,15 @@
         </div>
     </div>
 
+
     <div class="content-wrap">
         <div class="container clearfix">
             {{-- <h1> Hard News </h1> --}}
             {{-- <div class="row"> --}}
-                <div class=" postcontent nobottommargin clearfix mb-3">
-                    <div id="posts" class="post-grid grid-container grid-2 clearfix" data-layout="fitRows">
-                        @foreach ($posts as $index => $post)
-                            <div class="row entry clearfix mt-3">
+            <div class=" postcontent nobottommargin clearfix mb-3">
+                <div id="posts" class="post-grid grid-container grid-2 clearfix" data-layout="fitRows">
+                    @foreach ($posts as $index => $post)
+                        <div class="row entry clearfix mt-3">
                             <div class="col-lg-7">
                                 <div class="entry-image">
                                     @if ($post->media->isNotEmpty())
@@ -47,27 +52,27 @@
                                     <span><i class="fa fa-calendar"></i> {{ $post->created_at->format('d M Y') }}</span>
                                 </div>
                                 <div class="entry-content" style="text-align:justify; margin-top: 15px;">
-                                    <p>                                         {{ Str::limit($post->content, 150, '...') }}
+                                    <p> {{ Str::limit($post->content, 150, '...') }}
                                         <br />
                                         <a href="{{ route('post.hardNewsDetail', $post->slug) }}"
                                             class="more-link">Selengkapnya</a>
                                     </p>
                                 </div>
                             </div>
-                                @if ($index < count($posts) - 1)
-                                    <hr style="margin-top: 20px; margin-bottom: 20px; border-top: 1px solid #ccc;">
-                                @endif
-                            </div>
-                        @endforeach
-                    </div>
-                    {{-- <div class="row mt-5 mb-5">
+                            @if ($index < count($posts) - 1)
+                                <hr style="margin-top: 20px; margin-bottom: 20px; border-top: 1px solid #ccc;">
+                            @endif
+                        </div>
+                    @endforeach
+                </div>
+                {{-- <div class="row mt-5 mb-5">
                         <div class="col text-center">
                             <a href="{{ route('post.hardNews') }}" class="btn btn-primary">Selengkapnya</a>
                         </div>
                     </div> --}}
-                </div>
+            </div>
 
-                {{-- <div class="col-lg-4 sidebar-widgets-wrap">
+            {{-- <div class="col-lg-4 sidebar-widgets-wrap">
                     <div id="shortcodes" class="widget widget_links clearfix">
                         <h4>Info lainnya</h4>
                         <ul>

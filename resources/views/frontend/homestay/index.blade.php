@@ -1,14 +1,18 @@
 @extends('frontend.layouts.main')
 
 @section('content')
-    <div class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('/media/frontend/images/Home.jpg');">
-        <div class="overlay"></div>
-        <div class="container">
+    <div class="hero-wrap hero-wrap-2 js-fullheight" style="position: relative;">
+        <img src="/media/frontend/images/Home.jpg" alt="Background Image"
+            style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
+        <div class="overlay"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: -1;">
+        </div>
+        <div class="container" style="position: relative; z-index: 2;">
             <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
                 <div class="col-md-9 ftco-animate pb-5 text-center">
                     <p class="breadcrumbs">
                         <span class="mr-2"><a href="/">Home <i class="fa fa-chevron-right"></i></a></span>
-                        <span>Daftar Penginapan <i class="fa fa-chevron-right"></i></span>
+                        <span>List Penginapan <i class="fa fa-chevron-right"></i></span>
                     </p>
                     <h1 class="mb-0 bread">Daftar Penginapan</h1>
                 </div>
@@ -62,7 +66,8 @@
                                     </p>
                                     <ul>
                                         <span data-feather="percent" style="width: 16px; color: rgb(86, 86, 86)"></span>
-                                        <li style="color: rgb(86, 86, 86)">RP. {{ number_format($item->harga, 2, ',', '.') }}
+                                        <li style="color: rgb(86, 86, 86)">RP.
+                                            {{ number_format($item->harga, 2, ',', '.') }}
                                             /orang</li>
                                     </ul>
                                     <ul>
