@@ -22,7 +22,7 @@
                 @enderror
             </div>
             
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label class="form-label">Kategori</label>
                 <select name="category" class="form-control @error('category') is-invalid @enderror" id="">
                     @php
@@ -42,7 +42,7 @@
                         {{ $message }}
                     </div>
                 @enderror
-            </div>
+            </div> --}}
 
             <div class="mb-3">
                 <label class="form-label" for="gambar">Media</label>
@@ -138,6 +138,7 @@
                         }
                         reader.readAsDataURL(file);
                     });
+                    updateYouTubeLinksPreview();
                 };
             
                 const updateFileInput = (updatedFiles) => {
@@ -188,7 +189,6 @@
                 const updateYouTubeLinksPreview = () => {
                     const previewContainer = document.getElementById('preview-container');
                     
-                    // Hapus pratinjau link YouTube yang baru ditambahkan saja (biarkan media yang ada tetap)
                     previewContainer.querySelectorAll('[data-youtube]').forEach(el => el.remove());
                     
                     youtubeLinks.forEach((link, index) => {

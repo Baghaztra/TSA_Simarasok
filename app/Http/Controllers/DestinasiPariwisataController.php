@@ -6,6 +6,8 @@ use App\Models\Asset;
 use App\Models\DestinasiPariwisata;
 use App\Http\Requests\StoreDestinasiPariwisataRequest;
 use App\Http\Requests\UpdateDestinasiPariwisataRequest;
+use App\Models\DestinasiProvider;
+use App\Models\Provider;
 use Illuminate\Http\Request;
 
 class DestinasiPariwisataController extends Controller
@@ -37,14 +39,14 @@ class DestinasiPariwisataController extends Controller
     // Show the form for creating a new resources.
 
     public function create() {
-        $destinasi = DestinasiPariwisata::all();
-        return view('admin.destinasipariwisata.create')->with('destinasis', $destinasi);
+        $providers = Provider::all();
+        return view('admin.destinasipariwisata.create')->with('providers', $providers);
     }
 
     // Store a newly created resource in storage.
 
     public function store(StoreDestinasiPariwisataRequest $request) {
-        $data=$request->validate([
+        $data = $request->validate([
             'name' => 'required',
             'desc' => 'required',
             'harga' => 'required|numeric',
@@ -57,6 +59,8 @@ class DestinasiPariwisataController extends Controller
                 'regex:/^(https:\/\/www\.google\.com\/maps\/|https:\/\/maps\.app\.goo\.gl\/)/'
             ],
             'status' => 'required',
+            'providers' => 'required|array',
+            'providers.*' => 'in:Very Good,Good,Normal,Fair,Bad'
         ], [
             'name.required' => 'Nama destinasi harus diisi.',
             'desc.required' => 'Deskripsi harus diisi.',
@@ -66,14 +70,16 @@ class DestinasiPariwisataController extends Controller
             'notelp.regex' => 'Nomor telepon harus diawali dengan +62 dan hanya berisi angka tanpa spasi.',
             'lokasi.required' => 'Lokasi harus diisi.',
             'lokasi.regex' => 'Lokasi harus diawali dengan https://www.google.com/maps/ atau https://maps.app.goo.gl/.',
-            'status.required' => 'Masukkan Status'
+            'status.required' => 'Masukkan Status',
+            'providers.required' => 'Pilih status untuk semua providers',
+            'providers.*.in' => 'Status provider tidak valid.'
         ]);
-
+    
         $destinasi = DestinasiPariwisata::create($data);
-
+    
         if ($request->hasFile('gambar')) {
             $i = 0;
-            foreach($request->file('gambar') as $file) {
+            foreach ($request->file('gambar') as $file) {
                 $fileName = time() . $i . '.' . $file->getClientOriginalExtension();
                 $i++;
                 $file->move(public_path('media'), $fileName);
@@ -85,19 +91,39 @@ class DestinasiPariwisataController extends Controller
                 $asset->save();
             }
         }
-
-        // DestinasiPariwisata::create($destinasi);
+        
+        if ($request->filled('youtube_links')) {
+            $youtubeLinks = json_decode($request->input('youtube_links'), true);
+            foreach ($youtubeLinks as $link) {
+                $asset = new Asset();
+                $asset->nama = $link;
+                $asset->tipe = 'youtube';
+                $asset->jenis = 'destinasi';
+                $asset->jenis_id = $destinasi->id;
+                $asset->save();
+            }
+        }
+        $providers = Provider::all();
+        foreach ($request->input('providers') as $i => $providerStatus) {
+            $p = $providers[$i];
+            $provider = new DestinasiProvider();
+            $provider->destinasi_id = $destinasi->id;
+            $provider->provider_id = $p->id;
+            $provider->signal = $providerStatus;
+            $provider->save();
+        }
+    
         return redirect('admin/destinasipariwisata')->with('success', 'Berhasil menambahkan Destinasi Pariwisata baru.');
     }
 
     public function edit(string $id){
-        $destinasi = DestinasiPariwisata::findOrFail($id);
-        return view('admin.destinasipariwisata.edit')->with('destinasis', $destinasi);
+        $destinasi = DestinasiPariwisata::findOrFail($id);$providers = Provider::all();
+        return view('admin.destinasipariwisata.edit',['destinasis'=> $destinasi,'providers'=> $providers]);
     }
 
-    public function update(UpdateDestinasiPariwisataRequest $request, string $id){
+    public function update(UpdateDestinasiPariwisataRequest $request, string $id) {
         $destinasi = DestinasiPariwisata::findOrFail($id);
-
+    
         $data = $request->validate([
             'name' => 'required',
             'desc' => 'required',
@@ -108,8 +134,9 @@ class DestinasiPariwisataController extends Controller
             ],
             'lokasi' => [
                 'required',
-                'regex:/^(https:\/\/www\.google\.com\/maps\/|https:\/\/maps\.)/'
+                'regex:/^(https:\/\/www\.google\.com\/maps\/|https:\/\/maps.app.goo.gl\/)/'
             ],
+            'status' => 'required',
         ], [
             'name.required' => 'Nama destinasi harus diisi.',
             'desc.required' => 'Deskripsi harus diisi.',
@@ -118,14 +145,17 @@ class DestinasiPariwisataController extends Controller
             'notelp.required' => 'Nomor telepon harus diisi.',
             'notelp.regex' => 'Nomor telepon harus diawali dengan +62 dan hanya berisi angka tanpa spasi.',
             'lokasi.required' => 'Lokasi harus diisi.',
-            'lokasi.regex' => 'Lokasi harus diawali dengan https://www.google.com/maps/ atau https://maps.app.goo.gl/.'
+            'lokasi.regex' => 'Lokasi harus diawali dengan https://www.google.com/maps/ atau https://maps.app.goo.gl/.',
+            'status.required' => 'Masukkan Status',
+            'providers.required' => 'Pilih status untuk semua providers',
+            'providers.*.in' => 'Status provider tidak valid.'
         ]);
-
+    
         $destinasi->update($data);
-
+    
         if ($request->hasFile('gambar')) {
             $i = 0;
-            foreach($request->file('gambar') as $file) {
+            foreach ($request->file('gambar') as $file) {
                 $fileName = time() . $i++ . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path('media'), $fileName);
                 $asset = new Asset();
@@ -136,9 +166,34 @@ class DestinasiPariwisataController extends Controller
                 $asset->save();
             }
         }
-
+    
+        if ($request->filled('youtube_links')) {
+            $youtubeLinks = json_decode($request->input('youtube_links'), true);
+    
+            // Hapus link YouTube lama
+            Asset::where('jenis', 'destinasi')->where('jenis_id', $destinasi->id)->where('tipe', 'youtube')->delete();
+    
+            // Simpan link YouTube baru
+            foreach ($youtubeLinks as $link) {
+                $asset = new Asset();
+                $asset->nama = $link;
+                $asset->tipe = 'youtube';
+                $asset->jenis = 'destinasi';
+                $asset->jenis_id = $destinasi->id;
+                $asset->save();
+            }
+        }
+    
+        $providers = Provider::all();
+        foreach ($request->input('providers') as $i => $providerStatus) {
+            $provider = DestinasiProvider::updateOrCreate(
+                ['destinasi_id' => $destinasi->id, 'provider_id' => $providers[$i]->id],
+                ['signal' => $providerStatus]
+            );
+        }
+    
         return redirect('admin/destinasipariwisata')->with('warning', 'Berhasil mengubah data Destinasi Pariwisata.');
-    }
+    }    
 
     public function destroy(string $id){
         $destinasi = DestinasiPariwisata::findOrFail($id);
@@ -148,6 +203,9 @@ class DestinasiPariwisataController extends Controller
                 unlink(public_path('media/' . $media->nama));
             }
             $media->delete();
+        }
+        foreach ($destinasi->provider as $provider) {
+            $provider->delete();
         }
 
         $destinasi->delete();

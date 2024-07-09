@@ -21,6 +21,16 @@ class DestinasiPariwisata extends Model
     function media(){
         return $this->hasMany(Asset::class, 'jenis_id')->where('jenis', 'destinasi');
     }
+    public function youtubeLinks()
+    {
+        return $this->hasMany(Asset::class, 'jenis_id')
+                    ->where('jenis', 'destinasi')
+                    ->where('tipe', 'youtube');
+    }
+
+    function provider(){
+        return $this->hasMany(DestinasiProvider::class, 'destinasi_id');
+    }
 
     // Ini Scope yang kubuat gas, bisa pake ini aja kalau mau, tiba tiba rajin cuy
     /*
