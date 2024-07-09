@@ -12,11 +12,12 @@
                 </div>
             </div>
             <div class="row ">
-                <div class="col-md-6 ftco-animate">
+                <div class="col-lg-3"></div>
+                <div class="ftco-animate col-lg-6  d-flex justify-content-center mb-3">
                     <img src="{{ asset('media/' . $produk->media[0]->nama) }}" class="img-fluid" alt="Gambar Produk">
                 </div>
-                <div class="col-md-6 ftco-animate">
-                    <p class="mb-3">{!! $produk->desc !!}</p>
+                <div class="ftco-animate">
+                    <div class="mb-5">{!! $produk->desc !!}</div>
                     @if (is_null($produk->harga))
                         <strong> Disajikan pada {{ $produk->event }}</strong>
                     @else

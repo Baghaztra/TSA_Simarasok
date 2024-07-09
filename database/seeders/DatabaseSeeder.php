@@ -9,9 +9,11 @@ use App\Models\Booking;
 use App\Models\User;
 use App\Models\Category;
 use App\Models\DestinasiPariwisata;
+use App\Models\DestinasiProvider;
 use App\Models\Homestay;
 use App\Models\Post;
 use App\Models\Produk;
+use App\Models\Provider;
 use App\Models\UMKM;
 
 use Illuminate\Database\Seeder;
@@ -60,6 +62,27 @@ class DatabaseSeeder extends Seeder
                 'jenis' => 'destinasi',
                 'jenis_id' => $i,
             ]);
+        }
+        Provider::factory()->create([
+            'name' => 'Telkomsel',
+        ]);
+        Provider::factory()->create([
+            'name' => 'XL Axiata',
+        ]);
+        Provider::factory()->create([
+            'name' => 'Indosat',
+        ]);
+        Provider::factory()->create([
+            'name' => 'Smartfren',
+        ]);
+        for ($i=1; $i <= 10; $i++) {
+            foreach (Provider::all() as $provider) {
+                DestinasiProvider::factory()->create([
+                    'destinasi_id' => $i,
+                    'provider_id' => $provider->id,
+                    'signal' => ['Very Good','Good','Normal','Fair','Bad'][rand(0, 4)],
+                ]);
+            }
         }
         // gambar untuk tiap homestay
         for ($i=1; $i <= 20; $i++) {

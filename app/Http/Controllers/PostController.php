@@ -57,9 +57,19 @@ class PostController extends Controller
                 $asset->jenis_id = $berita->id;
                 $asset->save();
             }
-        } else {
-            return redirect()->back()->withErrors(['gambar' => 'Gambar tidak valid atau tidak ada.'])->withInput();
         }
+        if ($request->filled('youtube_links')) {
+            $youtubeLinks = json_decode($request->input('youtube_links'), true);
+            foreach ($youtubeLinks as $link) {
+                $asset = new Asset();
+                $asset->nama = $link;
+                $asset->tipe = 'youtube';
+                $asset->jenis = 'post';
+                $asset->jenis_id = $berita->id;
+                $asset->save();
+            }
+        }
+
         return redirect('admin/post')->with('success', 'Berhasil menambahkan berita baru.');
     }
 
@@ -98,7 +108,7 @@ class PostController extends Controller
 
         if ($request->hasFile('gambar')) {
             $i = 0;
-            foreach($request->file('gambar') as $file) {
+            foreach ($request->file('gambar') as $file) {
                 $fileName = time() . $i++ . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path('media'), $fileName);
                 $asset = new Asset();
@@ -110,7 +120,24 @@ class PostController extends Controller
             }
         }
 
-        return redirect('admin/post')->with('warning', 'Berhasil mengubah data berita.');
+        if ($request->filled('youtube_links')) {
+            $youtubeLinks = json_decode($request->input('youtube_links'), true);
+
+            // Hapus link YouTube lama
+            $berita->youtubeLinks()->delete();
+
+            // Simpan link YouTube baru
+            foreach ($youtubeLinks as $link) {
+                $asset = new Asset();
+                $asset->nama = $link;
+                $asset->tipe = 'youtube';
+                $asset->jenis = 'post';
+                $asset->jenis_id = $berita->id;
+                $asset->save();
+            }
+        }
+
+        return redirect('admin/post')->with('success', 'Berhasil memperbarui berita.');
     }
 
     

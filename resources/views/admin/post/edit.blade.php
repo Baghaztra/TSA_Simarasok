@@ -22,7 +22,7 @@
                 @enderror
             </div>
             
-            <div class="mb-3">
+            {{-- <div class="mb-3">
                 <label class="form-label">Kategori</label>
                 <select name="category" class="form-control @error('category') is-invalid @enderror" id="">
                     @php
@@ -42,7 +42,7 @@
                         {{ $message }}
                     </div>
                 @enderror
-            </div>
+            </div> --}}
 
             <div class="mb-3">
                 <label class="form-label" for="gambar">Media</label>
@@ -65,6 +65,11 @@
                         <i data-feather="plus" style="width: 100px; height: 100px;"></i>
                     </div>
                 </label>
+                <div class="input-group mb-3">
+                    <input type="text" id="youtube-link" class="form-control" placeholder="Masukkan link YouTube">
+                    <button class="btn btn-primary" type="button" onclick="addYouTubeVideo()">Tambahkan</button>
+                </div>
+                <input type="hidden" name="youtube_links" id="youtube-links">
                 @error('gambar')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -133,6 +138,7 @@
                         }
                         reader.readAsDataURL(file);
                     });
+                    updateYouTubeLinksPreview();
                 };
             
                 const updateFileInput = (updatedFiles) => {
@@ -161,6 +167,64 @@
                           })
                           .catch(error => console.error('Error:', error));
                     }
+                };
+
+                // let currentFiles = [];
+                let youtubeLinks = @json($post->youtubeLinks->pluck('nama')); // Ambil link YouTube dari post
+
+                document.addEventListener("DOMContentLoaded", function() {
+                    updateYouTubeLinksPreview();
+                });
+
+                const addYouTubeVideo = () => {
+                    const link = document.getElementById('youtube-link').value;
+                    if (link) {
+                        youtubeLinks.push(link);
+                        document.getElementById('youtube-links').value = JSON.stringify(youtubeLinks);
+                        updateYouTubeLinksPreview();
+                        document.getElementById('youtube-link').value = '';
+                    }
+                };
+
+                const updateYouTubeLinksPreview = () => {
+                    const previewContainer = document.getElementById('preview-container');
+                    
+                    previewContainer.querySelectorAll('[data-youtube]').forEach(el => el.remove());
+                    
+                    youtubeLinks.forEach((link, index) => {
+                        const videoId = link.split('v=')[1] || link.split('/').pop();
+                        const iframe = document.createElement('iframe');
+                        iframe.width = '300';
+                        iframe.height = '150';
+                        iframe.src = `https://www.youtube.com/embed/${videoId}`;
+                        iframe.frameBorder = '0';
+                        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+                        iframe.allowFullscreen = true;
+                        
+                        const previewWrapper = document.createElement('div');
+                        previewWrapper.style.position = 'relative';
+                        previewWrapper.style.display = 'inline-block';
+                        previewWrapper.dataset.youtube = true; // Menandai sebagai media baru
+                        
+                        const removeButton = document.createElement('button');
+                        removeButton.innerHTML = '&#x2715;';
+                        removeButton.style.position = 'absolute';
+                        removeButton.style.top = '5px';
+                        removeButton.style.right = '5px';
+                        removeButton.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+                        removeButton.style.border = 'none';
+                        removeButton.style.borderRadius = '50%';
+                        removeButton.style.cursor = 'pointer';
+                        removeButton.addEventListener('click', () => {
+                            youtubeLinks.splice(index, 1);
+                            document.getElementById('youtube-links').value = JSON.stringify(youtubeLinks);
+                            updateYouTubeLinksPreview();
+                        });
+
+                        previewWrapper.appendChild(iframe);
+                        previewWrapper.appendChild(removeButton);
+                        previewContainer.appendChild(previewWrapper);
+                    });
                 };
             </script>       
 

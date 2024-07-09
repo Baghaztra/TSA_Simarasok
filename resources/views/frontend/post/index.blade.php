@@ -22,7 +22,17 @@
 
 
     <div class="content-wrap">
-        <div class="container clearfix">
+        <div class="container mt-5 mb-5">
+            <form action="/list-post" method="GET" class="input-group">
+                <div class="form-outline flex-grow-1" data-mdb-input-init>
+                    <input type="search" name="q" class="form-control" placeholder="Cari Berita" value="{{ request('q') }}"/>
+                </div>
+                <button type="submit" class="btn btn-primary">
+                    <i data-feather="search"></i>
+                </button>
+            </form>
+        </div>
+        <div class="container clearfix mb-5">
             {{-- <h1> Hard News </h1> --}}
             {{-- <div class="row"> --}}
             <div class=" postcontent nobottommargin clearfix mb-3">
@@ -52,7 +62,8 @@
                                     <span><i class="fa fa-calendar"></i> {{ $post->created_at->format('d M Y') }}</span>
                                 </div>
                                 <div class="entry-content" style="text-align:justify; margin-top: 15px;">
-                                    <p> {{ Str::limit($post->content, 150, '...') }}
+                                    <p>
+                                        {{ Str::limit($post->clean_content, 150, '...') }}
                                         <br />
                                         <a href="{{ route('post.hardNewsDetail', $post->slug) }}"
                                             class="more-link">Selengkapnya</a>
@@ -151,6 +162,7 @@
                     </div>
                 </div>
             @endif
+            </div>
         </div>
     </div>
 @endsection
