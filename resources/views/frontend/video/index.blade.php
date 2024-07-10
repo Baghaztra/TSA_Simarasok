@@ -2,17 +2,12 @@
 
 @section('content')
     <div class="hero-wrap hero-wrap-2 js-fullheight" style="position: relative; overflow: hidden; height: 100vh;">
-        <!-- YouTube Video Embed -->
-        <iframe class="video-background"
-            src="https://www.youtube.com/embed/9bLsezbwF44?si=Tcm9biHJKVxYuBOM&autoplay=0&mute=1&loop=1&playlist=9bLsezbwF44"
-            frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="YouTube Video Background"></iframe>
-
-        <div class="overlay"
-            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5);"></div>
-        <div class="container" style="position: relative; z-index: 2;">
-            <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
-                <!-- Content can be added here -->
-            </div>
+        <div style="position: relative; width: 100%; height: 100%; padding-top: 56.25%;">
+            <iframe
+                src="https://www.youtube.com/embed/XoqO-ABX_VA?si=_C7EMdWKmUozaEKUO&autoplay=1&mute=1&loop=1&playlist=XoqO-ABX_VA"
+                frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="YouTube Video Background"
+                style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
+            </iframe>
         </div>
     </div>
 

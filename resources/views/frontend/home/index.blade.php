@@ -10,7 +10,7 @@
             <div class="row no-gutters slider-text js-fullheight align-items-center" data-scrollax-parent="true">
                 <div class="col-md-7 ftco-animate">
                     <span class="subheading">Welcome to Simarasok</span>
-                    <h1 class="mb-4">Nagari Awak Basamo</h1>
+                    <h1 class="mb-4">Desa Wisata Sumatera Barat</h1>
                     <p class="caps">Project Base Learning Politeknik Negeri Padang</p>
                 </div>
                 {{-- <a href="https://www.youtube.com/watch?v=xicIX_jgfWU"
