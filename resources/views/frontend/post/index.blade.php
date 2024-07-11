@@ -55,7 +55,7 @@
                             </div>
                             <div class="col-lg-4">
                                 <div class="entry-title" style="font-size:20px; margin-top: 15px; text-align: justify;">
-                                    <a href="{{ route('post.hardNewsDetail', $post->slug) }}"
+                                    <a href="{{ route('post.detail', $post->slug) }}"
                                         style="color:black; text-decoration: none;">{{ $post->title }}</a>
                                 </div>
                                 <div class="entry-meta clearfix">
@@ -65,7 +65,7 @@
                                     <p>
                                         {{ Str::limit($post->clean_content, 150, '...') }}
                                         <br />
-                                        <a href="{{ route('post.hardNewsDetail', $post->slug) }}"
+                                        <a href="{{ route('post.detail', $post->slug) }}"
                                             class="more-link">Selengkapnya</a>
                                     </p>
                                 </div>

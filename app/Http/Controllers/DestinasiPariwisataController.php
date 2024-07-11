@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\Asset;
+use App\Models\Provider;
+use App\Models\PageVisit;
+use Illuminate\Http\Request;
+use App\Models\DestinasiProvider;
 use App\Models\DestinasiPariwisata;
 use App\Http\Requests\StoreDestinasiPariwisataRequest;
 use App\Http\Requests\UpdateDestinasiPariwisataRequest;
-use App\Models\DestinasiProvider;
-use App\Models\Provider;
-use Illuminate\Http\Request;
 
 class DestinasiPariwisataController extends Controller
 {
@@ -22,6 +23,13 @@ class DestinasiPariwisataController extends Controller
         } else {
             $destinasi = DestinasiPariwisata::latest()->paginate(10);
         }
+
+        foreach ($destinasi as $item) {
+            $path = "list-destinasi/{$item->id}";
+            $visits = PageVisit::where('path', $path)->first()->visits ?? 0;
+            $item->visits = $visits;
+        }
+
         return view("admin.destinasipariwisata.index", ['destinasis' => $destinasi, 'q' => $query]);
     }
 

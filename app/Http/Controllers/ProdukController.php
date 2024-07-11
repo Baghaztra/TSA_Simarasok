@@ -8,6 +8,7 @@ use App\Models\UMKM;
 use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\StoreProdukRequest;
+use App\Models\PageVisit;
 
 class ProdukController extends Controller
 {
@@ -23,6 +24,12 @@ class ProdukController extends Controller
         return view("admin.produk.index", ['produks' => $produk, 'umkms' => $umkm, 'q' => request('q')]); */
 
         $produk = Produk::latest()->cari()->paginate(10);
+
+        foreach ($produk as $item) {
+            $path = "produk/{$item->id}";
+            $visits = PageVisit::where('path', $path)->first()->visits ?? 0;
+            $item->visits = $visits;
+        }
 
         return view("admin.produk.index", ['produks' => $produk, 'q' => request('q')]);
     }

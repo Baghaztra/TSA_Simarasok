@@ -5,6 +5,7 @@ use App\Models\UMKM;
 use App\Models\Produk;
 use App\Models\Homestay;
 use App\Models\DestinasiPariwisata;
+use App\Http\Middleware\CountVisits;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\UMKMController;
@@ -15,6 +16,7 @@ use App\Http\Controllers\SigninController;
 use App\Http\Controllers\BookingController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\HomestayController;
+use App\Http\Controllers\ProviderController;
 use App\Http\Controllers\DashbaordController;
 use App\Http\Controllers\FrontendHomeController;
 use App\Http\Controllers\FrontendPostController;
@@ -25,7 +27,6 @@ use App\Http\Controllers\FrontendProdukController;
 use App\Http\Controllers\FrontendHomestayController;
 use App\Http\Controllers\FrontendDestinasiController;
 use App\Http\Controllers\DestinasiPariwisataController;
-use App\Http\Controllers\ProviderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -81,16 +82,18 @@ Route::get('/account-disabled', function () {
 })->name('account.disabled');
 
 Route::get('/list-destinasi', [FrontendDestinasiController::class, 'index']);
-Route::get('/list-destinasi/{id}', [FrontendDestinasiController::class, 'show'])->name('destinasi.show');
 Route::get('/list-homestay', [FrontendHomestayController::class, 'index']);
-Route::get('/list-homestay/{id}', [FrontendHomestayController::class, 'show'])->name('homestay.show');
-// Route::get('/list-umkm', [FrontendUMKMController::class, 'index']);
-Route::get('/hubungi-kami',[FrontendKontakController::class,'index']);
-// Route::get('/list-umkm/{id}', [FrontendUMKMController::class, 'show'])->name('umkm.show');
-Route::get('/hubungi-kami',[FrontendKontakController::class,'index']);
 Route::get('/list-produk', [FrontendProdukController::class, 'index']);
-Route::get('/produk/{id}', [FrontendProdukController::class, 'show'])->name('produk.show');
 Route::get('/list-post', [FrontendPostController::class, 'index']);
+Route::get('/hubungi-kami',[FrontendKontakController::class,'index']);
+
+Route::middleware(['hitungVisit'])->group(function () {
+    Route::get('/list-destinasi/{id}', [FrontendDestinasiController::class, 'show'])->name('destinasi.show');
+    Route::get('/list-homestay/{id}', [FrontendHomestayController::class, 'show'])->name('homestay.show');
+    Route::get('/produk/{id}', [FrontendProdukController::class, 'show'])->name('produk.show');
+    Route::get('/list-post/{slug}', [FrontendPostController::class, 'show'])->name('post.detail');
+});
+
 Route::get('/list-hard-news', [FrontendPostController::class, 'hardNews'])->name('post.hardNews');
 Route::get('/list-soft-news', [FrontendPostController::class, 'softNews'])->name('post.softNews');
 Route::get('/list-feature', [FrontendPostController::class, 'feature'])->name('post.feature');
