@@ -56,7 +56,7 @@ class DestinasiPariwisataController extends Controller
             ],
             'lokasi' => [
                 'required',
-                'regex:/^(https:\/\/www\.google\.com\/maps\/|https:\/\/maps\.app\.goo\.gl\/)/'
+                'regex:/^(https:\/\/www\.google\.com|https:\/\/maps)/'
             ],
             'status' => 'required',
             'providers' => 'required|array',
@@ -69,7 +69,7 @@ class DestinasiPariwisataController extends Controller
             'notelp.required' => 'Nomor telepon harus diisi.',
             'notelp.regex' => 'Nomor telepon harus diawali dengan +62 dan hanya berisi angka tanpa spasi.',
             'lokasi.required' => 'Lokasi harus diisi.',
-            'lokasi.regex' => 'Lokasi harus diawali dengan https://www.google.com/maps/ atau https://maps.app.goo.gl/.',
+            'lokasi.regex' => 'Lokasi harus diawali dengan https://www.google.com/ atau https://mapsl/.',
             'status.required' => 'Masukkan Status',
             'providers.required' => 'Pilih status untuk semua providers',
             'providers.*.in' => 'Status provider tidak valid.'
@@ -134,7 +134,7 @@ class DestinasiPariwisataController extends Controller
             ],
             'lokasi' => [
                 'required',
-                'regex:/^(https:\/\/www\.google\.com\/maps\/|https:\/\/maps.app.goo.gl\/)/'
+                'regex:/^(https:\/\/www\.google\.com|https:\/\/maps)/'
             ],
             'status' => 'required',
         ], [
@@ -145,7 +145,7 @@ class DestinasiPariwisataController extends Controller
             'notelp.required' => 'Nomor telepon harus diisi.',
             'notelp.regex' => 'Nomor telepon harus diawali dengan +62 dan hanya berisi angka tanpa spasi.',
             'lokasi.required' => 'Lokasi harus diisi.',
-            'lokasi.regex' => 'Lokasi harus diawali dengan https://www.google.com/maps/ atau https://maps.app.goo.gl/.',
+            'lokasi.regex' => 'Lokasi harus diawali dengan https://www.google.com/ atau https://maps.',
             'status.required' => 'Masukkan Status',
             'providers.required' => 'Pilih status untuk semua providers',
             'providers.*.in' => 'Status provider tidak valid.'
