@@ -50,6 +50,7 @@
                 <th>No</th>
                 <th>Nama</th>
                 <th>Harga / Event</th>
+                <th>Kunjungan</th>
                 <th>Aksi</th>
             </tr>
         </thead>
@@ -74,6 +75,7 @@
                             {{ 'Rp '.number_format($item->harga, 2, ',', '.') }}
                         @endif
                     </td>
+                    <td>{{ $item->visits }}</td>
                     <td>
                         <form class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')"
                             action="{{ route('produk.destroy', $item->id) }}" method="POST">

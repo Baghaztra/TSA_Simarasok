@@ -41,8 +41,8 @@
         <tr>
             <th>No</th>
             <th>Judul</th>
-            {{-- <th>kategori</th> --}}
             <th>Status</th>
+            <th>Kunjungan</th>
             <th>Aksi</th>
         </tr>
         @if ($posts->isEmpty())
@@ -78,7 +78,8 @@
                     </form>
                 </td>
                 
-                
+                <td>{{ $item->visits }}</td>
+
                 <td>
                     <form class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')"
                         action="{{ route('post.destroy', $item->id) }}" method="POST">

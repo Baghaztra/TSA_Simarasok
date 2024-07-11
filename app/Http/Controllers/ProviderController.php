@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\DestinasiProvider;
 use App\Models\Provider;
 use Illuminate\Http\Request;
 
@@ -62,10 +63,10 @@ class ProviderController extends Controller
         $validated = $request->validate([
             'name'=>'required|unique:providers',
         ],[
-            'name'=>'Nama kategori tidak boleh sama dengan yang telah ada',
+            'name'=>'Nama Provider tidak boleh sama dengan yang telah ada',
         ]);
         Provider::where('id',$id)->update($validated);
-        return redirect('admin/provider')->with('warning','Kategori Berhasil Diubah');
+        return redirect('admin/provider')->with('warning','Provider Berhasil Diubah');
     }
 
     /**
@@ -73,7 +74,11 @@ class ProviderController extends Controller
      */
     public function destroy(string $id)
     {
+        $provider = Provider::findOrFail($id)->relasi;
+        foreach ($provider as $value) {
+            DestinasiProvider::destroy($value->id);
+        }
         Provider::destroy($id);
-        return redirect('admin/provider')->with('danger','Kategori Berhasil Dihapus');
+        return redirect('admin/provider')->with('danger','Provider Berhasil Dihapus');
     }
 }

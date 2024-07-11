@@ -41,6 +41,7 @@
             <th>No</th>
             <th>Nama</th>
             <th>Harga Tiket</th>
+            <th>Kunjungan</th>
             <th>Aksi</th>
         </tr>
         @if ($destinasis->isEmpty())
@@ -53,6 +54,7 @@
                 <td>{{ $destinasis->firstItem() + $loop->index }}</td>
                 <td>{{ $item->name }}</td>
                 <td>{{ 'Rp'.number_format($item->harga, 2, ',', '.') }}</td>
+                <td>{{ $item->visits }}</td>
                 <td>
                     <form class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')" action="{{ route('destinasipariwisata.destroy', $item->id) }}" method="POST">
                         @csrf @method('DELETE')

@@ -11,7 +11,7 @@
         <div class="row">
             <div class="col-md-3">
                 <div class="card">
-                    <div class="card-header">Berita</div>
+                    <div class="card-header">Total Berita</div>
                     <div class="card-body">
                         <h3>{{ $pcount }}</h3>
                     </div>
@@ -19,7 +19,7 @@
             </div>
             <div class="col-md-3">
                 <div class="card">
-                    <div class="card-header">Destinasi</div>
+                    <div class="card-header">Total Destinasi</div>
                     <div class="card-body">
                         <h3>{{ $dcount }}</h3>
                     </div>
@@ -27,7 +27,7 @@
             </div>
             <div class="col-md-3">
                 <div class="card">
-                    <div class="card-header">Penginapan</div>
+                    <div class="card-header">Total Penginapan</div>
                     <div class="card-body">
                         <h3>{{ $hcount }}</h3>
                     </div>
@@ -35,9 +35,47 @@
             </div>
             <div class="col-md-3">
                 <div class="card">
-                    <div class="card-header">Kuliner</div>
+                    <div class="card-header">Total Kuliner</div>
                     <div class="card-body">
                         <h3>{{ $ucount }}</h3>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">Berita paling banyak dikunjungi</div>
+                    <div class="card-body">
+                        <a target="_blank" href="{{ route('post.detail', $maxvp->slug) }}"><h5>{{ $maxvp->title }}</h5></a>
+                        <span class="text-secondary">{{ $maxvp->visits }} kunjungan</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">Destinasi paling banyak dikunjungi</div>
+                    <div class="card-body">
+                        <a target="_blank" href="{{ route('destinasi.show', $maxvd->id) }}"><h5>{{ $maxvd->name }}</h5></a>
+                        <span class="text-secondary">{{ $maxvd->visits }} kunjungan</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">Penginapan paling banyak dikunjungi</div>
+                    <div class="card-body">
+                        <a target="_blank" href="{{ route('homestay.show', $maxvh->id) }}"><h5>{{ $maxvh->name }}</h5></a>
+                        <span class="text-secondary">{{ $maxvh->visits }} kunjungan</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="card">
+                    <div class="card-header">Kuliner paling banyak dikunjungi</div>
+                    <div class="card-body">
+                        <a target="_blank" href="{{ route('produk.show', $maxvu->id) }}"><h5>{{ $maxvu->name }}</h5></a>
+                        <span class="text-secondary">{{ $maxvu->visits }} kunjungan</span>
                     </div>
                 </div>
             </div>

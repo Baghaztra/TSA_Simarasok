@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Asset;
 use App\Models\Homestay;
+use App\Models\PageVisit;
 use Illuminate\Http\Request;
 
 class HomestayController extends Controller
@@ -24,6 +25,13 @@ class HomestayController extends Controller
         // return view("admin.homestay.index", ['homestay' => $homestay, 'q' => $query]);
 
         $homestay = Homestay::latest()->cari()->paginate(10);
+        
+        foreach ($homestay as $item) {
+            $path = "list-homestay/{$item->id}";
+            $visits = PageVisit::where('path', $path)->first()->visits ?? 0;
+            $item->visits = $visits;
+        }
+
         return view("admin.homestay.index", ['homestay' => $homestay, 'q' => request('q')]);
 
     }

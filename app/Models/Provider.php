@@ -9,4 +9,8 @@ class Provider extends Model
 {
     use HasFactory;
     protected $fillable = ['name'];
+
+    function relasi(){
+        return $this->hasMany(DestinasiProvider::class, 'provider_id');
+    }
 }

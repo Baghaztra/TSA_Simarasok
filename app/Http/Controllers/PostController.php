@@ -6,6 +6,7 @@ use App\Models\Post;
 use App\Models\Asset;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Models\PageVisit;
 
 class PostController extends Controller
 {
@@ -15,6 +16,13 @@ class PostController extends Controller
     public function index()
     {
         $post = Post::latest()->cari()->paginate(10);
+        
+        foreach ($post as $item) {
+            $path = "list-post/{$item->slug}";
+            $visits = PageVisit::where('path', $path)->first()->visits ?? 0;
+            $item->visits = $visits;
+        }
+
         return view("admin.post.index")->with("posts", $post);
     }
 
