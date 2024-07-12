@@ -64,44 +64,7 @@
                                                 </div>
                                                 <div class="col-md d-flex">
                                                     <div class="form-group p-4 border-0">
-                                                        <label for="">Rata-rata kecepatan internet</label>
-                                                        <div class="input-group">
-                                                            <select class="form-select" id="jaringan-select"
-                                                                style="height: 50px" style="display: inline;">
-                                                                @foreach ($jaringan as $i => $item)
-                                                                    <option value="{{ $item['speed'] }}"
-                                                                        {{ $i == 0 ? 'selected' : '' }}>
-                                                                        {{ $item['provider'] }}
-                                                                    </option>
-                                                                @endforeach
-                                                            </select>
-                                                            <div id="alert-speed" class="alert alert-primary px-2"
-                                                                style="border-top-right-radius: 6px; border-bottom-right-radius: 6px; width: 90px; height: 50px; text-align: center;">
-                                                                {{ $jaringan[0]['speed'] }}
-                                                            </div>
-                                                        </div>
-
-                                                        <script>
-                                                            document.getElementById('jaringan-select').addEventListener('change', function() {
-                                                                var select = this;
-                                                                var selectedOption = select.options[select.selectedIndex];
-                                                                var speed = selectedOption.value;
-
-                                                                var alertSpeed = document.getElementById('alert-speed');
-                                                                alertSpeed.textContent = speed;
-
-                                                                var speedValue = parseInt(speed);
-                                                                if (speedValue >= 100) {
-                                                                    alertSpeed.className = 'alert alert-success px-2';
-                                                                } else if (speedValue >= 50) {
-                                                                    alertSpeed.className = 'alert alert-warning px-2';
-                                                                } else {
-                                                                    alertSpeed.className = 'alert alert-danger px-2';
-                                                                }
-                                                            });
-                                                        </script>
-                                                        {{-- <div class="form-field">
-                                                        </div> --}}
+                                                        <label for="">Hot News</label>
                                                     </div>
                                                 </div>
                                                 {{-- <div class="col-md d-flex">

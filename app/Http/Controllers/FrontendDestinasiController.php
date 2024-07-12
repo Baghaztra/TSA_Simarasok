@@ -38,9 +38,10 @@ class FrontendDestinasiController extends Controller
      */
     public function show($id)
     {
-        $destinasis = DestinasiPariwisata::with('media')->find($id);
+        $destinasis = DestinasiPariwisata::with('media','provider')->find($id);
         $destinasis->desc = $this->convertOembedToIframe($destinasis->desc);
-        return view('frontend.destinasi.show', compact('destinasis'));
+        $providers = $destinasis->providers;
+        return view('frontend.destinasi.show', compact('destinasis','providers'));
     }
 
     private function convertOembedToIframe($content)

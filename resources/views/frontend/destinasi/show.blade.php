@@ -86,6 +86,27 @@
                     <p><strong><span data-feather="phone" style="width: 16px" class="mr-2"></span></strong> <a
                             href="https://api.whatsapp.com/send?phone={{ str_replace('+', '', $destinasis->notelp) }}">{{ $destinasis->notelp }}</a>
                     </p>
+                    <p class="fw-bold">Kecepatan Internet (4G) : </p>
+                    @foreach ($destinasis->provider as $provider)
+                    <p>
+                        {{ $provider->provider->name }} :
+                        <span class="alert
+                            @if ($provider->signal == 'Very Good') alert-success
+                            @elseif ($provider->signal == 'Good') alert-primary
+                            @elseif ($provider->signal == 'Normal') alert-primary
+                            @elseif ($provider->signal == 'Fair') alert-warning
+                            @elseif ($provider->signal == 'Bad') alert-danger
+                            @endif p-1">
+
+                            @if ($provider->signal == 'Very Good') Sangat Bagus
+                            @elseif ($provider->signal == 'Good') Bagus
+                            @elseif ($provider->signal == 'Normal') Normal
+                            @elseif ($provider->signal == 'Fair') Kurang
+                            @elseif ($provider->signal == 'Bad') Buruk
+                            @endif
+                        </span>
+                    </p>
+                    @endforeach
                     <p><a href="{{ $destinasis->lokasi }}" class="btn btn-primary" target="_blank">Lihat Lokasi</a></p>
                 </div>
             </div>

@@ -23,16 +23,10 @@ class FrontendHomeController extends Controller
         $suhu = rand(10,30);
 
         // Menunggu data dari D4 Telekomunikasi
-        $jaringan = [
-            ['provider'=>'Telkomsel','speed'=>'100mbps'],
-            ['provider'=>'Axis','speed'=>'1mbps'],
-            ['provider'=>'Indosat','speed'=>'700mbps'],
-            ['provider'=>'XL','speed'=>'50mbps'],
-        ];
+
 
         return view('frontend.home.index')->with([
             'suhu' => $suhu,
-            'jaringan' => $jaringan,
             'destinasis' => $destinasis,
             'produk' => $produk,
             'homestay' => $penginapan
