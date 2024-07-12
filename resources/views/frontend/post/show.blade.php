@@ -23,41 +23,43 @@
                             @endforeach
                         @endif
                     </div>
-                    <div class="carousel-inner">
-                        @if ($post->media->count() > 0)
-                            @foreach ($post->media as $index => $media)
-                                <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
-                                    @if ($media->tipe == 'video')
-                                    <video src="{{ asset('media/' . $media->nama) }}"  loading="lazy" class="d-block w-100" controls muted autoplay></video>
-                                    @elseif ($media->tipe == 'gambar')
-                                    <img src="{{ asset('media/' . $media->nama) }}"  loading="lazy" class="d-block w-100" alt="Gambar {{ $index + 1 }}">
-                                    @elseif ($media->tipe == 'youtube')
-                                    <iframe src="{{ strpos($media->nama, 'youtube.com') !== false ? str_replace('watch?v=', 'embed/', $media->nama) : (strpos($media->nama, 'youtu.be') !== false ? 'https://www.youtube.com/embed/' 
-                                                    . explode('youtu.be/', $media->nama)[1] : $media->nama) }}" 
-                                        frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                        allowfullscreen class="d-block w-100" style="height: auto">
-                                    </iframe>
-                                    @endif
+                    <div class="row">
+                        <button class="carousel-control-prev col" type="button" data-bs-target="#slider" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <div class="carousel-inner col">
+                            @if ($post->media->count() > 0)
+                                @foreach ($post->media as $index => $media)
+                                    <div class="carousel-item {{ $index === 0 ? 'active' : '' }}">
+                                        @if ($media->tipe == 'video')
+                                        <video src="{{ asset('media/' . $media->nama) }}"  loading="lazy" class="d-block w-100" controls muted autoplay></video>
+                                        @elseif ($media->tipe == 'gambar')
+                                        <img src="{{ asset('media/' . $media->nama) }}"  loading="lazy" class="d-block w-100" alt="Gambar {{ $index + 1 }}">
+                                        @elseif ($media->tipe == 'youtube')
+                                        <iframe src="{{ strpos($media->nama, 'youtube.com') !== false ? str_replace('watch?v=', 'embed/', $media->nama) : (strpos($media->nama, 'youtu.be') !== false ? 'https://www.youtube.com/embed/' 
+                                                        . explode('youtu.be/', $media->nama)[1] : $media->nama) }}" 
+                                            frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                            allowfullscreen height="300px" width="100%" class="d-block" style="z-index: 100;">
+                                        </iframe>
+                                        @endif
+                                    </div>
+                                @endforeach
+                            @else
+                                <div class="carousel-item active">
+                                    <div class="img"
+                                        style="background-color: #f8f9fa; align-items: center; justify-content: center; display: flex;">
+                                        <span style="color: #6c757d; font-size: 18px; text-align: center">Tidak ada
+                                            gambar</span>
+                                    </div>
                                 </div>
-                            @endforeach
-                        @else
-                            <div class="carousel-item active">
-                                <div class="img"
-                                    style="background-color: #f8f9fa; align-items: center; justify-content: center; display: flex;">
-                                    <span style="color: #6c757d; font-size: 18px; text-align: center">Tidak ada
-                                        gambar</span>
-                                </div>
-                            </div>
-                        @endif
+                            @endif
+                        </div>
+                        <button class="carousel-control-next col" type="button" data-bs-target="#slider" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#slider" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#slider" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
                 </div>
             </div>
         </div>
