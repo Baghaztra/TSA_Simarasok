@@ -20,7 +20,7 @@ class DashbaordController extends Controller
         $ucount =  Produk::count();
         $hcount =  Homestay::count();
 
-        $maxvd = DestinasiPariwisata::first();
+        $maxvd = DestinasiPariwisata::latest()->first();
         $maxvd->visits = 0;
         foreach (DestinasiPariwisata::all() as $item) {
             $path = "list-destinasi/{$item->id}";
@@ -30,7 +30,7 @@ class DashbaordController extends Controller
                 $maxvd = $item;
             }
         }
-        $maxvh = Homestay::first();
+        $maxvh = Homestay::latest()->first();
         $maxvh->visits = 0;
         foreach (Homestay::all() as $item) {
             $path = "list-homestay/{$item->id}";
@@ -40,7 +40,7 @@ class DashbaordController extends Controller
                 $maxvh = $item;
             }
         }
-        $maxvp = Post::first();
+        $maxvp = Post::latest()->first();
         $maxvp->visits = 0;
         foreach (Post::all() as $item) {
             $path = "list-post/{$item->slug}";
@@ -50,7 +50,7 @@ class DashbaordController extends Controller
                 $maxvp = $item;
             }
         }
-        $maxvu = Produk::first();
+        $maxvu = Produk::latest()->first();
         $maxvu->visits = 0;
         foreach (Produk::all() as $item) {
             $path = "produk/{$item->id}";
@@ -61,7 +61,7 @@ class DashbaordController extends Controller
             }
         }
 
-        return view('admin.dashboard', 
+        return view('admin.dashboard',
             compact('dcount','pcount','ucount','hcount','maxvd','maxvh','maxvp','maxvu'));
     }
 }
