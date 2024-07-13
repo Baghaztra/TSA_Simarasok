@@ -48,7 +48,7 @@
                                 @if (count($item->media) > 0)
                                     <a href="{{ route('homestay.show', ['id' => $item->id]) }}" class="img-wrapper">
                                         <img src="{{ asset('media/' . $item->media[0]->nama) }}"
-                                            alt="{{ $item->media[0]->nama }}" class="img-fluid">
+                                            alt="{{ $item->media[0]->nama }}" class="img">
                                     </a>
                                 @else
                                     <div class="img"

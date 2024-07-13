@@ -1,21 +1,25 @@
 @extends('frontend.layouts.main')
 @section('content')
-    {{-- <div class="hero-wrap hero-wrap-2 js-fullheight" style="background-image: url('/media/frontend/images/Home.jpg');">
-        <div class="overlay"></div>
-        <div class="container">
+    <div class="hero-wrap hero-wrap-2 js-fullheight" style="position: relative;">
+        <img src="/media/frontend/images/Home.jpg" alt="Background Image"
+            style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
+        <div class="overlay"
+            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.5); z-index: -1;">
+        </div>
+        <div class="container" style="position: relative; z-index: 2;">
             <div class="row no-gutters slider-text js-fullheight align-items-end justify-content-center">
                 <div class="col-md-9 ftco-animate pb-5 text-center">
-                    <p class="breadcrumbs"><span class="mr-2"><a href="/">Home <i
-                                    class="fa fa-chevron-right"></i></a></span> <span>Hubungi Kami <i
-                                class="fa fa-chevron-right"></i></span></p>
+                    <p class="breadcrumbs">
+                        <span class="mr-2"><a href="/">Home <i class="fa fa-chevron-right"></i></a></span>
+                        <span>Hubungi Kami<i class="fa fa-chevron-right"></i></span>
+                    </p>
                     <h1 class="mb-0 bread">Hubungi Kami</h1>
                 </div>
             </div>
         </div>
-    </div> --}}
+    </div>
 
-
-    <div class="ftco-section ftco-about img"style="background-image: url(/media/frontend/images/gambar1.jpg);">
+    {{-- <div class="ftco-section ftco-about img"style="background-image: url(/media/frontend/images/gambar1.jpg);">
         <div class="overlay"></div>
         {{-- <div class="container py-md-5">
             <div class="row py-md-5">
@@ -26,26 +30,34 @@
                     </a>
                 </div>
             </div>
-        </div> --}}
-    </div>
+        </div>
+    </div> --}}
 
-    <div class="ftco-section ftco-about ftco-no-pt img">
+    <div class="ftco-section ftco-about ftco-no-pt img mt-6">
         <div class="container">
             <div class="row d-flex">
                 <div class="col-md-12 about-intro">
                     <div class="row">
                         <div class="col-md-6 d-flex align-items-stretch">
                             <div class="img d-flex w-100 align-items-center justify-content-center"
-                                style="background-image:url(/media/frontend/images/Home.jpg);">
+                                style="margin-top: 50px;">
+                                <img src="/media/frontend/images/Home.jpg" alt="Deskripsi Gambar"
+                                    style="width: 100%; height: 100%;">
                             </div>
                         </div>
                         <div class="col-md-6 pl-md-5 py-5">
                             <div class="row justify-content-start pb-3">
                                 <div class="col-md-12 heading-section ftco-animate">
-                                    <span class="subheading">About Us</span>
-                                    <h2 class="mb-4">Make Your Tour Memorable and Safe With Us</h2>
-                                    <p>Nagari Simarasok merupakan nagari yang terletak di Kecamatan Baso, kabupaten Agam.  Nagari Simarasok memiliki potensi alam yang luar biasa. Berada diketinggian 800 – 1200 mdpl dengan luas 1789 Ha nagari ini terbagi atas empat jorong yaitu jorong Simarasok, jorong Koto Tuo, jorong Kampeh dan jorong Sungai Angek. Memiliki suhu udara 20 – 24oC dan curah hujan perbulannya 123,04 mm. Dengan jumlah penduduk 6.872 orang.Selain potensi alam tersebut, di Nagari Simarasok terdapat pula kekayaan budaya, kuliner dan edukasi.</p>
-                                    <p><a href="#" class="btn btn-primary">Book Your Destination</a></p>
+                                    <span class="subheading">Tentang Kami</span>
+                                    <h2 class="mb-4">Buatlah Kenangan Wisata yang Mengagumkan Bersama Kami</h2>
+                                    <p>Nagari Simarasok merupakan nagari yang terletak di Kecamatan Baso, kabupaten Agam.
+                                        Nagari Simarasok memiliki potensi alam yang luar biasa. Berada diketinggian 800 –
+                                        1200 mdpl dengan luas 1789 Ha nagari ini terbagi atas empat jorong yaitu jorong
+                                        Simarasok, jorong Koto Tuo, jorong Kampeh dan jorong Sungai Angek. Memiliki suhu
+                                        udara 20 – 24&deg;C dan curah hujan perbulannya 123,04 mm. Dengan jumlah penduduk
+                                        6.872 orang. Selain potensi alam tersebut, di Nagari Simarasok terdapat pula
+                                        kekayaan budaya, kuliner dan edukasi.</p>
+                                    <p><a href="#" class="btn btn-primary">Lihat Desstinasi Sekarang</a></p>
                                 </div>
                             </div>
                         </div>
@@ -53,7 +65,7 @@
                 </div>
             </div>
         </div>
-        </div>
+    </div>
 
     <div class="ftco-section ftco-no-pb contact-section mb-4">
         <div class="container">

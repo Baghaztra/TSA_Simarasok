@@ -45,7 +45,7 @@
                                 <div class="nav nav-pills text-center" id="v-pills-tab" role="tablist"
                                     aria-orientation="vertical">
                                     <div class="nav-link mr-md-1" id="v-pills-1-tab" aria-selected="true"
-                                        style="cursor: default">Informasi</div>
+                                        style="cursor: default">Informasi Terbaru</div>
                                 </div>
                             </div>
                             <div class="col-md-12 tab-wrap">
@@ -64,7 +64,14 @@
                                                 </div>
                                                 <div class="col-md d-flex">
                                                     <div class="form-group p-4 border-0">
-                                                        <label for="">Hot News</label>
+                                                        <label for="">Berita Terbaru</label>
+                                                        @if (isset($latestPost) && $latestPost)
+                                                            <p style="color: black">{{ $latestPost->title }}</p>
+                                                            <a
+                                                                href="{{ route('post.detail', ['slug' => $latestPost->slug]) }}">Baca Selengkapnya</a>
+                                                        @else
+                                                            <p>No news available</p>
+                                                        @endif
                                                     </div>
                                                 </div>
                                                 {{-- <div class="col-md d-flex">
@@ -151,10 +158,11 @@
                 </div>
                 <div class="col-md-6">
                     <div class="row">
-                        <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate" style="z-index: 2; position: relative">
+                        <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate"
+                            style="z-index: 2; position: relative">
                             <div class="services services-1 color-1 d-block img" style="z-index: 2; position: relative">
-                                <img src="{{ asset('/media/frontend/images/Home.jpg') }}"  alt="Background Image"
-                                style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
+                                <img src="{{ asset('/media/frontend/images/Home.jpg') }}" alt="Background Image"
+                                    style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
                                 <div class="icon d-flex align-items-center justify-content-center"><span
                                         class="flaticon-paragliding"></span></div>
                                 <div class="media-body">
@@ -164,10 +172,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate" style="z-index: 2; position: relative">
+                        <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate"
+                            style="z-index: 2; position: relative">
                             <div class="services services-1 color-2 d-block img">
-                                <img src="{{ asset('/media/frontend/images/Home.jpg') }}"  alt="Background Image"
-                                style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
+                                <img src="{{ asset('/media/frontend/images/Home.jpg') }}" alt="Background Image"
+                                    style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
 
                                 <div class="icon d-flex align-items-center justify-content-center"><span
                                         class="flaticon-route"></span></div>
@@ -178,10 +187,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate" style="z-index: 2; position: relative">
+                        <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate"
+                            style="z-index: 2; position: relative">
                             <div class="services services-1 color-3 d-block img">
-                                <img src="{{ asset('/media/frontend/images/Home.jpg') }}"  alt="Background Image"
-                                style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
+                                <img src="{{ asset('/media/frontend/images/Home.jpg') }}" alt="Background Image"
+                                    style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
                                 <div class="icon d-flex align-items-center justify-content-center"><span
                                         class="flaticon-tour-guide"></span></div>
                                 <div class="media-body">
@@ -191,10 +201,11 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate" style="z-index: 2; position: relative">
+                        <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate"
+                            style="z-index: 2; position: relative">
                             <div class="services services-1 color-4 d-block img">
-                                <img src="{{ asset('/media/frontend/images/Home.jpg') }}"  alt="Background Image"
-                                style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
+                                <img src="{{ asset('/media/frontend/images/Home.jpg') }}" alt="Background Image"
+                                    style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
                                 <div class="icon d-flex align-items-center justify-content-center"><span
                                         class="flaticon-map"></span></div>
                                 <div class="media-body">
@@ -230,7 +241,7 @@
                         @if (count($item->media) > 0)
                             <a href="{{ route('destinasi.show', ['id' => $item->id]) }}" class="img-wrapper">
                                 <img src="{{ asset('media/' . $item->media[0]->nama) }}"
-                                    alt="{{ $item->media[0]->nama }}" class="img-fluid">
+                                    alt="{{ $item->media[0]->nama }}" class="img">
                             </a>
                         @endif
 
@@ -310,7 +321,7 @@
                             @if (count($item->media) > 0)
                                 <a href="{{ route('produk.show', ['id' => $item->id]) }}" class="img-wrapper">
                                     <img src="{{ asset('media/' . $item->media[0]->nama) }}"
-                                        alt="{{ $item->media[0]->nama }}" class="img-fluid">
+                                        alt="{{ $item->media[0]->nama }}" class="img">
                                 </a>
                             @else
                                 <div class="img"
@@ -373,7 +384,7 @@
                 @if (count($item->media) > 0)
                     <a href="{{ route('homestay.show', ['id' => $item->id]) }}" class="img-wrapper">
                         <img src="{{ asset('media/' . $item->media[0]->nama) }}"
-                            alt="{{ $item->media[0]->nama }}" class="img-fluid">
+                            alt="{{ $item->media[0]->nama }}" class="img">
                     </a>
                 @else
                     <div class="img"

@@ -23,7 +23,7 @@
                     $tkom = ['Riko Fajri', 'Muhammad Hafis', 'Tri Suci Ramadhani', 'Widya Netrizal'];
                     $ptkom = ['Hidra Amnur, S.Kom., S.E., M.Kom', 'Deddy Prayama, S.Kom., M.ISD'];
                     $d3ed = ['Restiani', 'Nilam Salsabilla', 'Syariif Gindra Maulana', 'Fahrul Rizal'];
-                    $pd3ed = ['Muthia Damaiyanti, S.Pd.,M.Pd','Fithratul Miladiyenti, SS, M. Hum.','Vembi Fernando'];
+                    $pd3ed = ['Muthia Damaiyanti, S.Pd.,M.Pd','Fithratul Miladiyenti, SS, M. Hum.','Dr. Dra. Martini, M.Pd','Vembi Fernando'];
                     $d4telkom = ['Farid Alkindi', 'Dion Adiyatma', 'Muhammad Naufal Az Zaky', 'Nugraha Saputra'];
                     $pd4telkom = [
                         'Dikky Chandra, ST.,MT',

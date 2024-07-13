@@ -48,7 +48,7 @@
                                 @if (count($produk->media) > 0)
                                     <a href="{{ route('produk.show', ['id' => $produk->id]) }}" class="img-wrapper">
                                         <img src="{{ asset('media/' . $produk->media[0]->nama) }}"
-                                            alt="{{ $produk->media[0]->nama }}" class="img-fluid">
+                                            alt="{{ $produk->media[0]->nama }}" class="img">
                                     </a>
                                 @else
                                     <div class="img"

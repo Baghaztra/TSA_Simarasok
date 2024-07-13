@@ -11,7 +11,6 @@ class FrontendPostController extends Controller
     {
         $posts = Post::latest()->cari()->published()->paginate(3);
         // $sidebarPosts = Post::latest()->softNews()->take(3)->get()->merge(Post::latest()->feature()->take(3)->get());
-
         return view('frontend.post.index', [
             'posts' => $posts,
             // 'sidebarPosts' => $sidebarPosts,
@@ -41,7 +40,7 @@ class FrontendPostController extends Controller
         $post = Post::where('slug', $slug)->firstOrFail();
         $post->content = $this->convertOembedToIframe($post->content);
         return view('frontend.post.show', compact('post'));
-    }      
+    }
 
     private function convertOembedToIframe($content)
     {

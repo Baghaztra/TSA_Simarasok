@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Post;
 use App\Models\Produk;
 use GuzzleHttp\Client;
 use App\Models\Homestay;
@@ -18,6 +19,8 @@ class FrontendHomeController extends Controller
         $destinasis = DestinasiPariwisata::latest()->get();
         $produk = Produk::latest()->get();
         $penginapan = Homestay::latest()->get();
+        $latestPost = Post::latest()->published()->first();
+
 
         // Menunggu API dari D3 Telekomunikasi
         $suhu = rand(10,30);
@@ -29,7 +32,8 @@ class FrontendHomeController extends Controller
             'suhu' => $suhu,
             'destinasis' => $destinasis,
             'produk' => $produk,
-            'homestay' => $penginapan
+            'homestay' => $penginapan,
+            'latestPost' => $latestPost
         ]);
     }
 

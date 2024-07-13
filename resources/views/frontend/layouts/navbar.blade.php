@@ -17,7 +17,7 @@
                     <a href="/list-homestay" class="nav-link">Penginapan</a>
                 </li>
                 <li class="nav-item {{ request()->is('list-produk') || request()->is('produk/*') ? 'active' : '' }}">
-                    <a href="/list-produk" class="nav-link">Kuliner</a>
+                    <a href="/list-produk" class="nav-link">Produk</a>
                 </li>
                 <li class="nav-item {{ request()->is('list-post') || request()->is('list-hard-news*') || request()->is('list-soft-news*') || request()->is('list-feature*') ||  request()->is('list-post/*') ? 'active' : '' }}">
                     <a href="/list-post" class="nav-link">Berita</a>
