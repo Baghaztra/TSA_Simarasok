@@ -250,11 +250,11 @@
                         document.write(new Date().getFullYear());
                     </script>
                     <a href="https://pnp.ac.id" target="_blank">TSA-MBKM PNP</br></a>
-                    <a href="https://ti.pnp.ac.id/teknologi-rekayasa-perangkat-lunak/" style="font-size: 12px;"">Created by : TRPL</a>
+                    <a href="https://ti.pnp.ac.id/teknologi-rekayasa-perangkat-lunak/" style="font-size: 14px;"">Created by : D4 TRPL</a>
                 </p>
-                <ul class="list-unstyled d-flex">
+                {{-- <ul class="list-unstyled d-flex">
                   <li class="ms-3"><a class="link-dark" href="https://ti.pnp.ac.id/teknologi-rekayasa-perangkat-lunak/"><img src="{{ '/media/frontend/icons/trpl_logo.png' }}" alt="Logo TRPL" class="bi" style="height: 50px;"></a></li>
-                </ul>
+                </ul> --}}
               </div>
         </div>
     </div>
