@@ -48,7 +48,7 @@
                 <label class="form-label" for="gambar">
                     Media
                 </label>
-                <input type="file" name="gambar[]" id="gambar" class="form-control @error('gambar') is-invalid @enderror" onchange="previewFiles(event)" accept=".jpg, .jpeg, .png, .mp4, .mkv" hidden multiple required>
+                <input type="file" name="gambar[]" id="gambar" class="form-control @error('gambar') is-invalid @enderror" onchange="previewFiles(event)" accept="image/*, video/*" hidden multiple required>
                 <div id="preview-container"></div>
                 <div id="preview-youtube"></div>
                 <label class="form-label" for="gambar">
