@@ -24,7 +24,7 @@
 
             <div class="mb-3">
                 <label class="form-label" for="gambar">Media</label>
-                <input type="file" name="gambar[]" id="gambar" class="form-control @error('gambar') is-invalid @enderror" onchange="previewFiles(event)" accept=".jpg, .jpeg, .png, .mp4, .mkv" hidden multiple>
+                <input type="file" name="gambar[]" id="gambar" class="form-control @error('gambar') is-invalid @enderror" onchange="previewFiles(event)" accept="image/*, video/*" hidden multiple>
                 <div id="preview-container">
                     <!-- Pratinjau media yang ada -->
                     @foreach($homestay->media as $media)
