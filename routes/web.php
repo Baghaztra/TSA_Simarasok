@@ -33,6 +33,7 @@ use App\Http\Controllers\FrontendProdukController;
 use App\Http\Controllers\FrontendHomestayController;
 use App\Http\Controllers\FrontendDestinasiController;
 use App\Http\Controllers\DestinasiPariwisataController;
+use App\Http\Controllers\VideoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -63,6 +64,7 @@ Route::middleware(['auth'])->group(function () {
     Route::resource('/admin/homestay', HomestayController::class);
     Route::resource('/admin/provider', ProviderController::class);
     Route::resource('/admin/post', PostController::class);
+    Route::resource('/admin/video', VideoController::class);
 
     /* Route::resource('/admin/umkm', UMKMController::class);
     Route::get('/admin/produk/catcreate', [ProdukController::class, 'catcreate'])->name('produk.catcreate');

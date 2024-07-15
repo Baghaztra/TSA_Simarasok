@@ -11,6 +11,7 @@ use App\Models\Provider;
 use Illuminate\Database\Seeder;
 use App\Models\DestinasiProvider;
 use App\Models\DestinasiPariwisata;
+use App\Models\Video;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DummySeeder extends Seeder
@@ -36,27 +37,7 @@ class DummySeeder extends Seeder
                 'jenis_id' => $i,
             ]);
         }
-        Provider::factory()->create([
-            'name' => 'Telkomsel',
-        ]);
-        Provider::factory()->create([
-            'name' => 'XL Axiata',
-        ]);
-        Provider::factory()->create([
-            'name' => 'Indosat',
-        ]);
-        Provider::factory()->create([
-            'name' => 'Smartfren',
-        ]);
-        for ($i=1; $i <= 10; $i++) {
-            foreach (Provider::all() as $provider) {
-                DestinasiProvider::factory()->create([
-                    'destinasi_id' => $i,
-                    'provider_id' => $provider->id,
-                    'signal' => ['Very Good','Good','Normal','Fair','Bad'][rand(0, 4)],
-                ]);
-            }
-        }
+        
         // gambar untuk tiap homestay
         for ($i=1; $i <= 20; $i++) {
             Asset::factory()->create([
@@ -89,5 +70,39 @@ class DummySeeder extends Seeder
 
         // Gambar lain kalau mau v:
         Asset::factory(100)->create();
+
+        foreach ([
+            'Telkomsel',
+            'XL Axiata',
+            'Indosat',
+            'Smartfren',
+        ] as $providerName) {
+            Provider::factory()->create([
+                'name' => $providerName,
+            ]);
+        }
+
+        for ($i=1; $i <= 10; $i++) {
+            foreach (Provider::all() as $provider) {
+                DestinasiProvider::factory()->create([
+                    'destinasi_id' => $i,
+                    'provider_id' => $provider->id,
+                    'signal' => ['Very Good','Good','Normal','Fair','Bad'][rand(0, 4)],
+                ]);
+            }
+        }
+
+        foreach ([
+            'Pemandian Batu Putiah' => "https://youtu.be/XoqO-ABX_VA",
+            'Sungai Angek Rafting' => "https://youtu.be/ZppvbstTY3Y",
+            'UMKM Simarasok : Kue Bolu' => "https://youtu.be/8UeUTG-ndqY",
+            'Homestay Rumah Gadang'=> "https://youtu.be/vlz892nCSn0",
+            'Petualangan di Bawah Pulai Camp' => "https://youtu.be/FKk_ZpmCRls",
+        ] as $title => $url) {
+            Video::factory()->create([
+                'title'=>$title,
+                'url'=>$url,
+            ]);
+        }
     }
 }

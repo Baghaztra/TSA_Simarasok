@@ -98,7 +98,9 @@
                                     removeButton.style.position = 'absolute';
                                     removeButton.style.top = '5px';
                                     removeButton.style.right = '5px';
-                                    removeButton.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+                                    removeButton.style.backgroundColor = 'rgba(255, 0, 0, 0.5)';
+                                    removeButton.style.width = '26px';
+                                    removeButton.style.height = '26px';
                                     removeButton.style.border = 'none';
                                     removeButton.style.borderRadius = '50%';
                                     removeButton.style.cursor = 'pointer';

@@ -20,17 +20,17 @@
                 </div>
             </div>
             <div class="row">
-                @foreach ($videos as $judul => $url)
+                @foreach ($videos as $video)
                     <div class="card mb-2 ml-10 vb" style="width: 50%;">
                         <div style="display: block; position: relative; width: 100%; height: 0; padding-top: 56.25%;">
                             <iframe
-                                src="https://www.youtube.com/embed/{{ Str::afterLast($url, 'https://youtu.be/') }}?autoplay=0&mute=1&loop=1&playlist={{ Str::afterLast($url, 'https://youtu.be/') }}"
+                                src="{{ $video->embedUrl() }}"
                                 style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;" class="card-img-top"
                                 allowfullscreen frameborder="0">
                             </iframe>
                         </div>
                         <div class="card-body">
-                            <p class="card-text">{{ $judul }}</p>
+                            <p class="card-text">{{ $video->title }}</p>
                         </div>
                     </div>
                 @endforeach

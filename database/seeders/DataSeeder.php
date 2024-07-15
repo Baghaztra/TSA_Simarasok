@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use App\Models\DestinasiPariwisata;
 use Illuminate\Database\Seeder;
 use App\Models\Provider;
+use App\Models\Video;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DataSeeder extends Seeder
@@ -24,17 +25,28 @@ class DataSeeder extends Seeder
             'status' => 'Normal',
         ]);
 
-        Provider::factory()->create([
-            'name' => 'Telkomsel',
-        ]);
-        Provider::factory()->create([
-            'name' => 'XL Axiata',
-        ]);
-        Provider::factory()->create([
-            'name' => 'Indosat',
-        ]);
-        Provider::factory()->create([
-            'name' => 'Smartfren',
-        ]);
+        foreach ([
+            'Telkomsel',
+            'XL Axiata',
+            'Indosat',
+            'Smartfren',
+        ] as $providerName) {
+            Provider::factory()->create([
+                'name' => $providerName,
+            ]);
+        }
+
+        foreach ([
+            'Pemandian Batu Putiah' => "https://youtu.be/XoqO-ABX_VA",
+            'Sungai Angek Rafting' => "https://youtu.be/ZppvbstTY3Y",
+            'UMKM Simarasok : Kue Bolu' => "https://youtu.be/8UeUTG-ndqY",
+            'Homestay Rumah Gadang'=> "https://youtu.be/vlz892nCSn0",
+            'Petualangan di Bawah Pulai Camp' => "https://youtu.be/FKk_ZpmCRls",
+        ] as $title => $url) {
+            Video::factory()->create([
+                'title'=>$title,
+                'url'=>$url,
+            ]);
+        }
     }
 }

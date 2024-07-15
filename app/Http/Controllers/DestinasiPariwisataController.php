@@ -18,11 +18,7 @@ class DestinasiPariwisataController extends Controller
     public function index(Request $request) {
         $query = $request->input('q');
 
-        if (!empty($query)) {
-            $destinasi = DestinasiPariwisata::where("name", "like", "%" . $query . '%')->latest()->paginate(10);;
-        } else {
-            $destinasi = DestinasiPariwisata::latest()->paginate(10);
-        }
+        $destinasi = DestinasiPariwisata::latest()->cari()->paginate(10);
 
         foreach ($destinasi as $item) {
             $path = "list-destinasi/{$item->id}";

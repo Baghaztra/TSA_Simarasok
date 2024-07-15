@@ -35,6 +35,13 @@
                     </a>
                 </li>
                 <li class="sidebar-item">
+                    <a class="sidebar-link {{ request()->is('admin/video*') ? 'active' : '' }}"
+                        href="{{ route('video.index') }}" aria-expanded="false">
+                        <span data-feather="youtube" class="align-text-bottom"></span>
+                        <span class="hide-menu">Video</span>
+                    </a>
+                </li>
+                <li class="sidebar-item">
                     <a class="sidebar-link {{ request()->is('admin/provider*') ? 'active' : '' }}"
                         href="{{ route('provider.index') }}" aria-expanded="false">
                         <span data-feather="bar-chart" class="align-text-bottom"></span>
