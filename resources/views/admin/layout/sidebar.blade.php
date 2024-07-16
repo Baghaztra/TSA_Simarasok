@@ -59,7 +59,7 @@
                     <a class="sidebar-link {{ request()->is('admin/produk*') ? 'active' : '' }}"
                         href="{{ route('produk.index') }}" aria-expanded="false">
                         <span data-feather="shopping-cart" class="align-text-bottom"></span>
-                        <span class="hide-menu">Kuliner</span>
+                        <span class="hide-menu">Oleh-oleh</span>
                     </a>
                 </li>
                 {{-- <li class="sidebar-item">

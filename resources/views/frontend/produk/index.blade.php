@@ -12,9 +12,9 @@
                 <div class="col-md-9 ftco-animate pb-5 text-center">
                     <p class="breadcrumbs">
                         <span class="mr-2"><a href="/">Home <i class="fa fa-chevron-right"></i></a></span>
-                        <span>List Produk <i class="fa fa-chevron-right"></i></span>
+                        <span>List Oleh-Oleh <i class="fa fa-chevron-right"></i></span>
                     </p>
-                    <h1 class="mb-0 bread">Daftar Produk</h1>
+                    <h1 class="mb-0 bread">Daftar Oleh-Oleh</h1>
                 </div>
             </div>
         </div>
@@ -37,7 +37,7 @@
             <div class="row justify-content-center pb-2">
                 <div class="col-md-12 heading-section text-center ftco-animate">
                     <span class="subheading">Simarasok</span>
-                    <h2 class="mb-4">Daftar Produk</h2>
+                    <h2 class="mb-4">Daftar Oleh-Oleh</h2>
                 </div>
             </div>
             <div class="container">
