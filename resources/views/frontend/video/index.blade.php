@@ -4,7 +4,7 @@
     <div class="hero-wrap hero-wrap-2 js-fullheight" style="position: relative; overflow: hidden; height: 100vh;">
         <div style="position: relative; width: 100%; height: 100%; padding-top: 56.25%;">
             <iframe
-                src="https://www.youtube.com/embed/XoqO-ABX_VA?si=_C7EMdWKmUozaEKUO&autoplay=1&mute=1&loop=1&playlist=XoqO-ABX_VA"
+                src="{{$videoHightligh?$videoHightligh->embedUrl():'' }}"
                 frameborder="0" allow="autoplay; encrypted-media" allowfullscreen title="YouTube Video Background"
                 style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: 1;">
             </iframe>

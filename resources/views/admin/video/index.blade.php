@@ -39,6 +39,7 @@
             <th>No</th>
             <th>Judul</th>
             <th>Lihat di youtube</th>
+            <th>Highlight</th>
             <th>Aksi</th>
         </tr>
         @if ($videos->isEmpty())
@@ -51,6 +52,21 @@
                 <td>{{ $videos->firstItem() + $loop->index }}</td>
                 <td>{{ $item->title }}</td>
                 <td><a href="{{ $item->url }}" target="_blank">{{ $item->url }}</a></td>
+                <td>    
+                    <form action="{{ route('video.toggleHighlight', $item->id) }}" class="ms-3" method="POST">
+                        @csrf @method('PUT')
+                        <div class="form-check form-switch">
+                            <input 
+                                class="form-check-input" 
+                                type="checkbox" 
+                                role="switch" 
+                                id="toggleStatus{{ $item->id }}" 
+                                name="status" 
+                                {{ $item->highlight == 1 ? 'checked' : '' }}
+                                onchange="this.form.submit()">
+                        </div>
+                    </form>
+                </td>
                 <td>
                     <form class="d-inline" onsubmit="return confirm('Yakin ingin menghapus data ini?')" action="{{ route('video.destroy', $item->id) }}" method="POST">
                         @csrf @method('DELETE')

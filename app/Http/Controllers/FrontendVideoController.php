@@ -13,7 +13,8 @@ class FrontendVideoController extends Controller
     public function index(Request $request)
     {
         $videos = Video::latest()->get();
-        return view('frontend.video.index', compact('videos'));
+        $videoHightligh = Video::getHighlight()->first();
+        return view('frontend.video.index', compact('videos','videoHightligh'));
     }
 
     /**

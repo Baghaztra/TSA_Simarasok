@@ -93,4 +93,17 @@ class VideoController extends Controller
         Video::destroy($id);
         return redirect('admin/video')->with('danger', 'Video berhasil dihapus.');
     }
+
+    public function toggleHighlight(Request $request, string $id)
+    {
+        $video = Video::findOrFail($id);
+        if ($request->status) {
+            $video->setHighlight();
+            return redirect('admin/video')->with('success', 'Video highlighted successfully!');
+        }else {
+            $video->update(['highlight'=>false]);
+            return redirect('admin/video')->with('danger', 'Tidak ada video highlight');
+        }
+
+    }
 }
