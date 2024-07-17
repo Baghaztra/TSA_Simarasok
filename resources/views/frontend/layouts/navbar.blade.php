@@ -10,6 +10,9 @@
                 <li class="nav-item {{ request()->is('/') ? 'active' : '' }}">
                     <a href="/" class="nav-link">Beranda</a>
                 </li>
+                <li class="nav-item {{ request()->is('list-post') || request()->is('list-hard-news*') || request()->is('list-soft-news*') || request()->is('list-feature*') ||  request()->is('list-post/*') ? 'active' : '' }}">
+                    <a href="/list-post" class="nav-link">Berita</a>
+                </li>
                 <li class="nav-item {{ request()->is('list-destinasi') || request()->is('list-destinasi/*') ? 'active' : '' }}">
                     <a href="/list-destinasi" class="nav-link">Destinasi</a>
                 </li>
@@ -18,9 +21,6 @@
                 </li>
                 <li class="nav-item {{ request()->is('list-produk') || request()->is('produk/*') ? 'active' : '' }}">
                     <a href="/list-produk" class="nav-link">Oleh-Oleh</a>
-                </li>
-                <li class="nav-item {{ request()->is('list-post') || request()->is('list-hard-news*') || request()->is('list-soft-news*') || request()->is('list-feature*') ||  request()->is('list-post/*') ? 'active' : '' }}">
-                    <a href="/list-post" class="nav-link">Berita</a>
                 </li>
                 <li class="nav-item {{ request()->is('list-video') || request()->is('video/*') ? 'active' : '' }}">
                     {{-- <a href="https://www.youtube.com/@pesonasimarasok2880" target="_blank" class="nav-link">Video</a> --}}

@@ -181,8 +181,8 @@
                                 <div class="icon d-flex align-items-center justify-content-center"><span
                                         class="flaticon-route"></span></div>
                                 <div class="media-body">
-                                    <h3 class="heading mb-3">Travel Arrangements</h3>
-                                    <p>A small river named Duden flows by their place and supplies it with the necessary
+                                    <h3 class="heading mb-3">Lokasi</h3>
+                                    <p>Simarasok terletak di Kabupaten Agam, Sumatera Barat
                                     </p>
                                 </div>
                             </div>
