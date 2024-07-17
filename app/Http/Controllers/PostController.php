@@ -60,7 +60,7 @@ class PostController extends Controller
                 $file->move(public_path('media'), $fileName);
                 $asset = new Asset();
                 $asset->nama = $fileName;
-                $asset->tipe = in_array($file->getClientOriginalExtension(), ['jpg', 'jpeg', 'png', 'heic']) ? 'gambar' : 'video';
+                $asset->tipe = in_array($file->getClientOriginalExtension(), ['.jpg', '.JPG', '.png', '.PNG', '.jpeg', '.JPEG', '.heic', '.HEIC',]) ? 'gambar' : 'video';
                 $asset->jenis = 'post';
                 $asset->jenis_id = $berita->id;
                 $asset->save();
@@ -121,7 +121,7 @@ class PostController extends Controller
                 $file->move(public_path('media'), $fileName);
                 $asset = new Asset();
                 $asset->nama = $fileName;
-                $asset->tipe = in_array($file->getClientOriginalExtension(), ['jpg', 'jpeg', 'png', 'heic']) ? 'gambar' : 'video';
+                $asset->tipe = in_array($file->getClientOriginalExtension(), ['.jpg', '.JPG', '.png', '.PNG', '.jpeg', '.JPEG', '.heic', '.HEIC',]) ? 'gambar' : 'video';
                 $asset->jenis = 'post';
                 $asset->jenis_id = $berita->id;
                 $asset->save();

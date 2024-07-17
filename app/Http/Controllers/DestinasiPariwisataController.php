@@ -89,7 +89,7 @@ class DestinasiPariwisataController extends Controller
                 $file->move(public_path('media'), $fileName);
                 $asset = new Asset();
                 $asset->nama = $fileName;
-                $asset->tipe = in_array($file->getClientOriginalExtension(), ['jpg', 'jpeg', 'png', 'heic']) ? 'gambar' : 'video';
+                $asset->tipe = in_array($file->getClientOriginalExtension(), ['.jpg', '.JPG', '.png', '.PNG', '.jpeg', '.JPEG', '.heic', '.HEIC',]) ? 'gambar' : 'video';
                 $asset->jenis = 'destinasi';
                 $asset->jenis_id = $destinasi->id;
                 $asset->save();
@@ -164,7 +164,7 @@ class DestinasiPariwisataController extends Controller
                 $file->move(public_path('media'), $fileName);
                 $asset = new Asset();
                 $asset->nama = $fileName;
-                $asset->tipe = in_array($file->getClientOriginalExtension(), ['jpg', 'jpeg', 'png', 'heic']) ? 'gambar' : 'video';
+                $asset->tipe = in_array($file->getClientOriginalExtension(), ['.jpg', '.JPG', '.png', '.PNG', '.jpeg', '.JPEG', '.heic', '.HEIC',]) ? 'gambar' : 'video';
                 $asset->jenis = 'destinasi';
                 $asset->jenis_id = $destinasi->id;
                 $asset->save();

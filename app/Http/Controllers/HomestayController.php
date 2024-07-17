@@ -84,7 +84,7 @@ class HomestayController extends Controller
                 $file->move(public_path('media'), $fileName);
                 $asset = new Asset();
                 $asset->nama = $fileName;
-                $asset->tipe = in_array($file->getClientOriginalExtension(), ['jpg', 'jpeg', 'png', 'heic']) ? 'gambar' : 'video';
+                $asset->tipe = in_array($file->getClientOriginalExtension(), ['.jpg', '.JPG', '.png', '.PNG', '.jpeg', '.JPEG', '.heic', '.HEIC',]) ? 'gambar' : 'video';
                 $asset->jenis = 'homestay';
                 $asset->jenis_id = $homestay->id;
                 $asset->save();
@@ -134,7 +134,7 @@ class HomestayController extends Controller
                 $file->move(public_path('media'), $fileName);
                 $asset = new Asset();
                 $asset->nama = $fileName;
-                $asset->tipe = in_array($file->getClientOriginalExtension(), ['jpg', 'jpeg', 'png']) ? 'gambar' : 'video';
+                $asset->tipe = in_array($file->getClientOriginalExtension(), ['.jpg', '.JPG', '.png', '.PNG', '.jpeg', '.JPEG', '.heic', '.HEIC',]) ? 'gambar' : 'video';
                 $asset->jenis = 'homestay';
                 $asset->jenis_id = $homestay->id;
                 $asset->save();
