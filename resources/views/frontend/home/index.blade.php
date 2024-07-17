@@ -317,11 +317,11 @@
                     @endif
                     <div class="ftco-animate">
                         <div class="project-wrap"
-                            style="background-color: white; box-shadow: 0 4px 8px rgba(163, 163, 163, 0.2);">
+                            style="background-color: white; box-shadow: 0 4px 8px rgba(163, 163, 163, 0.2);" style="hei">
                             @if (count($item->media) > 0)
                                 <a href="{{ route('produk.show', ['id' => $item->id]) }}" class="img-wrapper">
                                     <img src="{{ asset('media/' . $item->media[0]->nama) }}"
-                                        alt="{{ $item->media[0]->nama }}" class="img">
+                                        alt="{{ $item->media[0]->nama }}" class="img" style="object-fit: cover">
                                 </a>
                             @else
                                 <div class="img"

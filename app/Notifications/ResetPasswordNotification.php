@@ -47,8 +47,8 @@ class ResetPasswordNotification extends Notification
         $url = $this->resetUrl;
 
         return (new MailMessage)
-            ->line('You are receiving this email because we received a password reset request for your account.')
+            ->line('Anda mendapatkan email ini karena meminta reset password pada website pesonasimarasok.pnp.ac.id')
             ->action('Reset Password', $url)
-            ->line('If you did not request a password reset, no further action is required.');
+            ->line('Jika Anda tidak meminta ini, abaikan pesan ini');
     }
 }

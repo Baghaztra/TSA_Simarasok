@@ -23,7 +23,7 @@
                                     <span class="fs-6" style="font-weight: bold; color: black">Simarasok</span>
                                 </a>
                                 <p class="text-center">Wonderful Indonesia</p>
-                                <form action="{{ route('password.email') }}" method="POST">
+                                <form action="{{ route('password.email') }}" method="POST" autocomplete="off">
                                     @csrf
                                     @method('POST')
                                     @if (session('status'))
@@ -32,6 +32,7 @@
                                         </div>
                                     @endif
                                     <div class="mb-3">
+                                        <p class="fs-3" style="font-weight: bold; color: black;">Lupa Password</p>
                                         <label for="email" class="form-label">Email</label>
                                         <input type="email" class="form-control @error('email') is-invalid @enderror"
                                             id="email" name="email" placeholder="name@example.com"
@@ -42,7 +43,7 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <button class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" type="submit">Send Reset Code</button>
+                                    <button class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" type="submit">Kirim Kode Reset</button>
                                 </form>
                             </div>
                         </div>
