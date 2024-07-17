@@ -55,14 +55,7 @@
                                         @enderror
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between mb-4">
-                                        <div class="form-check">
-                                            <input class="form-check-input" type="checkbox" name="remember"
-                                                value="remember-me" id="flexCheckDefault" checked>
-                                            <label class="form-check-label text-dark" for="flexCheckDefault">
-                                                Remeber this Device
-                                            </label>
-                                        </div>
-                                        <a class="text-primary fw-bold" href="{{ route('password.request') }}">Forgot Password ?</a>
+                                        <a class="text-primary fw-bold" href="{{ route('password.request') }}">Lupa Password ?</a>
                                     </div>
                                     <button href="/admin" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2"
                                         type="submit">Sign

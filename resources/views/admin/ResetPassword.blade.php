@@ -23,24 +23,14 @@
                                     <span class="fs-6" style="font-weight: bold; color: black">Simarasok</span>
                                 </a>
                                 <p class="text-center">Wonderful Indonesia</p>
-                                <form action="{{ route('password.update') }}" method="POST"">
+                                <form action="{{ route('password.update') }}" method="POST">
                                     @csrf
-                                    @method('POST')
                                     <input type="hidden" name="token" value="{{ $token }}">
-                                    <div class="mb-3">
-                                        <label for="email" class="form-label">Email</label>
-                                        <input type="email" class="form-control @error('email') is-invalid @enderror"
-                                            id="email" name="email" placeholder="name@example.com" value="{{ old('email') }}">
-                                        @error('email')
-                                            <div class="invalid-feedback">
-                                                {{ $message }}
-                                            </div>
-                                        @enderror
-                                    </div>
+                                    <input type="hidden" name="email" value="{{ $email }}">
                                     <div class="mb-3">
                                         <label for="newPassword" class="form-label">New Password</label>
                                         <input type="password" class="form-control @error('password') is-invalid @enderror"
-                                            id="newPassword" name="password" placeholder="New Password">
+                                                id="newPassword" name="password" placeholder="New Password">
                                         @error('password')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -50,7 +40,7 @@
                                     <div class="mb-3">
                                         <label for="confirmPassword" class="form-label">Confirm Password</label>
                                         <input type="password" class="form-control @error('password_confirmation') is-invalid @enderror"
-                                            id="confirmPassword" name="password_confirmation" placeholder="Confirm Password">
+                                                id="confirmPassword" name="password_confirmation" placeholder="Confirm Password">
                                         @error('password_confirmation')
                                             <div class="invalid-feedback">
                                                 {{ $message }}

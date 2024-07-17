@@ -91,21 +91,25 @@ Route::middleware(['guest'])->group(function () {
     })->name('password.request');
 
     Route::post('/forgot-password', function (Request $request) {
-        $request->validate(['email' => 'required|email']);
+        $request->validate(['email' => 'required|email|exists:users,email']);
 
+        $user = User::where('email', $request->input('email'))->first();
+
+        if ($user && $user->status != 'active') {
+            return view('admin.disabled');
+        }
         $status = Password::sendResetLink(
             $request->only('email')
         );
-
         return $status === Password::RESET_LINK_SENT
-                    ? back()->with(['status' => __($status)])
-                    : back()->withErrors(['email' => __($status)]);
+            ? back()->with(['status' => __($status)])->with('status','Reset password berhasil dikirimkan ke Email Anda. Silahkan cek dibagian Email, termasuk spam.')
+            : back()->withErrors(['email' => __($status)])->with('status','Email anda belum terdaftar');
     })->name('password.email');
 
-    Route::get('/reset-password/{token}', function (string $token) {
-        return view('admin.ResetPassword', ['token' => $token]);
+    Route::get('/reset-password/{token}', function (string $token, Request $request) {
+        $email = $request->email;
+        return view('admin.ResetPassword', ['token' => $token, 'email' => $email]);
     })->name('password.reset');
-
 
     Route::post('/reset-password', function (Request $request) {
         $request->validate([
@@ -113,23 +117,19 @@ Route::middleware(['guest'])->group(function () {
             'email' => 'required|email',
             'password' => 'required|min:8|confirmed',
         ]);
-
         $status = Password::reset(
             $request->only('email', 'password', 'password_confirmation', 'token'),
             function (User $user, string $password) {
                 $user->forceFill([
                     'password' => Hash::make($password)
                 ])->setRememberToken(Str::random(60));
-
                 $user->save();
-
                 event(new PasswordReset($user));
             }
         );
-
         return $status === Password::PASSWORD_RESET
-                    ? redirect()->route('login')->with('status', __($status))
-                    : back()->withErrors(['email' => [__($status)]]);
+            ? redirect()->route('login')->with('status', 'Password berhasil direset. Silakan login dengan password baru Anda.')
+            : back()->withErrors(['email' => [__($status)]]);
     })->name('password.update');
 
 });
