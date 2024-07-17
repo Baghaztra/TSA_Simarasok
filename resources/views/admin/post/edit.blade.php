@@ -53,10 +53,11 @@
                     <div style="position: relative; display: inline-block;" data-media-id="{{ $media->id }}">
                         @if($media->tipe === 'gambar')
                         <img src="/media/{{ $media->nama }}" class="img-thumbnail" style="width: 300px; display: block;">
+                        <button onclick="removeExistingMedia({{ $media->id }}, event)" style="position: absolute; top: 5px; right: 5px; background-color: rgba(255, 0, 0, 0.5); border: none; border-radius: 50%; cursor: pointer; width: 26px; height: 26px;">&#x2715;</button>
                         @elseif($media->tipe === 'video')
                         <video src="/media/{{ $media->nama }}" class="img-thumbnail" style="width: 300px; display: block;" controls></video>
+                        <button onclick="removeExistingMedia({{ $media->id }}, event)" style="position: absolute; top: 5px; right: 5px; background-color: rgba(255, 0, 0, 0.5); border: none; border-radius: 50%; cursor: pointer; width: 26px; height: 26px;">&#x2715;</button>
                         @endif
-                        <button onclick="removeExistingMedia({{ $media->id }})" style="position: absolute; top: 5px; right: 5px; background-color: rgba(255, 255, 255, 0.8); border: none; border-radius: 50%; cursor: pointer;">&#x2715;</button>
                     </div>
                     @endforeach
                 </div>
@@ -149,10 +150,25 @@
                     document.getElementById('gambar').files = dataTransfer.files;
                 };
             
-                const removeExistingMedia = (id) => {
+                const mediaToDelete = [];
+
+                const removeExistingMedia = (id, event) => {
                     const mediaElement = document.querySelector(`[data-media-id='${id}']`);
                     if (mediaElement) {
                         mediaElement.remove();
+                        mediaToDelete.push(id); // Menggunakan push untuk menambahkan elemen ke array
+                    }
+                    
+                    // Menghapus button yang ditekan
+                    if (event && event.target) {
+                        event.target.remove();
+                    }
+                    
+                    console.log(mediaToDelete);
+                };
+
+                const confirmDeleteMedia = () => {
+                    mediaToDelete.forEach(id => {
                         fetch(`/media/${id}`, {
                             method: 'DELETE',
                             headers: {
@@ -160,15 +176,15 @@
                                 'Content-Type': 'application/json'
                             }
                         }).then(response => response.json())
-                          .then(data => {
-                              if (data.success) {
-                                  console.log('Media deleted successfully');
-                              } else {
-                                  console.error('Failed to delete media');
-                              }
-                          })
-                          .catch(error => console.error('Error:', error));
-                    }
+                        .then(data => {
+                            if (data.success) {
+                                console.log('Media deleted successfully');
+                            } else {
+                                console.error('Failed to delete media');
+                            }
+                        })
+                        .catch(error => console.error('Error:', error));
+                    });
                 };
 
                 // let currentFiles = [];
@@ -213,7 +229,9 @@
                         removeButton.style.position = 'absolute';
                         removeButton.style.top = '5px';
                         removeButton.style.right = '5px';
-                        removeButton.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+                        removeButton.style.backgroundColor = 'rgba(255, 0, 0, 0.5)';
+                        removeButton.style.width = '26px';
+                        removeButton.style.height = '26px';
                         removeButton.style.border = 'none';
                         removeButton.style.borderRadius = '50%';
                         removeButton.style.cursor = 'pointer';
@@ -269,7 +287,7 @@
 
             <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
-            <button class="btn btn-sm btn-primary" type="submit">Submit</button>
+            <button class="btn btn-sm btn-primary" type="submit" onclick="confirmDeleteMedia()">Submit</button>
             <div style="height: 25vh"></div>
         </form>
     </div>

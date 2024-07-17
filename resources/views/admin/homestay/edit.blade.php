@@ -31,10 +31,11 @@
                     <div style="position: relative; display: inline-block;" data-media-id="{{ $media->id }}">
                         @if($media->tipe === 'gambar')
                         <img src="/media/{{ $media->nama }}" class="img-thumbnail" style="width: 300px; display: block;">
+                        <button onclick="removeExistingMedia({{ $media->id }}, event)" style="position: absolute; top: 5px; right: 5px; background-color: rgba(255, 0, 0, 0.5); border: none; border-radius: 50%; cursor: pointer; width: 26px; height: 26px;">&#x2715;</button>
                         @elseif($media->tipe === 'video')
                         <video src="/media/{{ $media->nama }}" class="img-thumbnail" style="width: 300px; display: block;" controls></video>
+                        <button onclick="removeExistingMedia({{ $media->id }}, event)" style="position: absolute; top: 5px; right: 5px; background-color: rgba(255, 0, 0, 0.5); border: none; border-radius: 50%; cursor: pointer; width: 26px; height: 26px;">&#x2715;</button>
                         @endif
-                        <button onclick="removeExistingMedia({{ $media->id }})" style="position: absolute; top: 5px; right: 5px; background-color: rgba(255, 255, 255, 0.8); border: none; border-radius: 50%; cursor: pointer;">&#x2715;</button>
                     </div>
                     @endforeach
                 </div>
@@ -123,12 +124,18 @@
             
                 const mediaToDelete = [];
 
-                const removeExistingMedia = (id) => {
+                const removeExistingMedia = (id, event) => {
                     const mediaElement = document.querySelector(`[data-media-id='${id}']`);
                     if (mediaElement) {
                         mediaElement.remove();
                         mediaToDelete.push(id); // Menggunakan push untuk menambahkan elemen ke array
                     }
+                    
+                    // Menghapus button yang ditekan
+                    if (event && event.target) {
+                        event.target.remove();
+                    }
+                    
                     console.log(mediaToDelete);
                 };
 

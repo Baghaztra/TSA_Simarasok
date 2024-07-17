@@ -31,10 +31,11 @@
                     <div style="position: relative; display: inline-block;" data-media-id="{{ $media->id }}">
                         @if($media->tipe === 'gambar')
                         <img src="/media/{{ $media->nama }}" class="img-thumbnail" style="width: 300px; display: block;">
+                        <button onclick="removeExistingMedia({{ $media->id }}, event)" style="position: absolute; top: 5px; right: 5px; background-color: rgba(255, 0, 0, 0.5); border: none; border-radius: 50%; cursor: pointer; width: 26px; height: 26px;">&#x2715;</button>
                         @elseif($media->tipe === 'video')
                         <video src="/media/{{ $media->nama }}" class="img-thumbnail" style="width: 300px; display: block;" controls></video>
+                        <button onclick="removeExistingMedia({{ $media->id }}, event)" style="position: absolute; top: 5px; right: 5px; background-color: rgba(255, 0, 0, 0.5); border: none; border-radius: 50%; cursor: pointer; width: 26px; height: 26px;">&#x2715;</button>
                         @endif
-                        <button onclick="removeExistingMedia({{ $media->id }})" style="position: absolute; top: 5px; right: 5px; background-color: rgba(255, 255, 255, 0.8); border: none; border-radius: 50%; cursor: pointer;">&#x2715;</button>
                     </div>
                     @endforeach
                 </div>
@@ -127,26 +128,19 @@
                     document.getElementById('gambar').files = dataTransfer.files;
                 };
             
-                const removeExistingMedia = (id) => {
+                const mediaToDelete = [];
+
+                const removeExistingMedia = (id, event) => {
                     const mediaElement = document.querySelector(`[data-media-id='${id}']`);
-                    if (mediaElement) {
-                        mediaElement.remove();
-                        fetch(`/media/${id}`, {
-                            method: 'DELETE',
-                            headers: {
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                'Content-Type': 'application/json'
-                            }
-                        }).then(response => response.json())
-                          .then(data => {
-                              if (data.success) {
-                                  console.log('Media deleted successfully');
-                              } else {
-                                  console.error('Failed to delete media');
-                              }
-                          })
-                          .catch(error => console.error('Error:', error));
+                    mediaElement.remove();
+                    mediaToDelete.push(id);
+                    
+                    // Menghapus button yang ditekan
+                    if (event && event.target) {
+                        event.target.remove();
                     }
+                    
+                    console.log(mediaToDelete);
                 };
 
                 // let currentFiles = [];
@@ -206,6 +200,26 @@
                         previewWrapper.appendChild(iframe);
                         previewWrapper.appendChild(removeButton);
                         previewContainer.appendChild(previewWrapper);
+                    });
+                };
+
+                const confirmDeleteMedia = () => {
+                    mediaToDelete.forEach(id => {
+                        fetch(`/media/${id}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Content-Type': 'application/json'
+                            }
+                        }).then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                console.log('Media deleted successfully');
+                            } else {
+                                console.error('Failed to delete media');
+                            }
+                        })
+                        .catch(error => console.error('Error:', error));
                     });
                 };
             </script>
