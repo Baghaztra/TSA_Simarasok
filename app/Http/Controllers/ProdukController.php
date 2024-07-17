@@ -94,7 +94,7 @@ class ProdukController extends Controller
         $produk = Produk::create($validate);
 
         if ($request->hasFile('gambar')) {
-            $i = 1;
+            $i = 0;
             foreach($request->file('gambar') as $file) {
                 $fileName = time() . $i . '.' . $file->getClientOriginalExtension();
                 $i++;
