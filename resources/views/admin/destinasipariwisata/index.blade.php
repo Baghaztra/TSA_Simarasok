@@ -158,7 +158,6 @@
                     }
                     media.classList.add('m-1');
                     media.style.height = '200px';
-                    media.setAttribute('src', "/media/" + item.nama);
                     mediaContainer.appendChild(media);
                 });
                 const listProvider = JSON.parse(button.getAttribute('data-provider'));
