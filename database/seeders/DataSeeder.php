@@ -15,7 +15,7 @@ class DataSeeder extends Seeder
      */
     public function run(): void
     {
-        // ini kalau semisal datanya dibikin default
+        /* ini kalau semisal datanya dibikin default
         DestinasiPariwisata::factory()->create([
             'name' => 'Goa Ngalau Nan Panjang',
             'desc' => 'blub blub blub blub blub blub blub blub',
@@ -23,7 +23,7 @@ class DataSeeder extends Seeder
             'notelp' => '+628' . fake()->numerify('##########'),
             'lokasi' => 'https://maps.google.com/?q=',
             'status' => 'Normal',
-        ]);
+        ]); */
 
         foreach ([
             'Telkomsel',

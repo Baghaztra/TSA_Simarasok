@@ -77,6 +77,7 @@ Route::middleware(['auth'])->group(function () {
     Route::delete('/assets/{id}', [AssetController::class, 'destroy'])->name('assets.destroy');
     // Route::get('/admin/booking/{id}/approve', [BookingController::class, 'approve']);
     Route::put('/admin/post/toggleStatus/{id}', [PostController::class, 'toggleStatus'])->name('post.toggleStatus');
+    Route::put('/admin/video/toggleHightlight/{id}', [VideoController::class, 'toggleHighlight'])->name('video.toggleHighlight');
 
     Route::get('sign-out', [SigninController::class, 'logout'])->name('logout');
 });

@@ -303,7 +303,7 @@
         <div class="row justify-content-center pb-4">
             <div class="col-md-12 heading-section text-center ftco-animate">
                 <span class="subheading">Kuliner dan Cinderamata</span>
-                <h2 class="mb-4">Produk</h2>
+                <h2 class="mb-4">Oleh-Oleh</h2>
             </div>
         </div>
     </div>
