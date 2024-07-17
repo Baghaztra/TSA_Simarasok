@@ -57,7 +57,7 @@
                     </div>
                 </label>
                 <div class="input-group mb-3">
-                    <input type="text" id="youtube-link" class="form-control" placeholder="Masukkan link YouTube">
+                    <input type="text" id="youtube-link" name="youtube-links" class="form-control" placeholder="Masukkan link YouTube">
                     <button class="btn btn-primary" type="button" onclick="addYouTubeVideo()">Tambahkan</button>
                 </div>
                 <input type="hidden" name="youtube_links" id="youtube-links">
@@ -147,7 +147,9 @@
                         removeButton.style.position = 'absolute';
                         removeButton.style.top = '5px';
                         removeButton.style.right = '5px';
-                        removeButton.style.backgroundColor = 'rgba(255, 255, 255, 0.8)';
+                        removeButton.style.backgroundColor = = 'rgba(255, 0, 0, 0.5)';
+                        removeButton.style.width = '26px';
+                        removeButton.style.height = '26px';
                         removeButton.style.border = 'none';
                         removeButton.style.borderRadius = '50%';
                         removeButton.style.cursor = 'pointer';
