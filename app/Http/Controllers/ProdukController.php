@@ -93,7 +93,9 @@ class ProdukController extends Controller
 
         $produk = Produk::create($validate);
 
-        if ($request->hasFile('gambar')) {
+        /* Penanganan 1 Media */
+
+        /* if ($request->hasFile('gambar')) {
             $i = 0;
             foreach($request->file('gambar') as $file) {
                 $fileName = time() . $i . '.' . $file->getClientOriginalExtension();
@@ -105,6 +107,23 @@ class ProdukController extends Controller
                 $asset->jenis = 'produk';
                 $asset->jenis_id = $produk->id;
                 // dd($asset->nama);
+                $asset->save();
+            }
+        } */
+
+        /* Penanganan 1 Media */
+
+        if ($request->hasFile('gambar')) {
+            $i = 0;
+            foreach($request->file('gambar') as $file) {
+                $fileName = time() . $i . '.' . $file->getClientOriginalExtension();
+                $i++;
+                $file->move(public_path('media'), $fileName);
+                $asset = new Asset();
+                $asset->nama = $fileName;
+                $asset->tipe = in_array($file->getClientOriginalExtension(), ['jpg', 'JPG', 'png', 'PNG', 'jpeg', 'JPEG', 'heic', 'HEIC',]) ? 'gambar' : 'video';
+                $asset->jenis = 'produk';
+                $asset->jenis_id = $produk->id;
                 $asset->save();
             }
         }
@@ -152,7 +171,9 @@ class ProdukController extends Controller
         ];
         $produk->update($data);
 
-        if ($request->hasFile('gambar')) {
+        /* Penanganan 1 Media */
+
+        /* if ($request->hasFile('gambar')) {
             $i = 0;
             foreach($request->file('gambar') as $file) {
                 $fileName = time() . $i++ . '.' . $file->getClientOriginalExtension();
@@ -164,7 +185,24 @@ class ProdukController extends Controller
                 $asset->jenis_id = $produk->id;
                 $asset->save();
             }
+        } */
+
+        /* Penanganan 1 Media */
+
+        if ($request->hasFile('gambar')) {
+            $i = 0;
+            foreach($request->file('gambar') as $file) {
+                $fileName = time() . $i++ . '.' . $file->getClientOriginalExtension();
+                $file->move(public_path('media'), $fileName);
+                $asset = new Asset();
+                $asset->nama = $fileName;
+                $asset->tipe = in_array($file->getClientOriginalExtension(), ['jpg', 'JPG', 'png', 'PNG', 'jpeg', 'JPEG', 'heic', 'HEIC',]) ? 'gambar' : 'video';
+                $asset->jenis = 'produk';
+                $asset->jenis_id = $produk->id;
+                $asset->save();
+            }
         }
+
         return redirect('admin/produk')->with('warning', 'Berhasil mengubah data Produk.');
     }
 
