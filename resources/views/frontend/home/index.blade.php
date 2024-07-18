@@ -398,7 +398,7 @@
                         <a
                             href="{{ route('destinasi.show', ['id' => $item->id]) }}">{{ strlen($item->name) > 15 ? substr($item->name, 0, 15) . '...' : $item->name }}</a>
                     </h3>
-                    <p class="location mb-1"><span class="fa fa-map-marker mr-2"></span>Lokasi</p>
+                    {{-- <p class="location mb-1"><span class="fa fa-map-marker mr-2"></span>Lokasi</p> --}}
                     <ul>
                         <span data-feather="percent" style="width: 16px; color: rgb(86, 86, 86)"></span>
                         @if ($item->harga == 0)

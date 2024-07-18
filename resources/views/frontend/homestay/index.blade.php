@@ -62,7 +62,7 @@
                                         <a
                                             href="{{ route('homestay.show', ['id' => $item->id]) }}">{{ strlen($item->name) > 15 ? substr($item->name, 0, 30) . '...' : $item->name }}</a>
                                     </h3>
-                                    <p class="location mb-1"><span class="fa fa-map-marker mr-2"></span>{{ $item->lokasi }}
+                                    {{-- <p class="location mb-1"><span class="fa fa-map-marker mr-2"></span>{{ $item->lokasi }} --}}
                                     </p>
                                     <ul>
                                         <span data-feather="percent" style="width: 16px; color: rgb(86, 86, 86)"></span>

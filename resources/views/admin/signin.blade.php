@@ -7,6 +7,7 @@
     <title>Login</title>
     <link rel="shortcut icon" type="image/png" href="/media/frontend/icons/favicon.png" />
     <link rel="stylesheet" href="/assets/css/styles.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 
 <body>
@@ -45,9 +46,14 @@
                                     @enderror
                                     <div class="mb-4">
                                         <label for="floatingPassword" class="form-label">Password</label>
-                                        <input type="password" name="password"
-                                            class="form-control @error('password') is-invalid @enderror"
-                                            id="floatingPassword" placeholder="Password">
+                                        <div class="input-group">
+                                            <input type="password" name="password"
+                                                class="form-control @error('password') is-invalid @enderror"
+                                                id="floatingPassword" placeholder="Password">
+                                            <button type="button" class="btn btn-outline-primary" id="togglePassword">
+                                                <i class="fa fa-eye"></i>
+                                            </button>
+                                        </div>
                                         @error('password')
                                             <div class="invalid-feedback">
                                                 {{ $message }}
@@ -70,6 +76,7 @@
     </div>
     <script src="/assets/libs/jquery/dist/jquery.min.js"></script>
     <script src="/assets/libs/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="/js/Password.js"></script>
 </body>
 
 </html>

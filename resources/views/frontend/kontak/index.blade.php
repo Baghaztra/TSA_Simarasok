@@ -50,7 +50,7 @@
                                 <div class="col-md-12 heading-section ftco-animate">
                                     <span class="subheading">Tentang Kami</span>
                                     <h2 class="mb-4">Buatlah Kenangan Wisata yang Mengagumkan Bersama Kami</h2>
-                                    <p>Nagari Simarasok merupakan nagari yang terletak di Kecamatan Baso, kabupaten Agam.
+                                    <p class="text-justify">Nagari Simarasok merupakan nagari yang terletak di Kecamatan Baso, kabupaten Agam.
                                         Nagari Simarasok memiliki potensi alam yang luar biasa. Berada diketinggian 800 –
                                         1200 mdpl dengan luas 1789 Ha nagari ini terbagi atas empat jorong yaitu jorong
                                         Simarasok, jorong Koto Tuo, jorong Kampeh dan jorong Sungai Angek. Memiliki suhu

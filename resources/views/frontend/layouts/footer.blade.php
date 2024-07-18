@@ -203,7 +203,7 @@
                     </ul>
                     <a class="btn dropdown-toggle m-2 btn-sm" role="button" data-bs-toggle="dropdown"
                         aria-expanded="false" style="background-color: rgb(152, 151, 151); color: white">
-                        D4 UPW & D3 DPW
+                        D4 UPW & D4 DPW
                     </a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item fw-bold" style="color: black">Mahasiswa</a></li>
