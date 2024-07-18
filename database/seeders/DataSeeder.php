@@ -58,5 +58,6 @@ class DataSeeder extends Seeder
                 'url'=>$url,
             ]);
         }
+        Video::first()->update(['highlight'=>true]);
     }
 }

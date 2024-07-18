@@ -21,47 +21,72 @@ class DashbaordController extends Controller
         $hcount =  Homestay::count();
 
         $maxvd = DestinasiPariwisata::latest()->first();
-        $maxvd->visits = 0;
-        foreach (DestinasiPariwisata::all() as $item) {
-            $path = "list-destinasi/{$item->id}";
-            $visits = PageVisit::where('path', $path)->first()->visits ?? 0;
-            $item->visits = $visits;
-            if ( $item->visits > $maxvd->visits ){
-                $maxvd = $item;
+        if ($maxvd) {
+            $maxvd->visits = 0;
+            foreach (DestinasiPariwisata::all() as $item) {
+                $path = "list-destinasi/{$item->id}";
+                $visits = PageVisit::where('path', $path)->first()->visits ?? 0;
+                $item->visits = $visits;
+                if ($item->visits > $maxvd->visits) {
+                    $maxvd = $item;
+                }
             }
-        }
-        $maxvh = Homestay::latest()->first();
-        $maxvh->visits = 0;
-        foreach (Homestay::all() as $item) {
-            $path = "list-homestay/{$item->id}";
-            $visits = PageVisit::where('path', $path)->first()->visits ?? 0;
-            $item->visits = $visits;
-            if ( $item->visits > $maxvh->visits ){
-                $maxvh = $item;
-            }
-        }
-        $maxvp = Post::latest()->first();
-        $maxvp->visits = 0;
-        foreach (Post::all() as $item) {
-            $path = "list-post/{$item->slug}";
-            $visits = PageVisit::where('path', $path)->first()->visits ?? 0;
-            $item->visits = $visits;
-            if ( $item->visits > $maxvp->visits ){
-                $maxvp = $item;
-            }
-        }
-        $maxvu = Produk::latest()->first();
-        $maxvu->visits = 0;
-        foreach (Produk::all() as $item) {
-            $path = "produk/{$item->id}";
-            $visits = PageVisit::where('path', $path)->first()->visits ?? 0;
-            $item->visits = $visits;
-            if ( $item->visits > $maxvu->visits ){
-                $maxvu = $item;
-            }
+        } else {
+            $maxvd = new DestinasiPariwisata();
+            $maxvd->visits = 0;
         }
 
-        return view('admin.dashboard',
-            compact('dcount','pcount','ucount','hcount','maxvd','maxvh','maxvp','maxvu'));
+        // Mengambil homestay dengan kunjungan terbanyak
+        $maxvh = Homestay::latest()->first();
+        if ($maxvh) {
+            $maxvh->visits = 0;
+            foreach (Homestay::all() as $item) {
+                $path = "list-homestay/{$item->id}";
+                $visits = PageVisit::where('path', $path)->first()->visits ?? 0;
+                $item->visits = $visits;
+                if ($item->visits > $maxvh->visits) {
+                    $maxvh = $item;
+                }
+            }
+        } else {
+            $maxvh = new Homestay();
+            $maxvh->visits = 0;
+        }
+
+        // Mengambil post dengan kunjungan terbanyak
+        $maxvp = Post::latest()->first();
+        if ($maxvp) {
+            $maxvp->visits = 0;
+            foreach (Post::all() as $item) {
+                $path = "list-post/{$item->slug}";
+                $visits = PageVisit::where('path', $path)->first()->visits ?? 0;
+                $item->visits = $visits;
+                if ($item->visits > $maxvp->visits) {
+                    $maxvp = $item;
+                }
+            }
+        } else {
+            $maxvp = new Post();
+            $maxvp->visits = 0;
+        }
+
+        // Mengambil produk dengan kunjungan terbanyak
+        $maxvu = Produk::latest()->first();
+        if ($maxvu) {
+            $maxvu->visits = 0;
+            foreach (Produk::all() as $item) {
+                $path = "produk/{$item->id}";
+                $visits = PageVisit::where('path', $path)->first()->visits ?? 0;
+                $item->visits = $visits;
+                if ($item->visits > $maxvu->visits) {
+                    $maxvu = $item;
+                }
+            }
+        } else {
+            $maxvu = new Produk();
+            $maxvu->visits = 0;
+        }
+
+        return view('admin.dashboard', compact('dcount', 'pcount', 'ucount', 'hcount', 'maxvd', 'maxvh', 'maxvp', 'maxvu'));
     }
 }

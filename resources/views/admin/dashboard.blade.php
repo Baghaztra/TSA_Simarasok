@@ -3,7 +3,7 @@
 @section('header')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">
-            Selamat {{ date('H')>=5&&date('H')<12?'pagi':(date('H')>=12&&date('H')<18?'siang':'malam') }}, {{ Auth::user()->name }}!
+            Selamat {{ date('H') >= 5 && date('H') < 12 ? 'pagi' : (date('H') >= 12 && date('H') < 18 ? 'siang' : 'malam') }}, {{ Auth::user()->name }}!
         </h1>
     </div>
 @endsection
@@ -49,8 +49,12 @@
                 <div class="card">
                     <div class="card-header bg-danger-subtle">Berita paling banyak dilihat</div>
                     <div class="card-body">
-                        <a target="_blank" href="{{ route('post.detail', $maxvp->slug) }}"><h5>{{ $maxvp->title }}</h5></a>
-                        <span class="text-secondary">{{ $maxvp->visits }} kunjungan</span>
+                        @if ($maxvp && $maxvp->title)
+                            <a target="_blank" href="{{ route('post.detail', $maxvp->slug) }}"><h5>{{ $maxvp->title }}</h5></a>
+                            <span class="text-secondary">{{ $maxvp->visits }} kunjungan</span>
+                        @else
+                            <h5>Data tidak tersedia</h5>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -58,8 +62,12 @@
                 <div class="card">
                     <div class="card-header bg-danger-subtle">Destinasi paling banyak dikunjungi</div>
                     <div class="card-body">
-                        <a target="_blank" href="{{ route('destinasi.show', $maxvd->id) }}"><h5>{{ $maxvd->name }}</h5></a>
-                        <span class="text-secondary">{{ $maxvd->visits }} kunjungan</span>
+                        @if ($maxvd && $maxvd->name)
+                            <a target="_blank" href="{{ route('destinasi.show', $maxvd->id) }}"><h5>{{ $maxvd->name }}</h5></a>
+                            <span class="text-secondary">{{ $maxvd->visits }} kunjungan</span>
+                        @else
+                            <h5>Data tidak tersedia</h5>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -67,8 +75,12 @@
                 <div class="card">
                     <div class="card-header bg-danger-subtle">Penginapan paling banyak dikunjungi</div>
                     <div class="card-body">
-                        <a target="_blank" href="{{ route('homestay.show', $maxvh->id) }}"><h5>{{ $maxvh->name }}</h5></a>
-                        <span class="text-secondary">{{ $maxvh->visits }} kunjungan</span>
+                        @if ($maxvh && $maxvh->name)
+                            <a target="_blank" href="{{ route('homestay.show', $maxvh->id) }}"><h5>{{ $maxvh->name }}</h5></a>
+                            <span class="text-secondary">{{ $maxvh->visits }} kunjungan</span>
+                        @else
+                            <h5>Data tidak tersedia</h5>
+                        @endif
                     </div>
                 </div>
             </div>
@@ -76,8 +88,12 @@
                 <div class="card">
                     <div class="card-header bg-danger-subtle">Kuliner paling banyak dikunjungi</div>
                     <div class="card-body">
-                        <a target="_blank" href="{{ route('produk.show', $maxvu->id) }}"><h5>{{ $maxvu->name }}</h5></a>
-                        <span class="text-secondary">{{ $maxvu->visits }} kunjungan</span>
+                        @if ($maxvu && $maxvu->name)
+                            <a target="_blank" href="{{ route('produk.show', $maxvu->id) }}"><h5>{{ $maxvu->name }}</h5></a>
+                            <span class="text-secondary">{{ $maxvu->visits }} kunjungan</span>
+                        @else
+                            <h5>Data tidak tersedia</h5>
+                        @endif
                     </div>
                 </div>
             </div>
