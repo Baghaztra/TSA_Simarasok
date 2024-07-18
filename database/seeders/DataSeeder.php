@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
-use App\Models\DestinasiPariwisata;
-use Illuminate\Database\Seeder;
-use App\Models\Provider;
+use App\Models\User;
 use App\Models\Video;
+use App\Models\Provider;
+use Illuminate\Database\Seeder;
+use App\Models\DestinasiPariwisata;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class DataSeeder extends Seeder
@@ -15,6 +16,15 @@ class DataSeeder extends Seeder
      */
     public function run(): void
     {
+        // Buatkan per admin
+        // User::factory()->create([
+        //     'name' => 'Admin',
+        //     'email' => 'admin@example.com',
+        //     'password' => bcrypt('1'),
+        //     'alias' => 'A',
+        //     'status' => 'active',
+        // ]);
+        
         /* ini kalau semisal datanya dibikin default
         DestinasiPariwisata::factory()->create([
             'name' => 'Goa Ngalau Nan Panjang',

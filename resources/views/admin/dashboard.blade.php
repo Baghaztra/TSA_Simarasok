@@ -1,12 +1,14 @@
 @extends('admin.layout.main')
 
-@section('content')
+@section('header')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
         <h1 class="h2">
             Selamat {{ date('H')>=5&&date('H')<12?'pagi':(date('H')>=12&&date('H')<18?'siang':'malam') }}, {{ Auth::user()->name }}!
         </h1>
     </div>
+@endsection
 
+@section('content')
     <div class="container">
         <div class="row">
             <div class="col-md-3">

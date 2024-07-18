@@ -22,6 +22,14 @@ class DummySeeder extends Seeder
     public function run(): void
     {
         User::factory(5)->create();
+        
+        User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'admin@example.com',
+            'password' => bcrypt('1'),
+            'alias' => 'A',
+            'status' => 'active',
+        ]);
 
         DestinasiPariwisata::factory(10)->create();
         Homestay::factory(20)->create();
@@ -71,17 +79,6 @@ class DummySeeder extends Seeder
         // Gambar lain kalau mau v:
         Asset::factory(100)->create();
 
-        foreach ([
-            'Telkomsel',
-            'XL Axiata',
-            'Indosat',
-            'Smartfren',
-        ] as $providerName) {
-            Provider::factory()->create([
-                'name' => $providerName,
-            ]);
-        }
-
         for ($i=1; $i <= 10; $i++) {
             foreach (Provider::all() as $provider) {
                 DestinasiProvider::factory()->create([
@@ -90,19 +87,6 @@ class DummySeeder extends Seeder
                     'signal' => ['Very Good','Good','Normal','Fair','Bad'][rand(0, 4)],
                 ]);
             }
-        }
-
-        foreach ([
-            'Pemandian Batu Putiah' => "https://youtu.be/XoqO-ABX_VA",
-            'Sungai Angek Rafting' => "https://youtu.be/ZppvbstTY3Y",
-            'UMKM Simarasok : Kue Bolu' => "https://youtu.be/8UeUTG-ndqY",
-            'Homestay Rumah Gadang'=> "https://youtu.be/vlz892nCSn0",
-            'Petualangan di Bawah Pulai Camp' => "https://youtu.be/FKk_ZpmCRls",
-        ] as $title => $url) {
-            Video::factory()->create([
-                'title'=>$title,
-                'url'=>$url,
-            ]);
         }
     }
 }
