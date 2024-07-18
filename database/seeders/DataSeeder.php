@@ -17,13 +17,13 @@ class DataSeeder extends Seeder
     public function run(): void
     {
         // Buatkan per admin
-        // User::factory()->create([
-        //     'name' => 'Admin',
-        //     'email' => 'admin@example.com',
-        //     'password' => bcrypt('1'),
-        //     'alias' => 'A',
-        //     'status' => 'active',
-        // ]);
+        User::factory()->create([
+            'name' => 'Admin',
+            'email' => 'pesonasimarasokbaso@gmail.com',
+            'password' => bcrypt('Admin#123'),
+            'alias' => 'A',
+            'status' => 'active',
+        ]);
         
         /* ini kalau semisal datanya dibikin default
         DestinasiPariwisata::factory()->create([
