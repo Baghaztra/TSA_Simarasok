@@ -21,10 +21,10 @@
     <link rel="stylesheet" href="css/jquery.timepicker.css">
     <link rel="icon" type="image/png" href="/media/frontend/icons/favicon.png">
 
-
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="/FrontendAssets/css/flaticon.css">
     <link rel="stylesheet" href="/FrontendAssets/css/style.css">
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-brands/css/uicons-brands.css'>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.min.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.min.js"></script>

@@ -181,8 +181,8 @@
                                 <div class="icon d-flex align-items-center justify-content-center"><span
                                         class="flaticon-route"></span></div>
                                 <div class="media-body">
-                                    <h3 class="heading mb-3">Travel Arrangements</h3>
-                                    <p>A small river named Duden flows by their place and supplies it with the necessary
+                                    <h3 class="heading mb-3">Lokasi</h3>
+                                    <p>Simarasok terletak di Kabupaten Agam, Sumatera Barat
                                     </p>
                                 </div>
                             </div>
@@ -398,7 +398,7 @@
                         <a
                             href="{{ route('destinasi.show', ['id' => $item->id]) }}">{{ strlen($item->name) > 15 ? substr($item->name, 0, 15) . '...' : $item->name }}</a>
                     </h3>
-                    <p class="location mb-1"><span class="fa fa-map-marker mr-2"></span>Lokasi</p>
+                    {{-- <p class="location mb-1"><span class="fa fa-map-marker mr-2"></span>Lokasi</p> --}}
                     <ul>
                         <span data-feather="percent" style="width: 16px; color: rgb(86, 86, 86)"></span>
                         @if ($item->harga == 0)

@@ -1,6 +1,7 @@
 @extends('frontend.layouts.main')
 
 @section('content')
+    <link rel="stylesheet" href="/css/Show.css">
     <div class="hero-wrap hero-wrap-2" style="height: 100px; background-color: rgb(0, 0, 0)">
         <div class="overlay" style="height: 100px; background-color: rgb(0, 0, 0); color: black"></div>
     </div>
@@ -16,7 +17,7 @@
                 <div class="col-lg-3"></div>
                 <div class="ftco-animate col-lg-6" style="">
                     <div id="slider" class="carousel slide mb-3">
-                        <div class="carousel-indicators" style="position: absolute; top: 10px">
+                        <div class="carousel-indicators" style="position: absolute; top: 10px; height: 30px">
                             @if ($homestays->media->count() > 0)
                                 @foreach ($homestays->media as $index => $media)
                                     <button type="button" data-bs-target="#slider" data-bs-slide-to="{{ $index }}"
@@ -49,14 +50,16 @@
                                 </div>
                             @endif
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#slider" data-bs-slide="prev">
-                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Previous</span>
-                        </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#slider" data-bs-slide="next">
-                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                            <span class="visually-hidden">Next</span>
-                        </button>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <button class="carousel-control-prev" type="button" data-bs-target="#slider" data-bs-slide="prev" style="width: 30px; height: 30px; padding: 5px; position: absolute; top: 50%; transform: translateY(-50%);">
+                                <span class="carousel-control-prev-icon" aria-hidden="true" style="width: 20px; height: 20px;"></span>
+                                <span class="visually-hidden">Previous</span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#slider" data-bs-slide="next" style="width: 30px; height: 30px; padding: 5px; position: absolute; top: 50%; transform: translateY(-50%);">
+                                <span class="carousel-control-next-icon" aria-hidden="true" style="width: 20px; height: 20px;"></span>
+                                <span class="visually-hidden">Next</span>
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -75,7 +78,7 @@
                     </div>
                 </div> --}}
                 <div class="ftco-animate">
-                    <div class="mb-5">{!! $homestays->desc !!}</div>
+                    <div class="mb-5 text-justify">{!! $homestays->desc !!}</div>
                     <p><strong>Harga :</strong> {{ $homestays->harga }} / Malam</p>
                     <p><strong><span data-feather="phone" style="width: 16px" class="mr-2"></span></strong> <a
                             href="https://api.whatsapp.com/send?phone={{ str_replace('+', '', $homestays->notelp) }}">{{ $homestays->notelp }}</a>

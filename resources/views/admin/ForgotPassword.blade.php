@@ -44,6 +44,7 @@
                                         @enderror
                                     </div>
                                     <button class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2" type="submit">Kirim Kode Reset</button>
+                                    <p>Jika kamu mengingat password, <a href="/sign-in">Login Disini!</a></p>
                                 </form>
                             </div>
                         </div>

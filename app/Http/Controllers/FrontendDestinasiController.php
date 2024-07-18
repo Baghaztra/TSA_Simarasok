@@ -38,10 +38,17 @@ class FrontendDestinasiController extends Controller
      */
     public function show($id)
     {
-        $destinasis = DestinasiPariwisata::with('media','provider')->find($id);
-        $destinasis->desc = $this->convertOembedToIframe($destinasis->desc);
+        $destinasis = DestinasiPariwisata::with('media', 'provider')->find($id);
+        if ($destinasis) {
+            $destinasis->desc = $this->convertOembedToIframe($destinasis->desc);
+            foreach ($destinasis->media as $media) {
+                if ($media->tipe == 'youtube') {
+                    $media->embedHtml = $this->convertUrlToIframe($media->nama);
+                }
+            }
+        }
         $providers = $destinasis->providers;
-        return view('frontend.destinasi.show', compact('destinasis','providers'));
+        return view('frontend.destinasi.show', compact('destinasis', 'providers'));
     }
 
     private function convertOembedToIframe($content)
@@ -51,11 +58,18 @@ class FrontendDestinasiController extends Controller
             function ($matches) {
                 $url = $matches[1];
                 $embedUrl = str_replace('youtu.be/', 'www.youtube.com/embed/', $url);
-                return '<iframe src="' . $embedUrl . '" frameborder="0" allowfullscreen></iframe>';
+                return '<iframe src="' . $embedUrl . '" frameborder="0" allowfullscreen class="youtube-iframe"></iframe>';
             },
             $content
         );
     }
+
+    private function convertUrlToIframe($url)
+    {
+        $embedUrl = str_replace('youtu.be/', 'www.youtube.com/embed/', $url);
+        return '<iframe src="' . $embedUrl . '" frameborder="0" allowfullscreen class="youtube-iframe"></iframe>';
+    }
+
 
     /**
      * Show the form for editing the specified resource.
