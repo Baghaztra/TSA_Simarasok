@@ -8,7 +8,13 @@
     <div class="container mt-5">
         <h1>{{ $post->title }}</h1>
         <span style="font-style: italic;"><i class="fa fa-calendar"></i> {{ $post->created_at->format('d M Y') }}</span> </br>
-        <span><i class="fa fa-user"></i> {{ auth()->user()->name }}</span>
+        <span><i class="fa fa-user"></i>
+            @if(auth()->check())
+                {{ auth()->user()->name }}
+            @else
+                Admin
+            @endif
+        </span>
         {{-- <p>Category: {{ $post->category }}</p> --}}
         <div class="row">
             <div class="col-lg-3"></div>
