@@ -5,7 +5,6 @@
     <div class="hero-wrap hero-wrap-2" style="height: 100px; background-color: rgb(0, 0, 0)">
         <div class="overlay" style="height: 100px; background-color: rgb(0, 0, 0); color: black"></div>
     </div>
-
     <div class="container mt-5">
         <h1>{{ $post->title }}</h1>
         <span style="font-style: italic;"><i class="fa fa-calendar"></i> {{ $post->created_at->format('d M Y') }}</span>

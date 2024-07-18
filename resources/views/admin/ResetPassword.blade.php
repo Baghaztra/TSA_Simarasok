@@ -47,7 +47,7 @@
                                             </div>
                                         @enderror
                                     </div>
-                                    <button class="btn btn-primary w-100 py-3 fs-5 mb-4 rounded-2" type="submit">Reset Password</button>
+                                    <button class="btn btn-primary w-100  p-2 fs-4 mb-4 rounded-2" type="submit">Reset Password</button>
                                 </form>
                             </div>
                         </div>

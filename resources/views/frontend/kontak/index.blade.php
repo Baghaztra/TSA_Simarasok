@@ -72,11 +72,13 @@
             <div class="row d-flex contact-info">
                 <div class="col-md-3 d-flex">
                     <div class="align-self-stretch box p-4 text-center">
-                        <div class="icon d-flex align-items-center justify-content-center">
-                            <span class="fa fa-map-marker"></span>
-                        </div>
-                        <h3 class="mb-2">Alamat</h3>
-                        <p>Nagari Simarasok, Kecamatan Baso, Kabupaten Agam, Sumatera Barat</p>
+                        <a href="https://maps.app.goo.gl/UiZSwwi9qECuNaBcA">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="fa fa-map-marker"></span>
+                            </div>
+                            <h3 class="mb-2">Alamat</h3>
+                            <p style="color: black">Nagari Simarasok, Kecamatan Baso, Kabupaten Agam, Sumatera Barat</p>
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-3 d-flex">

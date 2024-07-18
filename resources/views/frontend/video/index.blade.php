@@ -21,7 +21,7 @@
             </div>
             <div class="row">
                 @foreach ($videos as $video)
-                    <div class="card mb-2 ml-10 vb" style="width: 50%;">
+                    <div class="card mb-2 ml-10 vb col-12 col-lg-6 col-md-6" style="width: 50%;">
                         <div style="display: block; position: relative; width: 100%; height: 0; padding-top: 56.25%;">
                             <iframe
                                 src="{{ $video->embedUrl() }}"

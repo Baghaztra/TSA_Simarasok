@@ -33,3 +33,15 @@
             height: 100%;
             border: 0;
         }
+        @media (max-width: 768px) {
+            .hero-wrap, .overlay {
+                height: 50px !important;
+                background-color: rgb(255, 255, 255) !important;
+                padding: 5px;
+                margin-top: -60px;
+            }
+            .overlay {
+                padding: 5px;
+                color: white !important;
+            }
+        }
