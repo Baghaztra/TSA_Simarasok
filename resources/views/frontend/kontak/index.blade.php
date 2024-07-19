@@ -1,5 +1,6 @@
 @extends('frontend.layouts.main')
 @section('content')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <div class="hero-wrap hero-wrap-2 js-fullheight" style="position: relative;">
         <img src="/media/frontend/images/Home.jpg" alt="Background Image"
             style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
@@ -40,9 +41,9 @@
                     <div class="row">
                         <div class="col-md-6 d-flex align-items-stretch">
                             <div class="img d-flex w-100 align-items-center justify-content-center"
-                                style="margin-top: 50px;">
+                                style="margin-top: 50px; position: relative; width: 100%; padding-top: 56.25%;">
                                 <img src="/media/frontend/images/Home.jpg" alt="Deskripsi Gambar"
-                                    style="width: 100%; height: 100%;">
+                                    style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
                             </div>
                         </div>
                         <div class="col-md-6 pl-md-5 py-5">
@@ -50,14 +51,8 @@
                                 <div class="col-md-12 heading-section ftco-animate">
                                     <span class="subheading">Tentang Kami</span>
                                     <h2 class="mb-4">Buatlah Kenangan Wisata yang Mengagumkan Bersama Kami</h2>
-                                    <p class="text-justify">Nagari Simarasok merupakan nagari yang terletak di Kecamatan Baso, kabupaten Agam.
-                                        Nagari Simarasok memiliki potensi alam yang luar biasa. Berada diketinggian 800 –
-                                        1200 mdpl dengan luas 1789 Ha nagari ini terbagi atas empat jorong yaitu jorong
-                                        Simarasok, jorong Koto Tuo, jorong Kampeh dan jorong Sungai Angek. Memiliki suhu
-                                        udara 20 – 24&deg;C dan curah hujan perbulannya 123,04 mm. Dengan jumlah penduduk
-                                        6.872 orang. Selain potensi alam tersebut, di Nagari Simarasok terdapat pula
-                                        kekayaan budaya, kuliner dan edukasi.</p>
-                                    <p><a href="#" class="btn btn-primary">Lihat Desstinasi Sekarang</a></p>
+                                    <p class="text-justify">Nagari Simarasok merupakan nagari yang terletak di Kecamatan Baso, kabupaten Agam. Nagari Simarasok memiliki potensi alam yang luar biasa. Berada diketinggian 800 – 1200 mdpl dengan luas 1789 Ha nagari ini terbagi atas empat jorong yaitu jorong Simarasok, jorong Koto Tuo, jorong Kampeh dan jorong Sungai Angek. Memiliki suhu udara 20 – 24&deg;C dan curah hujan perbulannya 123,04 mm. Dengan jumlah penduduk 6.872 orang. Selain potensi alam tersebut, di Nagari Simarasok terdapat pula kekayaan budaya, kuliner dan edukasi.</p>
+                                    <p><a href="#" class="btn btn-primary">Lihat Destinasi Sekarang</a></p>
                                 </div>
                             </div>
                         </div>
@@ -67,6 +62,8 @@
         </div>
     </div>
 
+
+
     <div class="ftco-section ftco-no-pb contact-section mb-4">
         <div class="container">
             <div class="row d-flex contact-info">
@@ -74,7 +71,7 @@
                     <div class="align-self-stretch box p-4 text-center">
                         <a href="https://maps.app.goo.gl/UiZSwwi9qECuNaBcA">
                             <div class="icon d-flex align-items-center justify-content-center">
-                                <span class="fa fa-map-marker"></span>
+                                <span class="fa fa-location-pin"></span>
                             </div>
                             <h3 class="mb-2">Alamat</h3>
                             <p style="color: black">Nagari Simarasok, Kecamatan Baso, Kabupaten Agam, Sumatera Barat</p>
@@ -83,29 +80,36 @@
                 </div>
                 <div class="col-md-3 d-flex">
                     <div class="align-self-stretch box p-4 text-center">
-                        <div class="icon d-flex align-items-center justify-content-center">
-                            <span class="fa fa-phone"></span>
-                        </div>
-                        <h3 class="mb-2">Contact Number</h3>
-                        <p><a href="tel://1234567920">+ 1235 2355 98</a></p>
+                        <a href="https://api.whatsapp.com/send?phone=081374248212">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="fa-brands fa-whatsapp"></span>
+                            </div>
+                            <h3 class="mb-2">Nomor Kontak</h3>
+                        </a>
+                        <p><a href="https://api.whatsapp.com/send?phone=081374248212">081374248212 : Ifnaldi</p></a>
+                    </div>
+                </div>
+                <div class="col-md-3 d-flex">
+                    <div class="align-self-stretch box p-4 text-center">
+                        <a href="mailto:pesonasimarasokbaso@gmail.com">
+                            <div class="icon d-flex align-items-center justify-content-center">
+                                <span class="fa fa-envelope"></span>
+                            </div>
+                            <h3 class="mb-2">Alamat Email</h3>
+                        </a>
+                        <a href="mailto:pesonasimarasokbaso@gmail.com">
+                            <p style="overflow-wrap: break-word; word-wrap: break-word; hyphens: auto; color: black">
+                                pesonasimarasokbaso@gmail.com</p>
+                        </a>
                     </div>
                 </div>
                 <div class="col-md-3 d-flex">
                     <div class="align-self-stretch box p-4 text-center">
                         <div class="icon d-flex align-items-center justify-content-center">
-                            <span class="fa fa-paper-plane"></span>
+                            <span class="fa-brands fa-instagram"></span>
                         </div>
-                        <h3 class="mb-2">Email Address</h3>
-                        <p><a href="mailto:info@yoursite.com">info@yoursite.com</a></p>
-                    </div>
-                </div>
-                <div class="col-md-3 d-flex">
-                    <div class="align-self-stretch box p-4 text-center">
-                        <div class="icon d-flex align-items-center justify-content-center">
-                            <span class="fa fa-globe"></span>
-                        </div>
-                        <h3 class="mb-2">Website</h3>
-                        <p><a href="https://jadesta.kemenparekraf.go.id/desa/simarasok">kemenparekraf.go.id</a></p>
+                        <h3 class="mb-2">Instagram</h3>
+                        <p><a href="https://www.instagram.com/pesona_simarasok?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">pesona_simarasok</a></p>
                     </div>
                 </div>
             </div>

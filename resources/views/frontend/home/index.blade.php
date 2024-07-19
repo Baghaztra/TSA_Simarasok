@@ -1,5 +1,6 @@
 @extends('frontend.layouts.main')
 @section('content')
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <div class="hero-wrap js-fullheight" style="position: relative;">
         <img src="/media/frontend/images/Home.jpg" alt="Background Image"
             style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
@@ -68,7 +69,8 @@
                                                         @if (isset($latestPost) && $latestPost)
                                                             <p style="color: black">{{ $latestPost->title }}</p>
                                                             <a
-                                                                href="{{ route('post.detail', ['slug' => $latestPost->slug]) }}">Baca Selengkapnya</a>
+                                                                href="{{ route('post.detail', ['slug' => $latestPost->slug]) }}">Baca
+                                                                Selengkapnya</a>
                                                         @else
                                                             <p>No news available</p>
                                                         @endif
@@ -160,31 +162,35 @@
                     <div class="row">
                         <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate"
                             style="z-index: 2; position: relative">
-                            <div class="services services-1 color-1 d-block img" style="z-index: 2; position: relative">
+                            <div class="services services-1 color-2 d-block img">
                                 <img src="{{ asset('/media/frontend/images/Home.jpg') }}" alt="Background Image"
                                     style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
-                                <div class="icon d-flex align-items-center justify-content-center"><span
-                                        class="flaticon-paragliding"></span></div>
-                                <div class="media-body">
-                                    <h3 class="heading mb-3">Activities</h3>
-                                    <p>A small river named Duden flows by their place and supplies it with the necessary
-                                    </p>
-                                </div>
+                                <a href="https://maps.app.goo.gl/UiZSwwi9qECuNaBcA">
+                                    <div class="icon d-flex align-items-center justify-content-center"><span
+                                            class="flaticon-route"></span></div>
+                                    <div class="media-body">
+                                        <h3 class="heading mb-3">Lokasi</h3>
+                                        <p>Simarasok terletak di Kabupaten Agam, Sumatera Barat
+                                        </p>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                         <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate"
                             style="z-index: 2; position: relative">
-                            <div class="services services-1 color-2 d-block img">
+                            <div class="services services-1 color-1 d-block img" style="z-index: 2; position: relative">
                                 <img src="{{ asset('/media/frontend/images/Home.jpg') }}" alt="Background Image"
                                     style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
-
-                                <div class="icon d-flex align-items-center justify-content-center"><span
-                                        class="flaticon-route"></span></div>
-                                <div class="media-body">
-                                    <h3 class="heading mb-3">Lokasi</h3>
-                                    <p>Simarasok terletak di Kabupaten Agam, Sumatera Barat
-                                    </p>
-                                </div>
+                                <a
+                                    href="https://www.instagram.com/pesona_simarasok?utm_source=ig_web_button_share_sheet&igsh=ZDNlZDc0MzIxNw==">
+                                    <div class="icon d-flex align-items-center justify-content-center"><span
+                                            class="fa-brands fa-instagram fs-1"></span></div>
+                                    <div class="media-body">
+                                        <h3 class="heading mb-3">Instagram</h3>
+                                        <p>pesona_simarasok
+                                        </p>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                         <div class="col-md-12 col-lg-6 d-flex align-self-stretch ftco-animate"
@@ -193,10 +199,10 @@
                                 <img src="{{ asset('/media/frontend/images/Home.jpg') }}" alt="Background Image"
                                     style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
                                 <div class="icon d-flex align-items-center justify-content-center"><span
-                                        class="flaticon-tour-guide"></span></div>
+                                        class="fa-solid fa-users fs-2"></span></div>
                                 <div class="media-body">
-                                    <h3 class="heading mb-3">Private Guide</h3>
-                                    <p>A small river named Duden flows by their place and supplies it with the necessary
+                                    <h3 class="heading mb-3">Ketua Kelompok Sadar Wisata</h3>
+                                    <p>Ifnaldi
                                     </p>
                                 </div>
                             </div>
@@ -206,13 +212,16 @@
                             <div class="services services-1 color-4 d-block img">
                                 <img src="{{ asset('/media/frontend/images/Home.jpg') }}" alt="Background Image"
                                     style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
-                                <div class="icon d-flex align-items-center justify-content-center"><span
-                                        class="flaticon-map"></span></div>
-                                <div class="media-body">
-                                    <h3 class="heading mb-3">Location Manager</h3>
-                                    <p>A small river named Duden flows by their place and supplies it with the necessary
-                                    </p>
-                                </div>
+                                <a href="mailto:pesonasimarasokbaso@gmail.com">
+                                    <div class="icon d-flex align-items-center justify-content-center"><span
+                                            class="fa fa-envelope fs-2"></span></div>
+                                    <div class="media-body">
+                                        <h3 class="heading mb-3">Email</h3>
+                                        <p style="word-wrap: break-word; overflow-wrap: break-word;">
+                                            pesonasimarasokbaso@gmail.com
+                                        </p>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -317,11 +326,13 @@
                     @endif
                     <div class="ftco-animate">
                         <div class="project-wrap"
-                            style="background-color: white; box-shadow: 0 4px 8px rgba(163, 163, 163, 0.2);" style="hei">
+                            style="background-color: white; box-shadow: 0 4px 8px rgba(163, 163, 163, 0.2);"
+                            style="hei">
                             @if (count($item->media) > 0)
                                 <a href="{{ route('produk.show', ['id' => $item->id]) }}" class="img-wrapper">
                                     <img src="{{ asset('media/' . $item->media[0]->nama) }}"
-                                        alt="{{ $item->media[0]->nama }}" class="img" style="object-fit: cover">
+                                        alt="{{ $item->media[0]->nama }}" class="img"
+                                        style="object-fit: cover">
                                 </a>
                             @else
                                 <div class="img"
