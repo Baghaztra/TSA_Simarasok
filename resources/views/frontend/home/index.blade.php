@@ -320,6 +320,7 @@
         <div class="row">
             <div class="col-md-12">
                 <div class="carousel-destination owl-carousel ftco-animate">
+                    {{-- @dd($produk) --}}
                     @foreach ($produk as $index => $item)
                         @if ($index >= 6)
                         @break
