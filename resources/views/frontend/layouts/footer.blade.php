@@ -13,7 +13,7 @@
                             title="Politeknik Negeri Padang">PNP</abbr> </br>
                     </p>
                     <p>
-                        <a target="_blank" href="https://www.instagram.com/tsa.pnp/"><span class="fa fa-instagram"
+                        <a target="_blank" href="https://www.instagram.com/tsa.pnp/"><span class="fa-brands fa-instagram"
                                 style="color: gray"></span> @tsa.pnp</a></li>
                     </p>
                 </div>
