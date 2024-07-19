@@ -285,7 +285,6 @@
             <div class="mb-3">
                 <label class="form-label">Status Destinasi</label>
                 <select name="status" id="status" class="form-select @error('status') is-invalid @enderror">
-                    <option value="" disabled {{ old('status', $destinasis->status) == '' ? 'selected' : '' }}>Masukan Status</option>
                     <option value="normal" {{ old('status', $destinasis->status) == 'normal' ? 'selected' : '' }}>Normal</option>
                     <option value="perbaikan" {{ old('status', $destinasis->status) == 'perbaikan' ? 'selected' : '' }}>Sedang Perbaikan</option>
                     <option value="ditutup" {{ old('status', $destinasis->status) == 'ditutup' ? 'selected' : '' }}>Ditutup</option>
@@ -303,7 +302,7 @@
                 <div class="input-group row">
                     <label class="form-label col-4">{{ $item->name }}</label>
                     <select class="form-select col-8 @error('providers[]') is-invalid @enderror" name="providers[]">
-                        <option value="" disabled selected>Pilih Status</option>
+                        <option value="Belum Diketahui" selected>Belum diketahui</option>
                         <option value="Very Good" {{ old('status', isset( $destinasis->provider[$loop->index]->signal)?$destinasis->provider[$loop->index]->signal:'') == 'Very Good' ? 'selected' : '' }}>Very Good</option>
                         <option value="Good" {{ old('status', isset( $destinasis->provider[$loop->index]->signal)?$destinasis->provider[$loop->index]->signal:'') == 'Good' ? 'selected' : '' }}>Good</option>
                         <option value="Normal" {{ old('status', isset( $destinasis->provider[$loop->index]->signal)?$destinasis->provider[$loop->index]->signal:'') == 'Normal' ? 'selected' : '' }}>Normal</option>

@@ -154,10 +154,8 @@
 
                 const removeExistingMedia = (id, event) => {
                     const mediaElement = document.querySelector(`[data-media-id='${id}']`);
-                    if (mediaElement) {
-                        mediaElement.remove();
-                        mediaToDelete.push(id); // Menggunakan push untuk menambahkan elemen ke array
-                    }
+                    mediaElement.remove();
+                    mediaToDelete.push(id);
                     
                     // Menghapus button yang ditekan
                     if (event && event.target) {
@@ -165,26 +163,6 @@
                     }
                     
                     console.log(mediaToDelete);
-                };
-
-                const confirmDeleteMedia = () => {
-                    mediaToDelete.forEach(id => {
-                        fetch(`/media/${id}`, {
-                            method: 'DELETE',
-                            headers: {
-                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
-                                'Content-Type': 'application/json'
-                            }
-                        }).then(response => response.json())
-                        .then(data => {
-                            if (data.success) {
-                                console.log('Media deleted successfully');
-                            } else {
-                                console.error('Failed to delete media');
-                            }
-                        })
-                        .catch(error => console.error('Error:', error));
-                    });
                 };
 
                 // let currentFiles = [];
@@ -228,7 +206,7 @@
                         removeButton.innerHTML = '&#x2715;';
                         removeButton.style.position = 'absolute';
                         removeButton.style.top = '5px';
-                        removeButton.style.right = '5px';
+                        removeButton.style.right = '5px';    
                         removeButton.style.backgroundColor = 'rgba(255, 0, 0, 0.5)';
                         removeButton.style.width = '26px';
                         removeButton.style.height = '26px';
@@ -246,7 +224,27 @@
                         previewContainer.appendChild(previewWrapper);
                     });
                 };
-            </script>       
+
+                const confirmDeleteMedia = () => {
+                    mediaToDelete.forEach(id => {
+                        fetch(`/media/${id}`, {
+                            method: 'DELETE',
+                            headers: {
+                                'X-CSRF-TOKEN': '{{ csrf_token() }}',
+                                'Content-Type': 'application/json'
+                            }
+                        }).then(response => response.json())
+                        .then(data => {
+                            if (data.success) {
+                                console.log('Media deleted successfully');
+                            } else {
+                                console.error('Failed to delete media');
+                            }
+                        })
+                        .catch(error => console.error('Error:', error));
+                    });
+                };
+            </script>
 
             <div class="mb-3">
                 <label class="form-label">Konten</label>

@@ -209,7 +209,7 @@
                             previewWrapper.style.position = 'relative';
                             previewWrapper.style.display = 'inline-block';
                             previewWrapper.dataset.new = true; // Menandai sebagai media baru
-
+                            
                             if (file.type.startsWith('image/')) {
                                 mediaElement = document.createElement('img');
                                 mediaElement.src = reader.result;
@@ -375,7 +375,7 @@
 
             {{-- <input type="hidden" name="umkm_id" value="{{ $produks->umkm_id }}"> --}}
 
-            <button class="btn btn-sm btn-primary" type="submit">Submit</button>
+            <button class="btn btn-sm btn-primary" type="submit" onclick="confirmDeleteMedia()">Submit</button>
             <div style="height: 25vh"></div>
         </form>
     </div>
