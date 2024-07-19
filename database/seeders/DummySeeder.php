@@ -11,6 +11,7 @@ use App\Models\Provider;
 use Illuminate\Database\Seeder;
 use App\Models\DestinasiProvider;
 use App\Models\DestinasiPariwisata;
+use App\Models\PostEN;
 use App\Models\Video;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -34,6 +35,16 @@ class DummySeeder extends Seeder
         DestinasiPariwisata::factory(10)->create();
         Homestay::factory(20)->create();
         Post::factory(30)->create();
+        // dummy berita bahasa lain (random)
+        for ($i=1; $i <= 30; $i++) {
+            if (rand(0, 1)==1) {
+                PostEN::factory()->create([
+                    'post_id' => $i,
+                    'title' => fake()->sentence(),
+                    'content' => fake()->paragraphs(5, true),
+                ]);
+            }
+        }
         Produk::factory(30)->create();
 
         // gambar untuk tiap destinasi

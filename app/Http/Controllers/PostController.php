@@ -7,6 +7,7 @@ use App\Models\Asset;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\PageVisit;
+use App\Models\PostEN;
 
 class PostController extends Controller
 {
@@ -78,6 +79,14 @@ class PostController extends Controller
             }
         }
 
+        if ($request->filled('enTitle') && $request->filled('enContent')) {
+            PostEN::create([
+                'post_id' => $berita->id,
+                'title' => $request->input('enTitle'),
+                'content' => $request->input('enContent'),
+            ]);
+        }
+
         return redirect('admin/post')->with('success', 'Berhasil menambahkan berita baru.');
     }
 
@@ -143,6 +152,13 @@ class PostController extends Controller
                 $asset->jenis_id = $berita->id;
                 $asset->save();
             }
+        }
+
+        if ($request->filled('enTitle') && $request->filled('enContent')) {
+            $postEN = PostEN::firstOrNew(['post_id' => $berita->id]);
+            $postEN->title = $request->input('enTitle');
+            $postEN->content = $request->input('enContent');
+            $postEN->save();
         }
 
         return redirect('admin/post')->with('success', 'Berhasil memperbarui berita.');

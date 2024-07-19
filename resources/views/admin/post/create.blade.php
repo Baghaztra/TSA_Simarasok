@@ -106,7 +106,77 @@
 
             <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
-            <button class="btn btn-sm btn-primary" type="submit">Submit</button>
+            {{-- <button class="btn btn-sm btn-primary" type="submit" >Submit</button> --}}
+            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#details-modal">Lanjut</button>
+            
+            <div class="modal fade" id="details-modal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Bahasa</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Apakah Anda ingin menulis berita dalam bahasa Inggris?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-warning" data-bs-target="#en-modal" data-bs-toggle="modal">Ya</button>
+                            <button type="submit" class="btn btn-primary">Tidak</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal fade" id="en-modal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">English version</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label class="form-label">Title</label>
+                                <input type="text" class="form-control @error('enTitle') is-invalid @enderror" name="enTitle"
+                                    value="{{ old('enTitle') }}">
+                                @error('enTitle')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Content</label>
+                                <div id="enEditor">
+                                    {!! old('enContent') !!}
+                                </div>
+                                <textarea id="enContent" name="enContent" style="display:none;"></textarea>
+                                <script>
+                                    ClassicEditor
+                                        .create(document.querySelector('#enEditor'))
+                                        .then(editor => {
+                                            const isiBeritaTextarea = document.querySelector('#enContent');
+                                            editor.model.document.on('change:data', () => {
+                                                isiBeritaTextarea.value = editor.getData();
+                                            });
+                                            const form = isiBeritaTextarea.closest('form');
+                                            form.addEventListener('submit', () => {
+                                                isiBeritaTextarea.value = editor.getData();
+                                            });
+                                        })
+                                        .catch(error => {
+                                            console.error(error);
+                                        });
+                                </script>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div style="height: 25vh"></div>
         </form>
     </div>
