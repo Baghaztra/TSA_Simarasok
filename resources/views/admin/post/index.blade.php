@@ -101,6 +101,13 @@
                     >
                         Detail
                     </button>
+                    @if ($item->hasEN()==1)
+                    <form class="d-inline" onsubmit="return confirm('Yakin ingin menghapus versi bahasa Inggris data ini?')"
+                        action="{{ route('postEN.destroy', $item->id) }}" method="POST">
+                        @csrf @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-danger">Hapus Bahasa</button>
+                    </form>
+                    @endif
                 </td>
             </tr>
         @endforeach

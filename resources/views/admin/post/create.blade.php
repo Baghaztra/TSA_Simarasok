@@ -107,9 +107,9 @@
             <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
             {{-- <button class="btn btn-sm btn-primary" type="submit" >Submit</button> --}}
-            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#details-modal">Lanjut</button>
-            
-            <div class="modal fade" id="details-modal" tabindex="-1" aria-hidden="true">
+            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#option">Lanjut</button>
+
+            <div class="modal fade" id="option" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
@@ -120,8 +120,8 @@
                             Apakah Anda ingin menulis berita dalam bahasa Inggris?
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-warning" data-bs-target="#en-modal" data-bs-toggle="modal">Ya</button>
-                            <button type="submit" class="btn btn-primary">Tidak</button>
+                            <button type="button" class="btn btn-sm btn-warning" data-bs-target="#en-modal" data-bs-toggle="modal">Ya</button>
+                            <button type="submit" class="btn btn-sm btn-primary">Tidak</button>
                         </div>
                     </div>
                 </div>
@@ -171,13 +171,43 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-sm btn-danger">Cancel</button>
+                            <button type="submit" class="btn btn-sm btn-primary">Submit</button>
                         </div>
                     </div>
                 </div>
             </div>
             <div style="height: 25vh"></div>
         </form>
+        <script>
+            document.addEventListener('DOMContentLoaded', (event) => {
+            const cancelButton = document.querySelector('#en-modal .btn-danger');
+
+            cancelButton.addEventListener('click', function() {
+                // Mendapatkan elemen input title dan content
+                const enTitleInput = document.querySelector('input[name="enTitle"]');
+                const enContentTextarea = document.querySelector('textarea[name="enContent"]');
+                const enEditorDiv = document.querySelector('#enEditor');
+
+                // Menghapus nilai dari input title dan content
+                enTitleInput.value = '';
+                enContentTextarea.value = '';
+                
+                // Mengosongkan editor ClassicEditor
+                ClassicEditor
+                    .create(enEditorDiv)
+                    .then(editor => {
+                        editor.setData('');
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+
+                // Menutup modal secara manual
+                const modal = bootstrap.Modal.getInstance(document.getElementById('en-modal'));
+                modal.hide();
+            });
+        });
+        </script>
     </div>
 @endsection

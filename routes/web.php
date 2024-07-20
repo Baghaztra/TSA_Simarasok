@@ -33,6 +33,7 @@ use App\Http\Controllers\FrontendProdukController;
 use App\Http\Controllers\FrontendHomestayController;
 use App\Http\Controllers\FrontendDestinasiController;
 use App\Http\Controllers\DestinasiPariwisataController;
+use App\Http\Controllers\PostENController;
 use App\Http\Controllers\VideoController;
 
 /*
@@ -75,6 +76,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('updateStatus/{id}', [UserController::class, 'updateStatus']);
     Route::delete('/media/{id}', [AssetController::class, 'destroy']);
     Route::delete('/assets/{id}', [AssetController::class, 'destroy'])->name('assets.destroy');
+    Route::delete('/postEN/{id}', [PostENController::class, 'destroyEN'])->name('postEN.destroy');
     // Route::get('/admin/booking/{id}/approve', [BookingController::class, 'approve']);
     Route::put('/admin/post/toggleStatus/{id}', [PostController::class, 'toggleStatus'])->name('post.toggleStatus');
     Route::put('/admin/video/toggleHightlight/{id}', [VideoController::class, 'toggleHighlight'])->name('video.toggleHighlight');
