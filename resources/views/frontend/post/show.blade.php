@@ -6,15 +6,30 @@
         <div class="overlay" style="height: 100px; background-color: rgb(0, 0, 0); color: black"></div>
     </div>
     <div class="container mt-5">
-        <h1>{{ $post->title }}</h1>
-        <span style="font-style: italic;"><i class="fa fa-calendar"></i> {{ $post->created_at->format('d M Y') }}</span> </br>
-        <span><i class="fa fa-user"></i>
-            @if(auth()->check())
-                {{ auth()->user()->name }}
-            @else
-                Admin
-            @endif
-        </span>
+        <div class="row">
+            <div class="col-9">
+                <h1>{{ $post->title }}</h1>
+                <span style="font-style: italic;"><i class="fa fa-calendar"></i>
+                    {{ $post->created_at->translatedFormat('d F Y') }}</span>
+                </br>
+                <span><i class="fa fa-user"></i>
+                    @if (auth()->check())
+                        {{ auth()->user()->name }}
+                    @else
+                        Admin
+                    @endif
+                </span>
+            </div>
+            <div class="col-3 mt-2">
+                <!-- tombol tampilan bahasa -->
+                <div class="d-flex justify-content-end mb-3">
+                    <a id="btn-bahasa-id" href="{{ route('post.detail', ['slug' => $post->slug, 'lang' => 'id']) }}"
+                        class="btn btn-outline-primary me-1 {{ $lang === 'id' ? 'active' : '' }}">ID</a>
+                    <a id="btn-bahasa-en" href="{{ route('post.detail', ['slug' => $post->slug, 'lang' => 'en']) }}"
+                        class="btn btn-outline-primary {{ $lang === 'en' ? 'active' : '' }}">EN</a>
+                </div>
+            </div>
+        </div>
         {{-- <p>Category: {{ $post->category }}</p> --}}
         <div class="row">
             <div class="col-lg-3"></div>
@@ -71,9 +86,42 @@
             </div>
         </div>
 
-
+        <!-- Content Section -->
         <div class="mt-4 mb-5 text-justify">
-            {!! $post->content !!}
+            @if ($lang === 'id')
+                {!! $post->content !!}
+            @elseif ($lang === 'en' && $post->hasEn())
+                {!! $post->en->content !!}
+            @else
+                {!! $post->content !!}
+            @endif
         </div>
+
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const btnBahasaID = document.querySelector('#btn-bahasa-id');
+            const btnBahasaEN = document.querySelector('#btn-bahasa-en');
+
+            if (!{{ json_encode($post->hasEn()) }}) {
+                // Jika tidak ada konten bahasa Inggris
+                if (btnBahasaID) btnBahasaID.style.display = 'none';
+                if (btnBahasaEN) btnBahasaEN.style.display = 'none';
+            }
+
+            // Event listener untuk tombol bahasa
+            if (btnBahasaID) {
+                btnBahasaID.addEventListener('click', () => {
+                    // Logika untuk menampilkan konten bahasa Indonesia
+                });
+            }
+
+            if (btnBahasaEN) {
+                btnBahasaEN.addEventListener('click', () => {
+                    // Logika untuk menampilkan konten bahasa Inggris
+                });
+            }
+        });
+    </script>
 @endsection

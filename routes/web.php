@@ -148,6 +148,7 @@ Route::middleware(['hitungVisit'])->group(function () {
     Route::get('/list-homestay/{id}', [FrontendHomestayController::class, 'show'])->name('homestay.show');
     Route::get('/produk/{id}', [FrontendProdukController::class, 'show'])->name('produk.show');
     Route::get('/list-post/{slug}', [FrontendPostController::class, 'show'])->name('post.detail');
+    Route::get('/list-post/{slug}/{lang?}', [FrontendPostController::class, 'show'])->name('post.detail');
 });
 
 Route::get('/list-hard-news', [FrontendPostController::class, 'hardNews'])->name('post.hardNews');
