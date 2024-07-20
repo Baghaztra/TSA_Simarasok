@@ -61,7 +61,8 @@
                                         @enderror
                                     </div>
                                     <div class="d-flex align-items-center justify-content-between mb-4">
-                                        <a class="text-primary fw-bold" href="{{ route('password.request') }}">Lupa Password ?</a>
+                                        <a href="{{ route('home') }}" class="text-primary fw-bold">Kembali</a>
+                                        <span><a class="text-primary fw-bold" href="{{ route('password.request') }}">Lupa Password ?</a></span>
                                     </div>
                                     <button href="/admin" class="btn btn-primary w-100 py-8 fs-4 mb-4 rounded-2"
                                         type="submit">Sign

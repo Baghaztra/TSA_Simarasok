@@ -18,7 +18,7 @@
     <link rel="stylesheet" href="/FrontendAssets/css/magnific-popup.css">
 
     <link rel="stylesheet" href="/FrontendAssets/css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
+    {{-- <link rel="stylesheet" href="css/jquery.timepicker.css"> --}}
     <link rel="icon" type="image/png" href="/media/frontend/icons/favicon.png">
 
     <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
@@ -54,6 +54,7 @@
 
     <script src="/FrontendAssets/js/jquery.min.js"></script>
     <script src="/FrontendAssets/js/jquery-migrate-3.0.1.min.js"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.5.2/jquery-migrate.min.js"></script> --}}
     <script src="/FrontendAssets/js/popper.min.js"></script>
     <script src="/FrontendAssets/js/bootstrap.min.js"></script>
     <script src="/FrontendAssets/js/jquery.easing.1.3.js"></script>
@@ -64,8 +65,8 @@
     <script src="/FrontendAssets/js/jquery.animateNumber.min.js"></script>
     <script src="/FrontendAssets/js/bootstrap-datepicker.js"></script>
     <script src="/FrontendAssets/js/scrollax.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-    <script src="/FrontendAssets/js/google-map.js"></script>
+    {{-- <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script> --}}
+    {{-- <script src="/FrontendAssets/js/google-map.js"></script> --}}
     <script src="/FrontendAssets/js/main.js"></script>
     <script src="/bootstrap/js/bootstrap.bundle.min.js"></script>
 

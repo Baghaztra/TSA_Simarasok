@@ -51,7 +51,7 @@ Route::get('/post', function () {
     return view('posts',['posts'=>Post::all()]);
 });
 
-Route::get('/', [FrontendHomeController::class, 'index']);
+Route::get('/', [FrontendHomeController::class, 'index'])->name('home');
 
 // Route::post('/booking', [BookingController::class, 'formBooking']);
 // Route::put('/booking/send', [BookingController::class, 'booking']);
