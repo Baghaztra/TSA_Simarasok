@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 
 class FrontendPostController extends Controller
 {
@@ -34,12 +35,26 @@ class FrontendPostController extends Controller
     //     $posts = Post::latest()->cari()->published()->feature()->paginate(6);
     //     return view('frontend.post.feature', ['posts' => $posts]);
     // }
-
-    public function show($slug)
+    
+    public function show($slug, $lang = 'id')
     {
         $post = Post::where('slug', $slug)->firstOrFail();
+
+        // Set locale for Carbon based on selected language
+        if ($lang === 'en') {
+            Carbon::setLocale('en');
+            $postEN = $post->en;
+            if ($postEN) {
+                $post->title = $postEN->title;
+                $post->content = $postEN->content;
+            }
+        } else {
+            Carbon::setLocale('id'); // Assume 'id' for Indonesian
+        }
+
         $post->content = $this->convertOembedToIframe($post->content);
-        return view('frontend.post.show', compact('post'));
+
+        return view('frontend.post.show', compact('post', 'lang'));
     }
 
     private function convertOembedToIframe($content)
