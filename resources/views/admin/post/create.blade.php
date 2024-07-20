@@ -45,10 +45,8 @@
             </div> --}}
 
             <div class="mb-3">
-                <label class="form-label" for="gambar">
-                    Media
-                </label>
-                <input type="file" name="gambar[]" id="gambar" class="form-control @error('gambar') is-invalid @enderror" onchange="previewFiles(event)" accept="image/*, video/*" hidden multiple required>
+                <label class="form-label" for="gambar">Media</label>
+                <input type="file" name="gambar[]" id="gambar" class="form-control @error('gambar') is-invalid @enderror" onchange="previewFiles(event)" accept="image/*, video/*" hidden multiple>
                 <div id="preview-container"></div>
                 <div id="preview-youtube"></div>
                 <label class="form-label" for="gambar">
@@ -57,7 +55,7 @@
                     </div>
                 </label>
                 <div class="input-group mb-3">
-                    <input type="text" id="youtube-link" name="youtube-links" class="form-control" placeholder="Masukkan link YouTube">
+                    <input type="text" id="youtube-link" class="form-control" placeholder="Masukkan link YouTube">
                     <button class="btn btn-primary" type="button" onclick="addYouTubeVideo()">Tambahkan</button>
                 </div>
                 <input type="hidden" name="youtube_links" id="youtube-links">
@@ -66,109 +64,7 @@
                         {{ $message }}
                     </div>
                 @enderror
-                <script>
-                    let currentFiles = [];
-                    let youtubeLinks = [];   
-                    const previewFiles = (event) => {
-                        const newFiles = Array.from(event.target.files);
-                        currentFiles = currentFiles.concat(newFiles);
-                        const previewContainer = document.getElementById('preview-container');
-                        previewContainer.innerHTML = '';
-                        currentFiles.forEach((file, index) => {
-                            const reader = new FileReader();
-                            reader.onload = () => {
-                                let mediaElement;
-                                const previewWrapper = document.createElement('div');
-                                previewWrapper.style.position = 'relative';
-                                previewWrapper.style.display = 'inline-block';
-                                if (file.type.startsWith('image/')) {
-                                    mediaElement = document.createElement('img');
-                                    mediaElement.src = reader.result;
-                                } else if (file.type.startsWith('video/')) {
-                                    mediaElement = document.createElement('video');
-                                    mediaElement.src = reader.result;
-                                    mediaElement.controls = true;
-                                }
-                                if (mediaElement) {
-                                    mediaElement.classList.add('img-thumbnail');
-                                    mediaElement.style.width = '300px';
-                                    mediaElement.style.display = 'block';
-                                    const removeButton = document.createElement('button');
-                                    removeButton.innerHTML = '&#x2715;';
-                                    removeButton.style.position = 'absolute';
-                                    removeButton.style.top = '5px';
-                                    removeButton.style.right = '5px';
-                                    removeButton.style.backgroundColor = 'rgba(255, 0, 0, 0.5)';
-                                    removeButton.style.width = '26px';
-                                    removeButton.style.height = '26px';
-                                    removeButton.style.border = 'none';
-                                    removeButton.style.borderRadius = '50%';
-                                    removeButton.style.cursor = 'pointer';
-                                    removeButton.addEventListener('click', () => {
-                                        previewWrapper.remove();
-                                        currentFiles.splice(index, 1);
-                                        updateFileInput(currentFiles);
-                                    });
-                                    previewWrapper.appendChild(mediaElement);
-                                    previewWrapper.appendChild(removeButton);
-                                    previewContainer.appendChild(previewWrapper);
-                                }
-                            }
-                            reader.readAsDataURL(file);
-                        });
-                        updateFileInput(currentFiles);
-                    };
-                
-                    const updateFileInput = (updatedFiles) => {
-                        const dataTransfer = new DataTransfer();
-                        updatedFiles.forEach(file => dataTransfer.items.add(file));
-                        document.getElementById('gambar').files = dataTransfer.files;
-                    }
-                
-                    const addYouTubeVideo = () => {
-                        const link = document.getElementById('youtube-link').value;
-                        const videoId = link.split('v=')[1] || link.split('/').pop();
-                        youtubeLinks.push(link);
-                        const previewContainer = document.getElementById('preview-youtube');
-                        const iframe = document.createElement('iframe');
-                        iframe.width = '300';
-                        iframe.height = '150';
-                        iframe.src = `https://www.youtube.com/embed/${videoId}`;
-                        iframe.frameBorder = '0';
-                        iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
-                        iframe.allowFullscreen = true;
-                        
-                        const previewWrapper = document.createElement('div');
-                        previewWrapper.style.position = 'relative';
-                        previewWrapper.style.display = 'inline-block';
-                        
-                        const removeButton = document.createElement('button');
-                        removeButton.innerHTML = '&#x2715;';
-                        removeButton.style.position = 'absolute';
-                        removeButton.style.top = '5px';
-                        removeButton.style.right = '5px';
-                        removeButton.style.backgroundColor = = 'rgba(255, 0, 0, 0.5)';
-                        removeButton.style.width = '26px';
-                        removeButton.style.height = '26px';
-                        removeButton.style.border = 'none';
-                        removeButton.style.borderRadius = '50%';
-                        removeButton.style.cursor = 'pointer';
-                        removeButton.addEventListener('click', () => {
-                            previewWrapper.remove();
-                            const index = youtubeLinks.indexOf(link);
-                            if (index > -1) {
-                                youtubeLinks.splice(index, 1);
-                            }
-                        });
-                
-                        previewWrapper.appendChild(iframe);
-                        previewWrapper.appendChild(removeButton);
-                        previewContainer.appendChild(previewWrapper);
-                
-                        document.getElementById('youtube-links').value = JSON.stringify(youtubeLinks);
-                        document.getElementById('youtube-link').value = '';
-                    };
-                </script>
+                <script src="/js/InputMediaCreate.js"></script>
             </div>
             
             <div class="mb-3">
@@ -210,7 +106,77 @@
 
             <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
 
-            <button class="btn btn-sm btn-primary" type="submit">Submit</button>
+            {{-- <button class="btn btn-sm btn-primary" type="submit" >Submit</button> --}}
+            <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#details-modal">Lanjut</button>
+            
+            <div class="modal fade" id="details-modal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Bahasa</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Apakah Anda ingin menulis berita dalam bahasa Inggris?
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-warning" data-bs-target="#en-modal" data-bs-toggle="modal">Ya</button>
+                            <button type="submit" class="btn btn-primary">Tidak</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="modal fade" id="en-modal" tabindex="-1" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-scrollable modal-lg">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">English version</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="mb-3">
+                                <label class="form-label">Title</label>
+                                <input type="text" class="form-control @error('enTitle') is-invalid @enderror" name="enTitle"
+                                    value="{{ old('enTitle') }}">
+                                @error('enTitle')
+                                    <div class="invalid-feedback">
+                                        {{ $message }}
+                                    </div>
+                                @enderror
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">Content</label>
+                                <div id="enEditor">
+                                    {!! old('enContent') !!}
+                                </div>
+                                <textarea id="enContent" name="enContent" style="display:none;"></textarea>
+                                <script>
+                                    ClassicEditor
+                                        .create(document.querySelector('#enEditor'))
+                                        .then(editor => {
+                                            const isiBeritaTextarea = document.querySelector('#enContent');
+                                            editor.model.document.on('change:data', () => {
+                                                isiBeritaTextarea.value = editor.getData();
+                                            });
+                                            const form = isiBeritaTextarea.closest('form');
+                                            form.addEventListener('submit', () => {
+                                                isiBeritaTextarea.value = editor.getData();
+                                            });
+                                        })
+                                        .catch(error => {
+                                            console.error(error);
+                                        });
+                                </script>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Cancel</button>
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div style="height: 25vh"></div>
         </form>
     </div>

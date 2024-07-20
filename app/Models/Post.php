@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 //delete
 class Post extends Model
@@ -17,6 +18,12 @@ class Post extends Model
         // 'category',
         'status',
     ];
+    public function en(): HasOne{
+        return $this->hasOne(PostEN::class, 'post_id');
+    }
+    public function hasEn(){
+        return PostEN::where('post_id', $this->id)->exists();
+    }
     function media(){
         return $this->hasMany(Asset::class, 'jenis_id')->where('jenis', 'post');
     }
