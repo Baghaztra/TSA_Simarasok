@@ -57,10 +57,7 @@
         <tbody>
             @if ($produks->isEmpty())
                 <tr>
-                    <td style="text-align: center; background: rgb(187, 187, 187); color: rgb(41, 41, 41); font-weight: 600"
-                        colspan="4">Data
-                        not found.
-                    </td>
+                    <td style="text-align: center; background: rgb(187, 187, 187); color: rgb(41, 41, 41); font-weight: 600" colspan="5">Data not found.</td>
                 </tr>
             @endif
             @foreach ($produks as $item)

@@ -23,7 +23,7 @@ class DummySeeder extends Seeder
     public function run(): void
     {
         User::factory(5)->create();
-        
+
         User::factory()->create([
             'name' => 'Admin',
             'email' => 'admin@example.com',
@@ -56,7 +56,7 @@ class DummySeeder extends Seeder
                 'jenis_id' => $i,
             ]);
         }
-        
+
         // gambar untuk tiap homestay
         for ($i=1; $i <= 20; $i++) {
             Asset::factory()->create([
@@ -67,8 +67,8 @@ class DummySeeder extends Seeder
             ]);
         }
 
-        // gambar untuk tiap produk (20+15)
-        for ($i=1; $i <= 35; $i++) {
+        // gambar untuk tiap produk (20+10)
+        for ($i=1; $i <= 30; $i++) {
             Asset::factory()->create([
                 'nama' => ['K1','K2','K3','K4'][rand(0, 3)] . '.jpg',
                 'tipe' => 'gambar',
