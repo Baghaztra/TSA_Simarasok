@@ -305,8 +305,8 @@
                             Apakah Anda ingin {{ $post->hasEn() ? 'mengubah':'menulis' }} berita dalam bahasa Inggris?
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-warning" data-bs-target="#en-modal" data-bs-toggle="modal">Ya</button>
-                            <button type="submit" class="btn btn-primary">Tidak</button>
+                            <button type="button" class="btn btn-sm btn-warning" data-bs-target="#en-modal" data-bs-toggle="modal">Ya</button>
+                            <button type="submit" onclick="confirmDeleteMedia()" class="btn btn-sm btn-primary">Tidak</button>
                         </div>
                     </div>
                 </div>
@@ -356,8 +356,9 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-warning" data-bs-target="#details-modal" data-bs-toggle="modal">Cancel</button>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            {{-- <button type="submit" onclick="confirmDeleteMedia()" class="btn btn-danger">Hapus</button> --}}
+                            <button type="submit" onclick="confirmDeleteMedia()" class="btn btn-sm btn-warning">Cancel</button>
+                            <button type="submit" onclick="confirmDeleteMedia()" class="btn btn-sm btn-primary">Submit</button>
                         </div>
                     </div>
                 </div>
@@ -365,4 +366,39 @@
             <div style="height: 25vh"></div>
         </form>
     </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const cancelButton = document.querySelector('#en-modal .btn-warning');
+
+            // Mendapatkan nilai default title dan content
+            const defaultTitle = "{{ $post->hasEn()==1 ? $post->en->title : '' }}";
+            const defaultContent = `{!! old('enContent', $post->hasEn()==1?$post->en->content:'') !!}`;
+
+            // Menambahkan event listener pada tombol cancel
+            cancelButton.addEventListener('click', function() {
+                // Mengembalikan nilai input title dan content ke nilai default
+                const enTitleInput = document.querySelector('input[name="enTitle"]');
+                const enContentTextarea = document.querySelector('textarea[name="enContent"]');
+                const enEditorDiv = document.querySelector('#enEditor');
+
+                enTitleInput.value = defaultTitle;
+                enContentTextarea.value = defaultContent;
+                
+                ClassicEditor
+                    .create(enEditorDiv)
+                    .then(editor => {
+                        editor.setData(defaultContent);
+                    })
+                    .catch(error => {
+                        console.error(error);
+                    });
+
+                // Tutup modal
+                const modal = bootstrap.Modal.getInstance(document.getElementById('en-modal'));
+                modal.hide();
+            });
+        });
+
+    </script>
 @endsection
