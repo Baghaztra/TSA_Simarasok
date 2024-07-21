@@ -17,6 +17,7 @@ class Post extends Model
         'content',
         // 'category',
         'status',
+        'author_name',
     ];
     public function en(): HasOne{
         return $this->hasOne(PostEN::class, 'post_id');
@@ -41,9 +42,9 @@ class Post extends Model
     function scopeCari(Builder $query) : void {
         if (request('q')) {
             $query->where('title', 'like', '%'.request('q').'%');
-        } 
+        }
     }
-    
+
     function scopePublished(Builder $query) : void {
         $query->where('status', 'publish');
     }

@@ -60,12 +60,9 @@
                                 </div>
                                 <div class="entry-meta clearfix">
                                     <span><i class="fa fa-calendar"></i> {{ $post->created_at->format('d M Y') }}</span> </br>
-                                    <span><i class="fa fa-user"></i>
-                                        @if(auth()->check())
-                                            {{ auth()->user()->name }}
-                                        @else
-                                            Admin
-                                        @endif
+                                    <span>
+                                        <i class="fa fa-user"></i>
+                                        {{ $post->author_name ?? 'Admin' }}
                                     </span>
                                 </div>
                                 <div class="entry-content" style="text-align:justify; margin-top: 15px;">

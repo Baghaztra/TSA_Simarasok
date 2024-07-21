@@ -21,7 +21,7 @@
                     </div>
                 @enderror
             </div>
-            
+
             {{-- <div class="mb-3">
                 <label class="form-label">Kategori</label>
                 <select name="category" class="form-control @error('category') is-invalid @enderror" id="">
@@ -66,7 +66,7 @@
                 @enderror
                 <script src="/js/InputMediaCreate.js"></script>
             </div>
-            
+
             <div class="mb-3">
                 <label class="form-label">Konten</label>
                 <div id="editor">
@@ -104,7 +104,7 @@
                 @enderror
             </div>
 
-            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+            <input type="hidden" name="author_name" value="{{ auth()->user()->name }}">
 
             {{-- <button class="btn btn-sm btn-primary" type="submit" >Submit</button> --}}
             <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#option">Lanjut</button>
@@ -126,7 +126,7 @@
                     </div>
                 </div>
             </div>
-            
+
             <div class="modal fade" id="en-modal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-scrollable modal-lg">
                     <div class="modal-content">
@@ -192,7 +192,7 @@
                 // Menghapus nilai dari input title dan content
                 enTitleInput.value = '';
                 enContentTextarea.value = '';
-                
+
                 // Mengosongkan editor ClassicEditor
                 ClassicEditor
                     .create(enEditorDiv)

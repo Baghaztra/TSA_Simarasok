@@ -10,7 +10,7 @@
 @section('content')
     {{-- <a onclick="kembali()" class="btn btn-sm btn-warning mb-3">Kembali</a> --}}
 
-    <div class="row pt-3 sticky-top">
+    <div class="row pt-3">
         <div class="col-md-6">
             {{-- <form action="/admin/produk/create" method="get">
                 <input type="hidden" name="umkm_id" value="{{ $umkms->id }}">

@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="container">
-                <div class="row">
+                <div class="row justify-content-center">
                     @foreach ($homestays as $item)
                         <div class="col-md-4 ftco-animate">
                             <div class="project-wrap">
@@ -60,7 +60,7 @@
                                 <div class="text p-4">
                                     <h3>
                                         <a
-                                            href="{{ route('homestay.show', ['id' => $item->id]) }}">{{ strlen($item->name) > 15 ? substr($item->name, 0, 30) . '...' : $item->name }}</a>
+                                            href="{{ route('homestay.show', ['id' => $item->id]) }}">{{ strlen($item->name) > 20 ? substr($item->name, 0, 30) . '...' : $item->name }}</a>
                                     </h3>
                                     {{-- <p class="location mb-1"><span class="fa fa-map-marker mr-2"></span>{{ $item->lokasi }} --}}
                                     </p>
@@ -87,11 +87,11 @@
                                                 @csrf --}}
                                             {{-- <input type="hidden" name="homestay_id" value="{{ $item->id }}"> --}}
                                             <a href="list-homestay/{{ $item->id }}/Form-WA"
-                                                class="btn btn-primary rounded-2 btn-sm mt-2">Pesan Sekarang via Form</a>
+                                                class="btn btn-primary rounded-2 btn-sm mt-2">Pesan Sekarang</a>
 
-                                            <a href="https://api.whatsapp.com/send?phone={{ str_replace('+', '', $item->notelp) }}"
+                                            {{-- <a href="https://api.whatsapp.com/send?phone={{ str_replace('+', '', $item->notelp) }}"
                                                 target="_blank" class="btn btn-primary rounded-2 btn-sm mt-2">Pesan
-                                                Sekarang</a>
+                                                Sekarang</a> --}}
                                             {{-- </form> --}}
                                         </li>
                                     </ul>

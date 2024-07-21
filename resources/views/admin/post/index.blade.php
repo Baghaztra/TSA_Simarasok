@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <div class="row pt-3 sticky-top">
+    <div class="row pt-3">
         <div class="col-md-6">
             <a href="/admin/post/create" class="btn btn-primary mb-3">Tambahkan</a>
         </div>
@@ -63,12 +63,12 @@
                         @csrf
                         @method('PUT')
                         <div class="form-check form-switch">
-                            <input 
-                                class="form-check-input" 
-                                type="checkbox" 
-                                role="switch" 
-                                id="toggleStatus{{ $item->id }}" 
-                                name="status" 
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                role="switch"
+                                id="toggleStatus{{ $item->id }}"
+                                name="status"
                                 {{ $item->status == 'publish' ? 'checked' : '' }}
                                 onchange="this.form.submit()">
                             <label class="form-check-label" for="toggleStatus{{ $item->id }}">
@@ -77,7 +77,7 @@
                         </div>
                     </form>
                 </td>
-                
+
                 <td>{{ $item->visits }}</td>
 
                 <td>
@@ -89,11 +89,11 @@
                     <a href="/admin/post/{{ $item->id }}/edit" class="btn btn-sm btn-warning">Edit</a>
                     {{-- @dd($item->en, $item->id) --}}
                     <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#details-modal"
-                        data-nama="{{ $item->title }}" 
-                        data-slug="{{ $item->slug }}" 
-                        data-desc="{{ $item->content }}" 
-                        data-gambar="{{ $item->media }}" 
-                        data-category="{{ $item->category }}" 
+                        data-nama="{{ $item->title }}"
+                        data-slug="{{ $item->slug }}"
+                        data-desc="{{ $item->content }}"
+                        data-gambar="{{ $item->media }}"
+                        data-category="{{ $item->category }}"
                         data-status="{{ $item->status }}"
                         data-hasEN="{{ $item->hasEn() }}"
                         data-titleEN="{{ $item->en ? $item->en->title : '' }}"
@@ -156,7 +156,7 @@
                 const titleEN = button.getAttribute('data-titleEN');
                 const descEN = button.getAttribute('data-contentEN');
 
-                // Aseli cape bikin ini, bang 
+                // Aseli cape bikin ini, bang
                 // console.log(hasEN);
                 // console.log(titleEN);
                 // console.log(descEN);
@@ -209,7 +209,7 @@
                     btnBahasaID.classList.add('btn-primary');
                     btnBahasaID.classList.remove('btn-outline-primary');
                 });
-                
+
                 btnBahasaEN.addEventListener('click', () => {
                     namaDestinasi.innerHTML = titleEN;
                     deskripsi.innerHTML = descEN;

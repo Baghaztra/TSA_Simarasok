@@ -18,6 +18,7 @@ return new class extends Migration
             $table->text('content');
             // $table->string('category');
             $table->string('status');
+            $table->string('author_name')->nullable();
             $table->timestamps();
         });
     }

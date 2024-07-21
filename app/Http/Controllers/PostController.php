@@ -17,7 +17,7 @@ class PostController extends Controller
     public function index()
     {
         $post = Post::latest()->cari()->paginate(10);
-        
+
         foreach ($post as $item) {
             $path = "list-post/{$item->slug}";
             $visits = PageVisit::where('path', $path)->first()->visits ?? 0;
@@ -52,8 +52,9 @@ class PostController extends Controller
             'content' => $request->content,
             'category' => $request->category,
             'status' => $request->has('status') ? 'publish' : 'draft',
+            'author_name' => $request->input('author_name'),
         ]);
-        
+
         if ($request->hasFile('gambar')) {
             $i = 0;
             foreach($request->file('gambar') as $file) {
@@ -120,6 +121,7 @@ class PostController extends Controller
             'content' => $request->content,
             'category' => $request->category,
             'status' => $request->has('status') ? 'publish' : 'draft',
+            'author_name' => $request->input('author_name'),
         ];
         $berita->update($data);
 
@@ -164,7 +166,7 @@ class PostController extends Controller
         return redirect('admin/post')->with('success', 'Berhasil memperbarui berita.');
     }
 
-    
+
 
     /**
      * Remove the specified resource from storage.
