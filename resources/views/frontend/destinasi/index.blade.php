@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="container">
-                <div class="row">
+                <div class="row justify-content-center">
                     @foreach ($destinasis as $item)
                         <div class="col-md-4 ftco-animate">
                             <div class="project-wrap">
@@ -60,7 +60,7 @@
                                 <div class="text p-4">
                                     <h3>
                                         <a
-                                            href="#">{{ strlen($item->name) > 15 ? substr($item->name, 0, 30) . '...' : $item->name }}</a>
+                                            href="#">{{ strlen($item->name) > 20 ? substr($item->name, 0, 30) . '...' : $item->name }}</a>
                                     </h3>
                                     <p class="location mb-1 fs-12"><span class="fa fa-map-marker mr-2"><a
                                                 href="{{ $item->lokasi }}" target="_blank"></span>Lihat Lokasi</a></p>

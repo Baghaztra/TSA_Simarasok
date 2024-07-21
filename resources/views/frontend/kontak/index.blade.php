@@ -131,9 +131,9 @@
                         @php
                             $audios = [
                                 ['id' => 0, 'title' => 'Wonderful Simarasok', 'src' => '/media/frontend/audios/audio keindahan alam simarasok.mp3'],
-                                ['id' => 1, 'title' => 'Audio 2', 'src' => '/media/frontend/audios/audio.mp3'],
-                                ['id' => 2, 'title' => 'Audio 3', 'src' => '/media/frontend/audios/audio.mp3'],
-                                ['id' => 3, 'title' => 'Audio 4', 'src' => '/media/frontend/audios/audio.mp3'],
+                                ['id' => 1, 'title' => 'Kenapa Harus Simarasok?', 'src' => '/media/frontend/audios/Kenapa Harus Simarasok.mp3'],
+                                ['id' => 2, 'title' => 'Pengelolaan Hutan Nagari Simarasok1', 'src' => '/media/frontend/audios/pengelolaan hutan nagari simarasok1.mp3'],
+                                ['id' => 3, 'title' => "Inyiak Kalilaia's grave, Simarasok Tradition Culture", 'src' => '/media/frontend/audios/Podcast_out.mp3'],
                             ];
                         @endphp
 
@@ -150,7 +150,7 @@
                                     </div>
                                     <h3 class="mb-2">{{ $audio['title'] }}</h3>
                                     {{-- <p style="color: black">{{ $audio['deskripsi'] }}</p> --}}
-                                    <audio class="audio-element" src="{{ $audio['src'] }}" controls preload="auto"
+                                    <audio class="audio-element" src="{{ $audio['src'] }}" preload="auto"
                                         style="width: 100%; padding: 20px"></audio>
                                 </div>
                             </div>

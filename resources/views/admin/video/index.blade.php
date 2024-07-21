@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-<div class="row pt-3 sticky-top">
+<div class="row pt-3">
     <div class="col-md-6">
         <a href="/admin/video/create" class="btn btn-primary mb-3">Tambahkan</a>
     </div>
@@ -52,16 +52,16 @@
                 <td>{{ $videos->firstItem() + $loop->index }}</td>
                 <td>{{ $item->title }}</td>
                 <td><a href="{{ $item->url }}" target="_blank">{{ $item->url }}</a></td>
-                <td>    
+                <td>
                     <form action="{{ route('video.toggleHighlight', $item->id) }}" class="ms-3" method="POST">
                         @csrf @method('PUT')
                         <div class="form-check form-switch">
-                            <input 
-                                class="form-check-input" 
-                                type="checkbox" 
-                                role="switch" 
-                                id="toggleStatus{{ $item->id }}" 
-                                name="status" 
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                role="switch"
+                                id="toggleStatus{{ $item->id }}"
+                                name="status"
                                 {{ $item->highlight == 1 ? 'checked' : '' }}
                                 onchange="this.form.submit()">
                         </div>
