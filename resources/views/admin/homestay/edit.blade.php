@@ -44,6 +44,11 @@
                         <i data-feather="plus" style="width: 100px; height: 100px;"></i>
                     </div>
                 </label>
+                {{-- <div class="input-group mb-3">
+                    <input type="text" id="youtube-link" class="form-control" placeholder="Masukkan link YouTube">
+                    <button class="btn btn-primary" type="button" onclick="addYouTubeVideo()">Tambahkan</button>
+                </div>
+                <input type="hidden" name="youtube_links" id="youtube-links"> --}}
                 @error('gambar')
                 <div class="invalid-feedback">
                     {{ $message }}
@@ -128,7 +133,7 @@
                     const mediaElement = document.querySelector(`[data-media-id='${id}']`);
                     if (mediaElement) {
                         mediaElement.remove();
-                        mediaToDelete.push(id); // Menggunakan push untuk menambahkan elemen ke array
+                        mediaToDelete.push(id);
                     }
                     
                     // Menghapus button yang ditekan
@@ -158,7 +163,7 @@
                         .catch(error => console.error('Error:', error));
                     });
                 };
-            </script>                         
+            </script>                 
         
             <div class="mb-3">
                 <label class="form-label">Deskripsi penginapan</label>

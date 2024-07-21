@@ -54,12 +54,18 @@
                             @endif
                         </div>
                         <div class="d-flex justify-content-between align-items-center">
-                            <button class="carousel-control-prev" type="button" data-bs-target="#slider" data-bs-slide="prev" style="width: 30px; height: 30px; padding: 5px; position: absolute; top: 50%; transform: translateY(-50%);">
-                                <span class="carousel-control-prev-icon" aria-hidden="true" style="width: 20px; height: 20px;"></span>
+                            <button class="carousel-control-prev" type="button" data-bs-target="#slider"
+                                data-bs-slide="prev"
+                                style="width: 30px; height: 30px; padding: 5px; position: absolute; top: 50%; transform: translateY(-50%);">
+                                <span class="carousel-control-prev-icon" aria-hidden="true"
+                                    style="width: 20px; height: 20px;"></span>
                                 <span class="visually-hidden">Previous</span>
                             </button>
-                            <button class="carousel-control-next" type="button" data-bs-target="#slider" data-bs-slide="next" style="width: 30px; height: 30px; padding: 5px; position: absolute; top: 50%; transform: translateY(-50%);">
-                                <span class="carousel-control-next-icon" aria-hidden="true" style="width: 20px; height: 20px;"></span>
+                            <button class="carousel-control-next" type="button" data-bs-target="#slider"
+                                data-bs-slide="next"
+                                style="width: 30px; height: 30px; padding: 5px; position: absolute; top: 50%; transform: translateY(-50%);">
+                                <span class="carousel-control-next-icon" aria-hidden="true"
+                                    style="width: 20px; height: 20px;"></span>
                                 <span class="visually-hidden">Next</span>
                             </button>
                         </div>
@@ -94,31 +100,34 @@
                             href="https://api.whatsapp.com/send?phone={{ str_replace('+', '', $destinasis->notelp) }}">{{ $destinasis->notelp }}</a>
                     </p>
                     <p class="fw-bold">Kecepatan Internet (4G) : </p>
-                    @foreach ($destinasis->provider as $provider)
-                        <p>
-                            {{ $provider->provider->name }} :
-                            <span
-                                class="alert
+                    @if ($destinasis->provider->isEmpty())
+                        <p> </p>
+                    @else
+                        @foreach ($destinasis->provider as $provider)
+                            <p>
+                                {{ $provider->provider->name }} :
+                                <span
+                                    class="alert
                             @if ($provider->signal == 'Very Good') alert-success
                             @elseif ($provider->signal == 'Good') alert-primary
                             @elseif ($provider->signal == 'Normal') alert-primary
                             @elseif ($provider->signal == 'Fair') alert-warning
                             @elseif ($provider->signal == 'Bad') alert-danger @endif p-1">
-
-                                @if ($provider->signal == 'Very Good')
-                                    Sangat Bagus
-                                @elseif ($provider->signal == 'Good')
-                                    Bagus
-                                @elseif ($provider->signal == 'Normal')
-                                    Normal
-                                @elseif ($provider->signal == 'Fair')
-                                    Kurang
-                                @elseif ($provider->signal == 'Bad')
-                                    Buruk
-                                @endif
-                            </span>
-                        </p>
-                    @endforeach
+                                    @if ($provider->signal == 'Very Good')
+                                        Sangat Bagus
+                                    @elseif ($provider->signal == 'Good')
+                                        Bagus
+                                    @elseif ($provider->signal == 'Normal')
+                                        Normal
+                                    @elseif ($provider->signal == 'Fair')
+                                        Kurang
+                                    @elseif ($provider->signal == 'Bad')
+                                        Buruk
+                                    @endif
+                                </span>
+                            </p>
+                        @endforeach
+                    @endif
                     <p><a href="{{ $destinasis->lokasi }}" class="btn btn-primary" target="_blank">Lihat Lokasi</a></p>
                 </div>
             </div>

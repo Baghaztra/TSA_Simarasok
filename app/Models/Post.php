@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 //delete
 class Post extends Model
@@ -16,7 +17,14 @@ class Post extends Model
         'content',
         // 'category',
         'status',
+        'author_name',
     ];
+    public function en(): HasOne{
+        return $this->hasOne(PostEN::class, 'post_id');
+    }
+    public function hasEn(){
+        return PostEN::where('post_id', $this->id)->exists();
+    }
     function media(){
         return $this->hasMany(Asset::class, 'jenis_id')->where('jenis', 'post');
     }
@@ -34,9 +42,9 @@ class Post extends Model
     function scopeCari(Builder $query) : void {
         if (request('q')) {
             $query->where('title', 'like', '%'.request('q').'%');
-        } 
+        }
     }
-    
+
     function scopePublished(Builder $query) : void {
         $query->where('status', 'publish');
     }

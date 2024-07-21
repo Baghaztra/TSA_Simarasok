@@ -2,7 +2,7 @@
 
 @section('header')
     <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-        <h1 class="h2">
+        <h1 style="font-size: 1.5rem;">
             Selamat {{ date('H') >= 5 && date('H') < 12 ? 'pagi' : (date('H') >= 12 && date('H') < 18 ? 'siang' : 'malam') }}, {{ Auth::user()->name }}!
         </h1>
     </div>
@@ -98,7 +98,7 @@
                 </div>
             </div>
         </div>
-        
+
         {{-- <div class="row mt-4">
             <!-- Grafik Booking -->
             @php
@@ -109,7 +109,7 @@
                 <canvas id="bookingChart"></canvas>
             </div>
         </div>
-     
+
         <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
         <script>
             document.addEventListener('DOMContentLoaded', function () {

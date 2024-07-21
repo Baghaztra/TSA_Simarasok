@@ -62,9 +62,7 @@ class DestinasiPariwisataController extends Controller
                 'required',
                 'regex:/^(https:\/\/www\.google\.com|https:\/\/maps)/'
             ],
-            'status' => 'required',
-            'providers' => 'required|array',
-            'providers.*' => 'in:Very Good,Good,Normal,Fair,Bad'
+            'status' => 'required'
         ], [
             'name.required' => 'Nama destinasi harus diisi.',
             'desc.required' => 'Deskripsi harus diisi.',
@@ -74,18 +72,15 @@ class DestinasiPariwisataController extends Controller
             'notelp.regex' => 'Nomor telepon harus diawali dengan +62 dan hanya berisi angka tanpa spasi.',
             'lokasi.required' => 'Lokasi harus diisi.',
             'lokasi.regex' => 'Lokasi harus diawali dengan https://www.google.com/ atau https://mapsl/.',
-            'status.required' => 'Masukkan Status',
-            'providers.required' => 'Pilih status untuk semua providers',
-            'providers.*.in' => 'Status provider tidak valid.'
+            'status.required' => 'Masukkan Status'
         ]);
     
         $destinasi = DestinasiPariwisata::create($data);
     
         if ($request->hasFile('gambar')) {
             $i = 0;
-            foreach ($request->file('gambar') as $file) {
-                $fileName = time() . $i . '.' . $file->getClientOriginalExtension();
-                $i++;
+            foreach($request->file('gambar') as $file) {
+                $fileName = time() . $i++ . '.' . $file->getClientOriginalExtension();
                 $file->move(public_path('media'), $fileName);
                 $asset = new Asset();
                 $asset->nama = $fileName;
@@ -95,9 +90,9 @@ class DestinasiPariwisataController extends Controller
                 $asset->save();
             }
         }
-        
         if ($request->filled('youtube_links')) {
             $youtubeLinks = json_decode($request->input('youtube_links'), true);
+            
             foreach ($youtubeLinks as $link) {
                 $asset = new Asset();
                 $asset->nama = $link;
@@ -151,8 +146,6 @@ class DestinasiPariwisataController extends Controller
             'lokasi.required' => 'Lokasi harus diisi.',
             'lokasi.regex' => 'Lokasi harus diawali dengan https://www.google.com/ atau https://maps.',
             'status.required' => 'Masukkan Status',
-            'providers.required' => 'Pilih status untuk semua providers',
-            'providers.*.in' => 'Status provider tidak valid.'
         ]);
     
         $destinasi->update($data);

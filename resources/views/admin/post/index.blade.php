@@ -7,7 +7,7 @@
 @endsection
 
 @section('content')
-    <div class="row pt-3 sticky-top">
+    <div class="row pt-3">
         <div class="col-md-6">
             <a href="/admin/post/create" class="btn btn-primary mb-3">Tambahkan</a>
         </div>
@@ -63,12 +63,12 @@
                         @csrf
                         @method('PUT')
                         <div class="form-check form-switch">
-                            <input 
-                                class="form-check-input" 
-                                type="checkbox" 
-                                role="switch" 
-                                id="toggleStatus{{ $item->id }}" 
-                                name="status" 
+                            <input
+                                class="form-check-input"
+                                type="checkbox"
+                                role="switch"
+                                id="toggleStatus{{ $item->id }}"
+                                name="status"
                                 {{ $item->status == 'publish' ? 'checked' : '' }}
                                 onchange="this.form.submit()">
                             <label class="form-check-label" for="toggleStatus{{ $item->id }}">
@@ -77,7 +77,7 @@
                         </div>
                     </form>
                 </td>
-                
+
                 <td>{{ $item->visits }}</td>
 
                 <td>
@@ -87,16 +87,27 @@
                         <button type="submit" class="btn btn-sm btn-danger">Hapus</button>
                     </form>
                     <a href="/admin/post/{{ $item->id }}/edit" class="btn btn-sm btn-warning">Edit</a>
+                    {{-- @dd($item->en, $item->id) --}}
                     <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#details-modal"
-                        data-nama="{{ $item->title }}" 
-                        data-slug="{{ $item->slug }}" 
-                        data-desc="{{ $item->content }}" 
-                        data-gambar="{{ $item->media }}" 
-                        data-category="{{ $item->category }}" 
+                        data-nama="{{ $item->title }}"
+                        data-slug="{{ $item->slug }}"
+                        data-desc="{{ $item->content }}"
+                        data-gambar="{{ $item->media }}"
+                        data-category="{{ $item->category }}"
                         data-status="{{ $item->status }}"
+                        data-hasEN="{{ $item->hasEn() }}"
+                        data-titleEN="{{ $item->en ? $item->en->title : '' }}"
+                        data-contentEN="{{ $item->en ? $item->en->content : '' }}"
                     >
                         Detail
                     </button>
+                    @if ($item->hasEN()==1)
+                    <form class="d-inline" onsubmit="return confirm('Yakin ingin menghapus versi bahasa Inggris data ini?')"
+                        action="{{ route('postEN.destroy', $item->id) }}" method="POST">
+                        @csrf @method('DELETE')
+                        <button type="submit" class="btn btn-sm btn-danger">Hapus Bahasa</button>
+                    </form>
+                    @endif
                 </td>
             </tr>
         @endforeach
@@ -113,7 +124,10 @@
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    {{-- <h7 class="text-secondary"  id="slug"></h7> --}}
+                    <div class="d-flex justify-content-end mb-3">
+                        <button id="btn-bahasa-id" class="btn btn-primary me-2">ID</button>
+                        <button id="btn-bahasa-en" class="btn btn-outline-primary">EN</button>
+                    </div>
                     <div id="media" class="mb-3"></div>
                     <p><strong id="category"></strong></p>
                     <div id="desc" class="mb-3"></div>
@@ -132,11 +146,23 @@
                 const deskripsi = detailModal.querySelector('#desc');
                 const category = detailModal.querySelector('#category');
                 const mediaContainer = detailModal.querySelector('#media');
-                const slug = detailModal.querySelector('#slug');
 
-                namaDestinasi.innerHTML = button.getAttribute('data-nama');
-                deskripsi.innerHTML = button.getAttribute('data-desc');
-                // console.log(fharga);
+                // Data untuk Bahasa Indonesia
+                const titleID = button.getAttribute('data-nama');
+                const descID = button.getAttribute('data-desc');
+
+                // Data untuk Bahasa Inggris
+                const hasEN = button.getAttribute('data-hasEN') == 1;
+                const titleEN = button.getAttribute('data-titleEN');
+                const descEN = button.getAttribute('data-contentEN');
+
+                // Aseli cape bikin ini, bang
+                // console.log(hasEN);
+                // console.log(titleEN);
+                // console.log(descEN);
+                // Set data default ke Bahasa Indonesia
+                namaDestinasi.innerHTML = titleID;
+                deskripsi.innerHTML = descID;
                 category.innerHTML = button.getAttribute('data-category');
                 // slug.innerHTML = button.getAttribute('data-slug');
 
@@ -162,10 +188,35 @@
                     }else{
                         console.log('Error pada media');
                     }
-                    console.log(media);
                     media.classList.add('m-1');
                     media.style.height = '200px';
                     mediaContainer.appendChild(media);
+                });
+
+                // // Handle toggle bahasa
+                const btnBahasaID = detailModal.querySelector('#btn-bahasa-id');
+                const btnBahasaEN = detailModal.querySelector('#btn-bahasa-en');
+
+                if (hasEN != true) {
+                    btnBahasaEN.style.display = 'none';
+                    btnBahasaID.style.display = 'none';
+                }
+                btnBahasaID.addEventListener('click', () => {
+                    namaDestinasi.innerHTML = titleID;
+                    deskripsi.innerHTML = descID;
+                    btnBahasaEN.classList.add('btn-outline-primary');
+                    btnBahasaEN.classList.remove('btn-primary');
+                    btnBahasaID.classList.add('btn-primary');
+                    btnBahasaID.classList.remove('btn-outline-primary');
+                });
+
+                btnBahasaEN.addEventListener('click', () => {
+                    namaDestinasi.innerHTML = titleEN;
+                    deskripsi.innerHTML = descEN;
+                    btnBahasaEN.classList.add('btn-primary');
+                    btnBahasaEN.classList.remove('btn-outline-primary');
+                    btnBahasaID.classList.add('btn-outline-primary');
+                    btnBahasaID.classList.remove('btn-primary');
                 });
             });
         });

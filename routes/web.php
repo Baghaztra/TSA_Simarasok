@@ -33,6 +33,7 @@ use App\Http\Controllers\FrontendProdukController;
 use App\Http\Controllers\FrontendHomestayController;
 use App\Http\Controllers\FrontendDestinasiController;
 use App\Http\Controllers\DestinasiPariwisataController;
+use App\Http\Controllers\PostENController;
 use App\Http\Controllers\VideoController;
 
 /*
@@ -50,7 +51,7 @@ Route::get('/post', function () {
     return view('posts',['posts'=>Post::all()]);
 });
 
-Route::get('/', [FrontendHomeController::class, 'index']);
+Route::get('/', [FrontendHomeController::class, 'index'])->name('home');
 
 // Route::post('/booking', [BookingController::class, 'formBooking']);
 // Route::put('/booking/send', [BookingController::class, 'booking']);
@@ -75,6 +76,7 @@ Route::middleware(['auth'])->group(function () {
     Route::get('updateStatus/{id}', [UserController::class, 'updateStatus']);
     Route::delete('/media/{id}', [AssetController::class, 'destroy']);
     Route::delete('/assets/{id}', [AssetController::class, 'destroy'])->name('assets.destroy');
+    Route::delete('/postEN/{id}', [PostENController::class, 'destroyEN'])->name('postEN.destroy');
     // Route::get('/admin/booking/{id}/approve', [BookingController::class, 'approve']);
     Route::put('/admin/post/toggleStatus/{id}', [PostController::class, 'toggleStatus'])->name('post.toggleStatus');
     Route::put('/admin/video/toggleHightlight/{id}', [VideoController::class, 'toggleHighlight'])->name('video.toggleHighlight');
@@ -148,6 +150,7 @@ Route::middleware(['hitungVisit'])->group(function () {
     Route::get('/list-homestay/{id}', [FrontendHomestayController::class, 'show'])->name('homestay.show');
     Route::get('/produk/{id}', [FrontendProdukController::class, 'show'])->name('produk.show');
     Route::get('/list-post/{slug}', [FrontendPostController::class, 'show'])->name('post.detail');
+    Route::get('/list-post/{slug}/{lang?}', [FrontendPostController::class, 'show'])->name('post.detail');
 });
 
 Route::get('/list-hard-news', [FrontendPostController::class, 'hardNews'])->name('post.hardNews');

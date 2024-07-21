@@ -1,13 +1,13 @@
 @extends('admin.layout.main')
 
-@section('header')    
+@section('header')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Daftar Penginapan</h1>
 </div>
 @endsection
 
 @section('content')
-    <div class="row pt-3 sticky-top">
+    <div class="row pt-3">
         <div class="col-md-6">
             <a href="/admin/homestay/create" class="btn btn-primary mb-3">Tambahkan</a>
         </div>

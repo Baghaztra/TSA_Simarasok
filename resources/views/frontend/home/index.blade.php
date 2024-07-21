@@ -14,10 +14,34 @@
                     <h1 class="mb-4">Desa Wisata Sumatera Barat</h1>
                     <p class="caps">Project Base Learning Politeknik Negeri Padang</p>
                 </div>
-                {{-- <a href="https://www.youtube.com/watch?v=xicIX_jgfWU"
-                class="icon-video popup-vimeo d-flex align-items-center justify-content-center mb-4">
-                <span class="fa fa-play"></span>
-            </a> --}}
+                <a href="javascript:void(0);" class="icon-video  d-flex align-items-center justify-content-center mb-4" id="audio-control">
+                    <span class="fa fa-play" id="play-icon"></span>
+                </a>
+
+                <audio id="audio-element" src="/media/frontend/audios/audio keindahan alam simarasok.mp3" preload="auto"></audio>
+                <script>
+                    document.addEventListener('DOMContentLoaded', function() {
+                        const audioElement = document.getElementById('audio-element');
+                        const playIcon = document.getElementById('play-icon');
+                        const audioControl = document.getElementById('audio-control');
+
+                        audioControl.addEventListener('click', function() {
+                            if (audioElement.paused) {
+                                audioElement.play();
+                                playIcon.classList.remove('fa-play');
+                                playIcon.classList.add('fa-pause');
+                            } else {
+                                audioElement.pause();
+                                playIcon.classList.remove('fa-pause');
+                                playIcon.classList.add('fa-play');
+                            }
+                        });
+                        audioElement.addEventListener('ended', function() {
+                            playIcon.classList.remove('fa-pause');
+                            playIcon.classList.add('fa-play');
+                        });
+                    });
+                </script>
             </div>
         </div>
     </div>
@@ -76,28 +100,6 @@
                                                         @endif
                                                     </div>
                                                 </div>
-                                                {{-- <div class="col-md d-flex">
-                                                    <div class="form-group p-4 border-0">
-                                                        <label for="#">Top Destinasi</label>
-                                                        <div class="form-field">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md d-flex">
-                                                    <div class="form-group p-4">
-                                                        <label for="#">Top Homestay</label>
-                                                        <div class="form-field">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <div class="col-md d-flex">
-                                                    <div class="form-group p-4">
-                                                        <label for="#">Best UMKM</label>
-                                                        <div class="form-field">
-                                                        </div>
-                                                    </div>
-                                                </div> --}}
-                                            </div>
                                         </form>
                                     </div>
                                 </div>
@@ -239,7 +241,7 @@
                     <h2 class="mb-4">Destinasi</h2>
                 </div>
             </div>
-            <div class="row">
+            <div class="row justify-content-center">
                 @foreach ($destinasis as $index => $item)
                     @if ($index >= 6)
                     @break
@@ -256,7 +258,7 @@
 
                         <div class="text p-4">
                             <h3><a href="{{ route('destinasi.show', ['id' => $item->id]) }}"
-                                    target="_blank">{{ strlen($item->name) > 15 ? substr($item->name, 0, 30) . '...' : $item->name }}</a>
+                                    target="_blank">{{ strlen($item->name) > 20 ? substr($item->name, 0, 30) . '...' : $item->name }}</a>
                             </h3>
                             <p class="location mb-1 fs-12"><span class="fa fa-map-marker mr-2"> <a
                                         href="{{ $item->lokasi }}"></span>Lihat Lokasi</a></p>
@@ -305,7 +307,7 @@
 </div>
 
 {{-- Produk --}}
-<div class="ftco-section img ftco-select-destination">
+<div class="ftco-section img ftco-select-destination" style="position: relative;">
     <img src="{{ asset('/media/frontend/images/GreyBG.jpg') }}" alt="Background Image"
         style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
     <div class="container" style="position: relative; z-index: 2;">
@@ -315,63 +317,50 @@
                 <h2 class="mb-4">Oleh-Oleh</h2>
             </div>
         </div>
-    </div>
-    <div class="container">
-        <div class="row">
-            <div class="col-md-12">
-                <div class="carousel-destination owl-carousel ftco-animate">
-                    @foreach ($produk as $index => $item)
-                        @if ($index >= 6)
-                        @break
-                    @endif
-                    <div class="ftco-animate">
-                        <div class="project-wrap"
-                            style="background-color: white; box-shadow: 0 4px 8px rgba(163, 163, 163, 0.2);"
-                            style="hei">
-                            @if (count($item->media) > 0)
-                                <a href="{{ route('produk.show', ['id' => $item->id]) }}" class="img-wrapper">
-                                    <img src="{{ asset('media/' . $item->media[0]->nama) }}"
-                                        alt="{{ $item->media[0]->nama }}" class="img"
-                                        style="object-fit: cover">
-                                </a>
-                            @else
-                                <div class="img"
-                                    style="background-color: #f8f9fa; align-items: center; justify-content: center; display: flex;">
-                                    <span style="color: #6c757d; font-size: 18px; text-align: center">Tidak ada
-                                        gambar</span>
-                                </div>
-                            @endif
-                            <div class="text p-4">
-                                <h3>
-                                    <a
-                                        href="{{ route('produk.show', ['id' => $item->id]) }}">{{ strlen($item->name) > 12 ? substr($item->name, 0, 12) . '...' : $item->name }}</a>
-                                </h3>
-                                <ul>
-                                    @if (is_null($item->harga))
-                                        <p> Disajikan pada {{ $item->event }}</p>
-                                    @else
-                                        <p> Rp {{ number_format($item->harga, 0, ',', '.') }}</p>
-                                    @endif
-                                </ul>
-                                {{-- <ul>
-                                        <li style="color: black">
-                                            <a href="https://api.whatsapp.com/send?phone={{ str_replace('+', '', $item->notelp) }}" style="color: inherit; text-decoration: none;">
-                                                <span data-feather="phone-call" style="width: 16px" class="mr-2"></span>{{ $item->notelp }}
-                                            </a>
-                                        </li>
-                                    </ul> --}}
-                                <ul>
-                                    <li class="btn btn-outline rounded-2 btn-sm mt-2"><a
-                                            href="{{ route('produk.show', ['id' => $item->id]) }}">Detail</a></li>
-                                </ul>
+        <div class="row justify-content-center">
+            @foreach ($produk as $index => $item)
+                @if ($index >= 6)
+                    @break
+                @endif
+                <div class="col-md-4 ftco-animate">
+                    <div class="project-wrap"
+                        style="background-color: white; box-shadow: 0 4px 8px rgba(163, 163, 163, 0.2);">
+                        @if (count($item->media) > 0)
+                            <a href="{{ route('produk.show', ['id' => $item->id]) }}" class="img-wrapper">
+                                <img src="{{ asset('media/' . $item->media[0]->nama) }}"
+                                    alt="{{ $item->media[0]->nama }}" class="img">
+                            </a>
+                        @else
+                            <div class="img"
+                                style="background-color: #f8f9fa; align-items: center; justify-content: center; display: flex;">
+                                <span style="color: #6c757d; font-size: 18px; text-align: center">Tidak ada gambar</span>
                             </div>
+                        @endif
+                        <div class="text p-4">
+                            <h3>
+                                <a href="{{ route('produk.show', ['id' => $item->id]) }}">{{ strlen($item->name) > 20 ? substr($item->name, 0, 30) . '...' : $item->name }}</a>
+                            </h3>
+                            <ul>
+                                @if (is_null($item->harga))
+                                    <p> Disajikan pada {{ $item->event }}</p>
+                                @else
+                                    <p> Rp {{ number_format($item->harga, 0, ',', '.') }}</p>
+                                @endif
+                            </ul>
+                            <ul>
+                                <li class="btn btn-outline rounded-2 btn-sm mt-2"><a href="{{ route('produk.show', ['id' => $item->id]) }}">Detail</a></li>
+                            </ul>
                         </div>
                     </div>
-                @endforeach
+                </div>
+            @endforeach
+        </div>
+        <div class="row justify-content-center">
+            <div class="col text-center mt-4">
+                <p><a href="/list-produk" class="btn btn-primary">Lihat Produk Lainnya</a></p>
             </div>
         </div>
     </div>
-</div>
 </div>
 
 
@@ -384,7 +373,7 @@
             <h2 class="mb-4">Penginapan</h2>
         </div>
     </div>
-    <div class="row">
+    <div class="row justify-content-center">
         @foreach ($homestay as $index => $item)
             @if ($index >= 6)
             @break
@@ -407,7 +396,7 @@
                 <div class="text p-4">
                     <h3>
                         <a
-                            href="{{ route('destinasi.show', ['id' => $item->id]) }}">{{ strlen($item->name) > 15 ? substr($item->name, 0, 15) . '...' : $item->name }}</a>
+                            href="{{ route('destinasi.show', ['id' => $item->id]) }}">{{ strlen($item->name) > 20 ? substr($item->name, 0, 30) . '...' : $item->name }}</a>
                     </h3>
                     {{-- <p class="location mb-1"><span class="fa fa-map-marker mr-2"></span>Lokasi</p> --}}
                     <ul>
@@ -454,47 +443,4 @@
 </div>
 </div>
 </div>
-
-
-{{-- <div class="ftco-section ftco-about img"style="background-image: url(/media/frontend/images/gambar1.jpg);">
-<div class="overlay"></div>
-<div class="container py-md-5">
-    <div class="row py-md-5">
-        <div class="col-md d-flex align-items-center justify-content-center">
-            <a href="https://vimeo.com/45830194"
-                class="icon-video popup-vimeo d-flex align-items-center justify-content-center mb-4">
-                <span class="fa fa-play"></span>
-            </a>
-        </div>
-    </div>
-</div>
-</div> --}}
-
-{{-- <div class="ftco-section ftco-about ftco-no-pt img">
-<div class="container">
-    <div class="row d-flex">
-        <div class="col-md-12 about-intro">
-            <div class="row">
-                <div class="col-md-6 d-flex align-items-stretch">
-                    <div class="img d-flex w-100 align-items-center justify-content-center"
-                        style="background-image:url(/media/frontend/images/Home.jpg);">
-                    </div>
-                </div>
-                <div class="col-md-6 pl-md-5 py-5">
-                    <div class="row justify-content-start pb-3">
-                        <div class="col-md-12 heading-section ftco-animate">
-                            <span class="subheading">About Us</span>
-                            <h2 class="mb-4">Make Your Tour Memorable and Safe With Us</h2>
-                            <p>Far far away, behind the word mountains, far from the countries Vokalia and
-                                Consonantia, there live the blind texts. Separated they live in Bookmarksgrove
-                                right at the coast of the Semantics, a large language ocean.</p>
-                            <p><a href="#" class="btn btn-primary">Book Your Destination</a></p>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-</div> --}}
 @endsection
