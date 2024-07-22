@@ -1,9 +1,9 @@
 <?php
 
-$server = "localhost";
-$user = "root";
-$password = "";
-$nama_database = "project_2a";
+$server = "10.20.29.222";
+$user = "pbl";
+$password = "nMMiTWLSItMZNrvUsDbZGKscuWgwrNr2HrkVlfHhN";
+$nama_database = "laravel";
 $db = mysqli_connect($server, $user, $password, $nama_database);
 
 date_default_timezone_set('Asia/Jakarta');
@@ -25,7 +25,7 @@ $uvintensity = $_GET['uvintensity'] ?? 0;
 $uvindex = $_GET['uvindex'] ?? 0;
 
 $sql = "INSERT INTO data_sensor
-        VALUES 
+        VALUES
         (NULL,
         '$tgl_',
         $winddirection,
