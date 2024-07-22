@@ -86,12 +86,12 @@
                                             {{-- <form method="POST" action="/booking">
                                                 @csrf --}}
                                             {{-- <input type="hidden" name="homestay_id" value="{{ $item->id }}"> --}}
-                                            <a href="list-homestay/{{ $item->id }}/Form-WA"
-                                                class="btn btn-primary rounded-2 btn-sm mt-2">Pesan Sekarang</a>
+                                            {{-- <a href="list-homestay/{{ $item->id }}/Form-WA"
+                                                class="btn btn-primary rounded-2 btn-sm mt-2">Pesan Sekarang</a> --}}
 
-                                            {{-- <a href="https://api.whatsapp.com/send?phone={{ str_replace('+', '', $item->notelp) }}"
-                                                target="_blank" class="btn btn-primary rounded-2 btn-sm mt-2">Pesan
-                                                Sekarang</a> --}}
+                                            <a href="https://api.whatsapp.com/send?phone={{ str_replace('+', '', $item->notelp) }}"
+                                                target="_blank" class="btn btn-primary rounded-2 btn-sm mt-2">Hubungi
+                                                Sekarang</a>
                                             {{-- </form> --}}
                                         </li>
                                     </ul>

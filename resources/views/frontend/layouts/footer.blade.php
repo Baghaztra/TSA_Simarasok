@@ -1,4 +1,6 @@
 <footer class="ftco-footer bg-bottom ftco-no-pt" style="position: relative; z-index: 2;">
+    {{-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css"> --}}
+    <link rel='stylesheet' href='https://cdn-uicons.flaticon.com/2.4.2/uicons-brands/css/uicons-brands.css'>
     <img src="{{ asset('/media/frontend/images/GreyBG.jpg') }}" alt="Background Image"
         style="width: 100%; height: 100%; object-fit: cover; position: absolute; top: 0; left: 0; z-index: -1;">
     <div class="container">
@@ -13,8 +15,8 @@
                             title="Politeknik Negeri Padang">PNP</abbr> </br>
                     </p>
                     <p>
-                        <a target="_blank" href="https://www.instagram.com/tsa.pnp/"><span class="fa-brands fa-instagram"
-                                style="color: gray"></span> @tsa.pnp</a></li>
+                        <a target="_blank" href="https://www.instagram.com/tsa.pnp/"><span class="fi fi-brands-instagram"
+                                style="color: gray;"></span> @tsa.pnp</a></li>
                     </p>
                 </div>
                 @php
