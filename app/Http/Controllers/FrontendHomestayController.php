@@ -99,11 +99,11 @@ class FrontendHomestayController extends Controller
             $wa = $request->pemilik;
         }
 
-        $wa = "6282283094836";
+        // $wa = "6282283094836";
 
-        $link = "wa.me/$wa?text=" . urlencode("Hallo saya mau booking $request->homestay");
+        $link = "wa.me/$wa?text=" . urlencode("Hallo, saya mau booking $request->homestay");
 
-        $pesan = "Apakah anda $nama, ingin mem-booking $request->homestay.\nKlik link dibawah ini untuk menghubungi pemilik penginapan.\n\nNomor WhatsApp penginapan:\n$link\n\n *Abaikan jika bukan anda.*";
+        $pesan = "Apakah anda $nama, ingin mem-booking $request->homestay?.\nKlik link dibawah ini untuk menghubungi pemilik penginapan.\n\nNomor WhatsApp penginapan:\n$link\n\n *Abaikan jika bukan anda.*";
 
         $curl = curl_init();
 
