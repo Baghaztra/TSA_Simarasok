@@ -79,14 +79,14 @@
                                         aria-labelledby="v-pills-nextgen-tab">
                                         <form action="#" class="search-property-1">
                                             <div class="row no-gutters">
-                                                <div class="col-md d-flex">
+                                                {{-- <div class="col-md d-flex">
                                                     <div class="form-group p-4 border-0">
                                                         <label for="">Cuaca</label>
                                                         <p id="suhu">{{ $suhu < 20 ? 'Dingin' : 'Panas' }}</p>
                                                         <div class="form-field">
                                                         </div>
                                                     </div>
-                                                </div>
+                                                </div> --}}
                                                 <div class="col-md d-flex">
                                                     <div class="form-group p-4 border-0">
                                                         <label for="">Berita Terbaru</label>
