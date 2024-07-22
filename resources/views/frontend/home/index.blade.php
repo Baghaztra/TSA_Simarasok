@@ -14,11 +14,13 @@
                     <h1 class="mb-4">Desa Wisata Sumatera Barat</h1>
                     <p class="caps">Project Base Learning Politeknik Negeri Padang</p>
                 </div>
-                <a href="javascript:void(0);" class="icon-video  d-flex align-items-center justify-content-center mb-4" id="audio-control">
+                <a href="javascript:void(0);" class="icon-video  d-flex align-items-center justify-content-center mb-4"
+                    id="audio-control">
                     <span class="fa fa-play" id="play-icon"></span>
                 </a>
 
-                <audio id="audio-element" src="/media/frontend/audios/audio keindahan alam simarasok.mp3" preload="auto"></audio>
+                <audio id="audio-element" src="/media/frontend/audios/audio keindahan alam simarasok.mp3"
+                    preload="auto"></audio>
                 <script>
                     document.addEventListener('DOMContentLoaded', function() {
                         const audioElement = document.getElementById('audio-element');
@@ -79,14 +81,33 @@
                                         aria-labelledby="v-pills-nextgen-tab">
                                         <form action="#" class="search-property-1">
                                             <div class="row no-gutters">
-                                                {{-- <div class="col-md d-flex">
-                                                    <div class="form-group p-4 border-0">
-                                                        <label for="">Cuaca</label>
-                                                        <p id="suhu">{{ $suhu < 20 ? 'Dingin' : 'Panas' }}</p>
-                                                        <div class="form-field">
+                                                @if ($dataSensor == null)
+
+                                                @else
+                                                    <div class="col-md d-flex">
+                                                        <div class="form-group p-4 border-0">
+                                                            <label for="cuaca">Cuaca</label>
+                                                            @if ($dataSensor == null)
+                                                                <p id="suhu">Tidak ada data cuaca</p>
+                                                            @else
+                                                                <div class="form-field" style="color: black">
+                                                                    <select id="cuaca" class="form-control"
+                                                                        style="color:black">
+                                                                        <option value="suhu" selected
+                                                                            style="color: black">
+                                                                            {{ $dataSensor != null ? $dataSensor->airtemperature . 'Suhu (°C) : ' : 'Suhu (°C) : Tidak ada data' }}
+                                                                        </option>
+                                                                        <option value="kelembaban" style="color: black">
+                                                                            {{ $dataSensor != null ? $dataSensor->rainintensity1h . 'Intensitas Hujan/jam (%) : ' : 'Intensitas Hujan/jam (%) : Tidak ada data' }}
+                                                                        </option>
+                                                                        {{-- <option value="tekanan">{{ $dataSensor != null ? $dataSensor->raindropstatus . ' hPa' : 'Tidak ada data' }}</option> --}}
+                                                                    </select>
+                                                                </div>
+                                                            @endif
                                                         </div>
                                                     </div>
-                                                </div> --}}
+                                                @endif
+
                                                 <div class="col-md d-flex">
                                                     <div class="form-group p-4 border-0">
                                                         <label for="">Berita Terbaru</label>
@@ -320,47 +341,50 @@
         <div class="row justify-content-center">
             @foreach ($produk as $index => $item)
                 @if ($index >= 6)
-                    @break
-                @endif
-                <div class="col-md-4 ftco-animate">
-                    <div class="project-wrap"
-                        style="background-color: white; box-shadow: 0 4px 8px rgba(163, 163, 163, 0.2);">
-                        @if (count($item->media) > 0)
-                            <a href="{{ route('produk.show', ['id' => $item->id]) }}" class="img-wrapper">
-                                <img src="{{ asset('media/' . $item->media[0]->nama) }}"
-                                    alt="{{ $item->media[0]->nama }}" class="img">
-                            </a>
-                        @else
-                            <div class="img"
-                                style="background-color: #f8f9fa; align-items: center; justify-content: center; display: flex;">
-                                <span style="color: #6c757d; font-size: 18px; text-align: center">Tidak ada gambar</span>
-                            </div>
-                        @endif
-                        <div class="text p-4">
-                            <h3>
-                                <a href="{{ route('produk.show', ['id' => $item->id]) }}">{{ strlen($item->name) > 20 ? substr($item->name, 0, 30) . '...' : $item->name }}</a>
-                            </h3>
-                            <ul>
-                                @if (is_null($item->harga))
-                                    <p> Disajikan pada {{ $item->event }}</p>
-                                @else
-                                    <p> Rp {{ number_format($item->harga, 0, ',', '.') }}</p>
-                                @endif
-                            </ul>
-                            <ul>
-                                <li class="btn btn-outline rounded-2 btn-sm mt-2"><a href="{{ route('produk.show', ['id' => $item->id]) }}">Detail</a></li>
-                            </ul>
+                @break
+            @endif
+            <div class="col-md-4 ftco-animate">
+                <div class="project-wrap"
+                    style="background-color: white; box-shadow: 0 4px 8px rgba(163, 163, 163, 0.2);">
+                    @if (count($item->media) > 0)
+                        <a href="{{ route('produk.show', ['id' => $item->id]) }}" class="img-wrapper">
+                            <img src="{{ asset('media/' . $item->media[0]->nama) }}"
+                                alt="{{ $item->media[0]->nama }}" class="img">
+                        </a>
+                    @else
+                        <div class="img"
+                            style="background-color: #f8f9fa; align-items: center; justify-content: center; display: flex;">
+                            <span style="color: #6c757d; font-size: 18px; text-align: center">Tidak ada
+                                gambar</span>
                         </div>
+                    @endif
+                    <div class="text p-4">
+                        <h3>
+                            <a
+                                href="{{ route('produk.show', ['id' => $item->id]) }}">{{ strlen($item->name) > 20 ? substr($item->name, 0, 30) . '...' : $item->name }}</a>
+                        </h3>
+                        <ul>
+                            @if (is_null($item->harga))
+                                <p> Disajikan pada {{ $item->event }}</p>
+                            @else
+                                <p> Rp {{ number_format($item->harga, 0, ',', '.') }}</p>
+                            @endif
+                        </ul>
+                        <ul>
+                            <li class="btn btn-outline rounded-2 btn-sm mt-2"><a
+                                    href="{{ route('produk.show', ['id' => $item->id]) }}">Detail</a></li>
+                        </ul>
                     </div>
                 </div>
-            @endforeach
-        </div>
-        <div class="row justify-content-center">
-            <div class="col text-center mt-4">
-                <p><a href="/list-produk" class="btn btn-primary">Lihat Produk Lainnya</a></p>
             </div>
+        @endforeach
+    </div>
+    <div class="row justify-content-center">
+        <div class="col text-center mt-4">
+            <p><a href="/list-produk" class="btn btn-primary">Lihat Produk Lainnya</a></p>
         </div>
     </div>
+</div>
 </div>
 
 

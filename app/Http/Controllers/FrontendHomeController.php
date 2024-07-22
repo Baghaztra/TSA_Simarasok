@@ -9,6 +9,7 @@ use App\Models\Homestay;
 use Illuminate\Http\Request;
 use App\Models\DestinasiPariwisata;
 use App\Http\Controllers\Controller;
+use App\Models\DataSensor;
 
 class FrontendHomeController extends Controller
 {
@@ -20,6 +21,7 @@ class FrontendHomeController extends Controller
         $produk = Produk::latest()->get();
         $penginapan = Homestay::latest()->get();
         $latestPost = Post::latest()->published()->first();
+        $dataSensor = DataSensor::latest()->first();
 
 
         // Menunggu API dari D3 Telekomunikasi
@@ -33,7 +35,8 @@ class FrontendHomeController extends Controller
             'destinasis' => $destinasis,
             'produk' => $produk,
             'homestay' => $penginapan,
-            'latestPost' => $latestPost
+            'latestPost' => $latestPost,
+            'dataSensor' => $dataSensor,
         ]);
     }
 
