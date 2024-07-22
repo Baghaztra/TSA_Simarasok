@@ -40,7 +40,7 @@ $sql = "INSERT INTO data_sensor
         $raindropstatus,
         $raindropintensity,
         $uvintensity,
-        $uvindex
+        $uvindex, '$tgl_', '$tgl_'
         )";
 
 mysqli_query($db,$sql);
