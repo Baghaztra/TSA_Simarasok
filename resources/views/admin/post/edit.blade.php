@@ -1,6 +1,6 @@
 @extends('admin.layout.main')
 
-@section('header')    
+@section('header')
 <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <h1 class="h2">Edit Berita "{{ $post->title }}"</h1>
 </div>
@@ -24,7 +24,7 @@
                     </div>
                 @enderror
             </div>
-            
+
             {{-- <div class="mb-3">
                 <label class="form-label">Kategori</label>
                 <select name="category" class="form-control @error('category') is-invalid @enderror" id="">
@@ -80,23 +80,23 @@
                 </div>
                 @enderror
             </div>
-            
+
             <script>
                 let currentFiles = [];
-            
+
                 const previewFiles = (event) => {
                     const newFiles = Array.from(event.target.files);
                     currentFiles = currentFiles.concat(newFiles);
                     updatePreview();
                     updateFileInput(currentFiles);
                 };
-            
+
                 const updatePreview = () => {
                     const previewContainer = document.getElementById('preview-container');
-                    
+
                     // Hapus pratinjau file yang baru ditambahkan saja (biarkan media yang ada tetap)
                     previewContainer.querySelectorAll('[data-new]').forEach(el => el.remove());
-                    
+
                     currentFiles.forEach((file, index) => {
                         const reader = new FileReader();
                         reader.onload = () => {
@@ -105,7 +105,7 @@
                             previewWrapper.style.position = 'relative';
                             previewWrapper.style.display = 'inline-block';
                             previewWrapper.dataset.new = true; // Menandai sebagai media baru
-                            
+
                             if (file.type.startsWith('image/')) {
                                 mediaElement = document.createElement('img');
                                 mediaElement.src = reader.result;
@@ -114,12 +114,12 @@
                                 mediaElement.src = reader.result;
                                 mediaElement.controls = true;
                             }
-            
+
                             if (mediaElement) {
                                 mediaElement.classList.add('img-thumbnail');
                                 mediaElement.style.width = '300px';
                                 mediaElement.style.display = 'block';
-            
+
                                 const removeButton = document.createElement('button');
                                 removeButton.innerHTML = '&#x2715;';
                                 removeButton.style.position = 'absolute';
@@ -136,7 +136,7 @@
                                     updatePreview();
                                     updateFileInput(currentFiles);
                                 });
-            
+
                                 previewWrapper.appendChild(mediaElement);
                                 previewWrapper.appendChild(removeButton);
                                 previewContainer.appendChild(previewWrapper);
@@ -146,13 +146,13 @@
                     });
                     updateYouTubeLinksPreview();
                 };
-            
+
                 const updateFileInput = (updatedFiles) => {
                     const dataTransfer = new DataTransfer();
                     updatedFiles.forEach(file => dataTransfer.items.add(file));
                     document.getElementById('gambar').files = dataTransfer.files;
                 };
-            
+
                 const mediaToDelete = [];
 
                 const removeExistingMedia = (id, event) => {
@@ -190,9 +190,9 @@
 
                 const updateYouTubeLinksPreview = () => {
                     const previewContainer = document.getElementById('preview-container');
-                    
+
                     previewContainer.querySelectorAll('[data-youtube]').forEach(el => el.remove());
-                    
+
                     youtubeLinks.forEach((link, index) => {
                         const videoId = link.split('v=')[1] || link.split('/').pop();
                         const iframe = document.createElement('iframe');
@@ -202,17 +202,17 @@
                         iframe.frameBorder = '0';
                         iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
                         iframe.allowFullscreen = true;
-                        
+
                         const previewWrapper = document.createElement('div');
                         previewWrapper.style.position = 'relative';
                         previewWrapper.style.display = 'inline-block';
                         previewWrapper.dataset.youtube = true; // Menandai sebagai media baru
-                        
+
                         const removeButton = document.createElement('button');
                         removeButton.innerHTML = '&#x2715;';
                         removeButton.style.position = 'absolute';
                         removeButton.style.top = '5px';
-                        removeButton.style.right = '5px';    
+                        removeButton.style.right = '5px';
                         removeButton.style.backgroundColor = 'rgba(255, 0, 0, 0.5)';
                         removeButton.style.width = '26px';
                         removeButton.style.height = '26px';
@@ -276,7 +276,7 @@
                         });
                 </script>
             </div>
-           
+
             <div class="mb-3 ms-3">
                 <div class="form-check form-switch @error('status') is-invalid @enderror">
                     <input class="form-check-input" type="checkbox" role="switch" id="status" name="status" {{ $post->status == 'publish' ? 'checked' : '' }}>
@@ -289,11 +289,11 @@
                 @enderror
             </div>
 
-            <input type="hidden" name="user_id" value="{{ auth()->user()->id }}">
+            <input type="hidden" name="author_name" value="{{ auth()->user()->name }}">
 
             {{-- <button class="btn btn-sm btn-primary" type="submit" >Submit</button> --}}
             <button type="button" class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#details-modal">Lanjut</button>
-                        
+
             <div class="modal fade" id="details-modal" tabindex="-1" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
@@ -384,7 +384,7 @@
 
                 enTitleInput.value = defaultTitle;
                 enContentTextarea.value = defaultContent;
-                
+
                 ClassicEditor
                     .create(enEditorDiv)
                     .then(editor => {

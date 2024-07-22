@@ -41,7 +41,7 @@
                 </div>
             </div>
             <div class="container">
-                <div class="row">
+                <div class="row justify-content-center">
                     @foreach ($produks as $produk)
                         <div class="col-md-4 ftco-animate">
                             <div class="project-wrap">
@@ -60,7 +60,7 @@
                                 <div class="text p-4">
                                     <h3>
                                         <a href="{{ route('produk.show', $produk->id) }}">
-                                            {{ strlen($produk->name) > 30 ? substr($produk->name, 0, 30) . '...' : $produk->name }}
+                                            {{ strlen($produk->name) > 20 ? substr($produk->name, 0, 30) . '...' : $produk->name }}
                                         </a>
                                     </h3>
                                     @if (is_null($produk->harga))

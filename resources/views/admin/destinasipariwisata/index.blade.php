@@ -8,7 +8,7 @@
 
 @section('content')
 {{-- <div class="pt-5"></div> --}}
-<div class="row pt-3 sticky-top">
+<div class="row pt-3">
     <div class="col-md-6">
         <a href="/admin/destinasipariwisata/create" class="btn btn-primary mb-3">Tambahkan</a>
     </div>
@@ -62,12 +62,12 @@
                     </form>
                     <a href="/admin/destinasipariwisata/{{ $item->id }}/edit" class="btn btn-sm btn-warning">Edit</a>
                     <button class="btn btn-sm btn-primary" data-bs-toggle="modal" data-bs-target="#details-modal"
-                        data-nama="{{ $item->name }}" 
-                        data-desc="{{ $item->desc }}" 
+                        data-nama="{{ $item->name }}"
+                        data-desc="{{ $item->desc }}"
                         data-harga="{{ $item->harga }}"
-                        data-gambar="{{ $item->media }}" 
-                        data-notelp="{{ $item->notelp }}" 
-                        data-lokasi="{{ $item->lokasi }}" 
+                        data-gambar="{{ $item->media }}"
+                        data-notelp="{{ $item->notelp }}"
+                        data-lokasi="{{ $item->lokasi }}"
                         data-status="{{ $item->status }}"
                         data-provider="{{ $item->provider->map(function($provider) {
                             return [
