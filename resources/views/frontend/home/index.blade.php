@@ -89,27 +89,26 @@
                                                             @if ($dataSensor == null)
                                                                 <p id="suhu">Tidak ada data cuaca</p>
                                                             @else
-                                                                <div class="form-field" style="color: black">
-                                                                    <select id="cuaca" class="form-select"
-                                                                        style="color:black">
-                                                                        <option value="suhu" selected
-                                                                            style="color: black">
-                                                                            {{ $dataSensor != null ? 'Suhu : ' . $dataSensor->airtemperature . ' °C' : 'Suhu (°C): Tidak ada data' }}
-                                                                        </option>
-                                                                        <option value="kelembaban" style="color: black">
-                                                                            {{ $dataSensor != null ? 'Intensitas Hujan : ' . $dataSensor->rainintensity1h . ' mm' : 'Intensitas Hujan/jam (%): Tidak ada data' }}
-                                                                        </option>
-                                                                        <option value="tekanan" style="color: black">
-                                                                            {{ $dataSensor != null ? 'Kelembaban : ' . $dataSensor->airhumidity . ' %' : 'Kelembapan (%): Tidak ada data' }}
-                                                                        </option>
-                                                                        <option value="kecepatan angin">
-                                                                            {{ $dataSensor != null ? 'Kecepatan Angin : ' . $dataSensor->windspeedavg . ' M/s' : 'Kecepatan Angin (M/s): Tidak ada data' }}
-                                                                        </option>
-                                                                        <option value="uvindex">
-                                                                            {{ $dataSensor != null ? 'UV Index : ' . $dataSensor->uvindex  : 'UV Index : Tidak ada data' }}
-                                                                        </option>
-                                                                    </select>
-                                                                </div>
+                                                            <div class="form-field" style="color: black">
+                                                                <select id="cuaca" class="form-select" style="color:black">
+                                                                    <option value="suhu" selected style="color: black">
+                                                                        {{ $dataSensor ? 'Suhu : ' . $dataSensor->airtemperature . ' °C' : 'Suhu (°C): Tidak ada data' }}
+                                                                    </option>
+                                                                    <option value="kelembaban" style="color: black">
+                                                                        {{ $dataSensor ? 'Intensitas Hujan : ' . $dataSensor->rainintensity1h . ' mm' : 'Intensitas Hujan/jam (%): Tidak ada data' }}
+                                                                    </option>
+                                                                    <option value="tekanan" style="color: black">
+                                                                        {{ $dataSensor ? 'Kelembaban : ' . $dataSensor->airhumidity . ' %' : 'Kelembapan (%): Tidak ada data' }}
+                                                                    </option>
+                                                                    <option value="kecepatan angin" style="color: black">
+                                                                        {{ $dataSensor ? 'Kecepatan Angin : ' . $dataSensor->windspeedavg . ' M/s' : 'Kecepatan Angin (M/s): Tidak ada data' }}
+                                                                    </option>
+                                                                    <option value="uvindex" style="color: black">
+                                                                        {{ $dataSensor ? 'UV Index : ' . $dataSensor->uvindex : 'UV Index : Tidak ada data' }}
+                                                                    </option>
+                                                                </select>
+                                                            </div>
+
                                                             @endif
                                                         </div>
                                                     </div>
